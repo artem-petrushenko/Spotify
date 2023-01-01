@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -232,7 +233,7 @@ class SignInScreen extends StatelessWidget {
             ),
             const SizedBox(height: 22.0),
             GestureDetector(
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(context, MainNavigationRouteNames.mainScreen),
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 27.0),
