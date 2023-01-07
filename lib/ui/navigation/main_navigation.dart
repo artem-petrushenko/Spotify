@@ -13,6 +13,8 @@ abstract class MainNavigationRouteNames {
   static const loadingScreen = '/';
   static const getStartedScreen = '/get_started';
   static const chooseModeScreen = '/get_started/choose_mode';
+  static const musicScreen = '/music';
+  static const lyricsScreen = '/lyrics';
 }
 
 class MainNavigation {
@@ -22,12 +24,13 @@ class MainNavigation {
     MainNavigationRouteNames.signInScreen: (_) => _screenFactory.makeSignIn(),
     MainNavigationRouteNames.loginSelectionScreen: (_) =>
         _screenFactory.makeLoginSelection(),
-    MainNavigationRouteNames.loadingScreen: (_) =>
-        _screenFactory.makeLoading(),
+    MainNavigationRouteNames.loadingScreen: (_) => _screenFactory.makeLoading(),
     MainNavigationRouteNames.getStartedScreen: (_) =>
         _screenFactory.makeGetStarted(),
     MainNavigationRouteNames.chooseModeScreen: (_) =>
         _screenFactory.makeChooseMode(),
+    MainNavigationRouteNames.musicScreen: (_) => _screenFactory.makeMusic(),
+    MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

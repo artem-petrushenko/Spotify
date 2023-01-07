@@ -12,9 +12,11 @@ import 'package:spotify_client/ui/screens/liked/liked_screen.dart';
 import 'package:spotify_client/ui/screens/loading/loading_screen.dart';
 
 import 'package:spotify_client/ui/screens/login_selection/login_selection_screen.dart';
+import 'package:spotify_client/ui/screens/lyrics/lyrics_screen.dart';
 
 import 'package:spotify_client/ui/screens/main/main_model.dart';
 import 'package:spotify_client/ui/screens/main/main_screen.dart';
+import 'package:spotify_client/ui/screens/music/music_screen.dart';
 
 import 'package:spotify_client/ui/screens/navigation/navigation_model.dart';
 import 'package:spotify_client/ui/screens/navigation/navigation_screen.dart';
@@ -78,5 +80,13 @@ class ScreenFactory {
 
   Widget makeChooseMode() {
     return const ChooseModeScreen();
+  }
+
+  Widget makeMusic() {
+    return const MusicScreen();
+  }
+
+  Widget makeLyrics(){
+    return const LyricsScreen();
   }
 }

@@ -30,6 +30,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Scaffold(
           bottomNavigationBar: Container(
             height: 64.0,
+            color: Color(0xFFFFFFFF),
             // decoration: BoxDecoration(
             //   color: Color(0xFFFFFFFF),
             //   boxShadow: [
@@ -41,6 +42,7 @@ class _MainScreenState extends State<MainScreen> {
             //   ],
             // ),
             child: TabBar(
+
               splashFactory: NoSplash.splashFactory,
               splashBorderRadius: BorderRadius.circular(16.0),
               onTap: (index) => onItemTapped(index),
