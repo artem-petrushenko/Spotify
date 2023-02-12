@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+
+import 'package:spotify_client/ui/screens/sign_in/sign_in_model.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -233,7 +235,8 @@ class SignInScreen extends StatelessWidget {
             ),
             const SizedBox(height: 22.0),
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, MainNavigationRouteNames.mainScreen),
+              onTap: () =>
+                  context.read<SignInViewModel>().authentication(context),
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 27.0),

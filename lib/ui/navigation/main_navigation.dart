@@ -10,7 +10,7 @@ abstract class MainNavigationRouteNames {
   static const loginSelectionScreen = '/login_selection';
 
   //TODO In Work
-  static const loadingScreen = '/';
+  static const loaderScreen = '/';
   static const getStartedScreen = '/get_started';
   static const chooseModeScreen = '/get_started/choose_mode';
   static const musicScreen = '/music';
@@ -21,10 +21,10 @@ class MainNavigation {
   static final _screenFactory = ScreenFactory();
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.mainScreen: (_) => _screenFactory.makeMain(),
-    MainNavigationRouteNames.signInScreen: (_) => _screenFactory.makeSignIn(),
+    MainNavigationRouteNames.signInScreen: (_) => _screenFactory.makeSignIn(null),
     MainNavigationRouteNames.loginSelectionScreen: (_) =>
         _screenFactory.makeLoginSelection(),
-    MainNavigationRouteNames.loadingScreen: (_) => _screenFactory.makeLoading(),
+    MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
     MainNavigationRouteNames.getStartedScreen: (_) =>
         _screenFactory.makeGetStarted(),
     MainNavigationRouteNames.chooseModeScreen: (_) =>
@@ -34,11 +34,24 @@ class MainNavigation {
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {
+    final uri = Uri.parse(settings.name ?? '');
+    if (uri.path == '/auth') {
+      return MaterialPageRoute(
+        builder: (_) => _screenFactory.makeSignIn(uri.queryParameters),
+      );
+    }
     switch (settings.name) {
       default:
         return MaterialPageRoute(
           builder: (_) => const NavigationErrorScreen(),
         );
     }
+  }
+
+  static void resetNavigation(BuildContext context) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      MainNavigationRouteNames.loaderScreen,
+      (route) => false,
+    );
   }
 }

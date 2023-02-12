@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Satoshi',
       ),
       routes: mainNavigation.routes,
-      initialRoute: MainNavigationRouteNames.getStartedScreen,
+      initialRoute: MainNavigationRouteNames.loaderScreen,
       onGenerateRoute: mainNavigation.onGenerateRoute,
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:spotify_client/ui/screens/liked/liked_model.dart';
 
 class LikedScreen extends StatelessWidget {
   const LikedScreen({Key? key}) : super(key: key);
@@ -52,7 +54,8 @@ class LikedScreen extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () =>
+                            context.read<LikedViewModel>().logout(context),
                         child: const Icon(
                           Icons.more_vert,
                           color: Color(0xFFF0F0F0),
@@ -193,7 +196,6 @@ class LikedScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)),
                       color: Color(0xFFE6E6E6),
@@ -243,7 +245,12 @@ class LikedScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(width: 37.0),
-                  SvgPicture.asset('assets/vectors/liked_off.svg', height: 24.0, width: 24.0, color: const Color(0xFFC8C8C8),),
+                  SvgPicture.asset(
+                    'assets/vectors/liked_off.svg',
+                    height: 24.0,
+                    width: 24.0,
+                    color: const Color(0xFFC8C8C8),
+                  ),
                 ],
               );
             },

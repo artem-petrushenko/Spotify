@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:spotify_client/ui/screens/choose_mode/choose_mode_screen.dart';
 import 'package:spotify_client/ui/screens/get_started/get_started_screen.dart';
 
@@ -9,18 +10,22 @@ import 'package:spotify_client/ui/screens/home/home_screen.dart';
 import 'package:spotify_client/ui/screens/liked/liked_model.dart';
 import 'package:spotify_client/ui/screens/liked/liked_screen.dart';
 
-import 'package:spotify_client/ui/screens/loading/loading_screen.dart';
+import 'package:spotify_client/ui/screens/loading/loader_model.dart';
+import 'package:spotify_client/ui/screens/loading/loader_screen.dart';
 
 import 'package:spotify_client/ui/screens/login_selection/login_selection_screen.dart';
+
 import 'package:spotify_client/ui/screens/lyrics/lyrics_screen.dart';
 
 import 'package:spotify_client/ui/screens/main/main_model.dart';
 import 'package:spotify_client/ui/screens/main/main_screen.dart';
+
 import 'package:spotify_client/ui/screens/music/music_screen.dart';
 
 import 'package:spotify_client/ui/screens/navigation/navigation_model.dart';
 import 'package:spotify_client/ui/screens/navigation/navigation_screen.dart';
 
+import 'package:spotify_client/ui/screens/sign_in/sign_in_model.dart';
 import 'package:spotify_client/ui/screens/sign_in/sign_in_screen.dart';
 
 import 'package:spotify_client/ui/screens/user/user_model.dart';
@@ -62,16 +67,24 @@ class ScreenFactory {
     );
   }
 
-  Widget makeSignIn() {
-    return const SignInScreen();
+  Widget makeSignIn(Map<String, String>? queryParameters) {
+    return Provider(
+      create: (context) => SignInViewModel(context, queryParameters),
+      lazy: false,
+      child: const SignInScreen(),
+    );
   }
 
   Widget makeLoginSelection() {
     return const LoginSelectionScreen();
   }
 
-  Widget makeLoading() {
-    return const LoadingScreen();
+  Widget makeLoader() {
+    return Provider(
+      create: (context) => LoaderViewModel(context),
+      lazy: false,
+      child: const LoaderScreen(),
+    );
   }
 
   Widget makeGetStarted() {
@@ -86,7 +99,7 @@ class ScreenFactory {
     return const MusicScreen();
   }
 
-  Widget makeLyrics(){
+  Widget makeLyrics() {
     return const LyricsScreen();
   }
 }
