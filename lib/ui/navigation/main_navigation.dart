@@ -15,13 +15,15 @@ abstract class MainNavigationRouteNames {
   static const chooseModeScreen = '/get_started/choose_mode';
   static const musicScreen = '/music';
   static const lyricsScreen = '/lyrics';
+  static const userProfileScreen = '/user_profile';
 }
 
 class MainNavigation {
   static final _screenFactory = ScreenFactory();
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.mainScreen: (_) => _screenFactory.makeMain(),
-    MainNavigationRouteNames.signInScreen: (_) => _screenFactory.makeSignIn(null),
+    MainNavigationRouteNames.signInScreen: (_) =>
+        _screenFactory.makeSignIn(null),
     MainNavigationRouteNames.loginSelectionScreen: (_) =>
         _screenFactory.makeLoginSelection(),
     MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
@@ -31,6 +33,8 @@ class MainNavigation {
         _screenFactory.makeChooseMode(),
     MainNavigationRouteNames.musicScreen: (_) => _screenFactory.makeMusic(),
     MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
+    MainNavigationRouteNames.userProfileScreen: (_) =>
+        _screenFactory.makeUserProfile(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

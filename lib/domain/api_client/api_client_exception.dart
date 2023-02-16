@@ -1,4 +1,10 @@
-enum ApiClientExceptionType { network, auth, other, accessDenied }
+enum ApiClientExceptionType {
+  unauthorized,
+  forbidden,
+  tooManyRequests,
+  other,
+  network
+}
 
 class ApiClientException implements Exception {
   const ApiClientException(this.type);

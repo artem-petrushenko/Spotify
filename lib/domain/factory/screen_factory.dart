@@ -10,8 +10,8 @@ import 'package:spotify_client/ui/screens/home/home_screen.dart';
 import 'package:spotify_client/ui/screens/liked/liked_model.dart';
 import 'package:spotify_client/ui/screens/liked/liked_screen.dart';
 
-import 'package:spotify_client/ui/screens/loading/loader_model.dart';
-import 'package:spotify_client/ui/screens/loading/loader_screen.dart';
+import 'package:spotify_client/ui/screens/loader/loader_model.dart';
+import 'package:spotify_client/ui/screens/loader/loader_screen.dart';
 
 import 'package:spotify_client/ui/screens/login_selection/login_selection_screen.dart';
 
@@ -30,6 +30,9 @@ import 'package:spotify_client/ui/screens/sign_in/sign_in_screen.dart';
 
 import 'package:spotify_client/ui/screens/user/user_model.dart';
 import 'package:spotify_client/ui/screens/user/user_screen.dart';
+
+import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
+import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
 
 class ScreenFactory {
   Widget makeMain() {
@@ -101,5 +104,12 @@ class ScreenFactory {
 
   Widget makeLyrics() {
     return const LyricsScreen();
+  }
+
+  Widget makeUserProfile() {
+    return ChangeNotifierProvider(
+      create: (context) => UserProfileViewModel(),
+      child: const UserProfileScreen(),
+    );
   }
 }

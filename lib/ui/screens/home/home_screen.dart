@@ -155,10 +155,9 @@ class HomeScreen extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(30.0)),
-                                    child: Container(
+                                    child: SizedBox(
                                       height: 185.0,
                                       width: 147.0,
-                                      color: Colors.red,
                                       child: Image.asset(
                                         'assets/images/album.png',
                                         fit: BoxFit.cover,

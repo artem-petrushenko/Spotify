@@ -9,7 +9,18 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<SignInViewModel>().errorMessage;
     return Scaffold(
+      floatingActionButton: Column(
+        children: [
+          if (model != null)
+            Container(
+              width: 10,
+              height: 10,
+              color: Colors.deepPurple,
+            ),
+        ],
+      ),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(48.0),
         child: SafeArea(

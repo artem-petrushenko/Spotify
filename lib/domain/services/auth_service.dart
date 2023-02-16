@@ -4,9 +4,9 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 
 import 'package:spotify_client/configuration/configuration.dart';
+import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
 
 import 'package:spotify_client/domain/api_client/auth_api_client.dart';
-import 'package:spotify_client/domain/api_client/api_client_exception.dart';
 
 import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
 
@@ -28,34 +28,42 @@ class AuthService {
   Future<void> makeRequestBrowser() async {
     final String codeVerifier = await _generateCodeVerifier();
     final String codeChallenge = _generateCodeChallenge(codeVerifier);
-    _authApiClient.requestUserAuthorization(codeChallenge: codeChallenge);
+    final String state = await _generateState();
+    _authApiClient.requestUserAuthorization(
+      codeChallenge: codeChallenge,
+      state: state,
+    );
   }
 
-  Future<void> getData(Map<String, String> queryParameters) async {
+  Future<void> handleDeeplink(Map<String, String> queryParameters) async {
+    final code = await _getAuthCode(queryParameters);
+    final codeVerifier = await _sessionDataProvider.getCodeVerifier() ?? '';
+    final base64codec = _generateBase64Codec();
+    final jsonResponse = await _authApiClient.requestAccessToken(
+      code: code,
+      codeVerifier: codeVerifier,
+      base64codec: base64codec,
+    );
+    await _sessionDataProvider
+        .setAccessToken(jsonResponse['access_token'] as String);
+    await _sessionDataProvider
+        .setRefreshToken(jsonResponse['refresh_token'] as String);
+  }
+
+  Future<String> _getAuthCode(Map<String, String> queryParameters) async {
+    final state = await _sessionDataProvider.getState();
     if (queryParameters.containsKey('error')) {
-      throw {const ApiClientException(ApiClientExceptionType.accessDenied)};
+      throw const ApiAuthException(ApiAuthExceptionType.accessDenied);
     }
-    // if (queryParameters['state'] != state) {
-    //   throw TwitterOAuthException('Did not match the expected state value.');
-    // }
-    else {
-      final code = queryParameters['code'] ?? '';
-      final codeVerifier = await _sessionDataProvider.getCodeVerifier() ?? '';
-      final base64codec = base64.encode(utf8
-          .encode('${Configuration.clientID}:${Configuration.clientSecret}'));
-      final response = await _authApiClient.requestAccessToken(
-        code: code,
-        codeVerifier: codeVerifier,
-        base64codec: base64codec,
-      );
-      print(response.body);
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> jsonResponse =
-            jsonDecode(response.body) as Map<String, dynamic>;
-        final accessToken = jsonResponse['access_token'] as String;
-        await _sessionDataProvider.setAccessToken(accessToken);
-      }
+    if (queryParameters['state'] != state) {
+      throw const ApiAuthException(ApiAuthExceptionType.incorrectState);
     }
+    return queryParameters['code'] ?? '';
+  }
+
+  String _generateBase64Codec() {
+    return base64.encode(
+        utf8.encode('${Configuration.clientID}:${Configuration.clientSecret}'));
   }
 
   Future<String> _generateCodeVerifier() async {
@@ -67,6 +75,17 @@ class AuthService {
         (_) => characters.codeUnitAt(random.nextInt(characters.length))));
     _sessionDataProvider.setCodeVerifier(codeVerifier);
     return codeVerifier;
+  }
+
+  Future<String> _generateState() async {
+    const String characters =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890_.-~';
+    final Random random = Random();
+    final state = String.fromCharCodes(Iterable.generate(
+        random.nextInt(85) + 43,
+        (_) => characters.codeUnitAt(random.nextInt(characters.length))));
+    _sessionDataProvider.setState(state);
+    return state;
   }
 
   String _generateCodeChallenge(String codeVerifier) {
