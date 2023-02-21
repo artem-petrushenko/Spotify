@@ -228,6 +228,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            MainNavigationRouteNames.musicPlaylistScreen);
+                      },
                       child: const Text(
                         'See More',
                         style: TextStyle(
@@ -251,9 +255,8 @@ class HomeScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       GestureDetector(
-                        onTap: () =>
-                          Navigator.pushNamed(
-                              context, MainNavigationRouteNames.musicScreen),
+                        onTap: () => Navigator.pushNamed(
+                            context, MainNavigationRouteNames.musicScreen),
                         child: Container(
                           decoration: const BoxDecoration(
                             borderRadius:

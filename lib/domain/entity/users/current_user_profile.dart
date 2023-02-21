@@ -86,9 +86,9 @@ class Followers {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Images {
-  String? url;
-  int? height;
-  int? width;
+  String url;
+  int height;
+  int width;
 
   Images({
     required this.url,

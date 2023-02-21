@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_client/domain/entity/current_user_profile.dart';
+import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 
 import 'package:spotify_client/domain/services/user_service.dart';
 
@@ -29,7 +29,7 @@ class UserProfileData {
 
 class UserProfileRenderedData {
   bool isLoading = true;
-  UserProfileData userProfileData = UserProfileData(
+  UserProfileData userProfileData = const UserProfileData(
     displayName: '',
     email: '',
     totalFollowers: '',
@@ -53,9 +53,9 @@ class UserProfileViewModel extends ChangeNotifier {
       return;
     }
     data.userProfileData = UserProfileData(
-      displayName: currentUserProfile.displayName,
-      email: currentUserProfile.email,
-      totalFollowers: currentUserProfile.followers?.total.toString()
+        displayName: currentUserProfile.displayName,
+        email: currentUserProfile.email,
+        totalFollowers: currentUserProfile.followers?.total.toString()
     );
     notifyListeners();
   }

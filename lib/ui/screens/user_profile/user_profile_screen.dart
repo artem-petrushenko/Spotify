@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -42,7 +43,7 @@ class UserProfileScreen extends StatelessWidget {
             title: const Text('1'),
           ),
           SliverToBoxAdapter(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               height: 60,
               child: Column(

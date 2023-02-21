@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/ui/navigation/main_navigation.dart';
 import 'package:spotify_client/ui/screens/liked/liked_model.dart';
 
 class LikedScreen extends StatelessWidget {
@@ -34,7 +35,8 @@ class LikedScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.pop(context),
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(MainNavigationRouteNames.albumScreen),
                         child: Container(
                           height: 32,
                           width: 32,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/ui/screens/album/album_model.dart';
 
 import 'package:spotify_client/ui/screens/choose_mode/choose_mode_screen.dart';
 import 'package:spotify_client/ui/screens/get_started/get_started_screen.dart';
@@ -21,6 +22,8 @@ import 'package:spotify_client/ui/screens/main/main_model.dart';
 import 'package:spotify_client/ui/screens/main/main_screen.dart';
 
 import 'package:spotify_client/ui/screens/music/music_screen.dart';
+import 'package:spotify_client/ui/screens/music_playlist/music_playlist_model.dart';
+import 'package:spotify_client/ui/screens/music_playlist/music_playlist_screen.dart';
 
 import 'package:spotify_client/ui/screens/navigation/navigation_model.dart';
 import 'package:spotify_client/ui/screens/navigation/navigation_screen.dart';
@@ -33,6 +36,8 @@ import 'package:spotify_client/ui/screens/user/user_screen.dart';
 
 import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
+
+import 'package:spotify_client/ui/screens/album/album_screen.dart';
 
 class ScreenFactory {
   Widget makeMain() {
@@ -110,6 +115,20 @@ class ScreenFactory {
     return ChangeNotifierProvider(
       create: (context) => UserProfileViewModel(),
       child: const UserProfileScreen(),
+    );
+  }
+
+  Widget makeMusicPlaylist() {
+    return ChangeNotifierProvider(
+      create: (context) => MusicPlaylistModel(),
+      child: const MusicPlaylistScreen(),
+    );
+  }
+
+  Widget makeAlbumScreen() {
+    return ChangeNotifierProvider(
+      create: (context) => AlbumViewModel(),
+      child: const AlbumScreen(),
     );
   }
 }

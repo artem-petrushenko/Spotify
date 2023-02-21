@@ -80,9 +80,9 @@ Map<String, dynamic> _$FollowersToJson(Followers instance) => <String, dynamic>{
     };
 
 Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
-      url: json['url'] as String?,
-      height: json['height'] as int?,
-      width: json['width'] as int?,
+      url: json['url'] as String,
+      height: json['height'] as int,
+      width: json['width'] as int,
     );
 
 Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{

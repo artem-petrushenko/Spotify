@@ -16,6 +16,8 @@ abstract class MainNavigationRouteNames {
   static const musicScreen = '/music';
   static const lyricsScreen = '/lyrics';
   static const userProfileScreen = '/user_profile';
+  static const musicPlaylistScreen = '/music_playlist';
+  static const albumScreen = '/album';
 }
 
 class MainNavigation {
@@ -35,6 +37,10 @@ class MainNavigation {
     MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
         _screenFactory.makeUserProfile(),
+    MainNavigationRouteNames.musicPlaylistScreen: (_) =>
+        _screenFactory.makeMusicPlaylist(),
+    MainNavigationRouteNames.albumScreen: (_) =>
+        _screenFactory.makeAlbumScreen(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

@@ -50,8 +50,6 @@ class SignInViewModel {
     Map<String, String> queryParameters,
   ) async {
     errorMessage = await _handleDeeplink(queryParameters);
-    print(errorMessage);
-
     if (errorMessage == null) {
       MainNavigation.resetNavigation(context);
     }
