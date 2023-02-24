@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_client/ui/screens/album/album_model.dart';
 
-import 'package:spotify_client/ui/screens/choose_mode/choose_mode_screen.dart';
-import 'package:spotify_client/ui/screens/get_started/get_started_screen.dart';
+import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
+import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
+
+import 'package:spotify_client/ui/screens/sign_in/sign_in_model.dart';
+import 'package:spotify_client/ui/screens/sign_in/sign_in_screen.dart';
+
+import 'package:spotify_client/ui/screens/album/album_model.dart';
 
 import 'package:spotify_client/ui/screens/home/home_model.dart';
 import 'package:spotify_client/ui/screens/home/home_screen.dart';
@@ -28,9 +32,6 @@ import 'package:spotify_client/ui/screens/music_playlist/music_playlist_screen.d
 import 'package:spotify_client/ui/screens/navigation/navigation_model.dart';
 import 'package:spotify_client/ui/screens/navigation/navigation_screen.dart';
 
-import 'package:spotify_client/ui/screens/sign_in/sign_in_model.dart';
-import 'package:spotify_client/ui/screens/sign_in/sign_in_screen.dart';
-
 import 'package:spotify_client/ui/screens/user/user_model.dart';
 import 'package:spotify_client/ui/screens/user/user_screen.dart';
 
@@ -38,8 +39,24 @@ import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
 
 import 'package:spotify_client/ui/screens/album/album_screen.dart';
+import 'package:spotify_client/ui/theme/theme_model.dart';
 
 class ScreenFactory {
+  Widget makeOnBoarding() {
+    return ChangeNotifierProvider(
+      create: (context) => OnBoardingViewModel(),
+      child: const OnBoardingScreen(),
+    );
+  }
+
+  Widget makeSignIn(Map<String, String>? queryParameters) {
+    return Provider(
+      create: (context) => SignInViewModel(context, queryParameters),
+      lazy: false,
+      child: const SignInScreen(),
+    );
+  }
+
   Widget makeMain() {
     return Provider(
       create: (context) => MainViewModel(),
@@ -55,8 +72,12 @@ class ScreenFactory {
   }
 
   Widget makeNavigation() {
-    return Provider(
-      create: (context) => NavigationViewModel(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => NavigationViewModel(),
+        ),
+      ],
       child: const NavigationScreen(),
     );
   }
@@ -75,14 +96,6 @@ class ScreenFactory {
     );
   }
 
-  Widget makeSignIn(Map<String, String>? queryParameters) {
-    return Provider(
-      create: (context) => SignInViewModel(context, queryParameters),
-      lazy: false,
-      child: const SignInScreen(),
-    );
-  }
-
   Widget makeLoginSelection() {
     return const LoginSelectionScreen();
   }
@@ -93,14 +106,6 @@ class ScreenFactory {
       lazy: false,
       child: const LoaderScreen(),
     );
-  }
-
-  Widget makeGetStarted() {
-    return const GetStartedScreen();
-  }
-
-  Widget makeChooseMode() {
-    return const ChooseModeScreen();
   }
 
   Widget makeMusic() {

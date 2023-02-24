@@ -5,14 +5,13 @@ import 'package:spotify_client/domain/factory/screen_factory.dart';
 import 'package:spotify_client/ui/screens/navigation_error/navigation_error_screen.dart';
 
 abstract class MainNavigationRouteNames {
-  static const mainScreen = '/main';
-  static const signInScreen = '/login_selection/sign_in';
-  static const loginSelectionScreen = '/login_selection';
+  static const loaderScreen = '/';
+  static const onBoardingScreen = '/on_boarding';
+  static const signInScreen = '/sign_in';
 
   //TODO In Work
-  static const loaderScreen = '/';
-  static const getStartedScreen = '/get_started';
-  static const chooseModeScreen = '/get_started/choose_mode';
+  static const mainScreen = '/main';
+  static const loginSelectionScreen = '/login_selection';
   static const musicScreen = '/music';
   static const lyricsScreen = '/lyrics';
   static const userProfileScreen = '/user_profile';
@@ -29,10 +28,6 @@ class MainNavigation {
     MainNavigationRouteNames.loginSelectionScreen: (_) =>
         _screenFactory.makeLoginSelection(),
     MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
-    MainNavigationRouteNames.getStartedScreen: (_) =>
-        _screenFactory.makeGetStarted(),
-    MainNavigationRouteNames.chooseModeScreen: (_) =>
-        _screenFactory.makeChooseMode(),
     MainNavigationRouteNames.musicScreen: (_) => _screenFactory.makeMusic(),
     MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
@@ -41,6 +36,8 @@ class MainNavigation {
         _screenFactory.makeMusicPlaylist(),
     MainNavigationRouteNames.albumScreen: (_) =>
         _screenFactory.makeAlbumScreen(),
+    MainNavigationRouteNames.onBoardingScreen: (_) =>
+        _screenFactory.makeOnBoarding(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

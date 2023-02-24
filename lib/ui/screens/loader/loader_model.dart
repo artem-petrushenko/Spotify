@@ -15,7 +15,7 @@ class LoaderViewModel {
     final isAuth = await _authService.isAuth();
     final nextScreen = isAuth
         ? MainNavigationRouteNames.mainScreen
-        : MainNavigationRouteNames.getStartedScreen;
+        : MainNavigationRouteNames.onBoardingScreen;
     Navigator.pushReplacementNamed(context, nextScreen);
   }
 }

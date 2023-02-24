@@ -5,12 +5,14 @@ abstract class _Keys {
 }
 
 class ThemeDataProvider {
-  Future<bool> getAccessToken() async {
+  final sharedPreferences = SharedPreferences.getInstance();
+
+  Future<bool> getIsDarkTheme() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getBool(_Keys.isDarkTheme) ?? false;
   }
 
-  Future<void> setAccessToken(bool value) async {
+  Future<void> setIsDarkTheme(bool value) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool(_Keys.isDarkTheme, value);
   }
