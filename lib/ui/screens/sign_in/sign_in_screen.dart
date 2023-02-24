@@ -8,6 +8,8 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading =
+        context.select((SignInViewModel model) => model.isLoading);
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 32.0, right: 32.0, bottom: 24.0),
@@ -19,19 +21,25 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: () =>
-              context.read<SignInViewModel>().authentication(context),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              'SIGN IN',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 18.0,
-                letterSpacing: 8.0,
-              ),
-            ),
-          ),
+          onPressed: () => isLoading
+              ? null
+              : context.read<SignInViewModel>().authentication(context),
+          child: isLoading
+              ? const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 11.0),
+                  child: CircularProgressIndicator(),
+                )
+              : const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
+                    'SIGN IN',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18.0,
+                      letterSpacing: 8.0,
+                    ),
+                  ),
+                ),
         ),
       ),
       body: Center(

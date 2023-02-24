@@ -14,7 +14,7 @@ class ThemeModel with ChangeNotifier {
   }
 
   Future<void> _getThemeData() async {
-    _themeService.getThemeFromProvider();
+    isDarkTheme = await _themeService.getThemeFromProvider();
     notifyListeners();
   }
 

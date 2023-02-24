@@ -39,7 +39,6 @@ import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
 
 import 'package:spotify_client/ui/screens/album/album_screen.dart';
-import 'package:spotify_client/ui/theme/theme_model.dart';
 
 class ScreenFactory {
   Widget makeOnBoarding() {
@@ -50,7 +49,7 @@ class ScreenFactory {
   }
 
   Widget makeSignIn(Map<String, String>? queryParameters) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (context) => SignInViewModel(context, queryParameters),
       lazy: false,
       child: const SignInScreen(),
