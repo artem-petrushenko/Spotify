@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
+import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
 
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
@@ -57,9 +59,16 @@ class ScreenFactory {
   }
 
   Widget makeMain() {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (context) => MainViewModel(),
       child: const MainScreen(),
+    );
+  }
+
+  Widget makeMediaLibrary() {
+    return ChangeNotifierProvider(
+      create: (context) => MediaLibraryViewModel(),
+      child: const MediaLibraryScreen(),
     );
   }
 

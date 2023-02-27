@@ -173,8 +173,8 @@ class _Indicator extends StatelessWidget {
       width: 8.0,
       decoration: BoxDecoration(
           color: positionIndex < currentIndex + 1
-              ? Colors.green.shade400
-              : Colors.grey.shade800,
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
           borderRadius: BorderRadius.circular(2.0)),
     );
   }

@@ -19,6 +19,7 @@ class ApiQueryHelper {
           "Content-Type": "application/json",
         },
       );
+      print(response.body);
       final responseJson = _checkStatusCode(response);
       return responseJson;
     } on SocketException {
