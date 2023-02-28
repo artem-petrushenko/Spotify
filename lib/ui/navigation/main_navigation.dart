@@ -8,7 +8,7 @@ abstract class MainNavigationRouteNames {
   static const loaderScreen = '/';
   static const onBoardingScreen = '/on_boarding';
   static const signInScreen = '/sign_in';
-
+  static const likedMusicPlaylistScreen = '/liked_music_playlist';
   //TODO In Work
   static const mainScreen = '/main';
   static const loginSelectionScreen = '/login_selection';
@@ -25,6 +25,9 @@ class MainNavigation {
     MainNavigationRouteNames.mainScreen: (_) => _screenFactory.makeMain(),
     MainNavigationRouteNames.signInScreen: (_) =>
         _screenFactory.makeSignIn(null),
+    MainNavigationRouteNames.likedMusicPlaylistScreen: (_) =>
+        _screenFactory.makeLikedMusicPlaylist(),
+
     MainNavigationRouteNames.loginSelectionScreen: (_) =>
         _screenFactory.makeLoginSelection(),
     MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
@@ -32,8 +35,6 @@ class MainNavigation {
     MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
         _screenFactory.makeUserProfile(),
-    MainNavigationRouteNames.musicPlaylistScreen: (_) =>
-        _screenFactory.makeMusicPlaylist(),
     MainNavigationRouteNames.albumScreen: (_) =>
         _screenFactory.makeAlbumScreen(),
     MainNavigationRouteNames.onBoardingScreen: (_) =>

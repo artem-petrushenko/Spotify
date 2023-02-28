@@ -8,10 +8,11 @@ class TracksApiClient {
     required String accessToken,
     required String market,
     required int offset,
+    required int limit,
   }) async {
     final response = await _apiQueryHelper.get(
       url: '/v1/me/tracks'
-          '?limit=20'
+          '?limit=$limit'
           '&market=$market'
           '&offset=$offset',
       accessToken: accessToken,

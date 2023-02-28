@@ -7,30 +7,36 @@ import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 enum Status { loading, completed, error }
 
+enum MediaType { likedPlaylist, playlists, albums }
+
 class MediaData {
   final String? type;
   final String? name;
   final String? uri;
   final String? imageUrl;
+  final MediaType mediaType;
 
   const MediaData({
     required this.type,
     required this.name,
     required this.uri,
     required this.imageUrl,
+    required this.mediaType,
   });
 
   MediaData copyWith({
-    final String? type,
-    final String? name,
-    final String? uri,
-    final String? imageUrl,
+    String? type,
+    String? name,
+    String? uri,
+    String? imageUrl,
+    MediaType? mediaType,
   }) {
     return MediaData(
       type: type ?? this.type,
       name: name ?? this.name,
       uri: uri ?? this.uri,
       imageUrl: imageUrl ?? this.imageUrl,
+      mediaType: mediaType ?? this.mediaType,
     );
   }
 }
@@ -61,6 +67,23 @@ class MediaLibraryViewModel extends ChangeNotifier {
   void openUserProfile(BuildContext context) => Navigator.of(context)
       .pushNamed(MainNavigationRouteNames.userProfileScreen);
 
+  void openMediaTypeScreen(BuildContext context, MediaData mediaData) {
+    switch (mediaData.mediaType) {
+      case MediaType.likedPlaylist:
+        Navigator.of(context)
+            .pushNamed(MainNavigationRouteNames.likedMusicPlaylistScreen);
+        break;
+      case MediaType.playlists:
+        Navigator.of(context)
+            .pushNamed(MainNavigationRouteNames.musicPlaylistScreen);
+        break;
+      case MediaType.albums:
+        Navigator.of(context).pushNamed(MainNavigationRouteNames.albumScreen);
+        break;
+      default:
+    }
+  }
+
   void loadDetails() async {
     _addFavoriteAlbum();
     await _albumsService
@@ -81,6 +104,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
   void _addFavoriteAlbum() {
     data.media.add(
       const MediaData(
+        mediaType: MediaType.likedPlaylist,
         type: 'playlist',
         name: 'Your favorite',
         uri: 'URI',
@@ -96,6 +120,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
     }
     data.media.addAll(usersSavedAlbums.items
         .map((e) => MediaData(
+              mediaType: MediaType.albums,
               type: e.album?.type,
               name: e.album?.name,
               uri: e.album?.uri,
@@ -110,6 +135,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
     }
     data.media.addAll(currentUsersPlaylists.items
         .map((e) => MediaData(
+              mediaType: MediaType.playlists,
               type: e.type,
               name: e.name,
               uri: e.uri,

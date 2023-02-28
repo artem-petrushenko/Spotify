@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
 
@@ -28,8 +29,9 @@ import 'package:spotify_client/ui/screens/main/main_model.dart';
 import 'package:spotify_client/ui/screens/main/main_screen.dart';
 
 import 'package:spotify_client/ui/screens/music/music_screen.dart';
-import 'package:spotify_client/ui/screens/music_playlist/music_playlist_model.dart';
-import 'package:spotify_client/ui/screens/music_playlist/music_playlist_screen.dart';
+
+import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
+import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
 
 import 'package:spotify_client/ui/screens/navigation/navigation_model.dart';
 import 'package:spotify_client/ui/screens/navigation/navigation_screen.dart';
@@ -131,10 +133,10 @@ class ScreenFactory {
     );
   }
 
-  Widget makeMusicPlaylist() {
+  Widget makeLikedMusicPlaylist() {
     return ChangeNotifierProvider(
-      create: (context) => MusicPlaylistModel(),
-      child: const MusicPlaylistScreen(),
+      create: (context) => LikedMusicPlaylistViewModel(),
+      child: const LikedMusicPlaylistScreen(),
     );
   }
 
