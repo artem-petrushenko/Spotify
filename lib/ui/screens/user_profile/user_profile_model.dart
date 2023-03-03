@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 
 import 'package:spotify_client/domain/services/user_service.dart';
+import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 enum Status { loading, completed, error }
 
@@ -36,11 +37,7 @@ class UserProfileData {
 class UserProfileRenderedData {
   Status status = Status.loading;
   UserProfileData userProfileData = const UserProfileData(
-    displayName: '',
-    email: '',
-    totalFollowers: '',
-    imageUrl: ''
-  );
+      displayName: '', email: '', totalFollowers: '', imageUrl: '');
 }
 
 class UserProfileViewModel extends ChangeNotifier {
@@ -51,6 +48,9 @@ class UserProfileViewModel extends ChangeNotifier {
   UserProfileViewModel() {
     _loadDetails();
   }
+
+  void openSettings(BuildContext context) =>
+      Navigator.of(context).pushNamed(MainNavigationRouteNames.settingScreen);
 
   Future<void> _loadDetails() async {
     await _userService

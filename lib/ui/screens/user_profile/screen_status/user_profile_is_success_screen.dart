@@ -16,6 +16,7 @@ class UserProfileIsSuccessScreen extends StatelessWidget {
         model.data.userProfileData.totalFollowers);
     final imageUrl = context.select(
         (UserProfileViewModel model) => model.data.userProfileData.imageUrl);
+    final model = context.read<UserProfileViewModel>();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -27,7 +28,7 @@ class UserProfileIsSuccessScreen extends StatelessWidget {
             stretch: true,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => model.openSettings(context),
                 icon: const Icon(
                   Icons.settings_rounded,
                 ),

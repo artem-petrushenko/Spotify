@@ -5,9 +5,9 @@ import 'package:spotify_client/domain/factory/screen_factory.dart';
 class MainViewModel extends ChangeNotifier {
   int selectedIndex = 0;
   final List<Widget> screens = [
-    ScreenFactory().makeHome(),
-    ScreenFactory().makeNavigation(),
-    ScreenFactory().makeLiked(),
+    Text('1'),
+    Text('2'),
+    Text('3'),
     ScreenFactory().makeMediaLibrary(),
   ];
 

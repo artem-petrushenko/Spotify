@@ -9,12 +9,9 @@ abstract class MainNavigationRouteNames {
   static const onBoardingScreen = '/on_boarding';
   static const signInScreen = '/sign_in';
   static const likedMusicPlaylistScreen = '/liked_music_playlist';
-  //TODO In Work
-  static const mainScreen = '/main';
-  static const loginSelectionScreen = '/login_selection';
-  static const musicScreen = '/music';
-  static const lyricsScreen = '/lyrics';
   static const userProfileScreen = '/user_profile';
+  static const settingScreen = '/settings';
+  static const mainScreen = '/main';
   static const musicPlaylistScreen = '/music_playlist';
   static const albumScreen = '/album';
 }
@@ -22,23 +19,20 @@ abstract class MainNavigationRouteNames {
 class MainNavigation {
   static final _screenFactory = ScreenFactory();
   final routes = <String, Widget Function(BuildContext)>{
+    MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
+    MainNavigationRouteNames.onBoardingScreen: (_) =>
+        _screenFactory.makeOnBoarding(),
     MainNavigationRouteNames.mainScreen: (_) => _screenFactory.makeMain(),
     MainNavigationRouteNames.signInScreen: (_) =>
         _screenFactory.makeSignIn(null),
     MainNavigationRouteNames.likedMusicPlaylistScreen: (_) =>
         _screenFactory.makeLikedMusicPlaylist(),
-
-    MainNavigationRouteNames.loginSelectionScreen: (_) =>
-        _screenFactory.makeLoginSelection(),
-    MainNavigationRouteNames.loaderScreen: (_) => _screenFactory.makeLoader(),
-    MainNavigationRouteNames.musicScreen: (_) => _screenFactory.makeMusic(),
-    MainNavigationRouteNames.lyricsScreen: (_) => _screenFactory.makeLyrics(),
+    MainNavigationRouteNames.settingScreen: (_) =>
+        _screenFactory.makeSettings(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
         _screenFactory.makeUserProfile(),
     MainNavigationRouteNames.albumScreen: (_) =>
         _screenFactory.makeAlbumScreen(),
-    MainNavigationRouteNames.onBoardingScreen: (_) =>
-        _screenFactory.makeOnBoarding(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {
