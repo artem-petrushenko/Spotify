@@ -12,7 +12,7 @@ class CurrentUserProfile {
   Followers? followers;
   String? href;
   String? id;
-  List<Images>? images;
+  List<Images> images;
   String? product;
   String? type;
   String? uri;
@@ -86,9 +86,9 @@ class Followers {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Images {
-  String url;
-  int height;
-  int width;
+  String? url;
+  int? height;
+  int? width;
 
   Images({
     required this.url,

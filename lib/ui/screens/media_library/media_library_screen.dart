@@ -14,12 +14,13 @@ class MediaLibraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final status =
         context.select((MediaLibraryViewModel model) => model.data.status);
-    if (status == Status.loading) {
-      return const MediaLibraryInProgressScreen();
-    } else if (status == Status.completed) {
-      return const MediaLibraryIsSuccessScreen();
-    } else {
-      return const MediaLibraryErrorScreen();
+    switch (status) {
+      case Status.loading:
+        return const MediaLibraryInProgressScreen();
+      case Status.completed:
+        return const MediaLibraryIsSuccessScreen();
+      case Status.error:
+        return const MediaLibraryErrorScreen();
     }
   }
 }

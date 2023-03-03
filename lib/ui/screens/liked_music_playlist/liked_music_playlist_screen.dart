@@ -14,12 +14,13 @@ class LikedMusicPlaylistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final status = context
         .select((LikedMusicPlaylistViewModel model) => model.data.status);
-    if (status == Status.loading) {
-      return const LikedMusicPlaylistsInProgressScreen();
-    } else if (status == Status.completed) {
-      return const LikedMusicPlaylistIsSuccessScreen();
-    } else {
-      return const LikedMusicPlaylistsErrorScreen();
+    switch (status) {
+      case Status.loading:
+        return const LikedMusicPlaylistsInProgressScreen();
+      case Status.completed:
+        return const LikedMusicPlaylistIsSuccessScreen();
+      case Status.error:
+        return const LikedMusicPlaylistsErrorScreen();
     }
   }
 }
