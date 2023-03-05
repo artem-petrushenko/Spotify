@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:spotify_client/ui/screens/artist/artist_model.dart';
+import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
+
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
 
@@ -80,10 +83,17 @@ class ScreenFactory {
     );
   }
 
-  Widget makeAlbumScreen() {
+  Widget makeAlbumScreen(String albumId) {
     return ChangeNotifierProvider(
-      create: (context) => AlbumViewModel(),
+      create: (context) => AlbumViewModel(albumId: albumId),
       child: const AlbumScreen(),
+    );
+  }
+
+  Widget makeArtistScreen(String artistId) {
+    return ChangeNotifierProvider(
+      create: (context) => ArtistViewModel(artistId: artistId),
+      child: const ArtistScreen(),
     );
   }
 

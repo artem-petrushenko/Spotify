@@ -15,20 +15,21 @@ class ImageNetworkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: aspectRation ?? 1,
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(
-          Radius.circular(radius ?? 0.0),
-        ),
-        clipBehavior: Clip.hardEdge,
+    return ClipRRect(
+      borderRadius: BorderRadius.all(
+        Radius.circular(radius ?? 0.0),
+      ),
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        height: height,
+        width: width,
         child: Image.network(
           imageUrl,
-          width: width ?? double.infinity,
-          height: height ?? double.infinity,
           errorBuilder: (BuildContext context, Object exception,
                   StackTrace? stackTrace) =>
-              const Icon(Icons.error),
+              Container(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: const Icon(Icons.error)),
           frameBuilder: (BuildContext context, Widget child, int? frame,
               bool wasSynchronouslyLoaded) {
             return wasSynchronouslyLoaded

@@ -14,6 +14,7 @@ class MediaData {
   final String? name;
   final String? uri;
   final String? imageUrl;
+  final String? mediaId;
   final MediaType mediaType;
 
   const MediaData({
@@ -21,6 +22,7 @@ class MediaData {
     required this.name,
     required this.uri,
     required this.imageUrl,
+    required this.mediaId,
     required this.mediaType,
   });
 
@@ -29,6 +31,7 @@ class MediaData {
     String? name,
     String? uri,
     String? imageUrl,
+    String? mediaId,
     MediaType? mediaType,
   }) {
     return MediaData(
@@ -36,6 +39,7 @@ class MediaData {
       name: name ?? this.name,
       uri: uri ?? this.uri,
       imageUrl: imageUrl ?? this.imageUrl,
+      mediaId: mediaId ?? this.mediaId,
       mediaType: mediaType ?? this.mediaType,
     );
   }
@@ -74,11 +78,13 @@ class MediaLibraryViewModel extends ChangeNotifier {
             .pushNamed(MainNavigationRouteNames.likedMusicPlaylistScreen);
         break;
       case MediaType.playlists:
-        Navigator.of(context)
-            .pushNamed(MainNavigationRouteNames.musicPlaylistScreen);
+        Navigator.of(context).pushNamed(
+            MainNavigationRouteNames.musicPlaylistScreen,
+            arguments: mediaData.mediaId);
         break;
       case MediaType.albums:
-        Navigator.of(context).pushNamed(MainNavigationRouteNames.albumScreen);
+        Navigator.of(context).pushNamed(MainNavigationRouteNames.albumScreen,
+            arguments: mediaData.mediaId);
         break;
       default:
     }
@@ -87,7 +93,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
   void loadDetails() async {
     _addFavoriteAlbum();
     await _albumsService
-        .getUsersSavedAlbums(market: 'ES', offset: 0)
+        .getUsersSavedAlbums(market: 'ES', offset: 0, limit: 10)
         .then((value) => _addAlbums(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _playlistsService
@@ -108,6 +114,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
         type: 'playlist',
         name: 'Your favorite',
         uri: 'URI',
+        mediaId: '',
         imageUrl:
             'https://images.ctfassets.net/c1zhnszcah7h/5Iz8Hbv8IVXuMwhABKWbhu/92e4117131123a14e8dd895aa107c3d4/Square_-_Bringing_The_Spotify_Heart_to_Life_2x.png?w=1000&h=1000&q=96&fm=webp',
       ),
@@ -124,6 +131,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
               type: e.album?.type,
               name: e.album?.name,
               uri: e.album?.uri,
+              mediaId: e.album?.id,
               imageUrl: e.album?.images?.first.url,
             ))
         .toList());
@@ -139,6 +147,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
               type: e.type,
               name: e.name,
               uri: e.uri,
+              mediaId: e.id,
               imageUrl: e.images?.first.url,
             ))
         .toList());

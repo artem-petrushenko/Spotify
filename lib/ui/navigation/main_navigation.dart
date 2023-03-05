@@ -14,6 +14,7 @@ abstract class MainNavigationRouteNames {
   static const mainScreen = '/main';
   static const musicPlaylistScreen = '/music_playlist';
   static const albumScreen = '/album';
+  static const artistScreen = '/artist';
 }
 
 class MainNavigation {
@@ -31,8 +32,6 @@ class MainNavigation {
         _screenFactory.makeSettings(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
         _screenFactory.makeUserProfile(),
-    MainNavigationRouteNames.albumScreen: (_) =>
-        _screenFactory.makeAlbumScreen(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {
@@ -43,6 +42,18 @@ class MainNavigation {
       );
     }
     switch (settings.name) {
+      case MainNavigationRouteNames.albumScreen:
+        final arguments = settings.arguments;
+        final albumId = arguments is String ? arguments : '';
+        return MaterialPageRoute(
+          builder: (_) => _screenFactory.makeAlbumScreen(albumId),
+        );
+      case MainNavigationRouteNames.artistScreen:
+        final arguments = settings.arguments;
+        final artistId = arguments is String ? arguments : '';
+        return MaterialPageRoute(
+          builder: (_) => _screenFactory.makeArtistScreen(artistId),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const NavigationErrorScreen(),
