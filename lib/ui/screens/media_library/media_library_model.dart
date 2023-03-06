@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+
 import 'package:spotify_client/domain/services/albums_service.dart';
 import 'package:spotify_client/domain/services/playlists_service.dart';
+
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 enum Status { loading, completed, error }
@@ -97,7 +100,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
         .then((value) => _addAlbums(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _playlistsService
-        .getCurrentUsersPlaylists(offset: 0)
+        .getCurrentUsersPlaylists(offset: 0, limit: 10)
         .then((value) => _addPlaylists(value))
         .onError((error, stackTrace) => data.status = Status.error);
 

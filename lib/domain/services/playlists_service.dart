@@ -10,12 +10,14 @@ class PlaylistsService {
 
   Future<CurrentUsersPlaylists> getCurrentUsersPlaylists({
     required int offset,
+    required int limit,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final currentUsersPlaylists =
         await _playlistsApiClient.getCurrentUsersPlaylists(
       accessToken: accessToken ?? '',
       offset: offset,
+      limit: limit,
     );
     return currentUsersPlaylists;
   }

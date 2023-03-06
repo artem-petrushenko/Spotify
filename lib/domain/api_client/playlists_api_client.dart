@@ -7,11 +7,12 @@ class PlaylistsApiClient {
   Future<CurrentUsersPlaylists> getCurrentUsersPlaylists({
     required String accessToken,
     required int offset,
+    required int limit,
   }) async {
     final response = await _apiQueryHelper.get(
       url: '/v1/me/playlists'
           '?offset=$offset'
-          '&limit=10',
+          '&limit=$limit',
       accessToken: accessToken,
     );
     return CurrentUsersPlaylists.fromJson(response);

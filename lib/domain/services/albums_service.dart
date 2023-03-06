@@ -1,6 +1,7 @@
 import 'package:spotify_client/domain/api_client/albums_api_client.dart';
 
 import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
+
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 
@@ -25,12 +26,12 @@ class AlbumsService {
 
   Future<SeveralAlbums> getSeveralAlbums({
     required String market,
-    required String ids,
+    required List<String> ids,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final severalAlbums = await _albumsApiClient.getSeveralAlbums(
       accessToken: accessToken ?? '',
-      ids: ids,
+      ids: ids.join(','),
       market: market,
     );
     return severalAlbums;
