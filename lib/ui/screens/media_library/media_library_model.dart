@@ -4,6 +4,7 @@ import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
 
 import 'package:spotify_client/domain/services/albums_service.dart';
+import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/domain/services/playlists_service.dart';
 
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
@@ -69,6 +70,8 @@ class MediaLibraryViewModel extends ChangeNotifier {
   void setGridCard() {
     _isGridCards = !_isGridCards;
     notifyListeners();
+    final _playerServices =PlayerService();
+    _playerServices.skipToNext();
   }
 
   void openUserProfile(BuildContext context) => Navigator.of(context)

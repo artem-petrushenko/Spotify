@@ -14,7 +14,7 @@ class PlaylistsApiClient {
           '?offset=$offset'
           '&limit=$limit',
       accessToken: accessToken,
-    );
+    )as Map<String, dynamic>;
     return CurrentUsersPlaylists.fromJson(response);
   }
 }

@@ -16,7 +16,7 @@ class TracksApiClient {
           '&market=$market'
           '&offset=$offset',
       accessToken: accessToken,
-    );
+    ) as Map<String, dynamic>;
     return UsersSavedTracks.fromJson(response);
   }
 }

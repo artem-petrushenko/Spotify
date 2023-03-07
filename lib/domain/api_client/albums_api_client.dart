@@ -17,7 +17,7 @@ class AlbumsApiClient {
           '&market=$market'
           '&offset=$offset',
       accessToken: accessToken,
-    );
+    ) as Map<String, dynamic>;
     return UsersSavedAlbums.fromJson(response);
   }
 
@@ -31,7 +31,7 @@ class AlbumsApiClient {
           '?ids=$ids'
           '&market=$market',
       accessToken: accessToken,
-    );
+    ) as Map<String, dynamic>;
     return SeveralAlbums.fromJson(response);
   }
 }

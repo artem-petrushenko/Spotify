@@ -5,8 +5,10 @@ class UserApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
   Future<CurrentUserProfile> getCurrentUserProfile(String accessToken) async {
-    final response =
-        await _apiQueryHelper.get(url: '/v1/me', accessToken: accessToken);
+    final response = await _apiQueryHelper.get(
+      url: '/v1/me',
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
     return CurrentUserProfile.fromJson(response);
   }
 }

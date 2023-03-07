@@ -153,7 +153,7 @@ class AlbumViewModel extends ChangeNotifier {
 
   Future<void> loadDetails() async {
     await _albumsServices
-        .getSeveralAlbums(market: 'ES', ids: [albumId, albumId, albumId])
+        .getSeveralAlbums(market: 'ES', ids: [albumId])
         .then((value) => _addSeveralAlbums(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {

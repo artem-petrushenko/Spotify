@@ -15,4 +15,11 @@ class PlayerService {
     );
     return availableDevices;
   }
+
+  Future<void> skipToNext() async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.skipToNext(
+      accessToken: accessToken ?? '',
+    );
+  }
 }
