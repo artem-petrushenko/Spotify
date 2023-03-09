@@ -17,11 +17,14 @@ class PlayerApiClient {
 
   Future<void> skipToNext({
     required String accessToken,
+    required Map<String, dynamic>? body,
+    required Map<String, dynamic>? queryParameters,
   }) async {
     await _apiQueryHelper.post(
       url: '/v1/me/player/next',
       accessToken: accessToken,
-      body: null,
-    ) as Map<String, dynamic>;
+      body: body,
+      queryParameters: queryParameters,
+    );
   }
 }

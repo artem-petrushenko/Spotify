@@ -15,8 +15,8 @@ class ApiQueryHelper {
       final response = await http.get(
         Uri.parse('${Configuration.queryHost}$url'),
         headers: {
-          "Authorization": "Bearer $accessToken",
-          "Content-Type": "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $accessToken",
+          HttpHeaders.contentTypeHeader: "application/json",
         },
       );
       _checkStatusCode(response);
@@ -40,8 +40,8 @@ class ApiQueryHelper {
       final response = await http.delete(
         Uri.parse('${Configuration.queryHost}$url'),
         headers: {
-          "Authorization": "Bearer $accessToken",
-          "Content-Type": "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $accessToken",
+          HttpHeaders.contentTypeHeader: "application/json",
         },
         body: body,
       );
@@ -65,8 +65,8 @@ class ApiQueryHelper {
       final response = await http.put(
         Uri.parse('${Configuration.queryHost}$url'),
         headers: {
-          "Authorization": "Bearer $accessToken",
-          "Content-Type": "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $accessToken",
+          HttpHeaders.contentTypeHeader: "application/json",
         },
         body: body,
       );
@@ -85,13 +85,15 @@ class ApiQueryHelper {
     required String url,
     required String accessToken,
     required Map<String, dynamic>? body,
+    required Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('${Configuration.queryHost}$url'),
+        Uri.parse('${Configuration.queryHost}$url')
+            .replace(queryParameters: queryParameters),
         headers: {
-          "Authorization": "Bearer $accessToken",
-          "Content-Type": "application/json",
+          HttpHeaders.authorizationHeader: "Bearer $accessToken",
+          HttpHeaders.contentTypeHeader: "application/json",
         },
         body: body,
       );
@@ -126,6 +128,14 @@ class ApiQueryHelper {
     }
   }
 
-  Map<String, dynamic> responseToMap(http.Response response) =>
+  Map<String, dynamic>? responseToMap(http.Response response) =>
       jsonDecode(response.body) as Map<String, dynamic>;
+
+  // Map<String, dynamic>? removeNullValue(Map<String, dynamic>? map) {
+  //   if (map?.length != 0) {
+  //     return map?.removeWhere((key, value) => value == null)
+  //         as Map<String, dynamic>;
+  //   }
+  //   return null;
+  // }
 }

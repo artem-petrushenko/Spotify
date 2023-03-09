@@ -20,6 +20,8 @@ class PlayerService {
     final accessToken = await _sessionDataProvider.getAccessToken();
     await _playerApiClient.skipToNext(
       accessToken: accessToken ?? '',
+      body: null,
+      queryParameters: null,
     );
   }
 }
