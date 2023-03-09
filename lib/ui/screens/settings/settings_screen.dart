@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 
 import 'package:spotify_client/ui/theme/theme_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -15,8 +16,8 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            title: Text('Settings'),
+          SliverAppBar(
+            title: Text(AppLocalizations.of(context)!.settings),
             centerTitle: true,
           ),
           SliverToBoxAdapter(
@@ -24,12 +25,11 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 Card(
                   elevation: 0,
-                  clipBehavior: Clip.hardEdge,
                   child: Row(
                     children: [
                       Expanded(
                         child: Text(
-                          'Dark Theme',
+                          AppLocalizations.of(context)!.darkTheme,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.titleMedium,
@@ -43,8 +43,11 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
+                    onPressed: () => model.openLocalization(context),
+                    child: Text(AppLocalizations.of(context)!.language)),
+                ElevatedButton(
                   onPressed: () => model.logout(context),
-                  child: const Text('Exit'),
+                  child:  Text(AppLocalizations.of(context)!.exit),
                 )
               ],
             ),

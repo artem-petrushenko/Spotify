@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
 
+import 'package:spotify_client/ui/screens/language/localization_screen.dart';
+
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
 
@@ -102,5 +104,9 @@ class ScreenFactory {
       create: (context) => SettingViewModel(),
       child: const SettingsScreen(),
     );
+  }
+
+  Widget makeLocalization() {
+    return const LocalizationScreen();
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 
 class MediaLibraryIsSuccessScreen extends StatelessWidget {
@@ -16,7 +18,7 @@ class MediaLibraryIsSuccessScreen extends StatelessWidget {
         SliverAppBar(
           centerTitle: true,
           title: Text(
-            'Media Library',
+            AppLocalizations.of(context)!.mediaLibrary,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           floating: true,

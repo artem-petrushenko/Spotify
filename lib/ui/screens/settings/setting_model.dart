@@ -11,4 +11,8 @@ class SettingViewModel extends ChangeNotifier {
     _authService.logout();
     MainNavigation.resetNavigation(context);
   }
+
+  Future<void> openLocalization(BuildContext context) async {
+    Navigator.pushNamed(context, MainNavigationRouteNames.localizationScreen);
+  }
 }

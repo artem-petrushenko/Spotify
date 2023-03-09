@@ -15,6 +15,7 @@ abstract class MainNavigationRouteNames {
   static const musicPlaylistScreen = '/music_playlist';
   static const albumScreen = '/album';
   static const artistScreen = '/artist';
+  static const localizationScreen = '/localization';
 }
 
 class MainNavigation {
@@ -32,6 +33,8 @@ class MainNavigation {
         _screenFactory.makeSettings(),
     MainNavigationRouteNames.userProfileScreen: (_) =>
         _screenFactory.makeUserProfile(),
+    MainNavigationRouteNames.localizationScreen: (_) =>
+        _screenFactory.makeLocalization(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {
