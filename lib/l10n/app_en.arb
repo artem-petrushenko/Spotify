@@ -5,6 +5,7 @@
     "darkTheme": "Dark Theme",
     "exit": "Exit",
     "album": "Album",
+    "popularTracks": "Popular tracks",
     "releaseDate": "{releaseDate}",
     "@releaseDate": {
       "placeholders": {

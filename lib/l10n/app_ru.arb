@@ -5,6 +5,7 @@
     "darkTheme": "Темная тема",
     "exit": "Выход",
     "album": "Альбом",
+    "popularTracks": "Популярные треки",
     "releaseDate": "{releaseDate}",
     "numberOfTracks": "{value} треков"
 }

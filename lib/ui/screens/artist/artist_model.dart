@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_client/domain/entity/artists/artist.dart';
+import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/services/artists_service.dart';
 
 enum Status { loading, completed, error }
@@ -12,7 +13,7 @@ class ArtistData {
   final String? name;
   final int? popularity;
 
-  ArtistData({
+  const ArtistData({
     required this.id,
     required this.followers,
     required this.genres,
@@ -40,9 +41,38 @@ class ArtistData {
   }
 }
 
+class ArtistsTopTracksData {
+  final String? id;
+  final String? name;
+  final String? image;
+  final int? number;
+
+  const ArtistsTopTracksData({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.number
+  });
+
+  ArtistsTopTracksData copyWith({
+    String? id,
+    String? name,
+    String? image,
+    int? number,
+  }) {
+    return ArtistsTopTracksData(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      image: image ?? this.image,
+      number: number ?? this.number,
+    );
+  }
+}
+
 class ArtistRenderedData {
   Status status = Status.loading;
-  ArtistData artist = ArtistData(
+
+  ArtistData artist = const ArtistData(
     id: '',
     followers: null,
     genres: [],
@@ -50,6 +80,7 @@ class ArtistRenderedData {
     name: '',
     popularity: null,
   );
+  List<ArtistsTopTracksData> artistsTopTracks = const [];
 }
 
 class ArtistViewModel extends ChangeNotifier {
@@ -67,6 +98,10 @@ class ArtistViewModel extends ChangeNotifier {
         .getArtist(id: artistId)
         .then((value) => _addArtist(value))
         .onError((error, stackTrace) => data.status = Status.error);
+    await _artistService
+        .getArtistsTopTracks(id: artistId, market: 'ES')
+        .then((value) => _addArtistsTopTracks(value))
+        .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
     }
@@ -82,5 +117,16 @@ class ArtistViewModel extends ChangeNotifier {
       name: artist.name,
       popularity: artist.popularity,
     );
+  }
+
+  void _addArtistsTopTracks(ArtistsTopTracks artistsTopTracks) {
+    data.artistsTopTracks = artistsTopTracks.tracks
+        .map((e) => ArtistsTopTracksData(
+              id: e.id,
+              name: e.name,
+              image: e.album?.images?.first.url,
+      number: e.popularity
+            ))
+        .toList();
   }
 }
