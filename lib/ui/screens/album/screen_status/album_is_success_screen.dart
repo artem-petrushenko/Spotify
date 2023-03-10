@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:spotify_client/configuration/constants.dart';
 
 import 'package:spotify_client/ui/screens/album/album_model.dart';
-import 'package:spotify_client/ui/widgets/album_track_widget.dart';
 
+import 'package:spotify_client/ui/widgets/album_track_widget.dart';
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 
 class AlbumIsSuccessScreen extends StatelessWidget {
@@ -16,8 +19,6 @@ class AlbumIsSuccessScreen extends StatelessWidget {
         .select((AlbumViewModel model) => model.data.information.imageUrl);
     final albumName = context
         .select((AlbumViewModel model) => model.data.information.albumName);
-    final type =
-        context.select((AlbumViewModel model) => model.data.information.type);
     final copyright = context
         .select((AlbumViewModel model) => model.data.information.copyright);
     final tracks =
@@ -61,11 +62,11 @@ class AlbumIsSuccessScreen extends StatelessWidget {
                   const SizedBox(height: 4.0),
                   Row(
                     children: [
-                      if (type != null)
-                        Text(type,
-                            style: Theme.of(context).textTheme.labelMedium),
+                      Text(AppLocalizations.of(context)!.album,
+                          style: Theme.of(context).textTheme.labelMedium),
                       if (date != null)
-                        Text(' • $date',
+                        Text(
+                            "	• ${AppLocalizations.of(context)!.releaseDate(date)}",
                             style: Theme.of(context).textTheme.labelMedium),
                     ],
                   ),
@@ -105,7 +106,9 @@ class AlbumIsSuccessScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (totalTracks != null)
-                    Text('$totalTracks tracks',
+                    Text(
+                        AppLocalizations.of(context)!
+                            .numberOfTracks(totalTracks),
                         style: Theme.of(context).textTheme.labelMedium),
                 ],
               ),

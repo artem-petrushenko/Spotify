@@ -3,5 +3,26 @@
     "language": "Language",
     "settings": "Settings",
     "darkTheme": "Dark Theme",
-    "exit": "Exit"
+    "exit": "Exit",
+    "album": "Album",
+    "releaseDate": "{releaseDate}",
+    "@releaseDate": {
+      "placeholders": {
+        "releaseDate": {
+          "type": "DateTime",
+          "format": "yMd"
+        }
+      }
+    },
+    "numberOfTracks": "{value} tracks",
+    "@numberOfTracks": {
+      "placeholders": {
+        "value": {
+          "type": "int",
+          "optionalParameters": {
+            "decimalDigits": 0
+          }
+        }
+      }
+    }
 }

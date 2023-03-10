@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/services/albums_service.dart';
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
@@ -79,11 +80,11 @@ class AlbumData {
   final String? type;
   final String? year;
   final List<ArtistData>? artists;
-  final String? date;
+  final DateTime? date;
   final List<Track>? tracks;
   final String? totalTime;
   final List<Copyright>? copyright;
-  final String? totalTracks;
+  final int? totalTracks;
 
   const AlbumData({
     required this.imageUrl,
@@ -104,11 +105,11 @@ class AlbumData {
       String? type,
       String? year,
       List<ArtistData>? artists,
-      String? date,
+      DateTime? date,
       List<Track>? tracks,
       String? totalTime,
       List<Copyright>? copyright,
-      String? totalTracks}) {
+      int? totalTracks}) {
     return AlbumData(
       imageUrl: imageUrl ?? this.imageUrl,
       albumName: albumName ?? this.albumName,
@@ -133,11 +134,11 @@ class AlbumRenderedData {
     type: '',
     year: '',
     artists: [],
-    date: '',
+    date: null,
     tracks: [],
     totalTime: '',
     copyright: [],
-    totalTracks: '',
+    totalTracks: null,
   );
 }
 
@@ -179,7 +180,8 @@ class AlbumViewModel extends ChangeNotifier {
           ?.map((e) =>
               ArtistData(id: e.id, imageUrl: e.images?.last.url, name: e.name))
           .toList(),
-      date: severalAlbums.albums?.first.releaseDate,
+      date: DateFormat("yyyy-MM-dd")
+          .parse(severalAlbums.albums?.first.releaseDate ?? ''),
       tracks: severalAlbums.albums?.first.tracks?.items
           ?.map((e) => Track(
                 name: e.name,
@@ -191,7 +193,7 @@ class AlbumViewModel extends ChangeNotifier {
       copyright: severalAlbums.albums?.first.copyrights
           ?.map((e) => Copyright(text: e.text, type: e.type))
           .toList(),
-      totalTracks: severalAlbums.albums?.first.totalTracks.toString(),
+      totalTracks: severalAlbums.albums?.first.totalTracks,
     );
   }
 }
