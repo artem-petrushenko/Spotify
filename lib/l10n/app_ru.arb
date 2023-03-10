@@ -7,6 +7,7 @@
     "album": "Альбом",
     "popularTracks": "Популярные треки",
     "fansMayLike": "Фанатам может понравиться",
+    "popularReleases": "Популярные релизы",
     "releaseDate": "{releaseDate}",
     "numberOfTracks": "{value} треков"
 }

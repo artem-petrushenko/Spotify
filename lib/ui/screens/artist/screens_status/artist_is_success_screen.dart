@@ -18,6 +18,8 @@ class ArtistIsSuccessScreen extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artistsTopTracks);
     final artistsRelatedArtists = context
         .select((ArtistViewModel model) => model.data.artistsRelatedArtists);
+    final artistsAlbums =
+        context.select((ArtistViewModel model) => model.data.artistsAlbums);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -97,6 +99,59 @@ class ArtistIsSuccessScreen extends StatelessWidget {
               },
               childCount:
                   artistsTopTracks.length > 5 ? 5 : artistsTopTracks.length,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.popularReleases,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ],
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Card(
+                  elevation: 0,
+                  child: Row(
+                    children: [
+                      ImageNetworkWidget(
+                        imageUrl: artistsAlbums[index].image ?? '',
+                        height: 96.0,
+                        width: 96.0,
+                        radius: 12.0,
+                      ),
+                      const SizedBox(width: 8.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              artistsAlbums[index].name ?? '',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              artistsAlbums[index].name ?? '',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              childCount:
+                  artistsTopTracks.length > 4 ? 4 : artistsTopTracks.length,
             ),
           ),
           SliverToBoxAdapter(

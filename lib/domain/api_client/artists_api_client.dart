@@ -1,5 +1,6 @@
 import 'package:spotify_client/domain/api_client/api_query_helper.dart';
 import 'package:spotify_client/domain/entity/artists/artist.dart';
+import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 
@@ -39,5 +40,24 @@ class ArtistsApiClient {
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return ArtistsRelatedArtists.fromJson(response);
+  }
+
+  Future<ArtistsAlbums> getArtistsAlbums({
+    required String id,
+    required String includeGroups,
+    required int limit,
+    required String market,
+    required int offset,
+    required String accessToken,
+  }) async {
+    final response = await _apiQueryHelper.get(
+      url: '/v1/artists/$id/albums'
+          '?include_groups=$includeGroups'
+          '&limit=$limit'
+          '&market=$market'
+          '&offset=$offset',
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+    return ArtistsAlbums.fromJson(response);
   }
 }

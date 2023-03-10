@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 
 import 'package:spotify_client/domain/services/artists_service.dart';
 
@@ -96,6 +97,30 @@ class ArtistsRelatedArtistsData {
   }
 }
 
+class ArtistsAlbumsData {
+  final String? id;
+  final String? name;
+  final String? image;
+
+  const ArtistsAlbumsData({
+    required this.id,
+    required this.name,
+    required this.image,
+  });
+
+  ArtistsAlbumsData copyWith({
+    String? id,
+    String? name,
+    String? image,
+  }) {
+    return ArtistsAlbumsData(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      image: image ?? this.image,
+    );
+  }
+}
+
 class ArtistRenderedData {
   Status status = Status.loading;
 
@@ -109,6 +134,7 @@ class ArtistRenderedData {
   );
   List<ArtistsTopTracksData> artistsTopTracks = const [];
   List<ArtistsRelatedArtistsData> artistsRelatedArtists = const [];
+  List<ArtistsAlbumsData> artistsAlbums = const [];
 }
 
 class ArtistViewModel extends ChangeNotifier {
@@ -133,6 +159,15 @@ class ArtistViewModel extends ChangeNotifier {
     await _artistService
         .getArtistsRelatedArtists(id: artistId, market: 'ES')
         .then((value) => _addArtistsRelatedArtists(value))
+        .onError((error, stackTrace) => data.status = Status.error);
+    await _artistService
+        .getArtistsAlbums(
+            id: artistId,
+            market: 'ES',
+            limit: 10,
+            offset: 0,
+            includeGroups: ['album', 'single', 'appears_on', 'compilation'])
+        .then((value) => _addArtistsAlbums(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
@@ -165,6 +200,16 @@ class ArtistViewModel extends ChangeNotifier {
   void _addArtistsRelatedArtists(ArtistsRelatedArtists artistsRelatedArtists) {
     data.artistsRelatedArtists = artistsRelatedArtists.artists
         .map((e) => ArtistsRelatedArtistsData(
+              id: e.id,
+              name: e.name,
+              image: e.images?.first.url,
+            ))
+        .toList();
+  }
+
+  void _addArtistsAlbums(ArtistsAlbums artistsAlbums) {
+    data.artistsAlbums = artistsAlbums.items
+        .map((e) => ArtistsAlbumsData(
               id: e.id,
               name: e.name,
               image: e.images?.first.url,

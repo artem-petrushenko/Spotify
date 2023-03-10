@@ -3,6 +3,7 @@ import 'package:spotify_client/domain/data_providers/session_data_provider.dart'
 import 'package:spotify_client/domain/api_client/artists_api_client.dart';
 
 import 'package:spotify_client/domain/entity/artists/artist.dart';
+import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 
@@ -45,5 +46,24 @@ class ArtistService {
       id: id,
     );
     return artistsRelatedArtists;
+  }
+
+  Future<ArtistsAlbums> getArtistsAlbums({
+    required String id,
+    required int limit,
+    required int offset,
+    required String market,
+    required List<String> includeGroups,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final artistsAlbum = await _artistsApiClient.getArtistsAlbums(
+      accessToken: accessToken ?? '',
+      id: id,
+      includeGroups: includeGroups.join(','),
+      limit: limit,
+      market: market,
+      offset: offset,
+    );
+    return artistsAlbum;
   }
 }
