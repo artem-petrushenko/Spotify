@@ -6,6 +6,7 @@
     "exit": "Выход",
     "album": "Альбом",
     "popularTracks": "Популярные треки",
+    "fansMayLike": "Фанатам может понравиться",
     "releaseDate": "{releaseDate}",
     "numberOfTracks": "{value} треков"
 }

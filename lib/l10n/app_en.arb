@@ -6,6 +6,7 @@
     "exit": "Exit",
     "album": "Album",
     "popularTracks": "Popular tracks",
+    "fansMayLike": "Fans may like",
     "releaseDate": "{releaseDate}",
     "@releaseDate": {
       "placeholders": {

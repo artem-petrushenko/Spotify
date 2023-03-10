@@ -16,6 +16,8 @@ class ArtistIsSuccessScreen extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artist.image);
     final artistsTopTracks =
         context.select((ArtistViewModel model) => model.data.artistsTopTracks);
+    final artistsRelatedArtists = context
+        .select((ArtistViewModel model) => model.data.artistsRelatedArtists);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -94,10 +96,50 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                 );
               },
               childCount:
-                  artistsTopTracks.length
-                      > 5 ? 5 : artistsTopTracks.length,
+                  artistsTopTracks.length > 5 ? 5 : artistsTopTracks.length,
             ),
           ),
+          SliverToBoxAdapter(
+            child: Text(
+              AppLocalizations.of(context)!.fansMayLike,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 150.0,
+              width: 128.0,
+              child: ListView.builder(
+                itemCount: artistsRelatedArtists.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Column(
+                      children: [
+                        ImageNetworkWidget(
+                          imageUrl: artistsRelatedArtists[index].image ?? '',
+                          height: 128.0,
+                          width: 128.0,
+                          radius: 32.0,
+                        ),
+                        SizedBox(
+                          width: 128.0,
+                          child: Text(
+                            artistsRelatedArtists[index].name ?? '',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleSmall,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          )
         ],
       ),
     );

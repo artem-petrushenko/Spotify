@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:spotify_client/domain/services/artists_service.dart';
+
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
-import 'package:spotify_client/domain/services/artists_service.dart';
+import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
 
 enum Status { loading, completed, error }
 
@@ -51,7 +54,7 @@ class ArtistsTopTracksData {
     required this.id,
     required this.name,
     required this.image,
-    required this.number
+    required this.number,
   });
 
   ArtistsTopTracksData copyWith({
@@ -69,6 +72,30 @@ class ArtistsTopTracksData {
   }
 }
 
+class ArtistsRelatedArtistsData {
+  final String? id;
+  final String? name;
+  final String? image;
+
+  const ArtistsRelatedArtistsData({
+    required this.id,
+    required this.name,
+    required this.image,
+  });
+
+  ArtistsRelatedArtistsData copyWith({
+    String? id,
+    String? name,
+    String? image,
+  }) {
+    return ArtistsRelatedArtistsData(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      image: image ?? this.image,
+    );
+  }
+}
+
 class ArtistRenderedData {
   Status status = Status.loading;
 
@@ -81,6 +108,7 @@ class ArtistRenderedData {
     popularity: null,
   );
   List<ArtistsTopTracksData> artistsTopTracks = const [];
+  List<ArtistsRelatedArtistsData> artistsRelatedArtists = const [];
 }
 
 class ArtistViewModel extends ChangeNotifier {
@@ -101,6 +129,10 @@ class ArtistViewModel extends ChangeNotifier {
     await _artistService
         .getArtistsTopTracks(id: artistId, market: 'ES')
         .then((value) => _addArtistsTopTracks(value))
+        .onError((error, stackTrace) => data.status = Status.error);
+    await _artistService
+        .getArtistsRelatedArtists(id: artistId, market: 'ES')
+        .then((value) => _addArtistsRelatedArtists(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
@@ -125,7 +157,17 @@ class ArtistViewModel extends ChangeNotifier {
               id: e.id,
               name: e.name,
               image: e.album?.images?.first.url,
-      number: e.popularity
+              number: e.popularity,
+            ))
+        .toList();
+  }
+
+  void _addArtistsRelatedArtists(ArtistsRelatedArtists artistsRelatedArtists) {
+    data.artistsRelatedArtists = artistsRelatedArtists.artists
+        .map((e) => ArtistsRelatedArtistsData(
+              id: e.id,
+              name: e.name,
+              image: e.images?.first.url,
             ))
         .toList();
   }
