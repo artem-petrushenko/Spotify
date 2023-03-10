@@ -6,23 +6,5 @@
     "exit": "Выход",
     "album": "Альбом",
     "releaseDate": "{releaseDate}",
-    "@releaseDate": {
-        "placeholders": {
-            "releaseDate": {
-                "type": "DateTime",
-                "format": "dmy"
-            }
-        }
-    },
-    "numberOfTracks": "{value} треков",
-    "@numberOfTracks": {
-      "placeholders": {
-        "value": {
-          "type": "int",
-          "optionalParameters": {
-            "decimalDigits": 0
-          }
-        }
-      }
-    }
+    "numberOfTracks": "{value} треков"
 }

@@ -10,7 +10,7 @@
       "placeholders": {
         "releaseDate": {
           "type": "DateTime",
-          "format": "yMd"
+          "format": "yMMMMd"
         }
       }
     },
