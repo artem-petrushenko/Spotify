@@ -27,5 +27,17 @@
           }
         }
       }
+    },
+    "followers": "{value}",
+    "@followers": {
+      "placeholders": {
+        "value": {
+          "type": "int",
+          "format": "decimalPattern",
+          "optionalParameters": {
+            "decimalDigits": 0
+          }
+        }
+      }
     }
 }

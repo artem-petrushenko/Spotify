@@ -49,26 +49,26 @@ class ArtistsTopTracksData {
   final String? id;
   final String? name;
   final String? image;
-  final int? number;
+  final String? artists;
 
   const ArtistsTopTracksData({
     required this.id,
     required this.name,
     required this.image,
-    required this.number,
+    required this.artists,
   });
 
   ArtistsTopTracksData copyWith({
     String? id,
     String? name,
     String? image,
-    int? number,
+    String? artists,
   }) {
     return ArtistsTopTracksData(
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
-      number: number ?? this.number,
+      artists: artists ?? this.artists,
     );
   }
 }
@@ -144,10 +144,19 @@ class ArtistViewModel extends ChangeNotifier {
     loadDetails();
   }
 
+  bool get isSliverAppBarExpanded {
+    return scrollController.hasClients && scrollController.offset > 315;
+  }
+
+  late ScrollController scrollController;
   final data = ArtistRenderedData();
   final _artistService = ArtistService();
 
   Future<void> loadDetails() async {
+    scrollController = ScrollController()
+      ..addListener(() {
+        notifyListeners();
+      });
     await _artistService
         .getArtist(id: artistId)
         .then((value) => _addArtist(value))
@@ -192,7 +201,8 @@ class ArtistViewModel extends ChangeNotifier {
               id: e.id,
               name: e.name,
               image: e.album?.images?.first.url,
-              number: e.popularity,
+              artists:
+                  e.album?.artists?.map((e) => e.name).join(', ').toString(),
             ))
         .toList();
   }

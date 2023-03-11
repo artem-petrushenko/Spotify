@@ -9,5 +9,6 @@
     "fansMayLike": "Фанатам может понравиться",
     "popularReleases": "Популярные релизы",
     "releaseDate": "{releaseDate}",
-    "numberOfTracks": "{value} треков"
+    "numberOfTracks": "{value} треков",
+    "followers": "{value}"
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ImageNetworkWidget extends StatelessWidget {
-  final double? width, height, radius, aspectRation;
+  final double? width, height, radius;
+  final Color? color;
+  final BlendMode? colorBlendMode;
   final String imageUrl;
 
   const ImageNetworkWidget({
@@ -9,8 +11,9 @@ class ImageNetworkWidget extends StatelessWidget {
     this.width,
     this.height,
     this.radius,
-    this.aspectRation,
     required this.imageUrl,
+    this.color,
+    this.colorBlendMode,
   }) : super(key: key);
 
   @override
@@ -25,6 +28,8 @@ class ImageNetworkWidget extends StatelessWidget {
         width: width,
         child: Image.network(
           imageUrl,
+          color: color,
+          colorBlendMode: colorBlendMode,
           errorBuilder: (BuildContext context, Object exception,
                   StackTrace? stackTrace) =>
               Container(
