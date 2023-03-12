@@ -144,8 +144,27 @@ class ArtistViewModel extends ChangeNotifier {
     loadDetails();
   }
 
-  bool get isSliverAppBarExpanded {
-    return scrollController.hasClients && scrollController.offset > 315;
+  static const double _openSliverAppBarHeight = 350.0;
+  static const double _hideSliverAppBarHeight = 56.0;
+
+  double  get openSliverAppBarHeight => _openSliverAppBarHeight;
+  double  get hideSliverAppBarHeight => _hideSliverAppBarHeight;
+
+  bool get isSliverAppBarExpanded =>
+      scrollController.hasClients &&
+      scrollController.offset >
+          _openSliverAppBarHeight - _hideSliverAppBarHeight / 2;
+
+  double get fabHeightPosition {
+    double defaultFABPosition = _openSliverAppBarHeight + 8.0 + 24.0 + 32.0;
+    if (scrollController.hasClients) {
+      if (scrollController.offset > defaultFABPosition - _hideSliverAppBarHeight) {
+        defaultFABPosition = _hideSliverAppBarHeight;
+      } else {
+        defaultFABPosition -= scrollController.offset;
+      }
+    }
+    return defaultFABPosition;
   }
 
   late ScrollController scrollController;
