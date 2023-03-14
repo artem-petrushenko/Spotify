@@ -8,6 +8,13 @@
     "popularTracks": "Популярные треки",
     "fansMayLike": "Фанатам может понравиться",
     "popularReleases": "Популярные релизы",
+    "popularityOutOf100": "Популярность из 100",
+    "genres": "Жанры",
+    "subscribers": "Подписчики",
+    "openDiscography": "Открыть дискографию",
+    "album": "Альбом",
+    "single": "Сингл",
+    "compilation": "Сборник",
     "releaseDate": "{releaseDate}",
     "numberOfTracks": "{value} треков",
     "followers": "{value}"

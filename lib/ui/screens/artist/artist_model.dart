@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 
 import 'package:spotify_client/domain/services/artists_service.dart';
@@ -12,7 +13,7 @@ enum Status { loading, completed, error }
 class ArtistData {
   final String? id;
   final int? followers;
-  final List<String>? genres;
+  final List<String> genres;
   final String? image;
   final String? name;
   final int? popularity;
@@ -101,22 +102,30 @@ class ArtistsAlbumsData {
   final String? id;
   final String? name;
   final String? image;
+  final String? year;
+  final String? type;
 
   const ArtistsAlbumsData({
     required this.id,
     required this.name,
     required this.image,
+    required this.year,
+    required this.type,
   });
 
   ArtistsAlbumsData copyWith({
     String? id,
     String? name,
     String? image,
+    String? year,
+    String? type,
   }) {
     return ArtistsAlbumsData(
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
+      year: year ?? this.year,
+      type: type ?? this.type,
     );
   }
 }
@@ -147,24 +156,23 @@ class ArtistViewModel extends ChangeNotifier {
   static const double _openSliverAppBarHeight = 350.0;
   static const double _hideSliverAppBarHeight = 56.0;
 
-  double  get openSliverAppBarHeight => _openSliverAppBarHeight;
-  double  get hideSliverAppBarHeight => _hideSliverAppBarHeight;
+  double get openSliverAppBarHeight => _openSliverAppBarHeight;
 
-  bool get isSliverAppBarExpanded =>
-      scrollController.hasClients &&
-      scrollController.offset >
-          _openSliverAppBarHeight - _hideSliverAppBarHeight / 2;
+  double get hideSliverAppBarHeight => _hideSliverAppBarHeight;
 
-  double get fabHeightPosition {
-    double defaultFABPosition = _openSliverAppBarHeight + 8.0 + 24.0 + 32.0;
+  double get opacityAppBar => 1 - opacityFlexibleSpace;
+
+  double get opacityFlexibleSpace {
+    double opacity = 1.0;
     if (scrollController.hasClients) {
-      if (scrollController.offset > defaultFABPosition - _hideSliverAppBarHeight) {
-        defaultFABPosition = _hideSliverAppBarHeight;
+      double offset = scrollController.offset;
+      if (offset < _openSliverAppBarHeight - _hideSliverAppBarHeight) {
+        opacity = (_openSliverAppBarHeight - offset) / _openSliverAppBarHeight;
       } else {
-        defaultFABPosition -= scrollController.offset;
+        opacity = 0.0;
       }
     }
-    return defaultFABPosition;
+    return opacity;
   }
 
   late ScrollController scrollController;
@@ -207,7 +215,7 @@ class ArtistViewModel extends ChangeNotifier {
     data.artist = ArtistData(
       id: artist.id,
       followers: artist.followers?.total,
-      genres: artist.genres?.toList(),
+      genres: artist.genres.toList(),
       image: artist.images?.first.url,
       name: artist.name,
       popularity: artist.popularity,
@@ -242,6 +250,9 @@ class ArtistViewModel extends ChangeNotifier {
               id: e.id,
               name: e.name,
               image: e.images?.first.url,
+              year:
+                  DateFormat("yyyy").parse(e.releaseDate ?? '').year.toString(),
+              type: e.type,
             ))
         .toList();
   }

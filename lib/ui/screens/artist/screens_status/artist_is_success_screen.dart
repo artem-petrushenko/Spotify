@@ -23,14 +23,14 @@ class ArtistIsSuccessScreen extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artistsAlbums);
     final sliverController =
         context.select((ArtistViewModel model) => model.scrollController);
-    final isSliverAppBarExpanded =
-        context.select((ArtistViewModel model) => model.isSliverAppBarExpanded);
-    final fabHeightPosition =
-        context.select((ArtistViewModel model) => model.fabHeightPosition);
     final openSliverAppBarHeight =
         context.select((ArtistViewModel model) => model.openSliverAppBarHeight);
     final hideSliverAppBarHeight =
         context.select((ArtistViewModel model) => model.hideSliverAppBarHeight);
+    final opacityFlexibleSpace =
+        context.select((ArtistViewModel model) => model.opacityFlexibleSpace);
+    final opacityAppBar =
+        context.select((ArtistViewModel model) => model.opacityAppBar);
     return Scaffold(
       body: Stack(
         children: [
@@ -40,66 +40,77 @@ class ArtistIsSuccessScreen extends StatelessWidget {
               SliverAppBar(
                 collapsedHeight: hideSliverAppBarHeight,
                 expandedHeight: openSliverAppBarHeight,
-                title: isSliverAppBarExpanded
-                    ? Text(
-                        artist.name ?? '',
-                        maxLines: 1,
-                        overflow: TextOverflow.fade,
-                      )
-                    : null,
-                elevation: 0,
+                centerTitle: true,
                 pinned: true,
                 stretch: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: ImageNetworkWidget(
-                    imageUrl: artist.image ?? '',
+                title: Opacity(
+                  opacity: opacityAppBar,
+                  child: Text(
+                    artist.name ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
                   ),
-                  stretchModes: const [
-                    StretchMode.zoomBackground,
-                    StretchMode.fadeTitle,
-                  ],
                 ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding,
-                    vertical: Constants.verticalPadding),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_back_rounded),
+                ),
+                elevation: 0,
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add_rounded,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.more_vert_outlined,
+                    ),
+                  ),
+                ],
+                flexibleSpace: Opacity(
+                  opacity: opacityFlexibleSpace,
+                  child: Stack(
+                    fit: StackFit.expand,
                     children: [
-                      SizedBox(
-                        height: 24.0,
-                        child: Text(
-                          artist.name ?? '',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
+                      ImageNetworkWidget(
+                        imageUrl: artist.image ?? '',
                       ),
-                      SizedBox(
-                        height: 72.0,
+                      Positioned(
+                        right: 16.0,
+                        bottom: 16.0,
                         child: Row(
                           children: [
-                            Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {},
-                                    child: const Text('Subscribe'))),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.more_vert)),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.mic_external_off)),
-                            const SizedBox(width: 64.0),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(16.0),
+                              ),
+                              child: const Icon(Icons.shuffle_rounded),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(16.0),
+                              ),
+                              child: const Icon(Icons.play_arrow_rounded),
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
               SliverPadding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding),
+                  vertical: Constants.verticalPadding,
+                  horizontal: Constants.horizontalPadding,
+                ),
                 sliver: SliverToBoxAdapter(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,35 +122,38 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                             vertical: Constants.verticalPadding,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(Constants.cardBorderRadius),
                             ),
-                            // border: Border.all(color: Theme.of(context).colorScheme.outline)
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.followers(artist.popularity ?? 0),
+                                AppLocalizations.of(context)!
+                                    .followers(artist.popularity ?? 0),
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelLarge
                                     ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer,
-                                    fontSize: 24.0),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondaryContainer,
+                                        fontSize: 24.0),
                               ),
                               Text(
-                                'Out of 100 Popularity',
+                                AppLocalizations.of(context)!
+                                    .popularityOutOf100,
                                 style: Theme.of(context).textTheme.labelLarge,
                               ),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(width: 16.0),
+                      const SizedBox(width: 16.0),
                       Expanded(
                         child: Container(
                           padding: const EdgeInsets.symmetric(
@@ -147,14 +161,13 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                             vertical: Constants.verticalPadding,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(Constants.cardBorderRadius),
                             ),
-                              // border: Border.all(color: Theme.of(context).colorScheme.outline)
                           ),
-                          // shadowColor: Theme.of(context).colorScheme.shadow,
-                          //
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -172,7 +185,7 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                                         fontSize: 24.0),
                               ),
                               Text(
-                                'Subscribers',
+                                AppLocalizations.of(context)!.subscribers,
                                 style: Theme.of(context).textTheme.labelLarge,
                               ),
                             ],
@@ -192,13 +205,32 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (artist.genres.isNotEmpty)
+                        Text(
+                          AppLocalizations.of(context)!.genres,
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
                       Wrap(
                         spacing: 8.0,
                         children: List.generate(
-                          artist.genres!.length,
-                          (int index) {
-                            return Chip(label: Text(artist.genres![index]));
-                          },
+                          artist.genres.length,
+                          (int index) => Chip(
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            side: BorderSide.none,
+                            shape: const StadiumBorder(),
+                            label: Text(
+                              artist.genres[index],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer),
+                            ),
+                          ),
                         ).toList(),
                       ),
                       Text(
@@ -220,7 +252,14 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                         children: [
                           Text(
                             '#${(index + 1).toString()}',
-                            style: Theme.of(context).textTheme.labelLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer,
+                                ),
                           ),
                           const SizedBox(width: 8.0),
                           ImageNetworkWidget(
@@ -286,8 +325,9 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                   (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding,
-                          vertical: 4.0),
+                        horizontal: Constants.horizontalPadding,
+                        vertical: 4.0,
+                      ),
                       child: Row(
                         children: [
                           ImageNetworkWidget(
@@ -309,12 +349,35 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 ),
-                                Text(
-                                  artistsAlbums[index].name ?? '',
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  style: Theme.of(context).textTheme.titleSmall,
+                                Row(
+                                  children: [
+                                    Text(
+                                      artistsAlbums[index].year ?? '',
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      overflow: TextOverflow.fade,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
+                                    ),
+                                    Text(
+                                      " • ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
+                                    ),
+                                    Text(
+                                      getContentType(
+                                          artistsAlbums[index].type ?? '',
+                                          context),
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      overflow: TextOverflow.fade,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -327,11 +390,29 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                       artistsTopTracks.length > 4 ? 4 : artistsTopTracks.length,
                 ),
               ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.horizontalPadding,
+                ),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child:
+                            Text(AppLocalizations.of(context)!.openDiscography),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               if (artistsRelatedArtists.isNotEmpty)
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: Constants.horizontalPadding,
-                      vertical: Constants.verticalPadding),
+                    horizontal: Constants.horizontalPadding,
+                    vertical: Constants.verticalPadding,
+                  ),
                   sliver: SliverToBoxAdapter(
                     child: Text(
                       AppLocalizations.of(context)!.fansMayLike,
@@ -369,7 +450,10 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                               child: Text(
                                 artistsRelatedArtists[index].name ?? '',
                                 textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.labelLarge,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge
+                                    ?.copyWith(color: Colors.white),
                                 maxLines: 2,
                                 overflow: TextOverflow.clip,
                               ),
@@ -388,20 +472,27 @@ class ArtistIsSuccessScreen extends StatelessWidget {
                   ),
                 ),
               const SliverPadding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: Constants.verticalPadding))
+                padding: EdgeInsets.symmetric(
+                  vertical: Constants.verticalPadding,
+                ),
+              )
             ],
-          ),
-          Positioned(
-            top: fabHeightPosition,
-            right: Constants.horizontalPadding,
-            child: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.play_arrow_rounded),
-            ),
           ),
         ],
       ),
     );
+  }
+
+  String getContentType(String type, BuildContext context) {
+    switch (type) {
+      case 'album':
+        return AppLocalizations.of(context)!.album;
+      case 'single':
+        return AppLocalizations.of(context)!.single;
+      case 'compilation':
+        return AppLocalizations.of(context)!.compilation;
+      default:
+        return '';
+    }
   }
 }

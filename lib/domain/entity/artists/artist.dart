@@ -6,7 +6,7 @@ part 'artist.g.dart';
 class Artist {
   ExternalUrls? externalUrls;
   Followers? followers;
-  List<String>? genres;
+  List<String> genres;
   String? href;
   String? id;
   List<Images>? images;
@@ -18,7 +18,7 @@ class Artist {
   Artist({
     this.externalUrls,
     this.followers,
-    this.genres,
+    required this.genres,
     this.href,
     this.id,
     this.images,

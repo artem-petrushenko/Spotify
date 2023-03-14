@@ -8,6 +8,13 @@
     "popularTracks": "Popular tracks",
     "popularReleases": "Popular releases",
     "fansMayLike": "Fans may like",
+    "popularityOutOf100": "Popularity out of 100",
+    "genres": "Genres",
+    "subscribers": "Subscribers",
+    "openDiscography": "Open Discography",
+    "album": "Album",
+    "single": "Single",
+    "compilation": "Compilation",
     "releaseDate": "{releaseDate}",
     "@releaseDate": {
       "placeholders": {

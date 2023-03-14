@@ -15,7 +15,7 @@ Artist _$ArtistFromJson(Map<String, dynamic> json) => Artist(
           ? null
           : Followers.fromJson(json['followers'] as Map<String, dynamic>),
       genres:
-          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
+          (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
       href: json['href'] as String?,
       id: json['id'] as String?,
       images: (json['images'] as List<dynamic>?)
