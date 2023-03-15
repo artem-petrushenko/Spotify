@@ -16,7 +16,7 @@ class ArtistData {
   final List<String> genres;
   final String? image;
   final String? name;
-  final int? popularity;
+  final String? popularity;
 
   const ArtistData({
     required this.id,
@@ -33,7 +33,7 @@ class ArtistData {
     List<String>? genres,
     String? image,
     String? name,
-    int? popularity,
+    String? popularity,
   }) {
     return ArtistData(
       id: id ?? this.id,
@@ -218,7 +218,7 @@ class ArtistViewModel extends ChangeNotifier {
       genres: artist.genres.toList(),
       image: artist.images?.first.url,
       name: artist.name,
-      popularity: artist.popularity,
+      popularity: artist.popularity.toString(),
     );
   }
 
