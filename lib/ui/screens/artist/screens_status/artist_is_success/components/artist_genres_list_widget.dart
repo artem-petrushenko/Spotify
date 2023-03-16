@@ -11,10 +11,12 @@ class ArtistGenresListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final genres = context.select((ArtistViewModel model) => model.data.artist.genres);
+    final genres =
+        context.select((ArtistViewModel model) => model.data.artist.genres);
     return SliverPadding(
       padding: const EdgeInsets.symmetric(
         horizontal: Constants.horizontalPadding,
+        vertical: Constants.verticalPadding,
       ),
       sliver: SliverToBoxAdapter(
         child: Column(
@@ -42,10 +44,6 @@ class ArtistGenresListWidget extends StatelessWidget {
                   ),
                 ),
               ).toList(),
-            ),
-            Text(
-              AppLocalizations.of(context)!.popularTracks,
-              style: Theme.of(context).textTheme.labelLarge,
             ),
           ],
         ),

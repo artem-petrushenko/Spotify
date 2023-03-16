@@ -14,60 +14,81 @@ class ArtistTopTracksListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final artistsTopTracks =
         context.select((ArtistViewModel model) => model.data.artistsTopTracks);
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return Padding(
+    return artistsTopTracks.isNotEmpty
+        ? SliverPadding(
             padding: const EdgeInsets.symmetric(
-                horizontal: Constants.horizontalPadding, vertical: 4.0),
-            child: Row(
+              horizontal: Constants.horizontalPadding,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return _TrackWidget(
+                    track: artistsTopTracks[index],
+                    index: index,
+                  );
+                },
+                childCount:
+                    artistsTopTracks.length > 5 ? 5 : artistsTopTracks.length,
+              ),
+            ),
+          )
+        : const SliverToBoxAdapter();
+  }
+}
+
+class _TrackWidget extends StatelessWidget {
+  const _TrackWidget({required this.track, required this.index});
+
+  final int index;
+  final ArtistsTopTracksData track;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Text(
+            '#${(index + 1).toString()}',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                ),
+          ),
+          const SizedBox(width: 8.0),
+          ImageNetworkWidget(
+            imageUrl: track.image ?? '',
+            height: 48.0,
+            width: 48.0,
+            radius: 12.0,
+          ),
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '#${(index + 1).toString()}',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                      ),
+                  track.name ?? '',
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const SizedBox(width: 8.0),
-                ImageNetworkWidget(
-                  imageUrl: artistsTopTracks[index].image ?? '',
-                  height: 48.0,
-                  width: 48.0,
-                  radius: 12.0,
+                Text(
+                  track.artists ?? '',
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(width: 8.0),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        artistsTopTracks[index].name ?? '',
-                        maxLines: 1,
-                        softWrap: false,
-                        overflow: TextOverflow.fade,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        artistsTopTracks[index].artists ?? '',
-                        maxLines: 1,
-                        softWrap: false,
-                        overflow: TextOverflow.fade,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.more_vert_rounded),
-                )
               ],
             ),
-          );
-        },
-        childCount: artistsTopTracks.length > 5 ? 5 : artistsTopTracks.length,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert_rounded),
+          )
+        ],
       ),
     );
   }

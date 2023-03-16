@@ -8,6 +8,7 @@ import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_succes
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_genres_list_widget.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_information_widget.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_popular_releases_widget.dart';
+import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_popular_tracks_widget.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_related_artists_list_widget.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_top_tracks_list_widget.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/components/artist_albums_open_widget.dart';
@@ -26,6 +27,7 @@ class ArtistIsSuccessScreen extends StatelessWidget {
           ArtistAppBarWidget(),
           ArtistInformationWidget(),
           ArtistGenresListWidget(),
+          ArtistPopularTracksWidget(),
           ArtistTopTracksListWidget(),
           ArtistPopularReleasesWidget(),
           ArtistAlbumsListWidget(),

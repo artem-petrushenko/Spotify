@@ -215,7 +215,7 @@ class ArtistViewModel extends ChangeNotifier {
     data.artist = ArtistData(
       id: artist.id,
       followers: artist.followers?.total,
-      genres: artist.genres.toList(),
+      genres: artist.genres != null ? artist.genres!.toList() : [],
       image: artist.images?.first.url,
       name: artist.name,
       popularity: artist.popularity.toString(),

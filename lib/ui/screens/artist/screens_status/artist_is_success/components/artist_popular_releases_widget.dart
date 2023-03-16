@@ -11,9 +11,10 @@ class ArtistPopularReleasesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Constants.horizontalPadding,
-          vertical: Constants.verticalPadding,
+        padding: const EdgeInsets.only(
+          left: Constants.horizontalPadding,
+          right: Constants.horizontalPadding,
+          top: Constants.verticalPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

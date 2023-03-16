@@ -20,16 +20,16 @@ Artist _$ArtistFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Artist {
-  List<String> get genres => throw _privateConstructorUsedError;
-  ExternalUrls get externalUrls => throw _privateConstructorUsedError;
-  Followers get followers => throw _privateConstructorUsedError;
-  String get href => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  List<Images> get images => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get popularity => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  String get uri => throw _privateConstructorUsedError;
+  List<String>? get genres => throw _privateConstructorUsedError;
+  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
+  Followers? get followers => throw _privateConstructorUsedError;
+  String? get href => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  List<Images>? get images => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  int? get popularity => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String? get uri => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,19 +42,19 @@ abstract class $ArtistCopyWith<$Res> {
       _$ArtistCopyWithImpl<$Res, Artist>;
   @useResult
   $Res call(
-      {List<String> genres,
-      ExternalUrls externalUrls,
-      Followers followers,
-      String href,
-      String id,
-      List<Images> images,
-      String name,
-      int popularity,
-      String type,
-      String uri});
+      {List<String>? genres,
+      ExternalUrls? externalUrls,
+      Followers? followers,
+      String? href,
+      String? id,
+      List<Images>? images,
+      String? name,
+      int? popularity,
+      String? type,
+      String? uri});
 
-  $ExternalUrlsCopyWith<$Res> get externalUrls;
-  $FollowersCopyWith<$Res> get followers;
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $FollowersCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -70,73 +70,81 @@ class _$ArtistCopyWithImpl<$Res, $Val extends Artist>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? genres = null,
-    Object? externalUrls = null,
-    Object? followers = null,
-    Object? href = null,
-    Object? id = null,
-    Object? images = null,
-    Object? name = null,
-    Object? popularity = null,
-    Object? type = null,
-    Object? uri = null,
+    Object? genres = freezed,
+    Object? externalUrls = freezed,
+    Object? followers = freezed,
+    Object? href = freezed,
+    Object? id = freezed,
+    Object? images = freezed,
+    Object? name = freezed,
+    Object? popularity = freezed,
+    Object? type = freezed,
+    Object? uri = freezed,
   }) {
     return _then(_value.copyWith(
-      genres: null == genres
+      genres: freezed == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      externalUrls: null == externalUrls
+              as List<String>?,
+      externalUrls: freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls,
-      followers: null == followers
+              as ExternalUrls?,
+      followers: freezed == followers
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers,
-      href: null == href
+              as Followers?,
+      href: freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      images: null == images
+              as String?,
+      images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>,
-      name: null == name
+              as List<Images>?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      popularity: null == popularity
+              as String?,
+      popularity: freezed == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
+              as int?,
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      uri: null == uri
+              as String?,
+      uri: freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ExternalUrlsCopyWith<$Res> get externalUrls {
-    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls, (value) {
+  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+    if (_value.externalUrls == null) {
+      return null;
+    }
+
+    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
       return _then(_value.copyWith(externalUrls: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FollowersCopyWith<$Res> get followers {
-    return $FollowersCopyWith<$Res>(_value.followers, (value) {
+  $FollowersCopyWith<$Res>? get followers {
+    if (_value.followers == null) {
+      return null;
+    }
+
+    return $FollowersCopyWith<$Res>(_value.followers!, (value) {
       return _then(_value.copyWith(followers: value) as $Val);
     });
   }
@@ -149,21 +157,21 @@ abstract class _$$_ArtistCopyWith<$Res> implements $ArtistCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<String> genres,
-      ExternalUrls externalUrls,
-      Followers followers,
-      String href,
-      String id,
-      List<Images> images,
-      String name,
-      int popularity,
-      String type,
-      String uri});
+      {List<String>? genres,
+      ExternalUrls? externalUrls,
+      Followers? followers,
+      String? href,
+      String? id,
+      List<Images>? images,
+      String? name,
+      int? popularity,
+      String? type,
+      String? uri});
 
   @override
-  $ExternalUrlsCopyWith<$Res> get externalUrls;
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
   @override
-  $FollowersCopyWith<$Res> get followers;
+  $FollowersCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -176,58 +184,58 @@ class __$$_ArtistCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? genres = null,
-    Object? externalUrls = null,
-    Object? followers = null,
-    Object? href = null,
-    Object? id = null,
-    Object? images = null,
-    Object? name = null,
-    Object? popularity = null,
-    Object? type = null,
-    Object? uri = null,
+    Object? genres = freezed,
+    Object? externalUrls = freezed,
+    Object? followers = freezed,
+    Object? href = freezed,
+    Object? id = freezed,
+    Object? images = freezed,
+    Object? name = freezed,
+    Object? popularity = freezed,
+    Object? type = freezed,
+    Object? uri = freezed,
   }) {
     return _then(_$_Artist(
-      null == genres
+      freezed == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      null == externalUrls
+              as List<String>?,
+      freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls,
-      null == followers
+              as ExternalUrls?,
+      freezed == followers
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers,
-      null == href
+              as Followers?,
+      freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == id
+              as String?,
+      freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == images
+              as String?,
+      freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>,
-      null == name
+              as List<Images>?,
+      freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == popularity
+              as String?,
+      freezed == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == type
+              as int?,
+      freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == uri
+              as String?,
+      freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -237,12 +245,12 @@ class __$$_ArtistCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Artist implements _Artist {
   const _$_Artist(
-      final List<String> genres,
+      final List<String>? genres,
       this.externalUrls,
       this.followers,
       this.href,
       this.id,
-      final List<Images> images,
+      final List<Images>? images,
       this.name,
       this.popularity,
       this.type,
@@ -253,38 +261,42 @@ class _$_Artist implements _Artist {
   factory _$_Artist.fromJson(Map<String, dynamic> json) =>
       _$$_ArtistFromJson(json);
 
-  final List<String> _genres;
+  final List<String>? _genres;
   @override
-  List<String> get genres {
+  List<String>? get genres {
+    final value = _genres;
+    if (value == null) return null;
     if (_genres is EqualUnmodifiableListView) return _genres;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_genres);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final ExternalUrls externalUrls;
+  final ExternalUrls? externalUrls;
   @override
-  final Followers followers;
+  final Followers? followers;
   @override
-  final String href;
+  final String? href;
   @override
-  final String id;
-  final List<Images> _images;
+  final String? id;
+  final List<Images>? _images;
   @override
-  List<Images> get images {
+  List<Images>? get images {
+    final value = _images;
+    if (value == null) return null;
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String name;
+  final String? name;
   @override
-  final int popularity;
+  final int? popularity;
   @override
-  final String type;
+  final String? type;
   @override
-  final String uri;
+  final String? uri;
 
   @override
   String toString() {
@@ -342,39 +354,39 @@ class _$_Artist implements _Artist {
 
 abstract class _Artist implements Artist {
   const factory _Artist(
-      final List<String> genres,
-      final ExternalUrls externalUrls,
-      final Followers followers,
-      final String href,
-      final String id,
-      final List<Images> images,
-      final String name,
-      final int popularity,
-      final String type,
-      final String uri) = _$_Artist;
+      final List<String>? genres,
+      final ExternalUrls? externalUrls,
+      final Followers? followers,
+      final String? href,
+      final String? id,
+      final List<Images>? images,
+      final String? name,
+      final int? popularity,
+      final String? type,
+      final String? uri) = _$_Artist;
 
   factory _Artist.fromJson(Map<String, dynamic> json) = _$_Artist.fromJson;
 
   @override
-  List<String> get genres;
+  List<String>? get genres;
   @override
-  ExternalUrls get externalUrls;
+  ExternalUrls? get externalUrls;
   @override
-  Followers get followers;
+  Followers? get followers;
   @override
-  String get href;
+  String? get href;
   @override
-  String get id;
+  String? get id;
   @override
-  List<Images> get images;
+  List<Images>? get images;
   @override
-  String get name;
+  String? get name;
   @override
-  int get popularity;
+  int? get popularity;
   @override
-  String get type;
+  String? get type;
   @override
-  String get uri;
+  String? get uri;
   @override
   @JsonKey(ignore: true)
   _$$_ArtistCopyWith<_$_Artist> get copyWith =>
@@ -387,7 +399,7 @@ ExternalUrls _$ExternalUrlsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ExternalUrls {
-  String get spotify => throw _privateConstructorUsedError;
+  String? get spotify => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -401,7 +413,7 @@ abstract class $ExternalUrlsCopyWith<$Res> {
           ExternalUrls value, $Res Function(ExternalUrls) then) =
       _$ExternalUrlsCopyWithImpl<$Res, ExternalUrls>;
   @useResult
-  $Res call({String spotify});
+  $Res call({String? spotify});
 }
 
 /// @nodoc
@@ -417,13 +429,13 @@ class _$ExternalUrlsCopyWithImpl<$Res, $Val extends ExternalUrls>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? spotify = null,
+    Object? spotify = freezed,
   }) {
     return _then(_value.copyWith(
-      spotify: null == spotify
+      spotify: freezed == spotify
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -436,7 +448,7 @@ abstract class _$$_ExternalUrlsCopyWith<$Res>
       __$$_ExternalUrlsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String spotify});
+  $Res call({String? spotify});
 }
 
 /// @nodoc
@@ -450,13 +462,13 @@ class __$$_ExternalUrlsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? spotify = null,
+    Object? spotify = freezed,
   }) {
     return _then(_$_ExternalUrls(
-      null == spotify
+      freezed == spotify
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -471,7 +483,7 @@ class _$_ExternalUrls implements _ExternalUrls {
       _$$_ExternalUrlsFromJson(json);
 
   @override
-  final String spotify;
+  final String? spotify;
 
   @override
   String toString() {
@@ -505,13 +517,13 @@ class _$_ExternalUrls implements _ExternalUrls {
 }
 
 abstract class _ExternalUrls implements ExternalUrls {
-  const factory _ExternalUrls(final String spotify) = _$_ExternalUrls;
+  const factory _ExternalUrls(final String? spotify) = _$_ExternalUrls;
 
   factory _ExternalUrls.fromJson(Map<String, dynamic> json) =
       _$_ExternalUrls.fromJson;
 
   @override
-  String get spotify;
+  String? get spotify;
   @override
   @JsonKey(ignore: true)
   _$$_ExternalUrlsCopyWith<_$_ExternalUrls> get copyWith =>
@@ -525,7 +537,7 @@ Followers _$FollowersFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Followers {
   String? get href => throw _privateConstructorUsedError;
-  int get total => throw _privateConstructorUsedError;
+  int? get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -538,7 +550,7 @@ abstract class $FollowersCopyWith<$Res> {
   factory $FollowersCopyWith(Followers value, $Res Function(Followers) then) =
       _$FollowersCopyWithImpl<$Res, Followers>;
   @useResult
-  $Res call({String? href, int total});
+  $Res call({String? href, int? total});
 }
 
 /// @nodoc
@@ -555,17 +567,17 @@ class _$FollowersCopyWithImpl<$Res, $Val extends Followers>
   @override
   $Res call({
     Object? href = freezed,
-    Object? total = null,
+    Object? total = freezed,
   }) {
     return _then(_value.copyWith(
       href: freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
-      total: null == total
+      total: freezed == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -577,7 +589,7 @@ abstract class _$$_FollowersCopyWith<$Res> implements $FollowersCopyWith<$Res> {
       __$$_FollowersCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? href, int total});
+  $Res call({String? href, int? total});
 }
 
 /// @nodoc
@@ -592,17 +604,17 @@ class __$$_FollowersCopyWithImpl<$Res>
   @override
   $Res call({
     Object? href = freezed,
-    Object? total = null,
+    Object? total = freezed,
   }) {
     return _then(_$_Followers(
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
-      null == total
+      freezed == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -619,7 +631,7 @@ class _$_Followers implements _Followers {
   @override
   final String? href;
   @override
-  final int total;
+  final int? total;
 
   @override
   String toString() {
@@ -654,7 +666,7 @@ class _$_Followers implements _Followers {
 }
 
 abstract class _Followers implements Followers {
-  const factory _Followers(final String? href, final int total) = _$_Followers;
+  const factory _Followers(final String? href, final int? total) = _$_Followers;
 
   factory _Followers.fromJson(Map<String, dynamic> json) =
       _$_Followers.fromJson;
@@ -662,7 +674,7 @@ abstract class _Followers implements Followers {
   @override
   String? get href;
   @override
-  int get total;
+  int? get total;
   @override
   @JsonKey(ignore: true)
   _$$_FollowersCopyWith<_$_Followers> get copyWith =>
@@ -675,9 +687,9 @@ Images _$ImagesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Images {
-  String get url => throw _privateConstructorUsedError;
-  int get height => throw _privateConstructorUsedError;
-  int get width => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -689,7 +701,7 @@ abstract class $ImagesCopyWith<$Res> {
   factory $ImagesCopyWith(Images value, $Res Function(Images) then) =
       _$ImagesCopyWithImpl<$Res, Images>;
   @useResult
-  $Res call({String url, int height, int width});
+  $Res call({String? url, int? height, int? width});
 }
 
 /// @nodoc
@@ -705,23 +717,23 @@ class _$ImagesCopyWithImpl<$Res, $Val extends Images>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = null,
-    Object? height = null,
-    Object? width = null,
+    Object? url = freezed,
+    Object? height = freezed,
+    Object? width = freezed,
   }) {
     return _then(_value.copyWith(
-      url: null == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      height: null == height
+              as String?,
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      width: null == width
+              as int?,
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -732,7 +744,7 @@ abstract class _$$_ImagesCopyWith<$Res> implements $ImagesCopyWith<$Res> {
       __$$_ImagesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url, int height, int width});
+  $Res call({String? url, int? height, int? width});
 }
 
 /// @nodoc
@@ -745,23 +757,23 @@ class __$$_ImagesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = null,
-    Object? height = null,
-    Object? width = null,
+    Object? url = freezed,
+    Object? height = freezed,
+    Object? width = freezed,
   }) {
     return _then(_$_Images(
-      url: null == url
+      freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      height: null == height
+              as String?,
+      freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      width: null == width
+              as int?,
+      freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -770,18 +782,17 @@ class __$$_ImagesCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Images implements _Images {
-  const _$_Images(
-      {required this.url, required this.height, required this.width});
+  const _$_Images(this.url, this.height, this.width);
 
   factory _$_Images.fromJson(Map<String, dynamic> json) =>
       _$$_ImagesFromJson(json);
 
   @override
-  final String url;
+  final String? url;
   @override
-  final int height;
+  final int? height;
   @override
-  final int width;
+  final int? width;
 
   @override
   String toString() {
@@ -818,18 +829,16 @@ class _$_Images implements _Images {
 
 abstract class _Images implements Images {
   const factory _Images(
-      {required final String url,
-      required final int height,
-      required final int width}) = _$_Images;
+      final String? url, final int? height, final int? width) = _$_Images;
 
   factory _Images.fromJson(Map<String, dynamic> json) = _$_Images.fromJson;
 
   @override
-  String get url;
+  String? get url;
   @override
-  int get height;
+  int? get height;
   @override
-  int get width;
+  int? get width;
   @override
   @JsonKey(ignore: true)
   _$$_ImagesCopyWith<_$_Images> get copyWith =>

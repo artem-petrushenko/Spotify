@@ -37,13 +37,13 @@ class ArtistAlbumsListWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                              Text(
-                                artistsAlbums[index].name ?? '',
-                                maxLines: 1,
-                                softWrap: false,
-                                overflow: TextOverflow.fade,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
+                            Text(
+                              artistsAlbums[index].name ?? '',
+                              maxLines: 1,
+                              softWrap: false,
+                              overflow: TextOverflow.fade,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                             Row(
                               children: [
                                 _SubtitleWidget(

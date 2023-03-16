@@ -20,42 +20,40 @@ class ArtistRelatedArtistsListWidget extends StatelessWidget {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (artistsRelatedArtists.isNotEmpty)
-                  Padding(
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Constants.horizontalPadding,
+                    vertical: Constants.verticalPadding,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)!.fansMayLike,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 200.0,
+                  child: GridView.builder(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: Constants.horizontalPadding,
-                      vertical: Constants.verticalPadding,
+                        horizontal: Constants.horizontalPadding),
+                    itemCount: artistsRelatedArtists.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) =>
+                        _RelatedArtistWidget(
+                      artistsData: artistsRelatedArtists[index],
                     ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        AppLocalizations.of(context)!.fansMayLike,
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ),
-                  ),
-                if (artistsRelatedArtists.isNotEmpty)
-                  SizedBox(
-                    height: 200.0,
-                    child: GridView.builder(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding),
-                      itemCount: artistsRelatedArtists.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) =>
-                          _RelatedArtistWidget(
-                        artistsData: artistsRelatedArtists[index],
-                      ),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 96.0,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 8.0,
-                      ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisExtent: 96.0,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0,
                     ),
                   ),
+                ),
               ],
             )
           : const SizedBox.shrink(),
@@ -64,9 +62,7 @@ class ArtistRelatedArtistsListWidget extends StatelessWidget {
 }
 
 class _RelatedArtistWidget extends StatelessWidget {
-  const _RelatedArtistWidget({
-    required this.artistsData,
-  });
+  const _RelatedArtistWidget({required this.artistsData});
 
   final ArtistsRelatedArtistsData artistsData;
 
