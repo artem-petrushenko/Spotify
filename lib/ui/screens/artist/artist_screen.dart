@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 
-import 'package:spotify_client/ui/screens/artist/screens_status/artist_error_screen.dart';
-import 'package:spotify_client/ui/screens/artist/screens_status/artist_in_progress_screen.dart';
+import 'package:spotify_client/ui/screens/artist/screens_status/artist_error/artist_error_screen.dart';
+import 'package:spotify_client/ui/screens/artist/screens_status/artist_in_progress/artist_in_progress_screen.dart';
 import 'package:spotify_client/ui/screens/artist/screens_status/artist_is_success/artist_is_success_screen.dart';
 
 class ArtistScreen extends StatelessWidget {
