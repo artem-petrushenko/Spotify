@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:spotify_client/domain/entity/albums/several_albums.dart';
+
 import 'package:spotify_client/domain/services/albums_service.dart';
+
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
+
+import 'package:spotify_client/domain/entity/albums/album.dart';
 
 enum Status { loading, completed, error }
 
@@ -154,8 +157,8 @@ class AlbumViewModel extends ChangeNotifier {
 
   Future<void> loadDetails() async {
     await _albumsServices
-        .getSeveralAlbums(market: 'ES', ids: [albumId])
-        .then((value) => _addSeveralAlbums(value))
+        .getAlbum(market: 'ES', id: albumId)
+        .then((value) => _addAlbum(value as Album))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
@@ -170,30 +173,30 @@ class AlbumViewModel extends ChangeNotifier {
         .pushNamed(MainNavigationRouteNames.artistScreen, arguments: artistId);
   }
 
-  void _addSeveralAlbums(SeveralAlbums severalAlbums) {
+  void _addAlbum(Album album) {
     data.information = AlbumData(
-      imageUrl: severalAlbums.albums?.first.images?.first.url,
-      albumName: severalAlbums.albums?.first.name,
-      type: severalAlbums.albums?.first.type,
-      year: severalAlbums.albums?.first.releaseDatePrecision,
-      artists: severalAlbums.albums?.first.artists
+      imageUrl: album.images?.first.url,
+      albumName: album.name,
+      type: album.type,
+      year: album.releaseDatePrecision,
+      artists: album.artists
           ?.map((e) =>
               ArtistData(id: e.id, imageUrl: e.images?.last.url, name: e.name))
           .toList(),
       date: DateFormat("yyyy-MM-dd")
-          .parse(severalAlbums.albums?.first.releaseDate ?? ''),
-      tracks: severalAlbums.albums?.first.tracks?.items
+          .parse(album.releaseDate ?? ''),
+      tracks: album.tracks?.items
           ?.map((e) => Track(
                 name: e.name,
                 artists: e.artists?.map((e) => e.name).join(', ').toString(),
                 id: e.id,
               ))
           .toList(),
-      totalTime: severalAlbums.albums?.first.name,
-      copyright: severalAlbums.albums?.first.copyrights
+      totalTime: album.name,
+      copyright: album.copyrights
           ?.map((e) => Copyright(text: e.text, type: e.type))
           .toList(),
-      totalTracks: severalAlbums.albums?.first.totalTracks,
+      totalTracks: album.totalTracks,
     );
   }
 }

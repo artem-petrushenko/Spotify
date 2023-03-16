@@ -19,6 +19,7 @@ class ApiQueryHelper {
           HttpHeaders.contentTypeHeader: "application/json",
         },
       );
+      print(response.body);
       _checkStatusCode(response);
       if (response.statusCode == 200) return responseToMap(response);
       return;

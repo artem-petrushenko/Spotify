@@ -31,7 +31,7 @@ class UsersSavedAlbums {
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Items {
   String? addedAt;
-  Album? album;
+  _Album? album;
 
   Items({
     required this.addedAt,
@@ -44,7 +44,7 @@ class Items {
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Album {
+class _Album {
   String? albumType;
   int? totalTracks;
   List<String>? availableMarkets;
@@ -66,7 +66,7 @@ class Album {
   List<Artists>? artists;
   Tracks? tracks;
 
-  Album({
+  _Album({
     required this.albumType,
     required this.totalTracks,
     required this.availableMarkets,
@@ -89,7 +89,7 @@ class Album {
     required this.tracks,
   });
 
-  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+  factory _Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
 
   Map<String, dynamic> toJson() => _$AlbumToJson(this);
 }

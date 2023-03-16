@@ -4,6 +4,7 @@ import 'package:spotify_client/domain/data_providers/session_data_provider.dart'
 
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
+import 'package:spotify_client/domain/entity/albums/album.dart';
 
 class AlbumsService {
   final _sessionDataProvider = SessionDataProvider();
@@ -35,5 +36,18 @@ class AlbumsService {
       market: market,
     );
     return severalAlbums;
+  }
+
+  Future<Album> getAlbum({
+    required String market,
+    required String id,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final album = await _albumsApiClient.getAlbum(
+      accessToken: accessToken ?? '',
+      id: id,
+      market: market,
+    );
+    return album;
   }
 }
