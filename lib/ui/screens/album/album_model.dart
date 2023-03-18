@@ -158,7 +158,7 @@ class AlbumViewModel extends ChangeNotifier {
   Future<void> loadDetails() async {
     await _albumsServices
         .getAlbum(market: 'ES', id: albumId)
-        .then((value) => _addAlbum(value as Album))
+        .then((value) => _addAlbum(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
@@ -173,7 +173,7 @@ class AlbumViewModel extends ChangeNotifier {
         .pushNamed(MainNavigationRouteNames.artistScreen, arguments: artistId);
   }
 
-  void _addAlbum(Album album) {
+  void _addAlbum(AlbumModel album) {
     data.information = AlbumData(
       imageUrl: album.images?.first.url,
       albumName: album.name,

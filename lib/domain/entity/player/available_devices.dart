@@ -1,43 +1,33 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'available_devices.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class AvailableDevices {
-  List<Devices>? devices;
+part 'available_devices.freezed.dart';
 
-  AvailableDevices({
-    required this.devices,
-  });
+@freezed
+class AvailableDevicesModel with _$AvailableDevicesModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory AvailableDevicesModel(
+    List<Devices>? devices,
+  ) = _AvailableDevicesModel;
 
-  factory AvailableDevices.fromJson(Map<String, dynamic> json) =>
-      _$AvailableDevicesFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AvailableDevicesToJson(this);
+  factory AvailableDevicesModel.fromJson(Map<String, dynamic> json) =>
+      _$AvailableDevicesModelFromJson(json);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Devices {
-  String? id;
-  bool? isActive;
-  bool? isPrivateSession;
-  bool? isRestricted;
-  String? name;
-  String? type;
-  int? volumePercent;
-
-  Devices({
-    required this.id,
-    required this.isActive,
-    required this.isPrivateSession,
-    required this.isRestricted,
-    required this.name,
-    required this.type,
-    required this.volumePercent,
-  });
+@freezed
+class Devices with _$Devices {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory Devices(
+    String? id,
+    bool? isActive,
+    bool? isPrivateSession,
+    bool? isRestricted,
+    String? name,
+    String? type,
+    int? volumePercent,
+  ) = _Devices;
 
   factory Devices.fromJson(Map<String, dynamic> json) =>
       _$DevicesFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DevicesToJson(this);
 }

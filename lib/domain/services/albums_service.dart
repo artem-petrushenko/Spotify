@@ -10,7 +10,7 @@ class AlbumsService {
   final _sessionDataProvider = SessionDataProvider();
   final _albumsApiClient = AlbumsApiClient();
 
-  Future<UsersSavedAlbums> getUsersSavedAlbums({
+  Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
     required String market,
     required int offset,
     required int limit,
@@ -25,7 +25,7 @@ class AlbumsService {
     return usersSavedAlbums;
   }
 
-  Future<SeveralAlbums> getSeveralAlbums({
+  Future<SeveralAlbumsModel> getSeveralAlbums({
     required String market,
     required List<String> ids,
   }) async {
@@ -38,7 +38,7 @@ class AlbumsService {
     return severalAlbums;
   }
 
-  Future<Album> getAlbum({
+  Future<AlbumModel> getAlbum({
     required String market,
     required String id,
   }) async {

@@ -11,7 +11,7 @@ class ArtistService {
   final _sessionDataProvider = SessionDataProvider();
   final _artistsApiClient = ArtistsApiClient();
 
-  Future<Artist> getArtist({
+  Future<ArtistModel> getArtist({
     required String id,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
@@ -22,7 +22,7 @@ class ArtistService {
     return artist;
   }
 
-  Future<ArtistsTopTracks> getArtistsTopTracks({
+  Future<ArtistsTopTracksModel> getArtistsTopTracks({
     required String id,
     required String market,
   }) async {
@@ -35,7 +35,7 @@ class ArtistService {
     return artistsTopTracks;
   }
 
-  Future<ArtistsRelatedArtists> getArtistsRelatedArtists({
+  Future<ArtistsRelatedArtistsModel> getArtistsRelatedArtists({
     required String id,
     required String market,
   }) async {
@@ -48,7 +48,7 @@ class ArtistService {
     return artistsRelatedArtists;
   }
 
-  Future<ArtistsAlbums> getArtistsAlbums({
+  Future<ArtistsAlbumsModel> getArtistsAlbums({
     required String id,
     required int limit,
     required int offset,

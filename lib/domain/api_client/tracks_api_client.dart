@@ -4,7 +4,7 @@ import 'package:spotify_client/domain/entity/tracks/users_saved_tracks.dart';
 class TracksApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
-  Future<UsersSavedTracks> getUsersSavedTracks({
+  Future<UsersSavedTracksModel> getUsersSavedTracks({
     required String accessToken,
     required String market,
     required int offset,
@@ -17,6 +17,6 @@ class TracksApiClient {
           '&offset=$offset',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return UsersSavedTracks.fromJson(response);
+    return UsersSavedTracksModel.fromJson(response);
   }
 }

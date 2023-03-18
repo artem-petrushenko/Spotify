@@ -61,7 +61,7 @@ class LikedMusicPlaylistViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _addTracks(UsersSavedTracks? usersSavedTracks) async {
+  void _addTracks(UsersSavedTracksModel? usersSavedTracks) async {
     if (usersSavedTracks == null) {
       return;
     }

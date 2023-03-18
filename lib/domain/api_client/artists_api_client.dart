@@ -7,7 +7,7 @@ import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 class ArtistsApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
-  Future<Artist> getArtist({
+  Future<ArtistModel> getArtist({
     required String id,
     required String accessToken,
   }) async {
@@ -15,10 +15,10 @@ class ArtistsApiClient {
       url: '/v1/artists/$id',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return Artist.fromJson(response);
+    return ArtistModel.fromJson(response);
   }
 
-  Future<ArtistsTopTracks> getArtistsTopTracks({
+  Future<ArtistsTopTracksModel> getArtistsTopTracks({
     required String id,
     required String accessToken,
     required String market,
@@ -28,10 +28,10 @@ class ArtistsApiClient {
           '?market=$market',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return ArtistsTopTracks.fromJson(response);
+    return ArtistsTopTracksModel.fromJson(response);
   }
 
-  Future<ArtistsRelatedArtists> getArtistsRelatedArtists({
+  Future<ArtistsRelatedArtistsModel> getArtistsRelatedArtists({
     required String id,
     required String accessToken,
   }) async {
@@ -39,10 +39,10 @@ class ArtistsApiClient {
       url: '/v1/artists/$id/related-artists',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return ArtistsRelatedArtists.fromJson(response);
+    return ArtistsRelatedArtistsModel.fromJson(response);
   }
 
-  Future<ArtistsAlbums> getArtistsAlbums({
+  Future<ArtistsAlbumsModel> getArtistsAlbums({
     required String id,
     required String includeGroups,
     required int limit,
@@ -58,6 +58,6 @@ class ArtistsApiClient {
           '&offset=$offset',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return ArtistsAlbums.fromJson(response);
+    return ArtistsAlbumsModel.fromJson(response);
   }
 }

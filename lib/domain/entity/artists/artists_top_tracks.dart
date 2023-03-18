@@ -5,14 +5,14 @@ part 'artists_top_tracks.freezed.dart';
 part 'artists_top_tracks.g.dart';
 
 @freezed
-class ArtistsTopTracks with _$ArtistsTopTracks {
+class ArtistsTopTracksModel with _$ArtistsTopTracksModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ArtistsTopTracks(
+  const factory ArtistsTopTracksModel(
     List<Tracks> tracks,
-  ) = _ArtistsTopTracks;
+  ) = _ArtistsTopTracksModel;
 
-  factory ArtistsTopTracks.fromJson(Map<String, dynamic> json) =>
-      _$ArtistsTopTracksFromJson(json);
+  factory ArtistsTopTracksModel.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsTopTracksModelFromJson(json);
 }
 
 @freezed

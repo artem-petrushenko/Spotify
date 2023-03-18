@@ -8,7 +8,7 @@ class PlayerService {
   final _sessionDataProvider = SessionDataProvider();
   final _playerApiClient = PlayerApiClient();
 
-  Future<AvailableDevices> getAvailableDevices() async {
+  Future<AvailableDevicesModel> getAvailableDevices() async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final availableDevices = await _playerApiClient.getAvailableDevices(
       accessToken: accessToken ?? '',

@@ -211,7 +211,7 @@ class ArtistViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _addArtist(Artist artist) {
+  void _addArtist(ArtistModel artist) {
     data.artist = ArtistData(
       id: artist.id,
       followers: artist.followers?.total,
@@ -222,7 +222,7 @@ class ArtistViewModel extends ChangeNotifier {
     );
   }
 
-  void _addArtistsTopTracks(ArtistsTopTracks artistsTopTracks) {
+  void _addArtistsTopTracks(ArtistsTopTracksModel artistsTopTracks) {
     data.artistsTopTracks = artistsTopTracks.tracks
         .map((e) => ArtistsTopTracksData(
               id: e.id,
@@ -234,7 +234,7 @@ class ArtistViewModel extends ChangeNotifier {
         .toList();
   }
 
-  void _addArtistsRelatedArtists(ArtistsRelatedArtists artistsRelatedArtists) {
+  void _addArtistsRelatedArtists(ArtistsRelatedArtistsModel artistsRelatedArtists) {
     data.artistsRelatedArtists = artistsRelatedArtists.artists
         .map((e) => ArtistsRelatedArtistsData(
               id: e.id,
@@ -244,7 +244,7 @@ class ArtistViewModel extends ChangeNotifier {
         .toList();
   }
 
-  void _addArtistsAlbums(ArtistsAlbums artistsAlbums) {
+  void _addArtistsAlbums(ArtistsAlbumsModel artistsAlbums) {
     data.artistsAlbums = artistsAlbums.items
         .map((e) => ArtistsAlbumsData(
               id: e.id,

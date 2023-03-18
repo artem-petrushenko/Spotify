@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'album.dart';
+part of 'several_albums.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,159 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AlbumModel _$AlbumModelFromJson(Map<String, dynamic> json) {
-  return _AlbumModel.fromJson(json);
+SeveralAlbumsModel _$SeveralAlbumsModelFromJson(Map<String, dynamic> json) {
+  return _SeveralAlbumsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AlbumModel {
+mixin _$SeveralAlbumsModel {
+  List<Albums>? get albums => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SeveralAlbumsModelCopyWith<SeveralAlbumsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SeveralAlbumsModelCopyWith<$Res> {
+  factory $SeveralAlbumsModelCopyWith(
+          SeveralAlbumsModel value, $Res Function(SeveralAlbumsModel) then) =
+      _$SeveralAlbumsModelCopyWithImpl<$Res, SeveralAlbumsModel>;
+  @useResult
+  $Res call({List<Albums>? albums});
+}
+
+/// @nodoc
+class _$SeveralAlbumsModelCopyWithImpl<$Res, $Val extends SeveralAlbumsModel>
+    implements $SeveralAlbumsModelCopyWith<$Res> {
+  _$SeveralAlbumsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? albums = freezed,
+  }) {
+    return _then(_value.copyWith(
+      albums: freezed == albums
+          ? _value.albums
+          : albums // ignore: cast_nullable_to_non_nullable
+              as List<Albums>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SeveralAlbumsModelCopyWith<$Res>
+    implements $SeveralAlbumsModelCopyWith<$Res> {
+  factory _$$_SeveralAlbumsModelCopyWith(_$_SeveralAlbumsModel value,
+          $Res Function(_$_SeveralAlbumsModel) then) =
+      __$$_SeveralAlbumsModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Albums>? albums});
+}
+
+/// @nodoc
+class __$$_SeveralAlbumsModelCopyWithImpl<$Res>
+    extends _$SeveralAlbumsModelCopyWithImpl<$Res, _$_SeveralAlbumsModel>
+    implements _$$_SeveralAlbumsModelCopyWith<$Res> {
+  __$$_SeveralAlbumsModelCopyWithImpl(
+      _$_SeveralAlbumsModel _value, $Res Function(_$_SeveralAlbumsModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? albums = freezed,
+  }) {
+    return _then(_$_SeveralAlbumsModel(
+      freezed == albums
+          ? _value._albums
+          : albums // ignore: cast_nullable_to_non_nullable
+              as List<Albums>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+class _$_SeveralAlbumsModel implements _SeveralAlbumsModel {
+  const _$_SeveralAlbumsModel(final List<Albums>? albums) : _albums = albums;
+
+  factory _$_SeveralAlbumsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SeveralAlbumsModelFromJson(json);
+
+  final List<Albums>? _albums;
+  @override
+  List<Albums>? get albums {
+    final value = _albums;
+    if (value == null) return null;
+    if (_albums is EqualUnmodifiableListView) return _albums;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'SeveralAlbumsModel(albums: $albums)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SeveralAlbumsModel &&
+            const DeepCollectionEquality().equals(other._albums, _albums));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_albums));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SeveralAlbumsModelCopyWith<_$_SeveralAlbumsModel> get copyWith =>
+      __$$_SeveralAlbumsModelCopyWithImpl<_$_SeveralAlbumsModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SeveralAlbumsModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SeveralAlbumsModel implements SeveralAlbumsModel {
+  const factory _SeveralAlbumsModel(final List<Albums>? albums) =
+      _$_SeveralAlbumsModel;
+
+  factory _SeveralAlbumsModel.fromJson(Map<String, dynamic> json) =
+      _$_SeveralAlbumsModel.fromJson;
+
+  @override
+  List<Albums>? get albums;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SeveralAlbumsModelCopyWith<_$_SeveralAlbumsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Albums _$AlbumsFromJson(Map<String, dynamic> json) {
+  return _Albums.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Albums {
   String? get albumType => throw _privateConstructorUsedError;
   int? get totalTracks => throw _privateConstructorUsedError;
   List<String>? get availableMarkets => throw _privateConstructorUsedError;
@@ -43,15 +190,13 @@ mixin _$AlbumModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AlbumModelCopyWith<AlbumModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AlbumsCopyWith<Albums> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AlbumModelCopyWith<$Res> {
-  factory $AlbumModelCopyWith(
-          AlbumModel value, $Res Function(AlbumModel) then) =
-      _$AlbumModelCopyWithImpl<$Res, AlbumModel>;
+abstract class $AlbumsCopyWith<$Res> {
+  factory $AlbumsCopyWith(Albums value, $Res Function(Albums) then) =
+      _$AlbumsCopyWithImpl<$Res, Albums>;
   @useResult
   $Res call(
       {String? albumType,
@@ -82,9 +227,9 @@ abstract class $AlbumModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AlbumModelCopyWithImpl<$Res, $Val extends AlbumModel>
-    implements $AlbumModelCopyWith<$Res> {
-  _$AlbumModelCopyWithImpl(this._value, this._then);
+class _$AlbumsCopyWithImpl<$Res, $Val extends Albums>
+    implements $AlbumsCopyWith<$Res> {
+  _$AlbumsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -249,11 +394,9 @@ class _$AlbumModelCopyWithImpl<$Res, $Val extends AlbumModel>
 }
 
 /// @nodoc
-abstract class _$$_AlbumModelCopyWith<$Res>
-    implements $AlbumModelCopyWith<$Res> {
-  factory _$$_AlbumModelCopyWith(
-          _$_AlbumModel value, $Res Function(_$_AlbumModel) then) =
-      __$$_AlbumModelCopyWithImpl<$Res>;
+abstract class _$$_AlbumsCopyWith<$Res> implements $AlbumsCopyWith<$Res> {
+  factory _$$_AlbumsCopyWith(_$_Albums value, $Res Function(_$_Albums) then) =
+      __$$_AlbumsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -289,11 +432,10 @@ abstract class _$$_AlbumModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AlbumModelCopyWithImpl<$Res>
-    extends _$AlbumModelCopyWithImpl<$Res, _$_AlbumModel>
-    implements _$$_AlbumModelCopyWith<$Res> {
-  __$$_AlbumModelCopyWithImpl(
-      _$_AlbumModel _value, $Res Function(_$_AlbumModel) _then)
+class __$$_AlbumsCopyWithImpl<$Res>
+    extends _$AlbumsCopyWithImpl<$Res, _$_Albums>
+    implements _$$_AlbumsCopyWith<$Res> {
+  __$$_AlbumsCopyWithImpl(_$_Albums _value, $Res Function(_$_Albums) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -320,7 +462,7 @@ class __$$_AlbumModelCopyWithImpl<$Res>
     Object? artists = freezed,
     Object? tracks = freezed,
   }) {
-    return _then(_$_AlbumModel(
+    return _then(_$_Albums(
       freezed == albumType
           ? _value.albumType
           : albumType // ignore: cast_nullable_to_non_nullable
@@ -408,8 +550,8 @@ class __$$_AlbumModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_AlbumModel implements _AlbumModel {
-  const _$_AlbumModel(
+class _$_Albums implements _Albums {
+  const _$_Albums(
       this.albumType,
       this.totalTracks,
       final List<String>? availableMarkets,
@@ -436,8 +578,8 @@ class _$_AlbumModel implements _AlbumModel {
         _genres = genres,
         _artists = artists;
 
-  factory _$_AlbumModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AlbumModelFromJson(json);
+  factory _$_Albums.fromJson(Map<String, dynamic> json) =>
+      _$$_AlbumsFromJson(json);
 
   @override
   final String? albumType;
@@ -523,14 +665,14 @@ class _$_AlbumModel implements _AlbumModel {
 
   @override
   String toString() {
-    return 'AlbumModel(albumType: $albumType, totalTracks: $totalTracks, availableMarkets: $availableMarkets, externalUrls: $externalUrls, href: $href, id: $id, images: $images, name: $name, releaseDate: $releaseDate, releaseDatePrecision: $releaseDatePrecision, restrictions: $restrictions, type: $type, uri: $uri, copyrights: $copyrights, externalIds: $externalIds, genres: $genres, label: $label, popularity: $popularity, artists: $artists, tracks: $tracks)';
+    return 'Albums(albumType: $albumType, totalTracks: $totalTracks, availableMarkets: $availableMarkets, externalUrls: $externalUrls, href: $href, id: $id, images: $images, name: $name, releaseDate: $releaseDate, releaseDatePrecision: $releaseDatePrecision, restrictions: $restrictions, type: $type, uri: $uri, copyrights: $copyrights, externalIds: $externalIds, genres: $genres, label: $label, popularity: $popularity, artists: $artists, tracks: $tracks)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AlbumModel &&
+            other is _$_Albums &&
             (identical(other.albumType, albumType) ||
                 other.albumType == albumType) &&
             (identical(other.totalTracks, totalTracks) ||
@@ -592,19 +734,19 @@ class _$_AlbumModel implements _AlbumModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AlbumModelCopyWith<_$_AlbumModel> get copyWith =>
-      __$$_AlbumModelCopyWithImpl<_$_AlbumModel>(this, _$identity);
+  _$$_AlbumsCopyWith<_$_Albums> get copyWith =>
+      __$$_AlbumsCopyWithImpl<_$_Albums>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AlbumModelToJson(
+    return _$$_AlbumsToJson(
       this,
     );
   }
 }
 
-abstract class _AlbumModel implements AlbumModel {
-  const factory _AlbumModel(
+abstract class _Albums implements Albums {
+  const factory _Albums(
       final String? albumType,
       final int? totalTracks,
       final List<String>? availableMarkets,
@@ -624,10 +766,9 @@ abstract class _AlbumModel implements AlbumModel {
       final String? label,
       final int? popularity,
       final List<Artists>? artists,
-      final Tracks? tracks) = _$_AlbumModel;
+      final Tracks? tracks) = _$_Albums;
 
-  factory _AlbumModel.fromJson(Map<String, dynamic> json) =
-      _$_AlbumModel.fromJson;
+  factory _Albums.fromJson(Map<String, dynamic> json) = _$_Albums.fromJson;
 
   @override
   String? get albumType;
@@ -671,7 +812,7 @@ abstract class _AlbumModel implements AlbumModel {
   Tracks? get tracks;
   @override
   @JsonKey(ignore: true)
-  _$$_AlbumModelCopyWith<_$_AlbumModel> get copyWith =>
+  _$$_AlbumsCopyWith<_$_Albums> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

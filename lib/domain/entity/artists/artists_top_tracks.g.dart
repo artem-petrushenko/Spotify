@@ -6,14 +6,16 @@ part of 'artists_top_tracks.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ArtistsTopTracks _$$_ArtistsTopTracksFromJson(Map<String, dynamic> json) =>
-    _$_ArtistsTopTracks(
+_$_ArtistsTopTracksModel _$$_ArtistsTopTracksModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_ArtistsTopTracksModel(
       (json['tracks'] as List<dynamic>)
           .map((e) => Tracks.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_ArtistsTopTracksToJson(_$_ArtistsTopTracks instance) =>
+Map<String, dynamic> _$$_ArtistsTopTracksModelToJson(
+        _$_ArtistsTopTracksModel instance) =>
     <String, dynamic>{
       'tracks': instance.tracks.map((e) => e.toJson()).toList(),
     };

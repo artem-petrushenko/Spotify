@@ -6,16 +6,16 @@ part of 'artists_related_artists.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ArtistsRelatedArtists _$$_ArtistsRelatedArtistsFromJson(
+_$_ArtistsRelatedArtistsModel _$$_ArtistsRelatedArtistsModelFromJson(
         Map<String, dynamic> json) =>
-    _$_ArtistsRelatedArtists(
+    _$_ArtistsRelatedArtistsModel(
       (json['artists'] as List<dynamic>)
           .map((e) => Artists.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_ArtistsRelatedArtistsToJson(
-        _$_ArtistsRelatedArtists instance) =>
+Map<String, dynamic> _$$_ArtistsRelatedArtistsModelToJson(
+        _$_ArtistsRelatedArtistsModel instance) =>
     <String, dynamic>{
       'artists': instance.artists.map((e) => e.toJson()).toList(),
     };

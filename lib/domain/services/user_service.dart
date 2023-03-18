@@ -6,7 +6,7 @@ class UserService {
   final _sessionDataProvider = SessionDataProvider();
   final _userApiClient = UserApiClient();
 
-  Future<CurrentUserProfile> getCurrentUserProfileData() async {
+  Future<CurrentUserProfileModel> getCurrentUserProfileData() async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final currentUserProfile =
         await _userApiClient.getCurrentUserProfile(accessToken ?? '');

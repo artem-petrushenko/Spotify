@@ -6,7 +6,7 @@ class TracksService {
   final _sessionDataProvider = SessionDataProvider();
   final _tracksApiClient = TracksApiClient();
 
-  Future<UsersSavedTracks> getUsersSavedTracksData({
+  Future<UsersSavedTracksModel> getUsersSavedTracksData({
     required String market,
     required int offset,
     required int limit,

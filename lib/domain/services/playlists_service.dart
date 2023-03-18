@@ -8,7 +8,7 @@ class PlaylistsService {
   final _sessionDataProvider = SessionDataProvider();
   final _playlistsApiClient = PlaylistsApiClient();
 
-  Future<CurrentUsersPlaylists> getCurrentUsersPlaylists({
+  Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists({
     required int offset,
     required int limit,
   }) async {

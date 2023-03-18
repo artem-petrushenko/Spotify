@@ -4,7 +4,7 @@ import 'package:spotify_client/domain/entity/playlists/current_users_playlists.d
 class PlaylistsApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
-  Future<CurrentUsersPlaylists> getCurrentUsersPlaylists({
+  Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists({
     required String accessToken,
     required int offset,
     required int limit,
@@ -14,7 +14,7 @@ class PlaylistsApiClient {
           '?offset=$offset'
           '&limit=$limit',
       accessToken: accessToken,
-    )as Map<String, dynamic>;
-    return CurrentUsersPlaylists.fromJson(response);
+    ) as Map<String, dynamic>;
+    return CurrentUsersPlaylistsModel.fromJson(response);
   }
 }

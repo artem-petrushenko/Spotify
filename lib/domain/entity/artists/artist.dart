@@ -5,9 +5,9 @@ part 'artist.freezed.dart';
 part 'artist.g.dart';
 
 @freezed
-class Artist with _$Artist {
+class ArtistModel with _$ArtistModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Artist(
+  const factory ArtistModel(
     List<String>? genres,
     ExternalUrls? externalUrls,
     Followers? followers,
@@ -18,9 +18,9 @@ class Artist with _$Artist {
     int? popularity,
     String? type,
     String? uri,
-  ) = _Artist;
+  ) = _ArtistModel;
 
-  factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
+  factory ArtistModel.fromJson(Map<String, dynamic> json) => _$ArtistModelFromJson(json);
 }
 
 @freezed

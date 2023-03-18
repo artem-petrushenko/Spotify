@@ -63,7 +63,7 @@ class UserProfileViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _addUserData(CurrentUserProfile? currentUserProfile) {
+  void _addUserData(CurrentUserProfileModel? currentUserProfile) {
     if (currentUserProfile == null) {
       return;
     }

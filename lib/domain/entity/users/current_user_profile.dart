@@ -1,102 +1,75 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'current_user_profile.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class CurrentUserProfile {
-  String? country;
-  String? displayName;
-  String? email;
-  ExplicitContent? explicitContent;
-  ExternalUrls? externalUrls;
-  Followers? followers;
-  String? href;
-  String? id;
-  List<Images> images;
-  String? product;
-  String? type;
-  String? uri;
+part 'current_user_profile.freezed.dart';
 
-  CurrentUserProfile({
-    required this.country,
-    required this.displayName,
-    required this.email,
-    required this.explicitContent,
-    required this.externalUrls,
-    required this.followers,
-    required this.href,
-    required this.id,
-    required this.images,
-    required this.product,
-    required this.type,
-    required this.uri,
-  });
+@freezed
+class CurrentUserProfileModel with _$CurrentUserProfileModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory CurrentUserProfileModel(
+    String? country,
+    String? displayName,
+    String? email,
+    ExplicitContent? explicitContent,
+    ExternalUrls? externalUrls,
+    Followers? followers,
+    String? href,
+    String? id,
+    List<Images> images,
+    String? product,
+    String? type,
+    String? uri,
+  ) = _CurrentUserProfileModel;
 
-  factory CurrentUserProfile.fromJson(Map<String, dynamic> json) =>
-      _$CurrentUserProfileFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CurrentUserProfileToJson(this);
+  factory CurrentUserProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$CurrentUserProfileModelFromJson(json);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class ExplicitContent {
-  bool? filterEnabled;
-  bool? filterLocked;
-
-  ExplicitContent({
-    required this.filterEnabled,
-    required this.filterLocked,
-  });
+@freezed
+class ExplicitContent with _$ExplicitContent {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory ExplicitContent(
+    bool? filterEnabled,
+    bool? filterLocked,
+  ) = _ExplicitContent;
 
   factory ExplicitContent.fromJson(Map<String, dynamic> json) =>
       _$ExplicitContentFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ExplicitContentToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class ExternalUrls {
-  String? spotify;
-
-  ExternalUrls({
-    required this.spotify,
-  });
+@freezed
+class ExternalUrls with _$ExternalUrls {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory ExternalUrls(
+    String? spotify,
+  ) = _ExternalUrls;
 
   factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
       _$ExternalUrlsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ExternalUrlsToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Followers {
-  String? href;
-  int? total;
-
-  Followers({
-    required this.href,
-    required this.total,
-  });
+@freezed
+class Followers with _$Followers {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory Followers(
+    String? href,
+    int? total,
+  ) = _Followers;
 
   factory Followers.fromJson(Map<String, dynamic> json) =>
       _$FollowersFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FollowersToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Images {
-  String? url;
-  int? height;
-  int? width;
-
-  Images({
-    required this.url,
-    required this.height,
-    required this.width,
-  });
+@freezed
+class Images with _$Images {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory Images(
+    String? url,
+    int? height,
+    int? width,
+  ) = _Images;
 
   factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ImagesToJson(this);
 }
+

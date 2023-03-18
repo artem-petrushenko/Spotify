@@ -5,14 +5,14 @@ part 'artists_related_artists.freezed.dart';
 part 'artists_related_artists.g.dart';
 
 @freezed
-class ArtistsRelatedArtists with _$ArtistsRelatedArtists {
+class ArtistsRelatedArtistsModel with _$ArtistsRelatedArtistsModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ArtistsRelatedArtists(
+  const factory ArtistsRelatedArtistsModel(
     List<Artists> artists,
-  ) = _ArtistsRelatedArtists;
+  ) = _ArtistsRelatedArtistsModel;
 
-  factory ArtistsRelatedArtists.fromJson(Map<String, dynamic> json) =>
-      _$ArtistsRelatedArtistsFromJson(json);
+  factory ArtistsRelatedArtistsModel.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsRelatedArtistsModelFromJson(json);
 }
 
 @freezed

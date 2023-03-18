@@ -6,8 +6,9 @@ part of 'artists_albums.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ArtistsAlbums _$$_ArtistsAlbumsFromJson(Map<String, dynamic> json) =>
-    _$_ArtistsAlbums(
+_$_ArtistsAlbumsModel _$$_ArtistsAlbumsModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_ArtistsAlbumsModel(
       json['href'] as String?,
       json['limit'] as int?,
       json['next'] as String?,
@@ -19,7 +20,8 @@ _$_ArtistsAlbums _$$_ArtistsAlbumsFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_ArtistsAlbumsToJson(_$_ArtistsAlbums instance) =>
+Map<String, dynamic> _$$_ArtistsAlbumsModelToJson(
+        _$_ArtistsAlbumsModel instance) =>
     <String, dynamic>{
       'href': instance.href,
       'limit': instance.limit,

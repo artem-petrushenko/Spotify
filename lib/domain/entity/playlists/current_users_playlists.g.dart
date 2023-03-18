@@ -6,22 +6,22 @@ part of 'current_users_playlists.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CurrentUsersPlaylists _$CurrentUsersPlaylistsFromJson(
+_$_CurrentUsersPlaylistsModel _$$_CurrentUsersPlaylistsModelFromJson(
         Map<String, dynamic> json) =>
-    CurrentUsersPlaylists(
-      href: json['href'] as String?,
-      limit: json['limit'] as int?,
-      next: json['next'] as String?,
-      offset: json['offset'] as int?,
-      previous: json['previous'] as String?,
-      total: json['total'] as int?,
-      items: (json['items'] as List<dynamic>)
+    _$_CurrentUsersPlaylistsModel(
+      json['href'] as String?,
+      json['limit'] as int?,
+      json['next'] as String?,
+      json['offset'] as int?,
+      json['previous'] as String?,
+      json['total'] as int?,
+      (json['items'] as List<dynamic>)
           .map((e) => Items.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$CurrentUsersPlaylistsToJson(
-        CurrentUsersPlaylists instance) =>
+Map<String, dynamic> _$$_CurrentUsersPlaylistsModelToJson(
+        _$_CurrentUsersPlaylistsModel instance) =>
     <String, dynamic>{
       'href': instance.href,
       'limit': instance.limit,
@@ -29,89 +29,90 @@ Map<String, dynamic> _$CurrentUsersPlaylistsToJson(
       'offset': instance.offset,
       'previous': instance.previous,
       'total': instance.total,
-      'items': instance.items,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };
 
-Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
-      collaborative: json['collaborative'] as bool?,
-      description: json['description'] as String?,
-      externalUrls: json['external_urls'] == null
+_$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
+      json['collaborative'] as bool?,
+      json['description'] as String?,
+      json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
               json['external_urls'] as Map<String, dynamic>),
-      href: json['href'] as String?,
-      id: json['id'] as String?,
-      images: (json['images'] as List<dynamic>?)
+      json['href'] as String?,
+      json['id'] as String?,
+      (json['images'] as List<dynamic>?)
           ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
           .toList(),
-      name: json['name'] as String?,
-      owner: json['owner'] == null
+      json['name'] as String?,
+      json['owner'] == null
           ? null
           : Owner.fromJson(json['owner'] as Map<String, dynamic>),
-      public: json['public'] as bool?,
-      snapshotId: json['snapshot_id'] as String?,
-      tracks: json['tracks'] == null
+      json['public'] as bool?,
+      json['snapshot_id'] as String?,
+      json['tracks'] == null
           ? null
           : Followers.fromJson(json['tracks'] as Map<String, dynamic>),
-      type: json['type'] as String?,
-      uri: json['uri'] as String?,
+      json['type'] as String?,
+      json['uri'] as String?,
     );
 
-Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
       'collaborative': instance.collaborative,
       'description': instance.description,
-      'external_urls': instance.externalUrls,
+      'external_urls': instance.externalUrls?.toJson(),
       'href': instance.href,
       'id': instance.id,
-      'images': instance.images,
+      'images': instance.images?.map((e) => e.toJson()).toList(),
       'name': instance.name,
-      'owner': instance.owner,
+      'owner': instance.owner?.toJson(),
       'public': instance.public,
       'snapshot_id': instance.snapshotId,
-      'tracks': instance.tracks,
+      'tracks': instance.tracks?.toJson(),
       'type': instance.type,
       'uri': instance.uri,
     };
 
-ExternalUrls _$ExternalUrlsFromJson(Map<String, dynamic> json) => ExternalUrls(
-      spotify: json['spotify'] as String?,
+_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
+    _$_ExternalUrls(
+      json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$ExternalUrlsToJson(ExternalUrls instance) =>
+Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
-      url: json['url'] as String?,
-      height: json['height'] as int?,
-      width: json['width'] as int?,
+_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+      json['url'] as String?,
+      json['height'] as int?,
+      json['width'] as int?,
     );
 
-Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
       'url': instance.url,
       'height': instance.height,
       'width': instance.width,
     };
 
-Owner _$OwnerFromJson(Map<String, dynamic> json) => Owner(
-      externalUrls: json['external_urls'] == null
+_$_Owner _$$_OwnerFromJson(Map<String, dynamic> json) => _$_Owner(
+      json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
               json['external_urls'] as Map<String, dynamic>),
-      followers: json['followers'] == null
+      json['followers'] == null
           ? null
           : Followers.fromJson(json['followers'] as Map<String, dynamic>),
-      href: json['href'] as String?,
-      id: json['id'] as String?,
-      type: json['type'] as String?,
-      uri: json['uri'] as String?,
-      displayName: json['display_name'] as String?,
+      json['href'] as String?,
+      json['id'] as String?,
+      json['type'] as String?,
+      json['uri'] as String?,
+      json['display_name'] as String?,
     );
 
-Map<String, dynamic> _$OwnerToJson(Owner instance) => <String, dynamic>{
-      'external_urls': instance.externalUrls,
-      'followers': instance.followers,
+Map<String, dynamic> _$$_OwnerToJson(_$_Owner instance) => <String, dynamic>{
+      'external_urls': instance.externalUrls?.toJson(),
+      'followers': instance.followers?.toJson(),
       'href': instance.href,
       'id': instance.id,
       'type': instance.type,
@@ -119,12 +120,13 @@ Map<String, dynamic> _$OwnerToJson(Owner instance) => <String, dynamic>{
       'display_name': instance.displayName,
     };
 
-Followers _$FollowersFromJson(Map<String, dynamic> json) => Followers(
-      href: json['href'] as String?,
-      total: json['total'] as int?,
+_$_Followers _$$_FollowersFromJson(Map<String, dynamic> json) => _$_Followers(
+      json['href'] as String?,
+      json['total'] as int?,
     );
 
-Map<String, dynamic> _$FollowersToJson(Followers instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FollowersToJson(_$_Followers instance) =>
+    <String, dynamic>{
       'href': instance.href,
       'total': instance.total,
     };

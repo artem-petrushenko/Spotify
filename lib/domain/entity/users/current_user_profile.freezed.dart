@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'artist.dart';
+part of 'current_user_profile.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,55 +14,62 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ArtistModel _$ArtistModelFromJson(Map<String, dynamic> json) {
-  return _ArtistModel.fromJson(json);
+CurrentUserProfileModel _$CurrentUserProfileModelFromJson(
+    Map<String, dynamic> json) {
+  return _CurrentUserProfileModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ArtistModel {
-  List<String>? get genres => throw _privateConstructorUsedError;
+mixin _$CurrentUserProfileModel {
+  String? get country => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  ExplicitContent? get explicitContent => throw _privateConstructorUsedError;
   ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
   Followers? get followers => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
-  List<Images>? get images => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  int? get popularity => throw _privateConstructorUsedError;
+  List<Images> get images => throw _privateConstructorUsedError;
+  String? get product => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get uri => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ArtistModelCopyWith<ArtistModel> get copyWith =>
+  $CurrentUserProfileModelCopyWith<CurrentUserProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ArtistModelCopyWith<$Res> {
-  factory $ArtistModelCopyWith(
-          ArtistModel value, $Res Function(ArtistModel) then) =
-      _$ArtistModelCopyWithImpl<$Res, ArtistModel>;
+abstract class $CurrentUserProfileModelCopyWith<$Res> {
+  factory $CurrentUserProfileModelCopyWith(CurrentUserProfileModel value,
+          $Res Function(CurrentUserProfileModel) then) =
+      _$CurrentUserProfileModelCopyWithImpl<$Res, CurrentUserProfileModel>;
   @useResult
   $Res call(
-      {List<String>? genres,
+      {String? country,
+      String? displayName,
+      String? email,
+      ExplicitContent? explicitContent,
       ExternalUrls? externalUrls,
       Followers? followers,
       String? href,
       String? id,
-      List<Images>? images,
-      String? name,
-      int? popularity,
+      List<Images> images,
+      String? product,
       String? type,
       String? uri});
 
+  $ExplicitContentCopyWith<$Res>? get explicitContent;
   $ExternalUrlsCopyWith<$Res>? get externalUrls;
   $FollowersCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
-class _$ArtistModelCopyWithImpl<$Res, $Val extends ArtistModel>
-    implements $ArtistModelCopyWith<$Res> {
-  _$ArtistModelCopyWithImpl(this._value, this._then);
+class _$CurrentUserProfileModelCopyWithImpl<$Res,
+        $Val extends CurrentUserProfileModel>
+    implements $CurrentUserProfileModelCopyWith<$Res> {
+  _$CurrentUserProfileModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -72,22 +79,36 @@ class _$ArtistModelCopyWithImpl<$Res, $Val extends ArtistModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? genres = freezed,
+    Object? country = freezed,
+    Object? displayName = freezed,
+    Object? email = freezed,
+    Object? explicitContent = freezed,
     Object? externalUrls = freezed,
     Object? followers = freezed,
     Object? href = freezed,
     Object? id = freezed,
-    Object? images = freezed,
-    Object? name = freezed,
-    Object? popularity = freezed,
+    Object? images = null,
+    Object? product = freezed,
     Object? type = freezed,
     Object? uri = freezed,
   }) {
     return _then(_value.copyWith(
-      genres: freezed == genres
-          ? _value.genres
-          : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      explicitContent: freezed == explicitContent
+          ? _value.explicitContent
+          : explicitContent // ignore: cast_nullable_to_non_nullable
+              as ExplicitContent?,
       externalUrls: freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
@@ -104,18 +125,14 @@ class _$ArtistModelCopyWithImpl<$Res, $Val extends ArtistModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      images: freezed == images
+      images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+              as List<Images>,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
               as String?,
-      popularity: freezed == popularity
-          ? _value.popularity
-          : popularity // ignore: cast_nullable_to_non_nullable
-              as int?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -125,6 +142,18 @@ class _$ArtistModelCopyWithImpl<$Res, $Val extends ArtistModel>
           : uri // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ExplicitContentCopyWith<$Res>? get explicitContent {
+    if (_value.explicitContent == null) {
+      return null;
+    }
+
+    return $ExplicitContentCopyWith<$Res>(_value.explicitContent!, (value) {
+      return _then(_value.copyWith(explicitContent: value) as $Val);
+    });
   }
 
   @override
@@ -153,25 +182,29 @@ class _$ArtistModelCopyWithImpl<$Res, $Val extends ArtistModel>
 }
 
 /// @nodoc
-abstract class _$$_ArtistModelCopyWith<$Res>
-    implements $ArtistModelCopyWith<$Res> {
-  factory _$$_ArtistModelCopyWith(
-          _$_ArtistModel value, $Res Function(_$_ArtistModel) then) =
-      __$$_ArtistModelCopyWithImpl<$Res>;
+abstract class _$$_CurrentUserProfileModelCopyWith<$Res>
+    implements $CurrentUserProfileModelCopyWith<$Res> {
+  factory _$$_CurrentUserProfileModelCopyWith(_$_CurrentUserProfileModel value,
+          $Res Function(_$_CurrentUserProfileModel) then) =
+      __$$_CurrentUserProfileModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<String>? genres,
+      {String? country,
+      String? displayName,
+      String? email,
+      ExplicitContent? explicitContent,
       ExternalUrls? externalUrls,
       Followers? followers,
       String? href,
       String? id,
-      List<Images>? images,
-      String? name,
-      int? popularity,
+      List<Images> images,
+      String? product,
       String? type,
       String? uri});
 
+  @override
+  $ExplicitContentCopyWith<$Res>? get explicitContent;
   @override
   $ExternalUrlsCopyWith<$Res>? get externalUrls;
   @override
@@ -179,32 +212,47 @@ abstract class _$$_ArtistModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ArtistModelCopyWithImpl<$Res>
-    extends _$ArtistModelCopyWithImpl<$Res, _$_ArtistModel>
-    implements _$$_ArtistModelCopyWith<$Res> {
-  __$$_ArtistModelCopyWithImpl(
-      _$_ArtistModel _value, $Res Function(_$_ArtistModel) _then)
+class __$$_CurrentUserProfileModelCopyWithImpl<$Res>
+    extends _$CurrentUserProfileModelCopyWithImpl<$Res,
+        _$_CurrentUserProfileModel>
+    implements _$$_CurrentUserProfileModelCopyWith<$Res> {
+  __$$_CurrentUserProfileModelCopyWithImpl(_$_CurrentUserProfileModel _value,
+      $Res Function(_$_CurrentUserProfileModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? genres = freezed,
+    Object? country = freezed,
+    Object? displayName = freezed,
+    Object? email = freezed,
+    Object? explicitContent = freezed,
     Object? externalUrls = freezed,
     Object? followers = freezed,
     Object? href = freezed,
     Object? id = freezed,
-    Object? images = freezed,
-    Object? name = freezed,
-    Object? popularity = freezed,
+    Object? images = null,
+    Object? product = freezed,
     Object? type = freezed,
     Object? uri = freezed,
   }) {
-    return _then(_$_ArtistModel(
-      freezed == genres
-          ? _value._genres
-          : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+    return _then(_$_CurrentUserProfileModel(
+      freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == explicitContent
+          ? _value.explicitContent
+          : explicitContent // ignore: cast_nullable_to_non_nullable
+              as ExplicitContent?,
       freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
@@ -221,18 +269,14 @@ class __$$_ArtistModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == images
+      null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>?,
-      freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+              as List<Images>,
+      freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == popularity
-          ? _value.popularity
-          : popularity // ignore: cast_nullable_to_non_nullable
-              as int?,
       freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -248,34 +292,33 @@ class __$$_ArtistModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ArtistModel implements _ArtistModel {
-  const _$_ArtistModel(
-      final List<String>? genres,
+class _$_CurrentUserProfileModel implements _CurrentUserProfileModel {
+  const _$_CurrentUserProfileModel(
+      this.country,
+      this.displayName,
+      this.email,
+      this.explicitContent,
       this.externalUrls,
       this.followers,
       this.href,
       this.id,
-      final List<Images>? images,
-      this.name,
-      this.popularity,
+      final List<Images> images,
+      this.product,
       this.type,
       this.uri)
-      : _genres = genres,
-        _images = images;
+      : _images = images;
 
-  factory _$_ArtistModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistModelFromJson(json);
+  factory _$_CurrentUserProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CurrentUserProfileModelFromJson(json);
 
-  final List<String>? _genres;
   @override
-  List<String>? get genres {
-    final value = _genres;
-    if (value == null) return null;
-    if (_genres is EqualUnmodifiableListView) return _genres;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final String? country;
+  @override
+  final String? displayName;
+  @override
+  final String? email;
+  @override
+  final ExplicitContent? explicitContent;
   @override
   final ExternalUrls? externalUrls;
   @override
@@ -284,20 +327,16 @@ class _$_ArtistModel implements _ArtistModel {
   final String? href;
   @override
   final String? id;
-  final List<Images>? _images;
+  final List<Images> _images;
   @override
-  List<Images>? get images {
-    final value = _images;
-    if (value == null) return null;
+  List<Images> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_images);
   }
 
   @override
-  final String? name;
-  @override
-  final int? popularity;
+  final String? product;
   @override
   final String? type;
   @override
@@ -305,15 +344,20 @@ class _$_ArtistModel implements _ArtistModel {
 
   @override
   String toString() {
-    return 'ArtistModel(genres: $genres, externalUrls: $externalUrls, followers: $followers, href: $href, id: $id, images: $images, name: $name, popularity: $popularity, type: $type, uri: $uri)';
+    return 'CurrentUserProfileModel(country: $country, displayName: $displayName, email: $email, explicitContent: $explicitContent, externalUrls: $externalUrls, followers: $followers, href: $href, id: $id, images: $images, product: $product, type: $type, uri: $uri)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ArtistModel &&
-            const DeepCollectionEquality().equals(other._genres, _genres) &&
+            other is _$_CurrentUserProfileModel &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.explicitContent, explicitContent) ||
+                other.explicitContent == explicitContent) &&
             (identical(other.externalUrls, externalUrls) ||
                 other.externalUrls == externalUrls) &&
             (identical(other.followers, followers) ||
@@ -321,9 +365,7 @@ class _$_ArtistModel implements _ArtistModel {
             (identical(other.href, href) || other.href == href) &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.popularity, popularity) ||
-                other.popularity == popularity) &&
+            (identical(other.product, product) || other.product == product) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.uri, uri) || other.uri == uri));
   }
@@ -332,49 +374,61 @@ class _$_ArtistModel implements _ArtistModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_genres),
+      country,
+      displayName,
+      email,
+      explicitContent,
       externalUrls,
       followers,
       href,
       id,
       const DeepCollectionEquality().hash(_images),
-      name,
-      popularity,
+      product,
       type,
       uri);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistModelCopyWith<_$_ArtistModel> get copyWith =>
-      __$$_ArtistModelCopyWithImpl<_$_ArtistModel>(this, _$identity);
+  _$$_CurrentUserProfileModelCopyWith<_$_CurrentUserProfileModel>
+      get copyWith =>
+          __$$_CurrentUserProfileModelCopyWithImpl<_$_CurrentUserProfileModel>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistModelToJson(
+    return _$$_CurrentUserProfileModelToJson(
       this,
     );
   }
 }
 
-abstract class _ArtistModel implements ArtistModel {
-  const factory _ArtistModel(
-      final List<String>? genres,
+abstract class _CurrentUserProfileModel implements CurrentUserProfileModel {
+  const factory _CurrentUserProfileModel(
+      final String? country,
+      final String? displayName,
+      final String? email,
+      final ExplicitContent? explicitContent,
       final ExternalUrls? externalUrls,
       final Followers? followers,
       final String? href,
       final String? id,
-      final List<Images>? images,
-      final String? name,
-      final int? popularity,
+      final List<Images> images,
+      final String? product,
       final String? type,
-      final String? uri) = _$_ArtistModel;
+      final String? uri) = _$_CurrentUserProfileModel;
 
-  factory _ArtistModel.fromJson(Map<String, dynamic> json) =
-      _$_ArtistModel.fromJson;
+  factory _CurrentUserProfileModel.fromJson(Map<String, dynamic> json) =
+      _$_CurrentUserProfileModel.fromJson;
 
   @override
-  List<String>? get genres;
+  String? get country;
+  @override
+  String? get displayName;
+  @override
+  String? get email;
+  @override
+  ExplicitContent? get explicitContent;
   @override
   ExternalUrls? get externalUrls;
   @override
@@ -384,18 +438,172 @@ abstract class _ArtistModel implements ArtistModel {
   @override
   String? get id;
   @override
-  List<Images>? get images;
+  List<Images> get images;
   @override
-  String? get name;
-  @override
-  int? get popularity;
+  String? get product;
   @override
   String? get type;
   @override
   String? get uri;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistModelCopyWith<_$_ArtistModel> get copyWith =>
+  _$$_CurrentUserProfileModelCopyWith<_$_CurrentUserProfileModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ExplicitContent _$ExplicitContentFromJson(Map<String, dynamic> json) {
+  return _ExplicitContent.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ExplicitContent {
+  bool? get filterEnabled => throw _privateConstructorUsedError;
+  bool? get filterLocked => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ExplicitContentCopyWith<ExplicitContent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExplicitContentCopyWith<$Res> {
+  factory $ExplicitContentCopyWith(
+          ExplicitContent value, $Res Function(ExplicitContent) then) =
+      _$ExplicitContentCopyWithImpl<$Res, ExplicitContent>;
+  @useResult
+  $Res call({bool? filterEnabled, bool? filterLocked});
+}
+
+/// @nodoc
+class _$ExplicitContentCopyWithImpl<$Res, $Val extends ExplicitContent>
+    implements $ExplicitContentCopyWith<$Res> {
+  _$ExplicitContentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filterEnabled = freezed,
+    Object? filterLocked = freezed,
+  }) {
+    return _then(_value.copyWith(
+      filterEnabled: freezed == filterEnabled
+          ? _value.filterEnabled
+          : filterEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      filterLocked: freezed == filterLocked
+          ? _value.filterLocked
+          : filterLocked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ExplicitContentCopyWith<$Res>
+    implements $ExplicitContentCopyWith<$Res> {
+  factory _$$_ExplicitContentCopyWith(
+          _$_ExplicitContent value, $Res Function(_$_ExplicitContent) then) =
+      __$$_ExplicitContentCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool? filterEnabled, bool? filterLocked});
+}
+
+/// @nodoc
+class __$$_ExplicitContentCopyWithImpl<$Res>
+    extends _$ExplicitContentCopyWithImpl<$Res, _$_ExplicitContent>
+    implements _$$_ExplicitContentCopyWith<$Res> {
+  __$$_ExplicitContentCopyWithImpl(
+      _$_ExplicitContent _value, $Res Function(_$_ExplicitContent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filterEnabled = freezed,
+    Object? filterLocked = freezed,
+  }) {
+    return _then(_$_ExplicitContent(
+      freezed == filterEnabled
+          ? _value.filterEnabled
+          : filterEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      freezed == filterLocked
+          ? _value.filterLocked
+          : filterLocked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+class _$_ExplicitContent implements _ExplicitContent {
+  const _$_ExplicitContent(this.filterEnabled, this.filterLocked);
+
+  factory _$_ExplicitContent.fromJson(Map<String, dynamic> json) =>
+      _$$_ExplicitContentFromJson(json);
+
+  @override
+  final bool? filterEnabled;
+  @override
+  final bool? filterLocked;
+
+  @override
+  String toString() {
+    return 'ExplicitContent(filterEnabled: $filterEnabled, filterLocked: $filterLocked)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ExplicitContent &&
+            (identical(other.filterEnabled, filterEnabled) ||
+                other.filterEnabled == filterEnabled) &&
+            (identical(other.filterLocked, filterLocked) ||
+                other.filterLocked == filterLocked));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, filterEnabled, filterLocked);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ExplicitContentCopyWith<_$_ExplicitContent> get copyWith =>
+      __$$_ExplicitContentCopyWithImpl<_$_ExplicitContent>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ExplicitContentToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ExplicitContent implements ExplicitContent {
+  const factory _ExplicitContent(
+      final bool? filterEnabled, final bool? filterLocked) = _$_ExplicitContent;
+
+  factory _ExplicitContent.fromJson(Map<String, dynamic> json) =
+      _$_ExplicitContent.fromJson;
+
+  @override
+  bool? get filterEnabled;
+  @override
+  bool? get filterLocked;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ExplicitContentCopyWith<_$_ExplicitContent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

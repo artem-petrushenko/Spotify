@@ -14,35 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ArtistsRelatedArtists _$ArtistsRelatedArtistsFromJson(
+ArtistsRelatedArtistsModel _$ArtistsRelatedArtistsModelFromJson(
     Map<String, dynamic> json) {
-  return _ArtistsRelatedArtists.fromJson(json);
+  return _ArtistsRelatedArtistsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ArtistsRelatedArtists {
+mixin _$ArtistsRelatedArtistsModel {
   List<Artists> get artists => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ArtistsRelatedArtistsCopyWith<ArtistsRelatedArtists> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ArtistsRelatedArtistsModelCopyWith<ArtistsRelatedArtistsModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ArtistsRelatedArtistsCopyWith<$Res> {
-  factory $ArtistsRelatedArtistsCopyWith(ArtistsRelatedArtists value,
-          $Res Function(ArtistsRelatedArtists) then) =
-      _$ArtistsRelatedArtistsCopyWithImpl<$Res, ArtistsRelatedArtists>;
+abstract class $ArtistsRelatedArtistsModelCopyWith<$Res> {
+  factory $ArtistsRelatedArtistsModelCopyWith(ArtistsRelatedArtistsModel value,
+          $Res Function(ArtistsRelatedArtistsModel) then) =
+      _$ArtistsRelatedArtistsModelCopyWithImpl<$Res,
+          ArtistsRelatedArtistsModel>;
   @useResult
   $Res call({List<Artists> artists});
 }
 
 /// @nodoc
-class _$ArtistsRelatedArtistsCopyWithImpl<$Res,
-        $Val extends ArtistsRelatedArtists>
-    implements $ArtistsRelatedArtistsCopyWith<$Res> {
-  _$ArtistsRelatedArtistsCopyWithImpl(this._value, this._then);
+class _$ArtistsRelatedArtistsModelCopyWithImpl<$Res,
+        $Val extends ArtistsRelatedArtistsModel>
+    implements $ArtistsRelatedArtistsModelCopyWith<$Res> {
+  _$ArtistsRelatedArtistsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -64,22 +65,25 @@ class _$ArtistsRelatedArtistsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ArtistsRelatedArtistsCopyWith<$Res>
-    implements $ArtistsRelatedArtistsCopyWith<$Res> {
-  factory _$$_ArtistsRelatedArtistsCopyWith(_$_ArtistsRelatedArtists value,
-          $Res Function(_$_ArtistsRelatedArtists) then) =
-      __$$_ArtistsRelatedArtistsCopyWithImpl<$Res>;
+abstract class _$$_ArtistsRelatedArtistsModelCopyWith<$Res>
+    implements $ArtistsRelatedArtistsModelCopyWith<$Res> {
+  factory _$$_ArtistsRelatedArtistsModelCopyWith(
+          _$_ArtistsRelatedArtistsModel value,
+          $Res Function(_$_ArtistsRelatedArtistsModel) then) =
+      __$$_ArtistsRelatedArtistsModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Artists> artists});
 }
 
 /// @nodoc
-class __$$_ArtistsRelatedArtistsCopyWithImpl<$Res>
-    extends _$ArtistsRelatedArtistsCopyWithImpl<$Res, _$_ArtistsRelatedArtists>
-    implements _$$_ArtistsRelatedArtistsCopyWith<$Res> {
-  __$$_ArtistsRelatedArtistsCopyWithImpl(_$_ArtistsRelatedArtists _value,
-      $Res Function(_$_ArtistsRelatedArtists) _then)
+class __$$_ArtistsRelatedArtistsModelCopyWithImpl<$Res>
+    extends _$ArtistsRelatedArtistsModelCopyWithImpl<$Res,
+        _$_ArtistsRelatedArtistsModel>
+    implements _$$_ArtistsRelatedArtistsModelCopyWith<$Res> {
+  __$$_ArtistsRelatedArtistsModelCopyWithImpl(
+      _$_ArtistsRelatedArtistsModel _value,
+      $Res Function(_$_ArtistsRelatedArtistsModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +91,7 @@ class __$$_ArtistsRelatedArtistsCopyWithImpl<$Res>
   $Res call({
     Object? artists = null,
   }) {
-    return _then(_$_ArtistsRelatedArtists(
+    return _then(_$_ArtistsRelatedArtistsModel(
       null == artists
           ? _value._artists
           : artists // ignore: cast_nullable_to_non_nullable
@@ -99,12 +103,12 @@ class __$$_ArtistsRelatedArtistsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ArtistsRelatedArtists implements _ArtistsRelatedArtists {
-  const _$_ArtistsRelatedArtists(final List<Artists> artists)
+class _$_ArtistsRelatedArtistsModel implements _ArtistsRelatedArtistsModel {
+  const _$_ArtistsRelatedArtistsModel(final List<Artists> artists)
       : _artists = artists;
 
-  factory _$_ArtistsRelatedArtists.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistsRelatedArtistsFromJson(json);
+  factory _$_ArtistsRelatedArtistsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ArtistsRelatedArtistsModelFromJson(json);
 
   final List<Artists> _artists;
   @override
@@ -116,14 +120,14 @@ class _$_ArtistsRelatedArtists implements _ArtistsRelatedArtists {
 
   @override
   String toString() {
-    return 'ArtistsRelatedArtists(artists: $artists)';
+    return 'ArtistsRelatedArtistsModel(artists: $artists)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ArtistsRelatedArtists &&
+            other is _$_ArtistsRelatedArtistsModel &&
             const DeepCollectionEquality().equals(other._artists, _artists));
   }
 
@@ -135,31 +139,32 @@ class _$_ArtistsRelatedArtists implements _ArtistsRelatedArtists {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistsRelatedArtistsCopyWith<_$_ArtistsRelatedArtists> get copyWith =>
-      __$$_ArtistsRelatedArtistsCopyWithImpl<_$_ArtistsRelatedArtists>(
-          this, _$identity);
+  _$$_ArtistsRelatedArtistsModelCopyWith<_$_ArtistsRelatedArtistsModel>
+      get copyWith => __$$_ArtistsRelatedArtistsModelCopyWithImpl<
+          _$_ArtistsRelatedArtistsModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistsRelatedArtistsToJson(
+    return _$$_ArtistsRelatedArtistsModelToJson(
       this,
     );
   }
 }
 
-abstract class _ArtistsRelatedArtists implements ArtistsRelatedArtists {
-  const factory _ArtistsRelatedArtists(final List<Artists> artists) =
-      _$_ArtistsRelatedArtists;
+abstract class _ArtistsRelatedArtistsModel
+    implements ArtistsRelatedArtistsModel {
+  const factory _ArtistsRelatedArtistsModel(final List<Artists> artists) =
+      _$_ArtistsRelatedArtistsModel;
 
-  factory _ArtistsRelatedArtists.fromJson(Map<String, dynamic> json) =
-      _$_ArtistsRelatedArtists.fromJson;
+  factory _ArtistsRelatedArtistsModel.fromJson(Map<String, dynamic> json) =
+      _$_ArtistsRelatedArtistsModel.fromJson;
 
   @override
   List<Artists> get artists;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistsRelatedArtistsCopyWith<_$_ArtistsRelatedArtists> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ArtistsRelatedArtistsModelCopyWith<_$_ArtistsRelatedArtistsModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Artists _$ArtistsFromJson(Map<String, dynamic> json) {

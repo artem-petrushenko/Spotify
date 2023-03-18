@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ArtistsAlbums _$ArtistsAlbumsFromJson(Map<String, dynamic> json) {
-  return _ArtistsAlbums.fromJson(json);
+ArtistsAlbumsModel _$ArtistsAlbumsModelFromJson(Map<String, dynamic> json) {
+  return _ArtistsAlbumsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ArtistsAlbums {
+mixin _$ArtistsAlbumsModel {
   String? get href => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
@@ -30,15 +30,15 @@ mixin _$ArtistsAlbums {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ArtistsAlbumsCopyWith<ArtistsAlbums> get copyWith =>
+  $ArtistsAlbumsModelCopyWith<ArtistsAlbumsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ArtistsAlbumsCopyWith<$Res> {
-  factory $ArtistsAlbumsCopyWith(
-          ArtistsAlbums value, $Res Function(ArtistsAlbums) then) =
-      _$ArtistsAlbumsCopyWithImpl<$Res, ArtistsAlbums>;
+abstract class $ArtistsAlbumsModelCopyWith<$Res> {
+  factory $ArtistsAlbumsModelCopyWith(
+          ArtistsAlbumsModel value, $Res Function(ArtistsAlbumsModel) then) =
+      _$ArtistsAlbumsModelCopyWithImpl<$Res, ArtistsAlbumsModel>;
   @useResult
   $Res call(
       {String? href,
@@ -51,9 +51,9 @@ abstract class $ArtistsAlbumsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ArtistsAlbumsCopyWithImpl<$Res, $Val extends ArtistsAlbums>
-    implements $ArtistsAlbumsCopyWith<$Res> {
-  _$ArtistsAlbumsCopyWithImpl(this._value, this._then);
+class _$ArtistsAlbumsModelCopyWithImpl<$Res, $Val extends ArtistsAlbumsModel>
+    implements $ArtistsAlbumsModelCopyWith<$Res> {
+  _$ArtistsAlbumsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -105,11 +105,11 @@ class _$ArtistsAlbumsCopyWithImpl<$Res, $Val extends ArtistsAlbums>
 }
 
 /// @nodoc
-abstract class _$$_ArtistsAlbumsCopyWith<$Res>
-    implements $ArtistsAlbumsCopyWith<$Res> {
-  factory _$$_ArtistsAlbumsCopyWith(
-          _$_ArtistsAlbums value, $Res Function(_$_ArtistsAlbums) then) =
-      __$$_ArtistsAlbumsCopyWithImpl<$Res>;
+abstract class _$$_ArtistsAlbumsModelCopyWith<$Res>
+    implements $ArtistsAlbumsModelCopyWith<$Res> {
+  factory _$$_ArtistsAlbumsModelCopyWith(_$_ArtistsAlbumsModel value,
+          $Res Function(_$_ArtistsAlbumsModel) then) =
+      __$$_ArtistsAlbumsModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,11 +123,11 @@ abstract class _$$_ArtistsAlbumsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ArtistsAlbumsCopyWithImpl<$Res>
-    extends _$ArtistsAlbumsCopyWithImpl<$Res, _$_ArtistsAlbums>
-    implements _$$_ArtistsAlbumsCopyWith<$Res> {
-  __$$_ArtistsAlbumsCopyWithImpl(
-      _$_ArtistsAlbums _value, $Res Function(_$_ArtistsAlbums) _then)
+class __$$_ArtistsAlbumsModelCopyWithImpl<$Res>
+    extends _$ArtistsAlbumsModelCopyWithImpl<$Res, _$_ArtistsAlbumsModel>
+    implements _$$_ArtistsAlbumsModelCopyWith<$Res> {
+  __$$_ArtistsAlbumsModelCopyWithImpl(
+      _$_ArtistsAlbumsModel _value, $Res Function(_$_ArtistsAlbumsModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -141,7 +141,7 @@ class __$$_ArtistsAlbumsCopyWithImpl<$Res>
     Object? total = freezed,
     Object? items = null,
   }) {
-    return _then(_$_ArtistsAlbums(
+    return _then(_$_ArtistsAlbumsModel(
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -177,13 +177,13 @@ class __$$_ArtistsAlbumsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ArtistsAlbums implements _ArtistsAlbums {
-  const _$_ArtistsAlbums(this.href, this.limit, this.next, this.offset,
+class _$_ArtistsAlbumsModel implements _ArtistsAlbumsModel {
+  const _$_ArtistsAlbumsModel(this.href, this.limit, this.next, this.offset,
       this.previous, this.total, final List<Items> items)
       : _items = items;
 
-  factory _$_ArtistsAlbums.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistsAlbumsFromJson(json);
+  factory _$_ArtistsAlbumsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ArtistsAlbumsModelFromJson(json);
 
   @override
   final String? href;
@@ -207,14 +207,14 @@ class _$_ArtistsAlbums implements _ArtistsAlbums {
 
   @override
   String toString() {
-    return 'ArtistsAlbums(href: $href, limit: $limit, next: $next, offset: $offset, previous: $previous, total: $total, items: $items)';
+    return 'ArtistsAlbumsModel(href: $href, limit: $limit, next: $next, offset: $offset, previous: $previous, total: $total, items: $items)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ArtistsAlbums &&
+            other is _$_ArtistsAlbumsModel &&
             (identical(other.href, href) || other.href == href) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.next, next) || other.next == next) &&
@@ -233,29 +233,30 @@ class _$_ArtistsAlbums implements _ArtistsAlbums {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistsAlbumsCopyWith<_$_ArtistsAlbums> get copyWith =>
-      __$$_ArtistsAlbumsCopyWithImpl<_$_ArtistsAlbums>(this, _$identity);
+  _$$_ArtistsAlbumsModelCopyWith<_$_ArtistsAlbumsModel> get copyWith =>
+      __$$_ArtistsAlbumsModelCopyWithImpl<_$_ArtistsAlbumsModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistsAlbumsToJson(
+    return _$$_ArtistsAlbumsModelToJson(
       this,
     );
   }
 }
 
-abstract class _ArtistsAlbums implements ArtistsAlbums {
-  const factory _ArtistsAlbums(
+abstract class _ArtistsAlbumsModel implements ArtistsAlbumsModel {
+  const factory _ArtistsAlbumsModel(
       final String? href,
       final int? limit,
       final String? next,
       final int? offset,
       final String? previous,
       final int? total,
-      final List<Items> items) = _$_ArtistsAlbums;
+      final List<Items> items) = _$_ArtistsAlbumsModel;
 
-  factory _ArtistsAlbums.fromJson(Map<String, dynamic> json) =
-      _$_ArtistsAlbums.fromJson;
+  factory _ArtistsAlbumsModel.fromJson(Map<String, dynamic> json) =
+      _$_ArtistsAlbumsModel.fromJson;
 
   @override
   String? get href;
@@ -273,7 +274,7 @@ abstract class _ArtistsAlbums implements ArtistsAlbums {
   List<Items> get items;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistsAlbumsCopyWith<_$_ArtistsAlbums> get copyWith =>
+  _$$_ArtistsAlbumsModelCopyWith<_$_ArtistsAlbumsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

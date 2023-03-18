@@ -7,7 +7,7 @@ import 'package:spotify_client/domain/entity/albums/album.dart';
 class AlbumsApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
-  Future<UsersSavedAlbums> getUsersSavedAlbums({
+  Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
     required String accessToken,
     required String market,
     required int offset,
@@ -20,10 +20,10 @@ class AlbumsApiClient {
           '&offset=$offset',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return UsersSavedAlbums.fromJson(response);
+    return UsersSavedAlbumsModel.fromJson(response);
   }
 
-  Future<SeveralAlbums> getSeveralAlbums({
+  Future<SeveralAlbumsModel> getSeveralAlbums({
     required String accessToken,
     required String ids,
     required String market,
@@ -34,10 +34,10 @@ class AlbumsApiClient {
           '&market=$market',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return SeveralAlbums.fromJson(response);
+    return SeveralAlbumsModel.fromJson(response);
   }
 
-  Future<Album> getAlbum({
+  Future<AlbumModel> getAlbum({
     required String accessToken,
     required String id,
     required String market,
@@ -47,6 +47,6 @@ class AlbumsApiClient {
           '?market=$market',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
-    return Album.fromJson(response);
+    return AlbumModel.fromJson(response);
   }
 }

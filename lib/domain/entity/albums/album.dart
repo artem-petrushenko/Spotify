@@ -5,9 +5,9 @@ part 'album.freezed.dart';
 part 'album.g.dart';
 
 @freezed
-class Album with _$Album {
+class AlbumModel with _$AlbumModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Album(
+  const factory AlbumModel(
     String? albumType,
     int? totalTracks,
     List<String>? availableMarkets,
@@ -28,9 +28,9 @@ class Album with _$Album {
     int? popularity,
     List<Artists>? artists,
     Tracks? tracks,
-  ) = _Album;
+  ) = _AlbumModel;
 
-  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+  factory AlbumModel.fromJson(Map<String, dynamic> json) => _$AlbumModelFromJson(json);
 }
 
 @freezed

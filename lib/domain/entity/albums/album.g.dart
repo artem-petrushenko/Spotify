@@ -6,7 +6,8 @@ part of 'album.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
+_$_AlbumModel _$$_AlbumModelFromJson(Map<String, dynamic> json) =>
+    _$_AlbumModel(
       json['album_type'] as String?,
       json['total_tracks'] as int?,
       (json['available_markets'] as List<dynamic>?)
@@ -46,7 +47,8 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
           : Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
+Map<String, dynamic> _$$_AlbumModelToJson(_$_AlbumModel instance) =>
+    <String, dynamic>{
       'album_type': instance.albumType,
       'total_tracks': instance.totalTracks,
       'available_markets': instance.availableMarkets,

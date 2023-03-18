@@ -6,7 +6,8 @@ part of 'artist.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Artist _$$_ArtistFromJson(Map<String, dynamic> json) => _$_Artist(
+_$_ArtistModel _$$_ArtistModelFromJson(Map<String, dynamic> json) =>
+    _$_ArtistModel(
       (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       json['external_urls'] == null
           ? null
@@ -26,7 +27,8 @@ _$_Artist _$$_ArtistFromJson(Map<String, dynamic> json) => _$_Artist(
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ArtistToJson(_$_Artist instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ArtistModelToJson(_$_ArtistModel instance) =>
+    <String, dynamic>{
       'genres': instance.genres,
       'external_urls': instance.externalUrls?.toJson(),
       'followers': instance.followers?.toJson(),
