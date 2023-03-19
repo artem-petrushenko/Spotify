@@ -11,6 +11,8 @@ import 'package:spotify_client/ui/screens/media_library/media_library_screen.dar
 
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
+import 'package:spotify_client/ui/screens/player/player_screen.dart';
+import 'package:spotify_client/ui/screens/player/player_view_model.dart';
 
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 import 'package:spotify_client/ui/screens/settings/settings_screen.dart';
@@ -108,5 +110,12 @@ class ScreenFactory {
 
   Widget makeLocalization() {
     return const LocalizationScreen();
+  }
+
+  Widget makePlayer() {
+    return ChangeNotifierProvider(
+      create: (context) => PlayerViewModel(),
+      child: const PlayerScreen(),
+    );
   }
 }

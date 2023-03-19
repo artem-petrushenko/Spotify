@@ -6,29 +6,32 @@ part of 'available_devices.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AvailableDevices _$AvailableDevicesFromJson(Map<String, dynamic> json) =>
-    AvailableDevices(
-      devices: (json['devices'] as List<dynamic>?)
+_$_AvailableDevicesModel _$$_AvailableDevicesModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_AvailableDevicesModel(
+      (json['devices'] as List<dynamic>?)
           ?.map((e) => Devices.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$AvailableDevicesToJson(AvailableDevices instance) =>
+Map<String, dynamic> _$$_AvailableDevicesModelToJson(
+        _$_AvailableDevicesModel instance) =>
     <String, dynamic>{
-      'devices': instance.devices,
+      'devices': instance.devices?.map((e) => e.toJson()).toList(),
     };
 
-Devices _$DevicesFromJson(Map<String, dynamic> json) => Devices(
-      id: json['id'] as String?,
-      isActive: json['is_active'] as bool?,
-      isPrivateSession: json['is_private_session'] as bool?,
-      isRestricted: json['is_restricted'] as bool?,
-      name: json['name'] as String?,
-      type: json['type'] as String?,
-      volumePercent: json['volume_percent'] as int?,
+_$_Devices _$$_DevicesFromJson(Map<String, dynamic> json) => _$_Devices(
+      json['id'] as String?,
+      json['is_active'] as bool?,
+      json['is_private_session'] as bool?,
+      json['is_restricted'] as bool?,
+      json['name'] as String?,
+      json['type'] as String?,
+      json['volume_percent'] as int?,
     );
 
-Map<String, dynamic> _$DevicesToJson(Devices instance) => <String, dynamic>{
+Map<String, dynamic> _$$_DevicesToJson(_$_Devices instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'is_active': instance.isActive,
       'is_private_session': instance.isPrivateSession,
