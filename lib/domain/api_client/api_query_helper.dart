@@ -9,12 +9,14 @@ import 'package:spotify_client/domain/api_client/api_client_exception.dart';
 
 class ApiQueryHelper {
   Future<dynamic> get({
-    required String url,
+    required String endpoint,
     required String accessToken,
+    Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final response = await http.get(
-        Uri.parse('${Configuration.queryHost}$url'),
+        Uri.https(
+            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -33,13 +35,15 @@ class ApiQueryHelper {
   }
 
   Future<void> delete({
-    required String url,
+    required String endpoint,
     required String accessToken,
-    required Map<String, dynamic>? body,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final response = await http.delete(
-        Uri.parse('${Configuration.queryHost}$url'),
+        Uri.https(
+            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -65,8 +69,8 @@ class ApiQueryHelper {
   }) async {
     try {
       final response = await http.put(
-        Uri.https(
-            'api.spotify.com', endpoint, _removeMapNulls(queryParameters)),
+        Uri.https(Configuration.queryHost, endpoint,
+            _removeMapNulls(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -84,15 +88,15 @@ class ApiQueryHelper {
   }
 
   Future<dynamic> post({
-    required String url,
+    required String endpoint,
     required String accessToken,
-    required Map<String, dynamic>? body,
-    required Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('${Configuration.queryHost}$url')
-            .replace(queryParameters: queryParameters),
+        Uri.https(
+            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -134,6 +138,16 @@ class ApiQueryHelper {
   Map<String, dynamic>? responseToMap(http.Response response) =>
       jsonDecode(response.body) as Map<String, dynamic>;
 
+  Map<String, dynamic>? _mapConversion(Map<String, dynamic>? map) {
+    final removeMapNulls = _removeMapNulls(map);
+    return removeMapNulls?.length != null
+        ? _mapDynamicToString(removeMapNulls)
+        : null;
+  }
+
   Map<String, dynamic>? _removeMapNulls(Map<String, dynamic>? map) =>
       map?..removeWhere((key, dynamic value) => value == null);
+
+  Map<String, String>? _mapDynamicToString(Map<String, dynamic>? map) =>
+      map?.map((key, dynamic value) => MapEntry(key, value.toString()));
 }

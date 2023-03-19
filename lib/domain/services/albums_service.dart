@@ -11,42 +11,48 @@ class AlbumsService {
   final _albumsApiClient = AlbumsApiClient();
 
   Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
-    required String market,
-    required int offset,
-    required int limit,
+    String? market,
+    int? offset,
+    int? limit,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final usersSavedAlbums = await _albumsApiClient.getUsersSavedAlbums(
       accessToken: accessToken ?? '',
-      market: market,
-      offset: offset,
-      limit: limit,
+      queryParameters: <String, dynamic>{
+        'limit': limit,
+        'market': market,
+        'offset': offset,
+      },
     );
     return usersSavedAlbums;
   }
 
   Future<SeveralAlbumsModel> getSeveralAlbums({
-    required String market,
     required List<String> ids,
+    String? market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final severalAlbums = await _albumsApiClient.getSeveralAlbums(
       accessToken: accessToken ?? '',
-      ids: ids.join(','),
-      market: market,
+      queryParameters: <String, dynamic>{
+        'ids': ids,
+        'market': market,
+      },
     );
     return severalAlbums;
   }
 
   Future<AlbumModel> getAlbum({
-    required String market,
     required String id,
+    String? market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final album = await _albumsApiClient.getAlbum(
       accessToken: accessToken ?? '',
       id: id,
-      market: market,
+      queryParameters: <String, dynamic>{
+        'market': market,
+      },
     );
     return album;
   }

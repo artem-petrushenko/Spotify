@@ -6,17 +6,19 @@ class TracksService {
   final _sessionDataProvider = SessionDataProvider();
   final _tracksApiClient = TracksApiClient();
 
-  Future<UsersSavedTracksModel> getUsersSavedTracksData({
-    required String market,
-    required int offset,
-    required int limit,
+  Future<UsersSavedTracksModel> getUsersSavedTracks({
+    String? market,
+    int? offset,
+    int? limit,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final usersSavedTracks = await _tracksApiClient.getUsersSavedTracks(
       accessToken: accessToken ?? '',
-      market: market,
-      offset: offset,
-      limit: limit,
+      queryParameters: <String, dynamic>{
+        'limit': limit,
+        'market': market,
+        'offset': offset,
+      },
     );
     return usersSavedTracks;
   }

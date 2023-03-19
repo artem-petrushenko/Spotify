@@ -54,7 +54,7 @@ class UserProfileViewModel extends ChangeNotifier {
 
   Future<void> _loadDetails() async {
     await _userService
-        .getCurrentUserProfileData()
+        .getCurrentUserProfile()
         .then((value) => _addUserData(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {

@@ -9,15 +9,11 @@ class AlbumsApiClient {
 
   Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
     required String accessToken,
-    required String market,
-    required int offset,
-    required int limit,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me/albums'
-          '?limit=$limit'
-          '&market=$market'
-          '&offset=$offset',
+      endpoint: '/v1/me/albums',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return UsersSavedAlbumsModel.fromJson(response);
@@ -25,13 +21,11 @@ class AlbumsApiClient {
 
   Future<SeveralAlbumsModel> getSeveralAlbums({
     required String accessToken,
-    required String ids,
-    required String market,
+    required Map<String, dynamic> queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/albums'
-          '?ids=$ids'
-          '&market=$market',
+      endpoint: '/v1/albums',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return SeveralAlbumsModel.fromJson(response);
@@ -40,11 +34,11 @@ class AlbumsApiClient {
   Future<AlbumModel> getAlbum({
     required String accessToken,
     required String id,
-    required String market,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/albums/$id'
-          '?market=$market',
+      endpoint: '/v1/albums/$id',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return AlbumModel.fromJson(response);

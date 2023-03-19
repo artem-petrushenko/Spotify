@@ -9,15 +9,17 @@ class PlaylistsService {
   final _playlistsApiClient = PlaylistsApiClient();
 
   Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists({
-    required int offset,
-    required int limit,
+    int? offset,
+    int? limit,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final currentUsersPlaylists =
         await _playlistsApiClient.getCurrentUsersPlaylists(
       accessToken: accessToken ?? '',
-      offset: offset,
-      limit: limit,
+      queryParameters: <String, dynamic>{
+        'offset': offset,
+        'limit': limit,
+      },
     );
     return currentUsersPlaylists;
   }

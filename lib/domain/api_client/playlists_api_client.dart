@@ -6,13 +6,11 @@ class PlaylistsApiClient {
 
   Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists({
     required String accessToken,
-    required int offset,
-    required int limit,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me/playlists'
-          '?offset=$offset'
-          '&limit=$limit',
+      endpoint: '/v1/me/playlists',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return CurrentUsersPlaylistsModel.fromJson(response);

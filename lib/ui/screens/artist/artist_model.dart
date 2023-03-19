@@ -193,7 +193,7 @@ class ArtistViewModel extends ChangeNotifier {
         .then((value) => _addArtistsTopTracks(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _artistService
-        .getArtistsRelatedArtists(id: artistId, market: 'ES')
+        .getArtistsRelatedArtists(id: artistId)
         .then((value) => _addArtistsRelatedArtists(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _artistService
@@ -234,7 +234,8 @@ class ArtistViewModel extends ChangeNotifier {
         .toList();
   }
 
-  void _addArtistsRelatedArtists(ArtistsRelatedArtistsModel artistsRelatedArtists) {
+  void _addArtistsRelatedArtists(
+      ArtistsRelatedArtistsModel artistsRelatedArtists) {
     data.artistsRelatedArtists = artistsRelatedArtists.artists
         .map((e) => ArtistsRelatedArtistsData(
               id: e.id,

@@ -17,33 +17,41 @@ class PlayerService {
     return availableDevices;
   }
 
-  Future<void> skipToNext() async {
+  Future<void> skipToNext({
+    String? deviceId,
+  }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     await _playerApiClient.skipToNext(
       accessToken: accessToken ?? '',
-      body: null,
-      queryParameters: null,
+      queryParameters: <String, dynamic>{
+        'device_id': deviceId,
+      },
     );
   }
 
-  Future<void> skipToPrevious() async {
+  Future<void> skipToPrevious({
+    String? deviceId,
+  }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     await _playerApiClient.skipToPrevious(
       accessToken: accessToken ?? '',
-      body: null,
-      queryParameters: null,
+      queryParameters: <String, dynamic>{
+        'device_id': deviceId,
+      },
     );
   }
 
   Future<PlaybackStateModel> getPlaybackState({
-    required String additionalTypes,
-    required String market,
+    String? additionalTypes,
+    String? market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final availableDevices = await _playerApiClient.getPlaybackState(
       accessToken: accessToken ?? '',
-      additionalTypes: additionalTypes,
-      market: market,
+      queryParameters: <String, dynamic>{
+        'market': market,
+        'additional_types': additionalTypes,
+      },
     );
     return availableDevices;
   }
@@ -56,7 +64,7 @@ class PlayerService {
     await _playerApiClient.togglePlaybackShuffle(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
-        'state': state.toString(),
+        'state': state,
         'device_id': deviceId,
       },
     );

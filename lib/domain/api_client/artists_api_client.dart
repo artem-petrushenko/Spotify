@@ -12,7 +12,7 @@ class ArtistsApiClient {
     required String accessToken,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/artists/$id',
+      endpoint: '/v1/artists/$id',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return ArtistModel.fromJson(response);
@@ -21,11 +21,11 @@ class ArtistsApiClient {
   Future<ArtistsTopTracksModel> getArtistsTopTracks({
     required String id,
     required String accessToken,
-    required String market,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/artists/$id/top-tracks'
-          '?market=$market',
+      endpoint: '/v1/artists/$id/top-tracks',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return ArtistsTopTracksModel.fromJson(response);
@@ -36,7 +36,7 @@ class ArtistsApiClient {
     required String accessToken,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/artists/$id/related-artists',
+      endpoint: '/v1/artists/$id/related-artists',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return ArtistsRelatedArtistsModel.fromJson(response);
@@ -44,18 +44,12 @@ class ArtistsApiClient {
 
   Future<ArtistsAlbumsModel> getArtistsAlbums({
     required String id,
-    required String includeGroups,
-    required int limit,
-    required String market,
-    required int offset,
     required String accessToken,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/artists/$id/albums'
-          '?include_groups=$includeGroups'
-          '&limit=$limit'
-          '&market=$market'
-          '&offset=$offset',
+      endpoint: '/v1/artists/$id/albums',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return ArtistsAlbumsModel.fromJson(response);

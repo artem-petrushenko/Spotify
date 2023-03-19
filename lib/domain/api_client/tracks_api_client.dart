@@ -6,15 +6,11 @@ class TracksApiClient {
 
   Future<UsersSavedTracksModel> getUsersSavedTracks({
     required String accessToken,
-    required String market,
-    required int offset,
-    required int limit,
+    required Map<String, dynamic> queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me/tracks'
-          '?limit=$limit'
-          '&market=$market'
-          '&offset=$offset',
+      endpoint: '/v1/me/tracks',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return UsersSavedTracksModel.fromJson(response);

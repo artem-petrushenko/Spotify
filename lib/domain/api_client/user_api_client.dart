@@ -4,9 +4,11 @@ import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 class UserApiClient {
   final _apiQueryHelper = ApiQueryHelper();
 
-  Future<CurrentUserProfileModel> getCurrentUserProfile(String accessToken) async {
+  Future<CurrentUserProfileModel> getCurrentUserProfile({
+    required String accessToken,
+  }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me',
+      endpoint: '/v1/me',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return CurrentUserProfileModel.fromJson(response);

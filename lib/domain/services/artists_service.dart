@@ -24,20 +24,21 @@ class ArtistService {
 
   Future<ArtistsTopTracksModel> getArtistsTopTracks({
     required String id,
-    required String market,
+    String? market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final artistsTopTracks = await _artistsApiClient.getArtistsTopTracks(
       accessToken: accessToken ?? '',
       id: id,
-      market: market,
+      queryParameters: <String, dynamic>{
+        'market': market,
+      },
     );
     return artistsTopTracks;
   }
 
   Future<ArtistsRelatedArtistsModel> getArtistsRelatedArtists({
     required String id,
-    required String market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final artistsRelatedArtists =
@@ -50,19 +51,21 @@ class ArtistService {
 
   Future<ArtistsAlbumsModel> getArtistsAlbums({
     required String id,
-    required int limit,
-    required int offset,
-    required String market,
-    required List<String> includeGroups,
+    int? limit,
+    int? offset,
+    String? market,
+    List<String>? includeGroups,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final artistsAlbum = await _artistsApiClient.getArtistsAlbums(
       accessToken: accessToken ?? '',
       id: id,
-      includeGroups: includeGroups.join(','),
-      limit: limit,
-      market: market,
-      offset: offset,
+      queryParameters: <String, dynamic>{
+        'include_groups': includeGroups?.join(','),
+        'limit': limit,
+        'market': market,
+        'offset': offset,
+      },
     );
     return artistsAlbum;
   }

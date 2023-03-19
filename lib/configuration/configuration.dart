@@ -4,5 +4,5 @@ class Configuration {
   static const redirectUri = 'burgerdonalds://spotify.client/auth';
 
   static const accountHost = 'https://accounts.spotify.com';
-  static const queryHost = 'https://api.spotify.com';
+  static const queryHost = 'api.spotify.com';
 }

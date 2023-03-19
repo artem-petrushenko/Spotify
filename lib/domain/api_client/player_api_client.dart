@@ -10,7 +10,7 @@ class PlayerApiClient {
     required String accessToken,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me/player/devices',
+      endpoint: '/v1/me/player/devices',
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return AvailableDevicesModel.fromJson(response);
@@ -18,39 +18,33 @@ class PlayerApiClient {
 
   Future<void> skipToNext({
     required String accessToken,
-    required Map<String, dynamic>? body,
-    required Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
   }) async {
     await _apiQueryHelper.post(
-      url: '/v1/me/player/next',
+      endpoint: '/v1/me/player/next',
       accessToken: accessToken,
-      body: body,
       queryParameters: queryParameters,
     );
   }
 
   Future<void> skipToPrevious({
     required String accessToken,
-    required Map<String, dynamic>? body,
-    required Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
   }) async {
     await _apiQueryHelper.post(
-      url: '/v1/me/player/previous',
+      endpoint: '/v1/me/player/previous',
       accessToken: accessToken,
-      body: body,
       queryParameters: queryParameters,
     );
   }
 
   Future<PlaybackStateModel> getPlaybackState({
     required String accessToken,
-    required String additionalTypes,
-    required String market,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final response = await _apiQueryHelper.get(
-      url: '/v1/me/player'
-          '?market=$market'
-          '&additional_types=$additionalTypes',
+      endpoint: '/v1/me/player',
+      queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return PlaybackStateModel.fromJson(response);

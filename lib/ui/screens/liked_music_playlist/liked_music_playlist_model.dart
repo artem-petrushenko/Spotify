@@ -51,7 +51,7 @@ class LikedMusicPlaylistViewModel extends ChangeNotifier {
 
   void _loadDetails() async {
     await _tracksService
-        .getUsersSavedTracksData(market: 'ES', offset: offset, limit: 20)
+        .getUsersSavedTracks(market: 'ES', offset: offset, limit: 20)
         .then((value) => _addTracks(value))
         .onError((error, stackTrace) => data.status = Status.error);
     offset = offset + 20;
