@@ -16,6 +16,17 @@ class PlayerApiClient {
     return AvailableDevicesModel.fromJson(response);
   }
 
+  Future<void> transferPlayback({
+    required String accessToken,
+    Map<String, dynamic>? body,
+  }) async {
+    await _apiQueryHelper.put(
+      endpoint: '/v1/me/player',
+      accessToken: accessToken,
+      body: body,
+    );
+  }
+
   Future<void> skipToNext({
     required String accessToken,
     Map<String, dynamic>? queryParameters,

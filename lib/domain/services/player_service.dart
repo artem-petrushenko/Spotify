@@ -17,6 +17,20 @@ class PlayerService {
     return availableDevices;
   }
 
+  Future<void> transferPlayback({
+    required List<String> deviceIds,
+    bool? play,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.transferPlayback(
+      accessToken: accessToken ?? '',
+      body: <String, dynamic>{
+        'device_ids': deviceIds,
+        'play': play,
+      },
+    );
+  }
+
   Future<void> skipToNext({
     String? deviceId,
   }) async {
