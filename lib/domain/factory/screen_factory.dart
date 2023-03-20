@@ -31,6 +31,8 @@ import 'package:spotify_client/ui/screens/main/main_screen.dart';
 
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
+import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_screen.dart';
+import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_view_model.dart';
 
 import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
@@ -116,6 +118,13 @@ class ScreenFactory {
     return ChangeNotifierProvider(
       create: (context) => PlayerViewModel(),
       child: const PlayerScreen(),
+    );
+  }
+
+  Widget makeTransferPlayback() {
+    return ChangeNotifierProvider(
+      create: (context) => TransferPlaybackViewModel(),
+      child: const TransferPlaybackScreen(),
     );
   }
 }

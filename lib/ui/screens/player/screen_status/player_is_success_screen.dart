@@ -117,7 +117,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => model.openTransferPlayback(context),
                     icon: const Icon(Icons.devices),
                   ),
                   Row(

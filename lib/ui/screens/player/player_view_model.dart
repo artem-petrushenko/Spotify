@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
+import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 enum Status { loading, completed, error }
 
@@ -83,6 +84,9 @@ class PlayerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void openTransferPlayback(BuildContext context) => Navigator.of(context)
+      .pushNamed(MainNavigationRouteNames.transferPlaybackScreen);
+
   void skipToNext() async {
     await _playerService.skipToNext().then((value) => loadDetails());
   }
@@ -115,7 +119,6 @@ class PlayerViewModel extends ChangeNotifier {
     );
     data.positionMs = playbackStateModel.progressMs?.toDouble() ?? 0;
   }
-
 
   void seekToPosition(double position) async {
     await _playerService.seekToPosition(positionMs: position.toInt());
