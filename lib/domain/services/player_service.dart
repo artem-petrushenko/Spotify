@@ -41,6 +41,20 @@ class PlayerService {
     );
   }
 
+  Future<void> seekToPosition({
+    required int positionMs,
+    String? deviceId,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.seekToPosition(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'position_ms': positionMs,
+        'device_id': deviceId,
+      },
+    );
+  }
+
   Future<PlaybackStateModel> getPlaybackState({
     String? additionalTypes,
     String? market,

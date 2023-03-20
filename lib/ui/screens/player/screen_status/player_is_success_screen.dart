@@ -38,16 +38,20 @@ class PlayerIsSuccessScreen extends StatelessWidget {
                 ),
               ),
               Slider(
-                  value: (data.playerData.progressMs?.toDouble() ?? 1) /
-                      (data.playerData.durationMs?.toDouble() ?? 1),
-                  onChanged: (value) => print(value)),
+                max: data.playerData.durationMs?.toDouble() ?? 0,
+                value: model.data.positionMs,
+                onChangeEnd: (double position) =>
+                    model.seekToPosition(position),
+                onChanged: (double position) =>
+                    model.onChangePosition(position),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     DateFormat('mm:ss').format(
                       DateTime.fromMillisecondsSinceEpoch(
-                        data.playerData.progressMs ?? 0,
+                        model.data.positionMs.toInt(),
                       ),
                     ),
                   ),
@@ -92,7 +96,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
                     icon: const Icon(Icons.skip_previous_rounded),
                   ),
                   IconButton(
-                    onPressed: (){},
+                    onPressed: () {},
                     icon: Icon(
                       data.playerData.isPlaying ?? true
                           ? Icons.pause_rounded

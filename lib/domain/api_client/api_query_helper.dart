@@ -70,7 +70,7 @@ class ApiQueryHelper {
     try {
       final response = await http.put(
         Uri.https(Configuration.queryHost, endpoint,
-            _removeMapNulls(queryParameters)),
+            _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",

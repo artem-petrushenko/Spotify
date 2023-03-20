@@ -38,6 +38,17 @@ class PlayerApiClient {
     );
   }
 
+  Future<void> seekToPosition({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    await _apiQueryHelper.put(
+      endpoint: '/v1/me/player/seek',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    );
+  }
+
   Future<PlaybackStateModel> getPlaybackState({
     required String accessToken,
     Map<String, dynamic>? queryParameters,

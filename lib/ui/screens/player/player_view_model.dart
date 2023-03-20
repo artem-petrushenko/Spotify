@@ -51,7 +51,7 @@ class PlayerData {
 
 class PlayerRenderedData {
   Status status = Status.loading;
-  late Color color;
+  double positionMs = 0;
   PlayerData playerData = const PlayerData(
     name: '',
     artist: '',
@@ -77,7 +77,6 @@ class PlayerViewModel extends ChangeNotifier {
         .getPlaybackState(market: 'ES', additionalTypes: 'track')
         .then((value) => _addPlayerData(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    data.color = Colors.deepPurple.shade600;
     if (data.status != Status.error) {
       data.status = Status.completed;
     }
@@ -114,5 +113,17 @@ class PlayerViewModel extends ChangeNotifier {
       isPlaying: playbackStateModel.isPlaying,
       durationMs: playbackStateModel.item?.durationMs,
     );
+    data.positionMs = playbackStateModel.progressMs?.toDouble() ?? 0;
+  }
+
+
+  void seekToPosition(double position) async {
+    await _playerService.seekToPosition(positionMs: position.toInt());
+    onChangePosition(position);
+  }
+
+  void onChangePosition(double position) {
+    data.positionMs = position;
+    notifyListeners();
   }
 }
