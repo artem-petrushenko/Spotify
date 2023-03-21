@@ -6,7 +6,7 @@ class TransferPlaybackErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('SUCCESS'),
+      body: Text('ERROR'),
     );
   }
 }

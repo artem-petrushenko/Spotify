@@ -13,17 +13,13 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<TransferPlaybackViewModel>();
-    final deviceIsActive = context.select((TransferPlaybackViewModel model) =>
-        model.data.availableDevices
-            .where((element) => element.isActive == true)
-            .first);
+    final deviceIsActive = context
+        .select((TransferPlaybackViewModel model) => model.data.deviceIsActive);
     final deviceIsNotActives = context.select(
-        (TransferPlaybackViewModel model) => model.data.availableDevices
-            .where((element) => element.isActive != true)
-            .toList());
+        (TransferPlaybackViewModel model) => model.data.deviceIsNotActives);
     return Scaffold(
       bottomNavigationBar: SizedBox(
-        height: 48.0,
+        height: 64.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: Constants.horizontalPadding,
@@ -33,15 +29,23 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Icon(
-                Icons.volume_up_rounded,
+                (deviceIsActive?.volumePercent ?? 0) != 0
+                    ? Icons.volume_up_rounded
+                    : Icons.volume_off_rounded,
                 color: Theme.of(context).colorScheme.primary,
               ),
               Expanded(
                 child: Slider(
                   min: 0,
                   max: 100,
-                  value: 35,
-                  onChanged: (double volume) {},
+                  divisions: 100,
+                  label:
+                      (deviceIsActive?.volumePercent ?? 0).round().toString(),
+                  value: (deviceIsActive?.volumePercent ?? 0).toDouble(),
+                  onChangeEnd: (double volumePercent) =>
+                      model.setPlaybackVolume(volumePercent),
+                  onChanged: (double volumePercent) =>
+                      model.onChangePosition(volumePercent),
                 ),
               ),
             ],
@@ -92,7 +96,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 Text(
-                                  deviceIsActive.name ?? '',
+                                  deviceIsActive?.name ?? '',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -110,7 +114,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      deviceIsNotActives.isNotEmpty
+                      deviceIsNotActives?.length != 0
                           ? 'You need to select another device'
                           : 'Other devices not found',
                       style: Theme.of(context).textTheme.labelLarge,
@@ -120,35 +124,78 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 20,
-              (context, index) => GestureDetector(
-                onTap: () => model.transferPlayback(
-                    deviceIsNotActives[0].id ?? '', context),
-                child: ListTile(
-                  onTap: () => model.transferPlayback(
-                    deviceIsNotActives[index].id ?? '',
-                    context,
+          (deviceIsNotActives?.length != 0)
+              ? SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: deviceIsNotActives?.length,
+                    (context, index) => GestureDetector(
+                      onTap: () => model.transferPlayback(
+                          deviceIsNotActives?[index].id ?? '', context),
+                      child: ListTile(
+                        onTap: () => model.transferPlayback(
+                          deviceIsNotActives?[index].id ?? '',
+                          context,
+                        ),
+                        dense: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        visualDensity: VisualDensity.comfortable,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: Constants.horizontalPadding,
+                        ),
+                        iconColor: Theme.of(context).colorScheme.secondary,
+                        leading: Icon(deviceIsNotActives?[index].iconData),
+                        subtitle: Text(
+                            'Volume: ${deviceIsNotActives?[index].volumePercent ?? 0}'),
+                        title: Text(
+                          deviceIsNotActives?[index].name ?? '',
+                        ),
+                      ),
+                    ),
                   ),
-                  dense: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  ),
-                  visualDensity: VisualDensity.standard,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding,
-                  ),
-                  iconColor: Theme.of(context).colorScheme.secondary,
-                  leading: const Icon(Icons.computer_rounded),
-                  title: Text(
-                    deviceIsNotActives[0].name ?? '',
-                    style: Theme.of(context).textTheme.labelMedium,
+                )
+              : SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: Constants.horizontalPadding,
+                        ),
+                        iconColor: Theme.of(context).colorScheme.secondary,
+                        leading: const Icon(Icons.wifi_rounded),
+                        title: const Text('Check your Wi-Fi connection'),
+                        subtitle: const Text(
+                            'Devices must be connected to the same Wi-FI network'),
+                      ),
+                      ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: Constants.horizontalPadding,
+                        ),
+                        iconColor: Theme.of(context).colorScheme.secondary,
+                        leading: const Icon(Icons.devices_rounded),
+                        title: const Text('Play music on another device'),
+                        subtitle: const Text('Then the music will appear here'),
+                      ),
+                      ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: Constants.horizontalPadding,
+                        ),
+                        iconColor: Theme.of(context).colorScheme.secondary,
+                        leading: const Icon(Icons.power_settings_new_rounded),
+                        title: const Text('Reload speaker'),
+                        subtitle: const Text(
+                            'If the device is new, follow the setup instructions'),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -169,6 +216,12 @@ class _MixingMusicAnimationState extends State<MixingMusicAnimation>
   final random = Random();
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     _controller = AnimationController(
@@ -176,8 +229,7 @@ class _MixingMusicAnimationState extends State<MixingMusicAnimation>
       duration: const Duration(milliseconds: 750),
     )..forward();
 
-    _changeOfSizeAnimation =
-        Tween(begin: 20.0, end: 32.0).animate(
+    _changeOfSizeAnimation = Tween(begin: 20.0, end: 32.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOutBack,
@@ -185,8 +237,7 @@ class _MixingMusicAnimationState extends State<MixingMusicAnimation>
     );
 
     _controller.addListener(() {
-      setState(() {
-      });
+      setState(() {});
     });
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {

@@ -82,4 +82,15 @@ class PlayerApiClient {
       queryParameters: queryParameters,
     );
   }
+
+  Future<void> setPlaybackVolume({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    await _apiQueryHelper.put(
+      endpoint: '/v1/me/player/volume',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    );
+  }
 }

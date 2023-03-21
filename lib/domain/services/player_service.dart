@@ -97,4 +97,18 @@ class PlayerService {
       },
     );
   }
+
+  Future<void> setPlaybackVolume({
+    required int volumePercent,
+    String? deviceId,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.setPlaybackVolume(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'volume_percent': volumePercent,
+        'device_id': deviceId,
+      },
+    );
+  }
 }
