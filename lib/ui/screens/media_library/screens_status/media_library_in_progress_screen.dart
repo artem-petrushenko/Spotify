@@ -22,7 +22,6 @@ class MediaLibraryInProgressScreen extends StatelessWidget {
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) => Card(
-              elevation: 0,
               clipBehavior: Clip.hardEdge,
               child: SizedBox(
                 width: double.infinity,
@@ -41,33 +40,38 @@ class MediaLibraryInProgressScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 64.0,
-                            height: 16.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 64.0,
+                              height: 16.0,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 6.0),
-                          Container(
-                            width: 36.0,
-                            height: 16.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
+                            const SizedBox(height: 6.0),
+                            Container(
+                              width: 36.0,
+                              height: 16.0,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],

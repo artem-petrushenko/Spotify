@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 
-import 'package:spotify_client/ui/theme/theme_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:spotify_client/configuration/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.read<SettingViewModel>();
-    final themeModel = context.watch<ThemeModel>();
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -23,31 +24,37 @@ class SettingsScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Card(
-                  elevation: 0,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          AppLocalizations.of(context)!.darkTheme,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-                      Switch(
-                        value: themeModel.isDarkTheme,
-                        onChanged: (value) => themeModel.setThemeData(value),
-                      ),
-                    ],
+                ListTile(
+                  onTap: () => model.openTheme(context),
+                  dense: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   ),
+                  visualDensity: VisualDensity.comfortable,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: Constants.horizontalPadding,
+                  ),
+                  iconColor: Theme.of(context).colorScheme.secondary,
+                  leading: const Icon(Icons.color_lens_rounded),
+                  title: const Text('Theme'),
                 ),
-                ElevatedButton(
-                    onPressed: () => model.openLocalization(context),
-                    child: Text(AppLocalizations.of(context)!.language)),
-                ElevatedButton(
+                ListTile(
+                  onTap: () => model.openLocalization(context),
+                  dense: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  visualDensity: VisualDensity.comfortable,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: Constants.horizontalPadding,
+                  ),
+                  iconColor: Theme.of(context).colorScheme.secondary,
+                  leading: const Icon(Icons.text_format_rounded),
+                  title: Text(AppLocalizations.of(context)!.language),
+                ),
+                FilledButton(
                   onPressed: () => model.logout(context),
-                  child:  Text(AppLocalizations.of(context)!.exit),
+                  child: Text(AppLocalizations.of(context)!.exit),
                 )
               ],
             ),

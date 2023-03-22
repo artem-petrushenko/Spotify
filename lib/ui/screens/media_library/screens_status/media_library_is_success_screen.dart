@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 
+import 'package:spotify_client/ui/widgets/image_network_widget.dart';
+
 class MediaLibraryIsSuccessScreen extends StatelessWidget {
   const MediaLibraryIsSuccessScreen({super.key});
 
@@ -17,10 +19,7 @@ class MediaLibraryIsSuccessScreen extends StatelessWidget {
       slivers: [
         SliverAppBar(
           centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.mediaLibrary,
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
+          title: Text(AppLocalizations.of(context)!.mediaLibrary),
           floating: true,
           pinned: true,
           snap: true,
@@ -41,6 +40,7 @@ class MediaLibraryIsSuccessScreen extends StatelessWidget {
           ],
         ),
         isGridCards ? const GridCardsWidget() : const ListCardWidget(),
+        const SliverToBoxAdapter(child: SizedBox(height: 80.0)),
       ],
     );
   }
@@ -57,7 +57,6 @@ class ListCardWidget extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           return Card(
-            elevation: 0,
             clipBehavior: Clip.hardEdge,
             child: Row(
               children: [
@@ -69,16 +68,15 @@ class ListCardWidget extends StatelessWidget {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(12.0),
                       ),
-                      child: Image.network(
-                        media[index].imageUrl ?? '',
-                        fit: BoxFit.cover,
+                      child: ImageNetworkWidget(
+                        imageUrl: media[index].imageUrl ?? '',
                       ),
                     ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,13 +84,15 @@ class ListCardWidget extends StatelessWidget {
                         Text(
                           media[index].name ?? '',
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
                           media[index].type ?? '',
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -123,48 +123,50 @@ class GridCardsWidget extends StatelessWidget {
               .read<MediaLibraryViewModel>()
               .openMediaTypeScreen(context, media[index]),
           child: Card(
-            elevation: 0,
             clipBehavior: Clip.hardEdge,
-            child: SizedBox(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(12.0),
-                        bottomRight: Radius.circular(12.0),
-                      ),
-                      child: Image.network(
-                        media[index].imageUrl ?? '',
-                        fit: BoxFit.cover,
-                      ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(12.0),
+                      bottomRight: Radius.circular(12.0),
+                    ),
+                    child: ImageNetworkWidget(
+                      imageUrl: media[index].imageUrl ?? '',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           media[index].name ?? '',
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
                           media[index].type ?? '',
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -132,33 +132,31 @@ class TransferPlaybackViewModel extends ChangeNotifier {
           )
           .toList(),
       deviceIsActive: Device(
-        id: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .id,
-        isActive: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .isActive,
-        isRestricted: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .isRestricted,
-        name: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .name,
-        type: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .type,
-        volumePercent: availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .volumePercent,
-        iconData: _deviceIcon(availableDevicesModel.devices
-            ?.firstWhere((element) => element.isActive == true)
-            .type)
-      ),
+          id: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .id,
+          isActive: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .isActive,
+          isRestricted: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .isRestricted,
+          name: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .name,
+          type: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .type,
+          volumePercent: availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .volumePercent,
+          iconData: _deviceIcon(availableDevicesModel.devices
+              ?.firstWhere((element) => element.isActive == true)
+              .type)),
     );
   }
 
   IconData _deviceIcon(String? type) {
-    print(type);
     switch (type?.toLowerCase()) {
       case 'computer':
         return Icons.computer_rounded;

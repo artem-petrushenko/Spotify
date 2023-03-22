@@ -18,6 +18,7 @@ abstract class MainNavigationRouteNames {
   static const localizationScreen = '/localization';
   static const playerScreen = '/player';
   static const transferPlaybackScreen = '/transfer_playback';
+  static const themeScreen = '/theme';
 }
 
 class MainNavigation {
@@ -37,10 +38,10 @@ class MainNavigation {
         _screenFactory.makeUserProfile(),
     MainNavigationRouteNames.localizationScreen: (_) =>
         _screenFactory.makeLocalization(),
-    MainNavigationRouteNames.playerScreen: (_) =>
-        _screenFactory.makePlayer(),
+    MainNavigationRouteNames.playerScreen: (_) => _screenFactory.makePlayer(),
     MainNavigationRouteNames.transferPlaybackScreen: (_) =>
         _screenFactory.makeTransferPlayback(),
+    MainNavigationRouteNames.themeScreen: (_) => _screenFactory.makeTheme(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

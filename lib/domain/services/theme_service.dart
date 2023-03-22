@@ -8,4 +8,10 @@ class ThemeService {
 
   Future<void> setThemeToProvider(bool value) async =>
       await _themeDataProvider.setIsDarkTheme(value);
+
+  Future<int> getThemeSchemeFromProvider() async =>
+      await _themeDataProvider.getThemeScheme();
+
+  Future<void> setThemeSchemeToProvider(int value) async =>
+      await _themeDataProvider.setThemeScheme(value);
 }

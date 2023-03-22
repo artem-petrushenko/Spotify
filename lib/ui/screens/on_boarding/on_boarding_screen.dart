@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 
-import 'package:spotify_client/ui/theme/theme_model.dart';
+import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final themeModel = context.watch<ThemeModel>();
+    final themeModel = context.watch<ThemeViewModel>();
     final model = context.watch<OnBoardingViewModel>();
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +29,7 @@ class OnBoardingScreen extends StatelessWidget {
       body: PageView(
         controller: model.pageController,
         onPageChanged: model.onChanged,
-        children:  const [
+        children: const [
           Align(
             alignment: Alignment.topLeft,
             child: _OnBoardingWidget(

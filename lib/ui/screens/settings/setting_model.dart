@@ -12,7 +12,9 @@ class SettingViewModel extends ChangeNotifier {
     MainNavigation.resetNavigation(context);
   }
 
-  Future<void> openLocalization(BuildContext context) async {
-    Navigator.pushNamed(context, MainNavigationRouteNames.localizationScreen);
-  }
+  void openLocalization(BuildContext context) =>
+      Navigator.pushNamed(context, MainNavigationRouteNames.localizationScreen);
+
+  void openTheme(BuildContext context) =>
+      Navigator.pushNamed(context, MainNavigationRouteNames.themeScreen);
 }
