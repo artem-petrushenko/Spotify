@@ -6,9 +6,9 @@ import 'package:spotify_client/ui/navigation/main_navigation.dart';
 class MainViewModel extends ChangeNotifier {
   int selectedIndex = 0;
   final List<Widget> screens = [
-    Text('1'),
-    Text('2'),
-    Text('3'),
+    const Scaffold(body: CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('1'),)])),
+    const Scaffold(body: CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('2'),)])),
+    const Scaffold(body: CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('3'),)])),
     ScreenFactory().makeMediaLibrary(),
   ];
 

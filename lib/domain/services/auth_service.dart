@@ -17,6 +17,7 @@ class AuthService {
   Future<void> logout() async {
     await _sessionDataProvider.deleteAccessToken();
     await _sessionDataProvider.deleteCodeVerifier();
+    await _sessionDataProvider.deleteRefreshToken();
   }
 
   Future<bool> isAuth() async {
@@ -30,8 +31,17 @@ class AuthService {
     final String codeChallenge = _generateCodeChallenge(codeVerifier);
     final String state = await _generateState();
     _authApiClient.requestUserAuthorization(
-      codeChallenge: codeChallenge,
-      state: state,
+      queryParameters: <String, dynamic>{
+        'client_id': Configuration.clientID,
+        'response_type': 'code',
+        'redirect_uri': Configuration.redirectUri,
+        'state': state,
+        'scope':
+            'ugc-image-upload user-read-playback-state app-remote-control user-modify-playback-state playlist-read-private user-follow-modify playlist-read-collaborative user-follow-read user-read-currently-playing user-read-playback-position user-library-modify playlist-modify-private playlist-modify-public user-read-email user-top-read user-read-recently-played streaming user-read-private user-library-read',
+        'show_dialog': false,
+        'code_challenge_method': 'S256',
+        'code_challenge': codeChallenge
+      },
     );
   }
 
@@ -40,9 +50,14 @@ class AuthService {
     final codeVerifier = await _sessionDataProvider.getCodeVerifier() ?? '';
     final base64codec = _generateBase64Codec();
     final jsonResponse = await _authApiClient.requestAccessToken(
-      code: code,
-      codeVerifier: codeVerifier,
       base64codec: base64codec,
+      queryParameters: <String, dynamic>{
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': Configuration.redirectUri,
+        'code_verifier': codeVerifier,
+        'client_id': Configuration.clientID,
+      },
     );
     await _sessionDataProvider
         .setAccessToken(jsonResponse['access_token'] as String);
@@ -59,6 +74,24 @@ class AuthService {
       throw const ApiAuthException(ApiAuthExceptionType.incorrectState);
     }
     return queryParameters['code'] ?? '';
+  }
+
+  Future<void> requestRefreshedAccessToken() async {
+    final refreshToken = await _sessionDataProvider.getRefreshToken();
+    final base64codec = _generateBase64Codec();
+    final jsonResponse = await _authApiClient.requestRefreshedAccessToken(
+      base64codec: base64codec,
+      queryParameters: <String, dynamic>{
+        'grant_type': 'refresh_token',
+        'refresh_token': refreshToken,
+        'client_id': Configuration.clientID
+      },
+    );
+
+    await _sessionDataProvider
+        .setRefreshToken(jsonResponse['refresh_token'] as String);
+    await _sessionDataProvider
+        .setAccessToken(jsonResponse['access_token'] as String);
   }
 
   String _generateBase64Codec() {

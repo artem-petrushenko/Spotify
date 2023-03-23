@@ -12,7 +12,10 @@ class LoaderViewModel {
   }
 
   Future<void> checkAuth() async {
+    // await Future<void>.delayed(const Duration(minutes: 60));
     final isAuth = await _authService.isAuth();
+    if (isAuth == true) await _authService.requestRefreshedAccessToken();
+
     final nextScreen = isAuth
         ? MainNavigationRouteNames.mainScreen
         : MainNavigationRouteNames.onBoardingScreen;
