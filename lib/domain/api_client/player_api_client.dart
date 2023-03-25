@@ -2,9 +2,20 @@ import 'package:spotify_client/domain/api_client/api_query_helper.dart';
 
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
+import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 class PlayerApiClient {
   final _apiQueryHelper = ApiQueryHelper();
+
+  Future<UsersQueueModel> getTheUsersQueue({
+    required String accessToken,
+  }) async {
+    final response = await _apiQueryHelper.get(
+      endpoint: '/v1/me/player/queue',
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+    return UsersQueueModel.fromJson(response);
+  }
 
   Future<AvailableDevicesModel> getAvailableDevices({
     required String accessToken,

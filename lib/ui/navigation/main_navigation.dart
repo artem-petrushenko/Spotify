@@ -19,6 +19,7 @@ abstract class MainNavigationRouteNames {
   static const playerScreen = '/player';
   static const transferPlaybackScreen = '/transfer_playback';
   static const themeScreen = '/theme';
+  static const usersQueueScreen = '/users_queue';
 }
 
 class MainNavigation {
@@ -42,6 +43,8 @@ class MainNavigation {
     MainNavigationRouteNames.transferPlaybackScreen: (_) =>
         _screenFactory.makeTransferPlayback(),
     MainNavigationRouteNames.themeScreen: (_) => _screenFactory.makeTheme(),
+    MainNavigationRouteNames.usersQueueScreen: (_) =>
+        _screenFactory.makeUsersQueue(),
   };
 
   Route<Object> onGenerateRoute(RouteSettings settings) {

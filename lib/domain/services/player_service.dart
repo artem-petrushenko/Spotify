@@ -4,10 +4,19 @@ import 'package:spotify_client/domain/entity/player/available_devices.dart';
 
 import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
+import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 class PlayerService {
   final _sessionDataProvider = SessionDataProvider();
   final _playerApiClient = PlayerApiClient();
+
+  Future<UsersQueueModel> getTheUsersQueue() async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final usersQueue = await _playerApiClient.getTheUsersQueue(
+      accessToken: accessToken ?? '',
+    );
+    return usersQueue;
+  }
 
   Future<AvailableDevicesModel> getAvailableDevices() async {
     final accessToken = await _sessionDataProvider.getAccessToken();

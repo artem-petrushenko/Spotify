@@ -37,6 +37,8 @@ import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_vi
 
 import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
+import 'package:spotify_client/ui/screens/users_queue/users_queue_screen.dart';
+import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dart';
 
 class ScreenFactory {
   Widget makeOnBoarding() {
@@ -131,5 +133,12 @@ class ScreenFactory {
 
   Widget makeTheme() {
     return const ThemeScreen();
+  }
+
+  Widget makeUsersQueue() {
+    return ChangeNotifierProvider(
+      create: (context) => UsersQueueViewModel(),
+      child: const UsersQueueScreen(),
+    );
   }
 }

@@ -127,7 +127,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
                         icon: const Icon(Icons.share_rounded),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => model.usersQueue(context),
                         icon: const Icon(Icons.playlist_play_rounded),
                       ),
                     ],

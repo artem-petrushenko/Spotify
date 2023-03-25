@@ -129,4 +129,7 @@ class PlayerViewModel extends ChangeNotifier {
     data.positionMs = position;
     notifyListeners();
   }
+
+  void usersQueue(BuildContext context) => Navigator.of(context)
+      .pushNamed(MainNavigationRouteNames.usersQueueScreen);
 }
