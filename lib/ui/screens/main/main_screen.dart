@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
       body: Stack(
         children: [
           screens[selectedIndex],
-          Positioned(
+          model.isPlaybackState ? Positioned(
             bottom: 0,
             left: 0,
             right: 0,
@@ -77,7 +77,7 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ) : SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: NavigationBar(

@@ -91,19 +91,19 @@ class PlayerService {
     );
   }
 
-  Future<PlaybackStateModel> getPlaybackState({
+  Future<PlaybackStateModel?> getPlaybackState({
     String? additionalTypes,
     String? market,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
-    final availableDevices = await _playerApiClient.getPlaybackState(
+    final playbackState = await _playerApiClient.getPlaybackState(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
         'market': market,
         'additional_types': additionalTypes,
       },
     );
-    return availableDevices;
+    return playbackState;
   }
 
   Future<void> togglePlaybackShuffle({

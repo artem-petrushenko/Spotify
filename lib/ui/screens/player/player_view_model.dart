@@ -74,10 +74,10 @@ class PlayerViewModel extends ChangeNotifier {
   final data = PlayerRenderedData();
 
   void loadDetails() async {
-    await _playerService
-        .getPlaybackState(market: 'ES', additionalTypes: 'track')
-        .then((value) => _addPlayerData(value))
-        .onError((error, stackTrace) => data.status = Status.error);
+    // await _playerService
+    //     .getPlaybackState(market: 'ES', additionalTypes: 'track')
+    //     .then((value) => _addPlayerData(value))
+    //     .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
     }

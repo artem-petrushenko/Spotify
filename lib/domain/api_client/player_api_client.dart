@@ -73,16 +73,20 @@ class PlayerApiClient {
     );
   }
 
-  Future<PlaybackStateModel> getPlaybackState({
+  Future<PlaybackStateModel?> getPlaybackState({
     required String accessToken,
     Map<String, dynamic>? queryParameters,
   }) async {
-    final response = await _apiQueryHelper.get(
+    dynamic response = await _apiQueryHelper.get(
       endpoint: '/v1/me/player',
       queryParameters: queryParameters,
       accessToken: accessToken,
-    ) as Map<String, dynamic>;
-    return PlaybackStateModel.fromJson(response);
+    );
+    if (response.runtimeType == bool) {
+      return null;
+    } else {
+      return PlaybackStateModel.fromJson(response as Map<String, dynamic>);
+    }
   }
 
   Future<void> togglePlaybackShuffle({

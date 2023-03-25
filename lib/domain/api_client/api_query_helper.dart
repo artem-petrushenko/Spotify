@@ -24,7 +24,7 @@ class ApiQueryHelper {
       );
       _checkStatusCode(response);
       if (response.statusCode == 200) return responseToMap(response);
-      return;
+      return false;
     } on SocketException {
       throw const ApiClientException(ApiClientExceptionType.network);
     } on ApiClientException {
@@ -69,8 +69,8 @@ class ApiQueryHelper {
   }) async {
     try {
       final response = await http.put(
-        Uri.https(Configuration.queryHost, endpoint,
-            _mapConversion(queryParameters)),
+        Uri.https(
+            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -116,7 +116,6 @@ class ApiQueryHelper {
   }
 
   void _checkStatusCode(http.Response response) {
-    print(response.body);
     log('${response.statusCode} ${response.request}');
     switch (response.statusCode) {
       case 200:
