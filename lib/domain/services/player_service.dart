@@ -31,6 +31,28 @@ class PlayerService {
     );
   }
 
+  Future<void> startResumePlayback({
+    String? deviceId,
+    String? contextUri,
+    List<String>? uris,
+    Map<String, dynamic>? offset,
+    int? positionMs,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.startResumePlayback(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'device_id': deviceId,
+      },
+      body: <String, dynamic>{
+        'context_uri': contextUri,
+        'uris': uris,
+        'offset': offset,
+        'position_ms': positionMs,
+      },
+    );
+  }
+
   Future<void> skipToNext({
     String? deviceId,
   }) async {

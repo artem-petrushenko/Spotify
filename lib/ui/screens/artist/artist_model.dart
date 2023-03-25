@@ -7,6 +7,7 @@ import 'package:spotify_client/domain/services/artists_service.dart';
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
+import 'package:spotify_client/domain/services/player_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -17,6 +18,7 @@ class ArtistData {
   final String? image;
   final String? name;
   final String? popularity;
+  final String? contextUri;
 
   const ArtistData({
     required this.id,
@@ -25,6 +27,7 @@ class ArtistData {
     required this.image,
     required this.name,
     required this.popularity,
+    required this.contextUri,
   });
 
   ArtistData copyWith({
@@ -34,6 +37,7 @@ class ArtistData {
     String? image,
     String? name,
     String? popularity,
+    String? contextUri,
   }) {
     return ArtistData(
       id: id ?? this.id,
@@ -42,6 +46,7 @@ class ArtistData {
       image: image ?? this.image,
       name: name ?? this.name,
       popularity: popularity ?? this.popularity,
+      contextUri: contextUri ?? this.contextUri,
     );
   }
 }
@@ -51,12 +56,14 @@ class ArtistsTopTracksData {
   final String? name;
   final String? image;
   final String? artists;
+  final String? contextUri;
 
   const ArtistsTopTracksData({
     required this.id,
     required this.name,
     required this.image,
     required this.artists,
+    required this.contextUri,
   });
 
   ArtistsTopTracksData copyWith({
@@ -64,12 +71,14 @@ class ArtistsTopTracksData {
     String? name,
     String? image,
     String? artists,
+    String? contextUri,
   }) {
     return ArtistsTopTracksData(
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
       artists: artists ?? this.artists,
+      contextUri: contextUri ?? this.contextUri,
     );
   }
 }
@@ -140,6 +149,7 @@ class ArtistRenderedData {
     image: '',
     name: '',
     popularity: null,
+    contextUri: '',
   );
   List<ArtistsTopTracksData> artistsTopTracks = const [];
   List<ArtistsRelatedArtistsData> artistsRelatedArtists = const [];
@@ -178,6 +188,7 @@ class ArtistViewModel extends ChangeNotifier {
   late ScrollController scrollController;
   final data = ArtistRenderedData();
   final _artistService = ArtistService();
+  final _playerService = PlayerService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
@@ -211,6 +222,18 @@ class ArtistViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> startResumePlayback({
+    String? contextUri,
+    List<String>? uris,
+    Map<String, Map<String, dynamic>>? offset,
+  }) async {
+    await _playerService.startResumePlayback(
+      contextUri: contextUri,
+      uris: uris,
+      offset: offset,
+    );
+  }
+
   void _addArtist(ArtistModel artist) {
     data.artist = ArtistData(
       id: artist.id,
@@ -219,6 +242,7 @@ class ArtistViewModel extends ChangeNotifier {
       image: artist.images?.first.url,
       name: artist.name,
       popularity: artist.popularity.toString(),
+      contextUri: artist.uri,
     );
   }
 
@@ -230,6 +254,7 @@ class ArtistViewModel extends ChangeNotifier {
               image: e.album?.images?.first.url,
               artists:
                   e.album?.artists?.map((e) => e.name).join(', ').toString(),
+              contextUri: e.uri,
             ))
         .toList();
   }

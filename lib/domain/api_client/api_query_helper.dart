@@ -75,7 +75,7 @@ class ApiQueryHelper {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
         },
-        body: jsonEncode(body),
+        body: jsonEncode(_mapConversion(body)),
       );
       _checkStatusCode(response);
     } on SocketException {
@@ -116,6 +116,7 @@ class ApiQueryHelper {
   }
 
   void _checkStatusCode(http.Response response) {
+    print(response.body);
     log('${response.statusCode} ${response.request}');
     switch (response.statusCode) {
       case 200:

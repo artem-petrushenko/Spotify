@@ -90,6 +90,9 @@ class _FlexibleSpaceBarWidget extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artist.image);
     final opacityFlexibleSpace =
         context.select((ArtistViewModel model) => model.opacityFlexibleSpace);
+    final contextUri =
+        context.select((ArtistViewModel model) => model.data.artist.contextUri);
+    final model = context.watch<ArtistViewModel>();
     return Opacity(
       opacity: opacityFlexibleSpace,
       child: Stack(
@@ -111,7 +114,7 @@ class _FlexibleSpaceBarWidget extends StatelessWidget {
                   icon: Icons.shuffle_rounded,
                 ),
                 _CircleButtonWidget(
-                  onPressed: () {},
+                  onPressed: () => model.startResumePlayback(contextUri: contextUri ?? ''),
                   icon: Icons.play_arrow_rounded,
                 ),
               ],
