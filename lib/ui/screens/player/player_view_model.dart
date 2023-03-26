@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
@@ -66,12 +67,19 @@ class PlayerRenderedData {
 }
 
 class PlayerViewModel extends ChangeNotifier {
-  PlayerViewModel() {
-    loadDetails();
-  }
+  // PlayerViewModel() {
+  //   loadDetails();
+  // }
 
   final _playerService = PlayerService();
   final data = PlayerRenderedData();
+
+  Stream<CurrentlyPlayingTrackModel> getCurrentlyPlayingTrack() async* {
+    while (true) {
+      Duration(seconds: 1);
+      yield await _playerService.getCurrentlyPlayingTrack();
+    }
+  }
 
   void loadDetails() async {
     // await _playerService

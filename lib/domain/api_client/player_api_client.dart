@@ -1,11 +1,24 @@
 import 'package:spotify_client/domain/api_client/api_query_helper.dart';
 
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
+import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 class PlayerApiClient {
   final _apiQueryHelper = ApiQueryHelper();
+
+  Future<CurrentlyPlayingTrackModel> getCurrentlyPlayingTrack({
+    required String accessToken,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    final response = await _apiQueryHelper.get(
+      endpoint: '/v1/me/player/currently-playing',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    ) as Map<String, dynamic>;
+    return CurrentlyPlayingTrackModel.fromJson(response);
+  }
 
   Future<UsersQueueModel> getTheUsersQueue({
     required String accessToken,

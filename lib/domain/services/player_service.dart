@@ -3,12 +3,29 @@ import 'package:spotify_client/domain/api_client/player_api_client.dart';
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
 
 import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
+import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 class PlayerService {
   final _sessionDataProvider = SessionDataProvider();
   final _playerApiClient = PlayerApiClient();
+
+  Future<CurrentlyPlayingTrackModel> getCurrentlyPlayingTrack({
+    String? additionalTypes,
+    String? market,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final currentlyPlayingTrack =
+        await _playerApiClient.getCurrentlyPlayingTrack(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'additional_types': additionalTypes,
+        'market': market,
+      },
+    );
+    return currentlyPlayingTrack;
+  }
 
   Future<UsersQueueModel> getTheUsersQueue() async {
     final accessToken = await _sessionDataProvider.getAccessToken();
