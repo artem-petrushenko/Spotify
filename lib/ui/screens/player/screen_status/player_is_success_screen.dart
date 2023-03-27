@@ -14,7 +14,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => model.closedPlayer(context),
           icon: const Icon(Icons.keyboard_arrow_down_rounded),
         ),
         actions: [
@@ -37,8 +37,8 @@ class PlayerIsSuccessScreen extends StatelessWidget {
             ),
           ),
           Slider(
-            max: model.data.playerData.durationMs?.toDouble() ?? 0,
-            value: model.data.playerData.progressMs?.toDouble() ?? 0,
+            max: model.data.playerData.durationMs ?? 0,
+            value: model.data.playerData.progressMs ?? 0,
             onChangeEnd: (double position) => model.seekToPosition(position),
             onChanged: (double position) => model.onChangePosition(position),
           ),
@@ -72,7 +72,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         Text(
-                          model.data.playerData.artist ?? '',
+                          model.data.playerData.artists ?? '',
                           maxLines: 1,
                           softWrap: false,
                           overflow: TextOverflow.fade,
@@ -98,7 +98,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => model.pauseStartResumePlayback(),
         elevation: 0,
         child: Icon(
           model.data.playerData.isPlaying ?? false
@@ -112,7 +112,12 @@ class PlayerIsSuccessScreen extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-              icon: const Icon(Icons.shuffle_rounded),
+              icon: Icon(
+                Icons.shuffle_rounded,
+                color: model.data.playerData.shuffleState ?? false
+                    ? Theme.of(context).colorScheme.primary
+                    : null,
+              ),
               onPressed: () => model.togglePlaybackShuffle(),
             ),
             IconButton(
@@ -125,7 +130,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.repeat_rounded),
-              onPressed: () {},
+              onPressed: () => model.setRepeatMode(),
             ),
           ],
         ),

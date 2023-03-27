@@ -1,3 +1,4 @@
+import 'package:spotify_client/configuration/api_query_constants.dart';
 import 'package:spotify_client/domain/api_client/player_api_client.dart';
 
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
@@ -53,6 +54,46 @@ class PlayerService {
       body: <String, dynamic>{
         'device_ids': deviceIds,
         'play': play,
+      },
+    );
+  }
+
+  Future<void> setRepeatMode({
+    required String state,
+    String? deviceId,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final nextState = _getNextRepeatModeState(state);
+    await _playerApiClient.setRepeatMode(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'state': nextState,
+        'device_id': deviceId,
+      },
+    );
+  }
+
+  String _getNextRepeatModeState(String currentState) {
+    switch (currentState) {
+      case ApiQueryConstants.repeatModeStateContext:
+        return ApiQueryConstants.repeatModeStateTrack;
+      case ApiQueryConstants.repeatModeStateTrack:
+        return ApiQueryConstants.repeatModeStateOff;
+      case ApiQueryConstants.repeatModeStateOff:
+        return ApiQueryConstants.repeatModeStateContext;
+      default:
+        return ApiQueryConstants.repeatModeStateOff;
+    }
+  }
+
+  Future<void> pausePlayback({
+    String? deviceId,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.pausePlayback(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'device_id': deviceId,
       },
     );
   }

@@ -51,6 +51,28 @@ class PlayerApiClient {
     );
   }
 
+  Future<void> setRepeatMode({
+    required String accessToken,
+    required Map<String, dynamic>? queryParameters,
+  }) async {
+    await _apiQueryHelper.put(
+      endpoint: '/v1/me/player/repeat',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    );
+  }
+
+  Future<void> pausePlayback({
+    required String accessToken,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    await _apiQueryHelper.put(
+      endpoint: '/v1/me/player/pause',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    );
+  }
+
   Future<void> startResumePlayback({
     required String accessToken,
     Map<String, dynamic>? queryParameters,
