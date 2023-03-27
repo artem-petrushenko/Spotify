@@ -11,7 +11,6 @@ class PlayerIsSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<PlayerViewModel>();
-    final data = context.watch<PlayerViewModel>().data;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -25,118 +24,111 @@ class PlayerIsSuccessScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Stack(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AspectRatio(
-                aspectRatio: 1,
-                child: ImageNetworkWidget(
-                  imageUrl: data.playerData.image ?? '',
-                  radius: 12.0,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: ImageNetworkWidget(
+                imageUrl: model.data.playerData.image ?? '',
+                radius: 12.0,
+              ),
+            ),
+          ),
+          Slider(
+            max: model.data.playerData.durationMs?.toDouble() ?? 0,
+            value: model.data.playerData.progressMs?.toDouble() ?? 0,
+            onChangeEnd: (double position) => model.seekToPosition(position),
+            onChanged: (double position) => model.onChangePosition(position),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  DateFormat('mm:ss')
+                      .format(
+                        DateTime.fromMillisecondsSinceEpoch(
+                          model.data.playerData.progressMs?.toInt() ?? 0,
+                        ),
+                      )
+                      .toString(),
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
-              ),
-              Slider(
-                max: data.playerData.durationMs?.toDouble() ?? 0,
-                value: model.data.positionMs,
-                onChangeEnd: (double position) =>
-                    model.seekToPosition(position),
-                onChanged: (double position) =>
-                    model.onChangePosition(position),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    DateFormat('mm:ss').format(
-                      DateTime.fromMillisecondsSinceEpoch(
-                        model.data.positionMs.toInt(),
-                      ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          model.data.playerData.name ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        Text(
+                          model.data.playerData.artist ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    DateFormat('mm:ss').format(
-                      DateTime.fromMillisecondsSinceEpoch(
-                        data.playerData.durationMs ?? 0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(data.playerData.name ?? ''),
-                      Text(data.playerData.artist ?? ''),
-                    ],
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite_rounded))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () => model.togglePlaybackShuffle(),
-                    icon: Icon(
-                      Icons.shuffle_rounded,
-                      color: data.playerData.shuffleState ?? false
-                          ? Colors.green
-                          : Colors.red,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => model.skipToPrevious(),
-                    icon: const Icon(Icons.skip_previous_rounded),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      data.playerData.isPlaying ?? true
-                          ? Icons.pause_rounded
-                          : Icons.play_arrow_rounded,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => model.skipToNext(),
-                    icon: const Icon(Icons.skip_next_rounded),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.repeat_rounded),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () => model.openTransferPlayback(context),
-                    icon: const Icon(Icons.devices),
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.share_rounded),
-                      ),
-                      IconButton(
-                        onPressed: () => model.usersQueue(context),
-                        icon: const Icon(Icons.playlist_play_rounded),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
+                ),
+                Text(
+                  DateFormat('mm:ss')
+                      .format(
+                        DateTime.fromMillisecondsSinceEpoch(
+                          model.data.playerData.durationMs?.toInt() ?? 0,
+                        ),
+                      )
+                      .toString(),
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ],
+            ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 0,
+        child: Icon(
+          model.data.playerData.isPlaying ?? false
+              ? Icons.pause_rounded
+              : Icons.play_arrow_rounded,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0,
+        child: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.shuffle_rounded),
+              onPressed: () => model.togglePlaybackShuffle(),
+            ),
+            IconButton(
+              icon: const Icon(Icons.skip_previous_rounded),
+              onPressed: () => model.skipToPrevious(),
+            ),
+            IconButton(
+              icon: const Icon(Icons.skip_next_rounded),
+              onPressed: () => model.skipToNext(),
+            ),
+            IconButton(
+              icon: const Icon(Icons.repeat_rounded),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 
-import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
@@ -67,9 +66,9 @@ class PlayerRenderedData {
 }
 
 class PlayerViewModel extends ChangeNotifier {
-  // PlayerViewModel() {
-  //   loadDetails();
-  // }
+  PlayerViewModel() {
+    loadDetails();
+  }
 
   final _playerService = PlayerService();
   final data = PlayerRenderedData();
@@ -82,10 +81,18 @@ class PlayerViewModel extends ChangeNotifier {
   }
 
   void loadDetails() async {
-    // await _playerService
-    //     .getPlaybackState(market: 'ES', additionalTypes: 'track')
-    //     .then((value) => _addPlayerData(value))
-    //     .onError((error, stackTrace) => data.status = Status.error);
+    final streamData = getCurrentlyPlayingTrack();
+    final subscription = streamData.listen(
+      (data) {
+        _addPlayerData(data);
+        notifyListeners();
+      },
+      onDone: () {},
+      onError: (dynamic error) {
+        data.status == Status.error;
+      },
+      cancelOnError: true,
+    );
     if (data.status != Status.error) {
       data.status = Status.completed;
     }
@@ -114,18 +121,17 @@ class PlayerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _addPlayerData(PlaybackStateModel playbackStateModel) {
+  void _addPlayerData(CurrentlyPlayingTrackModel model) {
     data.playerData = PlayerData(
-      name: playbackStateModel.item?.name,
-      artist: playbackStateModel.item?.artists?.map((e) => e.name).join(', '),
-      image: playbackStateModel.item?.album?.images?.first.url,
-      progressMs: playbackStateModel.progressMs,
-      timestamp: playbackStateModel.timestamp,
-      shuffleState: playbackStateModel.shuffleState,
-      isPlaying: playbackStateModel.isPlaying,
-      durationMs: playbackStateModel.item?.durationMs,
+      name: model.item?.name,
+      artist: model.item?.artists?.map((e) => e.name).join(', '),
+      image: model.item?.album?.images?.first.url,
+      progressMs: model.progressMs,
+      timestamp: model.timestamp,
+      shuffleState: model.shuffleState,
+      isPlaying: model.isPlaying,
+      durationMs: model.item?.durationMs,
     );
-    data.positionMs = playbackStateModel.progressMs?.toDouble() ?? 0;
   }
 
   void seekToPosition(double position) async {
