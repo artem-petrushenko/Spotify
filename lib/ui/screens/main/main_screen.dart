@@ -17,67 +17,69 @@ class MainScreen extends StatelessWidget {
       body: Stack(
         children: [
           screens[selectedIndex],
-          model.isPlaybackState ? Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: () => model.openPlayer(context),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                ),
-                child: Column(
-                  children: [
-                    const LinearProgressIndicator(),
-                    Row(
-                      children: [
-                        const ImageNetworkWidget(
-                          imageUrl:
-                              'https://www.dailymetal.com.ua/wp-content/uploads/2018/07/Powerwolf_Cover.jpg',
-                          height: 64.0,
-                          width: 64.0,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Dancing with the Dead',
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  style: Theme.of(context).textTheme.labelLarge,
-                                ),
-                                Text(
-                                  'Powerwolf',
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  style: Theme.of(context).textTheme.labelSmall,
-                                ),
-                              ],
+          if (model.data.status == Status.active)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: () => model.openPlayer(context),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                  child: Column(
+                    children: [
+                      const LinearProgressIndicator(),
+                      Row(
+                        children: [
+                          ImageNetworkWidget(
+                            imageUrl: model.data.playerData.image ?? '',
+                            height: 64.0,
+                            width: 64.0,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    model.data.playerData.name ?? '',
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge,
+                                  ),
+                                  Text(
+                                    model.data.playerData.artists ?? '',
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                    style:
+                                        Theme.of(context).textTheme.labelSmall,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite_rounded),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.play_arrow_rounded),
-                        ),
-                      ],
-                    )
-                  ],
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              model.data.playerData.isPlaying ?? false
+                                  ? Icons.pause_rounded
+                                  : Icons.play_arrow_rounded,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ) : SizedBox.shrink(),
+            )
         ],
       ),
       bottomNavigationBar: NavigationBar(
