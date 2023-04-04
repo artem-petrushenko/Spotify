@@ -9,7 +9,7 @@ part of 'albums.dart';
 _$_Albums _$$_AlbumsFromJson(Map<String, dynamic> json) => _$_Albums(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
-          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ItemsAlbum.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['limit'] as int?,
       json['next'] as String?,
@@ -28,24 +28,24 @@ Map<String, dynamic> _$$_AlbumsToJson(_$_Albums instance) => <String, dynamic>{
       'total': instance.total,
     };
 
-_$_ItemsAlbums _$$_ItemsAlbumsFromJson(Map<String, dynamic> json) =>
-    _$_ItemsAlbums(
+_$_ItemsAlbumAlbums _$$_ItemsAlbumAlbumsFromJson(Map<String, dynamic> json) =>
+    _$_ItemsAlbumAlbums(
       json['album_group'] as String?,
       json['album_type'] as String?,
       (json['artists'] as List<dynamic>?)
-          ?.map((e) => Artists.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ArtistsAlbums.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['available_markets'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       json['external_urls'] == null
           ? null
-          : ExternalUrls.fromJson(
+          : ExternalUrlsAlbums.fromJson(
               json['external_urls'] as Map<String, dynamic>),
       json['href'] as String?,
       json['id'] as String?,
       (json['images'] as List<dynamic>?)
-          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ImagesAlbums.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['is_playable'] as bool?,
       json['name'] as String?,
@@ -56,7 +56,7 @@ _$_ItemsAlbums _$$_ItemsAlbumsFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsAlbumsToJson(_$_ItemsAlbums instance) =>
+Map<String, dynamic> _$$_ItemsAlbumAlbumsToJson(_$_ItemsAlbumAlbums instance) =>
     <String, dynamic>{
       'album_group': instance.albumGroup,
       'album_type': instance.albumType,
@@ -75,10 +75,11 @@ Map<String, dynamic> _$$_ItemsAlbumsToJson(_$_ItemsAlbums instance) =>
       'uri': instance.uri,
     };
 
-_$_Artists _$$_ArtistsFromJson(Map<String, dynamic> json) => _$_Artists(
+_$_ArtistsAlbums _$$_ArtistsAlbumsFromJson(Map<String, dynamic> json) =>
+    _$_ArtistsAlbums(
       json['external_urls'] == null
           ? null
-          : ExternalUrls.fromJson(
+          : ExternalUrlsAlbums.fromJson(
               json['external_urls'] as Map<String, dynamic>),
       json['href'] as String?,
       json['id'] as String?,
@@ -87,7 +88,7 @@ _$_Artists _$$_ArtistsFromJson(Map<String, dynamic> json) => _$_Artists(
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ArtistsToJson(_$_Artists instance) =>
+Map<String, dynamic> _$$_ArtistsAlbumsToJson(_$_ArtistsAlbums instance) =>
     <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'href': instance.href,
@@ -97,23 +98,27 @@ Map<String, dynamic> _$$_ArtistsToJson(_$_Artists instance) =>
       'uri': instance.uri,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$_ExternalUrlsAlbums _$$_ExternalUrlsAlbumsFromJson(
+        Map<String, dynamic> json) =>
+    _$_ExternalUrlsAlbums(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$_ExternalUrlsAlbumsToJson(
+        _$_ExternalUrlsAlbums instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$_ImagesAlbums _$$_ImagesAlbumsFromJson(Map<String, dynamic> json) =>
+    _$_ImagesAlbums(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ImagesAlbumsToJson(_$_ImagesAlbums instance) =>
+    <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,

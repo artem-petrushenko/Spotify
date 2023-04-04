@@ -9,7 +9,7 @@ import 'package:spotify_client/ui/screens/language/localization_model.dart';
 import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
 
 void main() {
-  debugRepaintRainbowEnabled = true;
+  // debugRepaintRainbowEnabled = true;
   runApp(
     MultiProvider(
       providers: [

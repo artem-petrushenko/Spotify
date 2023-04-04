@@ -9,7 +9,7 @@ class Episodes with _$Episodes {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Episodes(
     String? href,
-    List<Items>? items,
+    List<ItemsEpisodes>? items,
     int? limit,
     String? next,
     int? offset,
@@ -22,18 +22,18 @@ class Episodes with _$Episodes {
 }
 
 @freezed
-class Items with _$Items {
+class ItemsEpisodes with _$ItemsEpisodes {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Items(
+  const factory ItemsEpisodes(
     String? audioPreviewUrl,
     String? description,
     int? durationMs,
     bool? explicit,
-    ExternalUrls? externalUrls,
+    ExternalUrlsEpisodes? externalUrls,
     String? href,
     String? htmlDescription,
     String? id,
-    List<Images>? images,
+    List<ImagesEpisodes>? images,
     bool? isExternallyHosted,
     bool? isPlayable,
     String? language,
@@ -41,45 +41,45 @@ class Items with _$Items {
     String? name,
     String? releaseDate,
     String? releaseDatePrecision,
-    ResumePoint? resumePoint,
+    ResumePointEpisodes? resumePoint,
     String? type,
     String? uri,
-  ) = _Items;
+  ) = _ItemsEpisodes;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ItemsEpisodes.fromJson(Map<String, dynamic> json) => _$ItemsEpisodesFromJson(json);
 }
 
 @freezed
-class ExternalUrls with _$ExternalUrls {
+class ExternalUrlsEpisodes with _$ExternalUrlsEpisodes {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ExternalUrls(
+  const factory ExternalUrlsEpisodes(
     String? spotify,
-  ) = _ExternalUrls;
+  ) = _ExternalUrlsEpisodes;
 
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$ExternalUrlsFromJson(json);
+  factory ExternalUrlsEpisodes.fromJson(Map<String, dynamic> json) =>
+      _$ExternalUrlsEpisodesFromJson(json);
 }
 
 @freezed
-class Images with _$Images {
+class ImagesEpisodes with _$ImagesEpisodes {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Images(
+  const factory ImagesEpisodes(
     int? height,
     String? url,
     int? width,
-  ) = _Images;
+  ) = _ImagesEpisodes;
 
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  factory ImagesEpisodes.fromJson(Map<String, dynamic> json) => _$ImagesEpisodesFromJson(json);
 }
 
 @freezed
-class ResumePoint with _$ResumePoint {
+class ResumePointEpisodes with _$ResumePointEpisodes {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ResumePoint(
+  const factory ResumePointEpisodes(
     bool? fullyPlayed,
     int? resumePositionMs,
-  ) = _ResumePoint;
+  ) = _ResumePointEpisodes;
 
-  factory ResumePoint.fromJson(Map<String, dynamic> json) =>
-      _$ResumePointFromJson(json);
+  factory ResumePointEpisodes.fromJson(Map<String, dynamic> json) =>
+      _$ResumePointEpisodesFromJson(json);
 }

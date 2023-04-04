@@ -9,7 +9,7 @@ class Artists with _$Artists {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Artists(
     String? href,
-    List<Items>? items,
+    List<ItemsArtists>? items,
     int? limit,
     String? next,
     int? offset,
@@ -22,55 +22,55 @@ class Artists with _$Artists {
 }
 
 @freezed
-class Items with _$Items {
+class ItemsArtists with _$ItemsArtists {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Items(
-    ExternalUrls? externalUrls,
-    Followers? followers,
+  const factory ItemsArtists(
+    ExternalUrlsArtists? externalUrls,
+    FollowersArtists? followers,
     List<String>? genres,
     String? href,
     String? id,
-    List<Images>? images,
+    List<ImagesArtists>? images,
     String? name,
     int? popularity,
     String? type,
     String? uri,
-  ) = _Items;
+  ) = _ItemsArtists;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ItemsArtists.fromJson(Map<String, dynamic> json) => _$ItemsArtistsFromJson(json);
 }
 
 @freezed
-class ExternalUrls with _$ExternalUrls {
+class ExternalUrlsArtists with _$ExternalUrlsArtists {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ExternalUrls(
+  const factory ExternalUrlsArtists(
     String? spotify,
-  ) = _ExternalUrls;
+  ) = _ExternalUrlsArtists;
 
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$ExternalUrlsFromJson(json);
+  factory ExternalUrlsArtists.fromJson(Map<String, dynamic> json) =>
+      _$ExternalUrlsArtistsFromJson(json);
 }
 
 @freezed
-class Followers with _$Followers {
+class FollowersArtists with _$FollowersArtists {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Followers(
+  const factory FollowersArtists(
     String? href,
     int? total,
-  ) = _Followers;
+  ) = _FollowersArtists;
 
-  factory Followers.fromJson(Map<String, dynamic> json) =>
-      _$FollowersFromJson(json);
+  factory FollowersArtists.fromJson(Map<String, dynamic> json) =>
+      _$FollowersArtistsFromJson(json);
 }
 
 @freezed
-class Images with _$Images {
+class ImagesArtists with _$ImagesArtists {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Images(
+  const factory ImagesArtists(
     int? height,
     String? url,
     int? width,
-  ) = _Images;
+  ) = _ImagesArtists;
 
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  factory ImagesArtists.fromJson(Map<String, dynamic> json) => _$ImagesArtistsFromJson(json);
 }

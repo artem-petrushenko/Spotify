@@ -9,7 +9,7 @@ part of 'artists.dart';
 _$_Artists _$$_ArtistsFromJson(Map<String, dynamic> json) => _$_Artists(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
-          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ItemsArtists.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['limit'] as int?,
       json['next'] as String?,
@@ -29,19 +29,21 @@ Map<String, dynamic> _$$_ArtistsToJson(_$_Artists instance) =>
       'total': instance.total,
     };
 
-_$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
+_$_ItemsArtists _$$_ItemsArtistsFromJson(Map<String, dynamic> json) =>
+    _$_ItemsArtists(
       json['external_urls'] == null
           ? null
-          : ExternalUrls.fromJson(
+          : ExternalUrlsArtists.fromJson(
               json['external_urls'] as Map<String, dynamic>),
       json['followers'] == null
           ? null
-          : Followers.fromJson(json['followers'] as Map<String, dynamic>),
+          : FollowersArtists.fromJson(
+              json['followers'] as Map<String, dynamic>),
       (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       json['href'] as String?,
       json['id'] as String?,
       (json['images'] as List<dynamic>?)
-          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ImagesArtists.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['name'] as String?,
       json['popularity'] as int?,
@@ -49,7 +51,8 @@ _$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ItemsArtistsToJson(_$_ItemsArtists instance) =>
+    <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'followers': instance.followers?.toJson(),
       'genres': instance.genres,
@@ -62,34 +65,39 @@ Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
       'uri': instance.uri,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$_ExternalUrlsArtists _$$_ExternalUrlsArtistsFromJson(
+        Map<String, dynamic> json) =>
+    _$_ExternalUrlsArtists(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$_ExternalUrlsArtistsToJson(
+        _$_ExternalUrlsArtists instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Followers _$$_FollowersFromJson(Map<String, dynamic> json) => _$_Followers(
+_$_FollowersArtists _$$_FollowersArtistsFromJson(Map<String, dynamic> json) =>
+    _$_FollowersArtists(
       json['href'] as String?,
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_FollowersToJson(_$_Followers instance) =>
+Map<String, dynamic> _$$_FollowersArtistsToJson(_$_FollowersArtists instance) =>
     <String, dynamic>{
       'href': instance.href,
       'total': instance.total,
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$_ImagesArtists _$$_ImagesArtistsFromJson(Map<String, dynamic> json) =>
+    _$_ImagesArtists(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ImagesArtistsToJson(_$_ImagesArtists instance) =>
+    <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,

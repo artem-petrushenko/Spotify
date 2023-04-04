@@ -9,7 +9,7 @@ class Albums with _$Albums {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Albums(
     String? href,
-    List<Items>? items,
+    List<ItemsAlbum>? items,
     int? limit,
     String? next,
     int? offset,
@@ -21,17 +21,17 @@ class Albums with _$Albums {
 }
 
 @freezed
-class Items with _$Items {
+class ItemsAlbum with _$ItemsAlbum {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Items(
+  const factory ItemsAlbum(
     String? albumGroup,
     String? albumType,
-    List<Artists>? artists,
+    List<ArtistsAlbums>? artists,
     List<String>? availableMarkets,
-    ExternalUrls? externalUrls,
+    ExternalUrlsAlbums? externalUrls,
     String? href,
     String? id,
-    List<Images>? images,
+    List<ImagesAlbums>? images,
     bool? isPlayable,
     String? name,
     String? releaseDate,
@@ -39,46 +39,46 @@ class Items with _$Items {
     int? totalTracks,
     String? type,
     String? uri,
-  ) = _ItemsAlbums;
+  ) = _ItemsAlbumAlbums;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ItemsAlbum.fromJson(Map<String, dynamic> json) => _$ItemsAlbumFromJson(json);
 }
 
 @freezed
-class Artists with _$Artists {
+class ArtistsAlbums with _$ArtistsAlbums {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Artists(
-    ExternalUrls? externalUrls,
+  const factory ArtistsAlbums(
+    ExternalUrlsAlbums? externalUrls,
     String? href,
     String? id,
     String? name,
     String? type,
     String? uri,
-  ) = _Artists;
+  ) = _ArtistsAlbums;
 
-  factory Artists.fromJson(Map<String, dynamic> json) =>
-      _$ArtistsFromJson(json);
+  factory ArtistsAlbums.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsAlbumsFromJson(json);
 }
 
 @freezed
-class ExternalUrls with _$ExternalUrls {
+class ExternalUrlsAlbums with _$ExternalUrlsAlbums {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ExternalUrls(
+  const factory ExternalUrlsAlbums(
     String? spotify,
-  ) = _ExternalUrls;
+  ) = _ExternalUrlsAlbums;
 
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$ExternalUrlsFromJson(json);
+  factory ExternalUrlsAlbums.fromJson(Map<String, dynamic> json) =>
+      _$ExternalUrlsAlbumsFromJson(json);
 }
 
 @freezed
-class Images with _$Images {
+class ImagesAlbums with _$ImagesAlbums {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Images(
+  const factory ImagesAlbums(
     int? height,
     String? url,
     int? width,
-  ) = _Images;
+  ) = _ImagesAlbums;
 
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  factory ImagesAlbums.fromJson(Map<String, dynamic> json) => _$ImagesAlbumsFromJson(json);
 }

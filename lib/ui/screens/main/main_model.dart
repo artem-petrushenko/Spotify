@@ -37,9 +37,7 @@ class MainViewModel extends ChangeNotifier {
     const Scaffold(
         body:
             CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('2'))])),
-    const Scaffold(
-        body:
-            CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('3'))])),
+    ScreenFactory().makeSearch(),
     ScreenFactory().makeMediaLibrary(),
   ];
 

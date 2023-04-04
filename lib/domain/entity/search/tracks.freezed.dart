@@ -21,7 +21,7 @@ Tracks _$TracksFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Tracks {
   String? get href => throw _privateConstructorUsedError;
-  List<Items>? get items => throw _privateConstructorUsedError;
+  List<ItemsTracks>? get items => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $TracksCopyWith<$Res> {
   @useResult
   $Res call(
       {String? href,
-      List<Items>? items,
+      List<ItemsTracks>? items,
       int? limit,
       String? next,
       int? offset,
@@ -77,7 +77,7 @@ class _$TracksCopyWithImpl<$Res, $Val extends Tracks>
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Items>?,
+              as List<ItemsTracks>?,
       limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$_TracksCopyWith<$Res> implements $TracksCopyWith<$Res> {
   @useResult
   $Res call(
       {String? href,
-      List<Items>? items,
+      List<ItemsTracks>? items,
       int? limit,
       String? next,
       int? offset,
@@ -144,7 +144,7 @@ class __$$_TracksCopyWithImpl<$Res>
       freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Items>?,
+              as List<ItemsTracks>?,
       freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -173,8 +173,8 @@ class __$$_TracksCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Tracks implements _Tracks {
-  const _$_Tracks(this.href, final List<Items>? items, this.limit, this.next,
-      this.offset, this.previous, this.total)
+  const _$_Tracks(this.href, final List<ItemsTracks>? items, this.limit,
+      this.next, this.offset, this.previous, this.total)
       : _items = items;
 
   factory _$_Tracks.fromJson(Map<String, dynamic> json) =>
@@ -182,9 +182,9 @@ class _$_Tracks implements _Tracks {
 
   @override
   final String? href;
-  final List<Items>? _items;
+  final List<ItemsTracks>? _items;
   @override
-  List<Items>? get items {
+  List<ItemsTracks>? get items {
     final value = _items;
     if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
@@ -252,7 +252,7 @@ class _$_Tracks implements _Tracks {
 abstract class _Tracks implements Tracks {
   const factory _Tracks(
       final String? href,
-      final List<Items>? items,
+      final List<ItemsTracks>? items,
       final int? limit,
       final String? next,
       final int? offset,
@@ -264,7 +264,7 @@ abstract class _Tracks implements Tracks {
   @override
   String? get href;
   @override
-  List<Items>? get items;
+  List<ItemsTracks>? get items;
   @override
   int? get limit;
   @override
@@ -281,20 +281,20 @@ abstract class _Tracks implements Tracks {
       throw _privateConstructorUsedError;
 }
 
-Items _$ItemsFromJson(Map<String, dynamic> json) {
-  return _Items.fromJson(json);
+ItemsTracks _$ItemsTracksFromJson(Map<String, dynamic> json) {
+  return _ItemsTracks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Items {
+mixin _$ItemsTracks {
   Album? get album => throw _privateConstructorUsedError;
-  List<Artists>? get artists => throw _privateConstructorUsedError;
+  List<ArtistsTracks>? get artists => throw _privateConstructorUsedError;
   List<String>? get availableMarkets => throw _privateConstructorUsedError;
   int? get discNumber => throw _privateConstructorUsedError;
   int? get durationMs => throw _privateConstructorUsedError;
   bool? get explicit => throw _privateConstructorUsedError;
   ExternalIds? get externalIds => throw _privateConstructorUsedError;
-  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
+  ExternalUrlsTracks? get externalUrls => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   bool? get isLocal => throw _privateConstructorUsedError;
@@ -307,23 +307,25 @@ mixin _$Items {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemsCopyWith<Items> get copyWith => throw _privateConstructorUsedError;
+  $ItemsTracksCopyWith<ItemsTracks> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemsCopyWith<$Res> {
-  factory $ItemsCopyWith(Items value, $Res Function(Items) then) =
-      _$ItemsCopyWithImpl<$Res, Items>;
+abstract class $ItemsTracksCopyWith<$Res> {
+  factory $ItemsTracksCopyWith(
+          ItemsTracks value, $Res Function(ItemsTracks) then) =
+      _$ItemsTracksCopyWithImpl<$Res, ItemsTracks>;
   @useResult
   $Res call(
       {Album? album,
-      List<Artists>? artists,
+      List<ArtistsTracks>? artists,
       List<String>? availableMarkets,
       int? discNumber,
       int? durationMs,
       bool? explicit,
       ExternalIds? externalIds,
-      ExternalUrls? externalUrls,
+      ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
       bool? isLocal,
@@ -336,13 +338,13 @@ abstract class $ItemsCopyWith<$Res> {
 
   $AlbumCopyWith<$Res>? get album;
   $ExternalIdsCopyWith<$Res>? get externalIds;
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
-class _$ItemsCopyWithImpl<$Res, $Val extends Items>
-    implements $ItemsCopyWith<$Res> {
-  _$ItemsCopyWithImpl(this._value, this._then);
+class _$ItemsTracksCopyWithImpl<$Res, $Val extends ItemsTracks>
+    implements $ItemsTracksCopyWith<$Res> {
+  _$ItemsTracksCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -378,7 +380,7 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
       artists: freezed == artists
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<Artists>?,
+              as List<ArtistsTracks>?,
       availableMarkets: freezed == availableMarkets
           ? _value.availableMarkets
           : availableMarkets // ignore: cast_nullable_to_non_nullable
@@ -402,7 +404,7 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
       externalUrls: freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       href: freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -468,32 +470,34 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
 
   @override
   @pragma('vm:prefer-inline')
-  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls {
     if (_value.externalUrls == null) {
       return null;
     }
 
-    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
+    return $ExternalUrlsTracksCopyWith<$Res>(_value.externalUrls!, (value) {
       return _then(_value.copyWith(externalUrls: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_ItemsCopyWith<$Res> implements $ItemsCopyWith<$Res> {
-  factory _$$_ItemsCopyWith(_$_Items value, $Res Function(_$_Items) then) =
-      __$$_ItemsCopyWithImpl<$Res>;
+abstract class _$$_ItemsTracksCopyWith<$Res>
+    implements $ItemsTracksCopyWith<$Res> {
+  factory _$$_ItemsTracksCopyWith(
+          _$_ItemsTracks value, $Res Function(_$_ItemsTracks) then) =
+      __$$_ItemsTracksCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {Album? album,
-      List<Artists>? artists,
+      List<ArtistsTracks>? artists,
       List<String>? availableMarkets,
       int? discNumber,
       int? durationMs,
       bool? explicit,
       ExternalIds? externalIds,
-      ExternalUrls? externalUrls,
+      ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
       bool? isLocal,
@@ -509,13 +513,15 @@ abstract class _$$_ItemsCopyWith<$Res> implements $ItemsCopyWith<$Res> {
   @override
   $ExternalIdsCopyWith<$Res>? get externalIds;
   @override
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
-class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
-    implements _$$_ItemsCopyWith<$Res> {
-  __$$_ItemsCopyWithImpl(_$_Items _value, $Res Function(_$_Items) _then)
+class __$$_ItemsTracksCopyWithImpl<$Res>
+    extends _$ItemsTracksCopyWithImpl<$Res, _$_ItemsTracks>
+    implements _$$_ItemsTracksCopyWith<$Res> {
+  __$$_ItemsTracksCopyWithImpl(
+      _$_ItemsTracks _value, $Res Function(_$_ItemsTracks) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -539,7 +545,7 @@ class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
     Object? type = freezed,
     Object? uri = freezed,
   }) {
-    return _then(_$_Items(
+    return _then(_$_ItemsTracks(
       freezed == album
           ? _value.album
           : album // ignore: cast_nullable_to_non_nullable
@@ -547,7 +553,7 @@ class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
       freezed == artists
           ? _value._artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<Artists>?,
+              as List<ArtistsTracks>?,
       freezed == availableMarkets
           ? _value._availableMarkets
           : availableMarkets // ignore: cast_nullable_to_non_nullable
@@ -571,7 +577,7 @@ class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
       freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -615,10 +621,10 @@ class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Items implements _Items {
-  const _$_Items(
+class _$_ItemsTracks implements _ItemsTracks {
+  const _$_ItemsTracks(
       this.album,
-      final List<Artists>? artists,
+      final List<ArtistsTracks>? artists,
       final List<String>? availableMarkets,
       this.discNumber,
       this.durationMs,
@@ -637,14 +643,14 @@ class _$_Items implements _Items {
       : _artists = artists,
         _availableMarkets = availableMarkets;
 
-  factory _$_Items.fromJson(Map<String, dynamic> json) =>
-      _$$_ItemsFromJson(json);
+  factory _$_ItemsTracks.fromJson(Map<String, dynamic> json) =>
+      _$$_ItemsTracksFromJson(json);
 
   @override
   final Album? album;
-  final List<Artists>? _artists;
+  final List<ArtistsTracks>? _artists;
   @override
-  List<Artists>? get artists {
+  List<ArtistsTracks>? get artists {
     final value = _artists;
     if (value == null) return null;
     if (_artists is EqualUnmodifiableListView) return _artists;
@@ -672,7 +678,7 @@ class _$_Items implements _Items {
   @override
   final ExternalIds? externalIds;
   @override
-  final ExternalUrls? externalUrls;
+  final ExternalUrlsTracks? externalUrls;
   @override
   final String? href;
   @override
@@ -694,14 +700,14 @@ class _$_Items implements _Items {
 
   @override
   String toString() {
-    return 'Items(album: $album, artists: $artists, availableMarkets: $availableMarkets, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, externalIds: $externalIds, externalUrls: $externalUrls, href: $href, id: $id, isLocal: $isLocal, name: $name, popularity: $popularity, previewUrl: $previewUrl, trackNumber: $trackNumber, type: $type, uri: $uri)';
+    return 'ItemsTracks(album: $album, artists: $artists, availableMarkets: $availableMarkets, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, externalIds: $externalIds, externalUrls: $externalUrls, href: $href, id: $id, isLocal: $isLocal, name: $name, popularity: $popularity, previewUrl: $previewUrl, trackNumber: $trackNumber, type: $type, uri: $uri)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Items &&
+            other is _$_ItemsTracks &&
             (identical(other.album, album) || other.album == album) &&
             const DeepCollectionEquality().equals(other._artists, _artists) &&
             const DeepCollectionEquality()
@@ -755,27 +761,27 @@ class _$_Items implements _Items {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemsCopyWith<_$_Items> get copyWith =>
-      __$$_ItemsCopyWithImpl<_$_Items>(this, _$identity);
+  _$$_ItemsTracksCopyWith<_$_ItemsTracks> get copyWith =>
+      __$$_ItemsTracksCopyWithImpl<_$_ItemsTracks>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemsToJson(
+    return _$$_ItemsTracksToJson(
       this,
     );
   }
 }
 
-abstract class _Items implements Items {
-  const factory _Items(
+abstract class _ItemsTracks implements ItemsTracks {
+  const factory _ItemsTracks(
       final Album? album,
-      final List<Artists>? artists,
+      final List<ArtistsTracks>? artists,
       final List<String>? availableMarkets,
       final int? discNumber,
       final int? durationMs,
       final bool? explicit,
       final ExternalIds? externalIds,
-      final ExternalUrls? externalUrls,
+      final ExternalUrlsTracks? externalUrls,
       final String? href,
       final String? id,
       final bool? isLocal,
@@ -784,14 +790,15 @@ abstract class _Items implements Items {
       final String? previewUrl,
       final int? trackNumber,
       final String? type,
-      final String? uri) = _$_Items;
+      final String? uri) = _$_ItemsTracks;
 
-  factory _Items.fromJson(Map<String, dynamic> json) = _$_Items.fromJson;
+  factory _ItemsTracks.fromJson(Map<String, dynamic> json) =
+      _$_ItemsTracks.fromJson;
 
   @override
   Album? get album;
   @override
-  List<Artists>? get artists;
+  List<ArtistsTracks>? get artists;
   @override
   List<String>? get availableMarkets;
   @override
@@ -803,7 +810,7 @@ abstract class _Items implements Items {
   @override
   ExternalIds? get externalIds;
   @override
-  ExternalUrls? get externalUrls;
+  ExternalUrlsTracks? get externalUrls;
   @override
   String? get href;
   @override
@@ -824,7 +831,7 @@ abstract class _Items implements Items {
   String? get uri;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemsCopyWith<_$_Items> get copyWith =>
+  _$$_ItemsTracksCopyWith<_$_ItemsTracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -836,12 +843,12 @@ Album _$AlbumFromJson(Map<String, dynamic> json) {
 mixin _$Album {
   String? get albumGroup => throw _privateConstructorUsedError;
   String? get albumType => throw _privateConstructorUsedError;
-  List<Artists>? get artists => throw _privateConstructorUsedError;
+  List<ArtistsTracks>? get artists => throw _privateConstructorUsedError;
   List<String>? get availableMarkets => throw _privateConstructorUsedError;
-  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
+  ExternalUrlsTracks? get externalUrls => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
-  List<Images>? get images => throw _privateConstructorUsedError;
+  List<ImagesTracks>? get images => throw _privateConstructorUsedError;
   bool? get isPlayable => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
@@ -863,12 +870,12 @@ abstract class $AlbumCopyWith<$Res> {
   $Res call(
       {String? albumGroup,
       String? albumType,
-      List<Artists>? artists,
+      List<ArtistsTracks>? artists,
       List<String>? availableMarkets,
-      ExternalUrls? externalUrls,
+      ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
-      List<Images>? images,
+      List<ImagesTracks>? images,
       bool? isPlayable,
       String? name,
       String? releaseDate,
@@ -877,7 +884,7 @@ abstract class $AlbumCopyWith<$Res> {
       String? type,
       String? uri});
 
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
@@ -921,7 +928,7 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
       artists: freezed == artists
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<Artists>?,
+              as List<ArtistsTracks>?,
       availableMarkets: freezed == availableMarkets
           ? _value.availableMarkets
           : availableMarkets // ignore: cast_nullable_to_non_nullable
@@ -929,7 +936,7 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
       externalUrls: freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       href: freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -941,7 +948,7 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
       images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>?,
+              as List<ImagesTracks>?,
       isPlayable: freezed == isPlayable
           ? _value.isPlayable
           : isPlayable // ignore: cast_nullable_to_non_nullable
@@ -975,12 +982,12 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
 
   @override
   @pragma('vm:prefer-inline')
-  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls {
     if (_value.externalUrls == null) {
       return null;
     }
 
-    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
+    return $ExternalUrlsTracksCopyWith<$Res>(_value.externalUrls!, (value) {
       return _then(_value.copyWith(externalUrls: value) as $Val);
     });
   }
@@ -995,12 +1002,12 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
   $Res call(
       {String? albumGroup,
       String? albumType,
-      List<Artists>? artists,
+      List<ArtistsTracks>? artists,
       List<String>? availableMarkets,
-      ExternalUrls? externalUrls,
+      ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
-      List<Images>? images,
+      List<ImagesTracks>? images,
       bool? isPlayable,
       String? name,
       String? releaseDate,
@@ -1010,7 +1017,7 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       String? uri});
 
   @override
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
@@ -1050,7 +1057,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res, _$_Album>
       freezed == artists
           ? _value._artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<Artists>?,
+              as List<ArtistsTracks>?,
       freezed == availableMarkets
           ? _value._availableMarkets
           : availableMarkets // ignore: cast_nullable_to_non_nullable
@@ -1058,7 +1065,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res, _$_Album>
       freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -1070,7 +1077,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res, _$_Album>
       freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Images>?,
+              as List<ImagesTracks>?,
       freezed == isPlayable
           ? _value.isPlayable
           : isPlayable // ignore: cast_nullable_to_non_nullable
@@ -1110,12 +1117,12 @@ class _$_Album implements _Album {
   const _$_Album(
       this.albumGroup,
       this.albumType,
-      final List<Artists>? artists,
+      final List<ArtistsTracks>? artists,
       final List<String>? availableMarkets,
       this.externalUrls,
       this.href,
       this.id,
-      final List<Images>? images,
+      final List<ImagesTracks>? images,
       this.isPlayable,
       this.name,
       this.releaseDate,
@@ -1134,9 +1141,9 @@ class _$_Album implements _Album {
   final String? albumGroup;
   @override
   final String? albumType;
-  final List<Artists>? _artists;
+  final List<ArtistsTracks>? _artists;
   @override
-  List<Artists>? get artists {
+  List<ArtistsTracks>? get artists {
     final value = _artists;
     if (value == null) return null;
     if (_artists is EqualUnmodifiableListView) return _artists;
@@ -1156,14 +1163,14 @@ class _$_Album implements _Album {
   }
 
   @override
-  final ExternalUrls? externalUrls;
+  final ExternalUrlsTracks? externalUrls;
   @override
   final String? href;
   @override
   final String? id;
-  final List<Images>? _images;
+  final List<ImagesTracks>? _images;
   @override
-  List<Images>? get images {
+  List<ImagesTracks>? get images {
     final value = _images;
     if (value == null) return null;
     if (_images is EqualUnmodifiableListView) return _images;
@@ -1259,12 +1266,12 @@ abstract class _Album implements Album {
   const factory _Album(
       final String? albumGroup,
       final String? albumType,
-      final List<Artists>? artists,
+      final List<ArtistsTracks>? artists,
       final List<String>? availableMarkets,
-      final ExternalUrls? externalUrls,
+      final ExternalUrlsTracks? externalUrls,
       final String? href,
       final String? id,
-      final List<Images>? images,
+      final List<ImagesTracks>? images,
       final bool? isPlayable,
       final String? name,
       final String? releaseDate,
@@ -1280,17 +1287,17 @@ abstract class _Album implements Album {
   @override
   String? get albumType;
   @override
-  List<Artists>? get artists;
+  List<ArtistsTracks>? get artists;
   @override
   List<String>? get availableMarkets;
   @override
-  ExternalUrls? get externalUrls;
+  ExternalUrlsTracks? get externalUrls;
   @override
   String? get href;
   @override
   String? get id;
   @override
-  List<Images>? get images;
+  List<ImagesTracks>? get images;
   @override
   bool? get isPlayable;
   @override
@@ -1311,13 +1318,13 @@ abstract class _Album implements Album {
       throw _privateConstructorUsedError;
 }
 
-Artists _$ArtistsFromJson(Map<String, dynamic> json) {
-  return _Artists.fromJson(json);
+ArtistsTracks _$ArtistsTracksFromJson(Map<String, dynamic> json) {
+  return _ArtistsTracks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Artists {
-  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
+mixin _$ArtistsTracks {
+  ExternalUrlsTracks? get externalUrls => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -1326,29 +1333,31 @@ mixin _$Artists {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ArtistsCopyWith<Artists> get copyWith => throw _privateConstructorUsedError;
+  $ArtistsTracksCopyWith<ArtistsTracks> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ArtistsCopyWith<$Res> {
-  factory $ArtistsCopyWith(Artists value, $Res Function(Artists) then) =
-      _$ArtistsCopyWithImpl<$Res, Artists>;
+abstract class $ArtistsTracksCopyWith<$Res> {
+  factory $ArtistsTracksCopyWith(
+          ArtistsTracks value, $Res Function(ArtistsTracks) then) =
+      _$ArtistsTracksCopyWithImpl<$Res, ArtistsTracks>;
   @useResult
   $Res call(
-      {ExternalUrls? externalUrls,
+      {ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
       String? name,
       String? type,
       String? uri});
 
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
-class _$ArtistsCopyWithImpl<$Res, $Val extends Artists>
-    implements $ArtistsCopyWith<$Res> {
-  _$ArtistsCopyWithImpl(this._value, this._then);
+class _$ArtistsTracksCopyWithImpl<$Res, $Val extends ArtistsTracks>
+    implements $ArtistsTracksCopyWith<$Res> {
+  _$ArtistsTracksCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1369,7 +1378,7 @@ class _$ArtistsCopyWithImpl<$Res, $Val extends Artists>
       externalUrls: freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       href: freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -1395,26 +1404,27 @@ class _$ArtistsCopyWithImpl<$Res, $Val extends Artists>
 
   @override
   @pragma('vm:prefer-inline')
-  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls {
     if (_value.externalUrls == null) {
       return null;
     }
 
-    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
+    return $ExternalUrlsTracksCopyWith<$Res>(_value.externalUrls!, (value) {
       return _then(_value.copyWith(externalUrls: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_ArtistsCopyWith<$Res> implements $ArtistsCopyWith<$Res> {
-  factory _$$_ArtistsCopyWith(
-          _$_Artists value, $Res Function(_$_Artists) then) =
-      __$$_ArtistsCopyWithImpl<$Res>;
+abstract class _$$_ArtistsTracksCopyWith<$Res>
+    implements $ArtistsTracksCopyWith<$Res> {
+  factory _$$_ArtistsTracksCopyWith(
+          _$_ArtistsTracks value, $Res Function(_$_ArtistsTracks) then) =
+      __$$_ArtistsTracksCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {ExternalUrls? externalUrls,
+      {ExternalUrlsTracks? externalUrls,
       String? href,
       String? id,
       String? name,
@@ -1422,14 +1432,15 @@ abstract class _$$_ArtistsCopyWith<$Res> implements $ArtistsCopyWith<$Res> {
       String? uri});
 
   @override
-  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $ExternalUrlsTracksCopyWith<$Res>? get externalUrls;
 }
 
 /// @nodoc
-class __$$_ArtistsCopyWithImpl<$Res>
-    extends _$ArtistsCopyWithImpl<$Res, _$_Artists>
-    implements _$$_ArtistsCopyWith<$Res> {
-  __$$_ArtistsCopyWithImpl(_$_Artists _value, $Res Function(_$_Artists) _then)
+class __$$_ArtistsTracksCopyWithImpl<$Res>
+    extends _$ArtistsTracksCopyWithImpl<$Res, _$_ArtistsTracks>
+    implements _$$_ArtistsTracksCopyWith<$Res> {
+  __$$_ArtistsTracksCopyWithImpl(
+      _$_ArtistsTracks _value, $Res Function(_$_ArtistsTracks) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1442,11 +1453,11 @@ class __$$_ArtistsCopyWithImpl<$Res>
     Object? type = freezed,
     Object? uri = freezed,
   }) {
-    return _then(_$_Artists(
+    return _then(_$_ArtistsTracks(
       freezed == externalUrls
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls?,
+              as ExternalUrlsTracks?,
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -1474,15 +1485,15 @@ class __$$_ArtistsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Artists implements _Artists {
-  const _$_Artists(
+class _$_ArtistsTracks implements _ArtistsTracks {
+  const _$_ArtistsTracks(
       this.externalUrls, this.href, this.id, this.name, this.type, this.uri);
 
-  factory _$_Artists.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistsFromJson(json);
+  factory _$_ArtistsTracks.fromJson(Map<String, dynamic> json) =>
+      _$$_ArtistsTracksFromJson(json);
 
   @override
-  final ExternalUrls? externalUrls;
+  final ExternalUrlsTracks? externalUrls;
   @override
   final String? href;
   @override
@@ -1496,14 +1507,14 @@ class _$_Artists implements _Artists {
 
   @override
   String toString() {
-    return 'Artists(externalUrls: $externalUrls, href: $href, id: $id, name: $name, type: $type, uri: $uri)';
+    return 'ArtistsTracks(externalUrls: $externalUrls, href: $href, id: $id, name: $name, type: $type, uri: $uri)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Artists &&
+            other is _$_ArtistsTracks &&
             (identical(other.externalUrls, externalUrls) ||
                 other.externalUrls == externalUrls) &&
             (identical(other.href, href) || other.href == href) &&
@@ -1521,30 +1532,31 @@ class _$_Artists implements _Artists {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistsCopyWith<_$_Artists> get copyWith =>
-      __$$_ArtistsCopyWithImpl<_$_Artists>(this, _$identity);
+  _$$_ArtistsTracksCopyWith<_$_ArtistsTracks> get copyWith =>
+      __$$_ArtistsTracksCopyWithImpl<_$_ArtistsTracks>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistsToJson(
+    return _$$_ArtistsTracksToJson(
       this,
     );
   }
 }
 
-abstract class _Artists implements Artists {
-  const factory _Artists(
-      final ExternalUrls? externalUrls,
+abstract class _ArtistsTracks implements ArtistsTracks {
+  const factory _ArtistsTracks(
+      final ExternalUrlsTracks? externalUrls,
       final String? href,
       final String? id,
       final String? name,
       final String? type,
-      final String? uri) = _$_Artists;
+      final String? uri) = _$_ArtistsTracks;
 
-  factory _Artists.fromJson(Map<String, dynamic> json) = _$_Artists.fromJson;
+  factory _ArtistsTracks.fromJson(Map<String, dynamic> json) =
+      _$_ArtistsTracks.fromJson;
 
   @override
-  ExternalUrls? get externalUrls;
+  ExternalUrlsTracks? get externalUrls;
   @override
   String? get href;
   @override
@@ -1557,37 +1569,37 @@ abstract class _Artists implements Artists {
   String? get uri;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistsCopyWith<_$_Artists> get copyWith =>
+  _$$_ArtistsTracksCopyWith<_$_ArtistsTracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ExternalUrls _$ExternalUrlsFromJson(Map<String, dynamic> json) {
-  return _ExternalUrls.fromJson(json);
+ExternalUrlsTracks _$ExternalUrlsTracksFromJson(Map<String, dynamic> json) {
+  return _ExternalUrlsTracks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ExternalUrls {
+mixin _$ExternalUrlsTracks {
   String? get spotify => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ExternalUrlsCopyWith<ExternalUrls> get copyWith =>
+  $ExternalUrlsTracksCopyWith<ExternalUrlsTracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExternalUrlsCopyWith<$Res> {
-  factory $ExternalUrlsCopyWith(
-          ExternalUrls value, $Res Function(ExternalUrls) then) =
-      _$ExternalUrlsCopyWithImpl<$Res, ExternalUrls>;
+abstract class $ExternalUrlsTracksCopyWith<$Res> {
+  factory $ExternalUrlsTracksCopyWith(
+          ExternalUrlsTracks value, $Res Function(ExternalUrlsTracks) then) =
+      _$ExternalUrlsTracksCopyWithImpl<$Res, ExternalUrlsTracks>;
   @useResult
   $Res call({String? spotify});
 }
 
 /// @nodoc
-class _$ExternalUrlsCopyWithImpl<$Res, $Val extends ExternalUrls>
-    implements $ExternalUrlsCopyWith<$Res> {
-  _$ExternalUrlsCopyWithImpl(this._value, this._then);
+class _$ExternalUrlsTracksCopyWithImpl<$Res, $Val extends ExternalUrlsTracks>
+    implements $ExternalUrlsTracksCopyWith<$Res> {
+  _$ExternalUrlsTracksCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1609,22 +1621,22 @@ class _$ExternalUrlsCopyWithImpl<$Res, $Val extends ExternalUrls>
 }
 
 /// @nodoc
-abstract class _$$_ExternalUrlsCopyWith<$Res>
-    implements $ExternalUrlsCopyWith<$Res> {
-  factory _$$_ExternalUrlsCopyWith(
-          _$_ExternalUrls value, $Res Function(_$_ExternalUrls) then) =
-      __$$_ExternalUrlsCopyWithImpl<$Res>;
+abstract class _$$_ExternalUrlsTracksCopyWith<$Res>
+    implements $ExternalUrlsTracksCopyWith<$Res> {
+  factory _$$_ExternalUrlsTracksCopyWith(_$_ExternalUrlsTracks value,
+          $Res Function(_$_ExternalUrlsTracks) then) =
+      __$$_ExternalUrlsTracksCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? spotify});
 }
 
 /// @nodoc
-class __$$_ExternalUrlsCopyWithImpl<$Res>
-    extends _$ExternalUrlsCopyWithImpl<$Res, _$_ExternalUrls>
-    implements _$$_ExternalUrlsCopyWith<$Res> {
-  __$$_ExternalUrlsCopyWithImpl(
-      _$_ExternalUrls _value, $Res Function(_$_ExternalUrls) _then)
+class __$$_ExternalUrlsTracksCopyWithImpl<$Res>
+    extends _$ExternalUrlsTracksCopyWithImpl<$Res, _$_ExternalUrlsTracks>
+    implements _$$_ExternalUrlsTracksCopyWith<$Res> {
+  __$$_ExternalUrlsTracksCopyWithImpl(
+      _$_ExternalUrlsTracks _value, $Res Function(_$_ExternalUrlsTracks) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1632,7 +1644,7 @@ class __$$_ExternalUrlsCopyWithImpl<$Res>
   $Res call({
     Object? spotify = freezed,
   }) {
-    return _then(_$_ExternalUrls(
+    return _then(_$_ExternalUrlsTracks(
       freezed == spotify
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
@@ -1644,25 +1656,25 @@ class __$$_ExternalUrlsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ExternalUrls implements _ExternalUrls {
-  const _$_ExternalUrls(this.spotify);
+class _$_ExternalUrlsTracks implements _ExternalUrlsTracks {
+  const _$_ExternalUrlsTracks(this.spotify);
 
-  factory _$_ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$$_ExternalUrlsFromJson(json);
+  factory _$_ExternalUrlsTracks.fromJson(Map<String, dynamic> json) =>
+      _$$_ExternalUrlsTracksFromJson(json);
 
   @override
   final String? spotify;
 
   @override
   String toString() {
-    return 'ExternalUrls(spotify: $spotify)';
+    return 'ExternalUrlsTracks(spotify: $spotify)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExternalUrls &&
+            other is _$_ExternalUrlsTracks &&
             (identical(other.spotify, spotify) || other.spotify == spotify));
   }
 
@@ -1673,58 +1685,62 @@ class _$_ExternalUrls implements _ExternalUrls {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExternalUrlsCopyWith<_$_ExternalUrls> get copyWith =>
-      __$$_ExternalUrlsCopyWithImpl<_$_ExternalUrls>(this, _$identity);
+  _$$_ExternalUrlsTracksCopyWith<_$_ExternalUrlsTracks> get copyWith =>
+      __$$_ExternalUrlsTracksCopyWithImpl<_$_ExternalUrlsTracks>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExternalUrlsToJson(
+    return _$$_ExternalUrlsTracksToJson(
       this,
     );
   }
 }
 
-abstract class _ExternalUrls implements ExternalUrls {
-  const factory _ExternalUrls(final String? spotify) = _$_ExternalUrls;
+abstract class _ExternalUrlsTracks implements ExternalUrlsTracks {
+  const factory _ExternalUrlsTracks(final String? spotify) =
+      _$_ExternalUrlsTracks;
 
-  factory _ExternalUrls.fromJson(Map<String, dynamic> json) =
-      _$_ExternalUrls.fromJson;
+  factory _ExternalUrlsTracks.fromJson(Map<String, dynamic> json) =
+      _$_ExternalUrlsTracks.fromJson;
 
   @override
   String? get spotify;
   @override
   @JsonKey(ignore: true)
-  _$$_ExternalUrlsCopyWith<_$_ExternalUrls> get copyWith =>
+  _$$_ExternalUrlsTracksCopyWith<_$_ExternalUrlsTracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Images _$ImagesFromJson(Map<String, dynamic> json) {
-  return _Images.fromJson(json);
+ImagesTracks _$ImagesTracksFromJson(Map<String, dynamic> json) {
+  return _ImagesTracks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Images {
+mixin _$ImagesTracks {
   int? get height => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   int? get width => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ImagesCopyWith<Images> get copyWith => throw _privateConstructorUsedError;
+  $ImagesTracksCopyWith<ImagesTracks> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImagesCopyWith<$Res> {
-  factory $ImagesCopyWith(Images value, $Res Function(Images) then) =
-      _$ImagesCopyWithImpl<$Res, Images>;
+abstract class $ImagesTracksCopyWith<$Res> {
+  factory $ImagesTracksCopyWith(
+          ImagesTracks value, $Res Function(ImagesTracks) then) =
+      _$ImagesTracksCopyWithImpl<$Res, ImagesTracks>;
   @useResult
   $Res call({int? height, String? url, int? width});
 }
 
 /// @nodoc
-class _$ImagesCopyWithImpl<$Res, $Val extends Images>
-    implements $ImagesCopyWith<$Res> {
-  _$ImagesCopyWithImpl(this._value, this._then);
+class _$ImagesTracksCopyWithImpl<$Res, $Val extends ImagesTracks>
+    implements $ImagesTracksCopyWith<$Res> {
+  _$ImagesTracksCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1756,19 +1772,22 @@ class _$ImagesCopyWithImpl<$Res, $Val extends Images>
 }
 
 /// @nodoc
-abstract class _$$_ImagesCopyWith<$Res> implements $ImagesCopyWith<$Res> {
-  factory _$$_ImagesCopyWith(_$_Images value, $Res Function(_$_Images) then) =
-      __$$_ImagesCopyWithImpl<$Res>;
+abstract class _$$_ImagesTracksCopyWith<$Res>
+    implements $ImagesTracksCopyWith<$Res> {
+  factory _$$_ImagesTracksCopyWith(
+          _$_ImagesTracks value, $Res Function(_$_ImagesTracks) then) =
+      __$$_ImagesTracksCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? height, String? url, int? width});
 }
 
 /// @nodoc
-class __$$_ImagesCopyWithImpl<$Res>
-    extends _$ImagesCopyWithImpl<$Res, _$_Images>
-    implements _$$_ImagesCopyWith<$Res> {
-  __$$_ImagesCopyWithImpl(_$_Images _value, $Res Function(_$_Images) _then)
+class __$$_ImagesTracksCopyWithImpl<$Res>
+    extends _$ImagesTracksCopyWithImpl<$Res, _$_ImagesTracks>
+    implements _$$_ImagesTracksCopyWith<$Res> {
+  __$$_ImagesTracksCopyWithImpl(
+      _$_ImagesTracks _value, $Res Function(_$_ImagesTracks) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1778,7 +1797,7 @@ class __$$_ImagesCopyWithImpl<$Res>
     Object? url = freezed,
     Object? width = freezed,
   }) {
-    return _then(_$_Images(
+    return _then(_$_ImagesTracks(
       freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -1798,11 +1817,11 @@ class __$$_ImagesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Images implements _Images {
-  const _$_Images(this.height, this.url, this.width);
+class _$_ImagesTracks implements _ImagesTracks {
+  const _$_ImagesTracks(this.height, this.url, this.width);
 
-  factory _$_Images.fromJson(Map<String, dynamic> json) =>
-      _$$_ImagesFromJson(json);
+  factory _$_ImagesTracks.fromJson(Map<String, dynamic> json) =>
+      _$$_ImagesTracksFromJson(json);
 
   @override
   final int? height;
@@ -1813,14 +1832,14 @@ class _$_Images implements _Images {
 
   @override
   String toString() {
-    return 'Images(height: $height, url: $url, width: $width)';
+    return 'ImagesTracks(height: $height, url: $url, width: $width)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Images &&
+            other is _$_ImagesTracks &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.width, width) || other.width == width));
@@ -1833,22 +1852,23 @@ class _$_Images implements _Images {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImagesCopyWith<_$_Images> get copyWith =>
-      __$$_ImagesCopyWithImpl<_$_Images>(this, _$identity);
+  _$$_ImagesTracksCopyWith<_$_ImagesTracks> get copyWith =>
+      __$$_ImagesTracksCopyWithImpl<_$_ImagesTracks>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImagesToJson(
+    return _$$_ImagesTracksToJson(
       this,
     );
   }
 }
 
-abstract class _Images implements Images {
-  const factory _Images(
-      final int? height, final String? url, final int? width) = _$_Images;
+abstract class _ImagesTracks implements ImagesTracks {
+  const factory _ImagesTracks(
+      final int? height, final String? url, final int? width) = _$_ImagesTracks;
 
-  factory _Images.fromJson(Map<String, dynamic> json) = _$_Images.fromJson;
+  factory _ImagesTracks.fromJson(Map<String, dynamic> json) =
+      _$_ImagesTracks.fromJson;
 
   @override
   int? get height;
@@ -1858,7 +1878,7 @@ abstract class _Images implements Images {
   int? get width;
   @override
   @JsonKey(ignore: true)
-  _$$_ImagesCopyWith<_$_Images> get copyWith =>
+  _$$_ImagesTracksCopyWith<_$_ImagesTracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

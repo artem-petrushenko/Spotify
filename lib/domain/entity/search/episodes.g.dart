@@ -9,7 +9,7 @@ part of 'episodes.dart';
 _$_Episodes _$$_EpisodesFromJson(Map<String, dynamic> json) => _$_Episodes(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
-          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ItemsEpisodes.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['limit'] as int?,
       json['next'] as String?,
@@ -29,20 +29,21 @@ Map<String, dynamic> _$$_EpisodesToJson(_$_Episodes instance) =>
       'total': instance.total,
     };
 
-_$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
+_$_ItemsEpisodes _$$_ItemsEpisodesFromJson(Map<String, dynamic> json) =>
+    _$_ItemsEpisodes(
       json['audio_preview_url'] as String?,
       json['description'] as String?,
       json['duration_ms'] as int?,
       json['explicit'] as bool?,
       json['external_urls'] == null
           ? null
-          : ExternalUrls.fromJson(
+          : ExternalUrlsEpisodes.fromJson(
               json['external_urls'] as Map<String, dynamic>),
       json['href'] as String?,
       json['html_description'] as String?,
       json['id'] as String?,
       (json['images'] as List<dynamic>?)
-          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ImagesEpisodes.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['is_externally_hosted'] as bool?,
       json['is_playable'] as bool?,
@@ -53,12 +54,14 @@ _$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
       json['release_date_precision'] as String?,
       json['resume_point'] == null
           ? null
-          : ResumePoint.fromJson(json['resume_point'] as Map<String, dynamic>),
+          : ResumePointEpisodes.fromJson(
+              json['resume_point'] as Map<String, dynamic>),
       json['type'] as String?,
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ItemsEpisodesToJson(_$_ItemsEpisodes instance) =>
+    <String, dynamic>{
       'audio_preview_url': instance.audioPreviewUrl,
       'description': instance.description,
       'duration_ms': instance.durationMs,
@@ -80,35 +83,41 @@ Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
       'uri': instance.uri,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$_ExternalUrlsEpisodes _$$_ExternalUrlsEpisodesFromJson(
+        Map<String, dynamic> json) =>
+    _$_ExternalUrlsEpisodes(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$_ExternalUrlsEpisodesToJson(
+        _$_ExternalUrlsEpisodes instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$_ImagesEpisodes _$$_ImagesEpisodesFromJson(Map<String, dynamic> json) =>
+    _$_ImagesEpisodes(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ImagesEpisodesToJson(_$_ImagesEpisodes instance) =>
+    <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,
     };
 
-_$_ResumePoint _$$_ResumePointFromJson(Map<String, dynamic> json) =>
-    _$_ResumePoint(
+_$_ResumePointEpisodes _$$_ResumePointEpisodesFromJson(
+        Map<String, dynamic> json) =>
+    _$_ResumePointEpisodes(
       json['fully_played'] as bool?,
       json['resume_position_ms'] as int?,
     );
 
-Map<String, dynamic> _$$_ResumePointToJson(_$_ResumePoint instance) =>
+Map<String, dynamic> _$$_ResumePointEpisodesToJson(
+        _$_ResumePointEpisodes instance) =>
     <String, dynamic>{
       'fully_played': instance.fullyPlayed,
       'resume_position_ms': instance.resumePositionMs,

@@ -13,6 +13,8 @@ import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:spotify_client/ui/screens/player/player_screen.dart';
 import 'package:spotify_client/ui/screens/player/player_view_model.dart';
+import 'package:spotify_client/ui/screens/search/search_screen.dart';
+import 'package:spotify_client/ui/screens/search/search_view_model.dart';
 
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 import 'package:spotify_client/ui/screens/settings/settings_screen.dart';
@@ -139,6 +141,14 @@ class ScreenFactory {
     return ChangeNotifierProvider(
       create: (context) => UsersQueueViewModel(),
       child: const UsersQueueScreen(),
+    );
+  }
+
+  Widget makeSearch() {
+    return ChangeNotifierProvider(
+      create: (context) => SearchViewModel(),
+      lazy: false,
+      child: const SearchScreen(),
     );
   }
 }

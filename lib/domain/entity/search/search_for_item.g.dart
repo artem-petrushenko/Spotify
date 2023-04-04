@@ -9,23 +9,37 @@ part of 'search_for_item.dart';
 _$_SearchForItemModel _$$_SearchForItemModelFromJson(
         Map<String, dynamic> json) =>
     _$_SearchForItemModel(
-      json['albums'],
-      json['artists'],
-      json['tracks'],
-      json['playlists'],
-      json['shows'],
-      json['episodes'],
-      json['audiobooks'],
+      json['albums'] == null
+          ? null
+          : Albums.fromJson(json['albums'] as Map<String, dynamic>),
+      json['artists'] == null
+          ? null
+          : Artists.fromJson(json['artists'] as Map<String, dynamic>),
+      json['tracks'] == null
+          ? null
+          : Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
+      json['playlists'] == null
+          ? null
+          : Playlists.fromJson(json['playlists'] as Map<String, dynamic>),
+      json['shows'] == null
+          ? null
+          : Shows.fromJson(json['shows'] as Map<String, dynamic>),
+      json['episodes'] == null
+          ? null
+          : Episodes.fromJson(json['episodes'] as Map<String, dynamic>),
+      json['audiobooks'] == null
+          ? null
+          : Audiobooks.fromJson(json['audiobooks'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_SearchForItemModelToJson(
         _$_SearchForItemModel instance) =>
     <String, dynamic>{
-      'albums': instance.albums,
-      'artists': instance.artists,
-      'tracks': instance.tracks,
-      'playlists': instance.playlists,
-      'shows': instance.shows,
-      'episodes': instance.episodes,
-      'audiobooks': instance.audiobooks,
+      'albums': instance.albums?.toJson(),
+      'artists': instance.artists?.toJson(),
+      'tracks': instance.tracks?.toJson(),
+      'playlists': instance.playlists?.toJson(),
+      'shows': instance.shows?.toJson(),
+      'episodes': instance.episodes?.toJson(),
+      'audiobooks': instance.audiobooks?.toJson(),
     };

@@ -21,7 +21,7 @@ Audiobooks _$AudiobooksFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Audiobooks {
   String? get href => throw _privateConstructorUsedError;
-  List<Items>? get items => throw _privateConstructorUsedError;
+  List<ItemsAudiobooks>? get items => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $AudiobooksCopyWith<$Res> {
   @useResult
   $Res call(
       {String? href,
-      List<Items>? items,
+      List<ItemsAudiobooks>? items,
       int? limit,
       String? next,
       int? offset,
@@ -79,7 +79,7 @@ class _$AudiobooksCopyWithImpl<$Res, $Val extends Audiobooks>
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Items>?,
+              as List<ItemsAudiobooks>?,
       limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$_AudiobooksCopyWith<$Res>
   @useResult
   $Res call(
       {String? href,
-      List<Items>? items,
+      List<ItemsAudiobooks>? items,
       int? limit,
       String? next,
       int? offset,
@@ -149,7 +149,7 @@ class __$$_AudiobooksCopyWithImpl<$Res>
       freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Items>?,
+              as List<ItemsAudiobooks>?,
       freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class __$$_AudiobooksCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Audiobooks implements _Audiobooks {
-  const _$_Audiobooks(this.href, final List<Items>? items, this.limit,
+  const _$_Audiobooks(this.href, final List<ItemsAudiobooks>? items, this.limit,
       this.next, this.offset, this.previous, this.total)
       : _items = items;
 
@@ -187,9 +187,9 @@ class _$_Audiobooks implements _Audiobooks {
 
   @override
   final String? href;
-  final List<Items>? _items;
+  final List<ItemsAudiobooks>? _items;
   @override
-  List<Items>? get items {
+  List<ItemsAudiobooks>? get items {
     final value = _items;
     if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
@@ -257,7 +257,7 @@ class _$_Audiobooks implements _Audiobooks {
 abstract class _Audiobooks implements Audiobooks {
   const factory _Audiobooks(
       final String? href,
-      final List<Items>? items,
+      final List<ItemsAudiobooks>? items,
       final int? limit,
       final String? next,
       final int? offset,
@@ -270,7 +270,7 @@ abstract class _Audiobooks implements Audiobooks {
   @override
   String? get href;
   @override
-  List<Items>? get items;
+  List<ItemsAudiobooks>? get items;
   @override
   int? get limit;
   @override
@@ -287,25 +287,26 @@ abstract class _Audiobooks implements Audiobooks {
       throw _privateConstructorUsedError;
 }
 
-Items _$ItemsFromJson(Map<String, dynamic> json) {
-  return _Items.fromJson(json);
+ItemsAudiobooks _$ItemsAudiobooksFromJson(Map<String, dynamic> json) {
+  return _ItemsAudiobooks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Items {
+mixin _$ItemsAudiobooks {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemsCopyWith<$Res> {
-  factory $ItemsCopyWith(Items value, $Res Function(Items) then) =
-      _$ItemsCopyWithImpl<$Res, Items>;
+abstract class $ItemsAudiobooksCopyWith<$Res> {
+  factory $ItemsAudiobooksCopyWith(
+          ItemsAudiobooks value, $Res Function(ItemsAudiobooks) then) =
+      _$ItemsAudiobooksCopyWithImpl<$Res, ItemsAudiobooks>;
 }
 
 /// @nodoc
-class _$ItemsCopyWithImpl<$Res, $Val extends Items>
-    implements $ItemsCopyWith<$Res> {
-  _$ItemsCopyWithImpl(this._value, this._then);
+class _$ItemsAudiobooksCopyWithImpl<$Res, $Val extends ItemsAudiobooks>
+    implements $ItemsAudiobooksCopyWith<$Res> {
+  _$ItemsAudiobooksCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -314,36 +315,39 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
 }
 
 /// @nodoc
-abstract class _$$_ItemsCopyWith<$Res> {
-  factory _$$_ItemsCopyWith(_$_Items value, $Res Function(_$_Items) then) =
-      __$$_ItemsCopyWithImpl<$Res>;
+abstract class _$$_ItemsAudiobooksCopyWith<$Res> {
+  factory _$$_ItemsAudiobooksCopyWith(
+          _$_ItemsAudiobooks value, $Res Function(_$_ItemsAudiobooks) then) =
+      __$$_ItemsAudiobooksCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res, _$_Items>
-    implements _$$_ItemsCopyWith<$Res> {
-  __$$_ItemsCopyWithImpl(_$_Items _value, $Res Function(_$_Items) _then)
+class __$$_ItemsAudiobooksCopyWithImpl<$Res>
+    extends _$ItemsAudiobooksCopyWithImpl<$Res, _$_ItemsAudiobooks>
+    implements _$$_ItemsAudiobooksCopyWith<$Res> {
+  __$$_ItemsAudiobooksCopyWithImpl(
+      _$_ItemsAudiobooks _value, $Res Function(_$_ItemsAudiobooks) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Items implements _Items {
-  const _$_Items();
+class _$_ItemsAudiobooks implements _ItemsAudiobooks {
+  const _$_ItemsAudiobooks();
 
-  factory _$_Items.fromJson(Map<String, dynamic> json) =>
-      _$$_ItemsFromJson(json);
+  factory _$_ItemsAudiobooks.fromJson(Map<String, dynamic> json) =>
+      _$$_ItemsAudiobooksFromJson(json);
 
   @override
   String toString() {
-    return 'Items()';
+    return 'ItemsAudiobooks()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Items);
+        (other.runtimeType == runtimeType && other is _$_ItemsAudiobooks);
   }
 
   @JsonKey(ignore: true)
@@ -352,14 +356,15 @@ class _$_Items implements _Items {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemsToJson(
+    return _$$_ItemsAudiobooksToJson(
       this,
     );
   }
 }
 
-abstract class _Items implements Items {
-  const factory _Items() = _$_Items;
+abstract class _ItemsAudiobooks implements ItemsAudiobooks {
+  const factory _ItemsAudiobooks() = _$_ItemsAudiobooks;
 
-  factory _Items.fromJson(Map<String, dynamic> json) = _$_Items.fromJson;
+  factory _ItemsAudiobooks.fromJson(Map<String, dynamic> json) =
+      _$_ItemsAudiobooks.fromJson;
 }

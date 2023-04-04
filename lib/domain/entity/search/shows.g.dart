@@ -9,7 +9,7 @@ part of 'shows.dart';
 _$_Shows _$$_ShowsFromJson(Map<String, dynamic> json) => _$_Shows(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
-          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ItemsShows.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['limit'] as int?,
       json['next'] as String?,
@@ -28,24 +28,25 @@ Map<String, dynamic> _$$_ShowsToJson(_$_Shows instance) => <String, dynamic>{
       'total': instance.total,
     };
 
-_$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
+_$_ItemsShows _$$_ItemsShowsFromJson(Map<String, dynamic> json) =>
+    _$_ItemsShows(
       (json['available_markets'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       (json['copyrights'] as List<dynamic>?)
-          ?.map((e) => Copyright.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => CopyrightShows.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['description'] as String?,
       json['explicit'] as bool?,
       json['external_urls'] == null
           ? null
-          : ExternalUrls.fromJson(
+          : ExternalUrlsShows.fromJson(
               json['external_urls'] as Map<String, dynamic>),
       json['href'] as String?,
       json['html_description'] as String?,
       json['id'] as String?,
       (json['images'] as List<dynamic>?)
-          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ImagesShows.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['is_externally_hosted'] as bool?,
       (json['languages'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -57,7 +58,8 @@ _$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ItemsShowsToJson(_$_ItemsShows instance) =>
+    <String, dynamic>{
       'available_markets': instance.availableMarkets,
       'copyrights': instance.copyrights?.map((e) => e.toJson()).toList(),
       'description': instance.description,
@@ -77,34 +79,38 @@ Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
       'uri': instance.uri,
     };
 
-_$_Copyright _$$_CopyrightFromJson(Map<String, dynamic> json) => _$_Copyright(
+_$_CopyrightShows _$$_CopyrightShowsFromJson(Map<String, dynamic> json) =>
+    _$_CopyrightShows(
       json['text'] as String?,
       json['type'] as String?,
     );
 
-Map<String, dynamic> _$$_CopyrightToJson(_$_Copyright instance) =>
+Map<String, dynamic> _$$_CopyrightShowsToJson(_$_CopyrightShows instance) =>
     <String, dynamic>{
       'text': instance.text,
       'type': instance.type,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$_ExternalUrlsShows _$$_ExternalUrlsShowsFromJson(Map<String, dynamic> json) =>
+    _$_ExternalUrlsShows(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$_ExternalUrlsShowsToJson(
+        _$_ExternalUrlsShows instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$_ImagesShows _$$_ImagesShowsFromJson(Map<String, dynamic> json) =>
+    _$_ImagesShows(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ImagesShowsToJson(_$_ImagesShows instance) =>
+    <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,

@@ -9,7 +9,7 @@ class Shows with _$Shows {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Shows(
     String? href,
-    List<Items>? items,
+    List<ItemsShows>? items,
     int? limit,
     String? next,
     int? offset,
@@ -21,18 +21,18 @@ class Shows with _$Shows {
 }
 
 @freezed
-class Items with _$Items {
+class ItemsShows with _$ItemsShows {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Items(
+  const factory ItemsShows(
     List<String>? availableMarkets,
-    List<Copyright>? copyrights,
+    List<CopyrightShows>? copyrights,
     String? description,
     bool? explicit,
-    ExternalUrls? externalUrls,
+    ExternalUrlsShows? externalUrls,
     String? href,
     String? htmlDescription,
     String? id,
-    List<Images>? images,
+    List<ImagesShows>? images,
     bool? isExternallyHosted,
     List<String>? languages,
     String? mediaType,
@@ -41,42 +41,42 @@ class Items with _$Items {
     int? totalEpisodes,
     String? type,
     String? uri,
-  ) = _Items;
+  ) = _ItemsShows;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ItemsShows.fromJson(Map<String, dynamic> json) => _$ItemsShowsFromJson(json);
 }
 
 @freezed
-class Copyright with _$Copyright {
+class CopyrightShows with _$CopyrightShows {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Copyright(
+  const factory CopyrightShows(
     String? text,
     String? type,
-  ) = _Copyright;
+  ) = _CopyrightShows;
 
-  factory Copyright.fromJson(Map<String, dynamic> json) =>
-      _$CopyrightFromJson(json);
+  factory CopyrightShows.fromJson(Map<String, dynamic> json) =>
+      _$CopyrightShowsFromJson(json);
 }
 
 @freezed
-class ExternalUrls with _$ExternalUrls {
+class ExternalUrlsShows with _$ExternalUrlsShows {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ExternalUrls(
+  const factory ExternalUrlsShows(
     String? spotify,
-  ) = _ExternalUrls;
+  ) = _ExternalUrlsShows;
 
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$ExternalUrlsFromJson(json);
+  factory ExternalUrlsShows.fromJson(Map<String, dynamic> json) =>
+      _$ExternalUrlsShowsFromJson(json);
 }
 
 @freezed
-class Images with _$Images {
+class ImagesShows with _$ImagesShows {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Images(
+  const factory ImagesShows(
     int? height,
     String? url,
     int? width,
-  ) = _Images;
+  ) = _ImagesShows;
 
-  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
+  factory ImagesShows.fromJson(Map<String, dynamic> json) => _$ImagesShowsFromJson(json);
 }

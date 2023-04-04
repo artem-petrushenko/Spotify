@@ -20,13 +20,13 @@ SearchForItemModel _$SearchForItemModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchForItemModel {
-  albums.Albums? get albums => throw _privateConstructorUsedError;
-  artists.Artists? get artists => throw _privateConstructorUsedError;
-  tracks.Tracks? get tracks => throw _privateConstructorUsedError;
-  playlists.Playlists? get playlists => throw _privateConstructorUsedError;
-  shows.Shows? get shows => throw _privateConstructorUsedError;
-  episodes.Episodes? get episodes => throw _privateConstructorUsedError;
-  audiobooks.Audiobooks? get audiobooks => throw _privateConstructorUsedError;
+  Albums? get albums => throw _privateConstructorUsedError;
+  Artists? get artists => throw _privateConstructorUsedError;
+  Tracks? get tracks => throw _privateConstructorUsedError;
+  Playlists? get playlists => throw _privateConstructorUsedError;
+  Shows? get shows => throw _privateConstructorUsedError;
+  Episodes? get episodes => throw _privateConstructorUsedError;
+  Audiobooks? get audiobooks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,13 +41,13 @@ abstract class $SearchForItemModelCopyWith<$Res> {
       _$SearchForItemModelCopyWithImpl<$Res, SearchForItemModel>;
   @useResult
   $Res call(
-      {albums.Albums? albums,
-      artists.Artists? artists,
-      tracks.Tracks? tracks,
-      playlists.Playlists? playlists,
-      shows.Shows? shows,
-      episodes.Episodes? episodes,
-      audiobooks.Audiobooks? audiobooks});
+      {Albums? albums,
+      Artists? artists,
+      Tracks? tracks,
+      Playlists? playlists,
+      Shows? shows,
+      Episodes? episodes,
+      Audiobooks? audiobooks});
 
   $AlbumsCopyWith<$Res>? get albums;
   $ArtistsCopyWith<$Res>? get artists;
@@ -83,31 +83,31 @@ class _$SearchForItemModelCopyWithImpl<$Res, $Val extends SearchForItemModel>
       albums: freezed == albums
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
-              as albums.Albums?,
+              as Albums?,
       artists: freezed == artists
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as artists.Artists?,
+              as Artists?,
       tracks: freezed == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as tracks.Tracks?,
+              as Tracks?,
       playlists: freezed == playlists
           ? _value.playlists
           : playlists // ignore: cast_nullable_to_non_nullable
-              as playlists.Playlists?,
+              as Playlists?,
       shows: freezed == shows
           ? _value.shows
           : shows // ignore: cast_nullable_to_non_nullable
-              as shows.Shows?,
+              as Shows?,
       episodes: freezed == episodes
           ? _value.episodes
           : episodes // ignore: cast_nullable_to_non_nullable
-              as episodes.Episodes?,
+              as Episodes?,
       audiobooks: freezed == audiobooks
           ? _value.audiobooks
           : audiobooks // ignore: cast_nullable_to_non_nullable
-              as audiobooks.Audiobooks?,
+              as Audiobooks?,
     ) as $Val);
   }
 
@@ -205,13 +205,13 @@ abstract class _$$_SearchForItemModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {albums.Albums? albums,
-      artists.Artists? artists,
-      tracks.Tracks? tracks,
-      playlists.Playlists? playlists,
-      shows.Shows? shows,
-      episodes.Episodes? episodes,
-      audiobooks.Audiobooks? audiobooks});
+      {Albums? albums,
+      Artists? artists,
+      Tracks? tracks,
+      Playlists? playlists,
+      Shows? shows,
+      Episodes? episodes,
+      Audiobooks? audiobooks});
 
   @override
   $AlbumsCopyWith<$Res>? get albums;
@@ -252,31 +252,31 @@ class __$$_SearchForItemModelCopyWithImpl<$Res>
       freezed == albums
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
-              as albums.Albums?,
+              as Albums?,
       freezed == artists
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as artists.Artists?,
+              as Artists?,
       freezed == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as tracks.Tracks?,
+              as Tracks?,
       freezed == playlists
           ? _value.playlists
           : playlists // ignore: cast_nullable_to_non_nullable
-              as playlists.Playlists?,
+              as Playlists?,
       freezed == shows
           ? _value.shows
           : shows // ignore: cast_nullable_to_non_nullable
-              as shows.Shows?,
+              as Shows?,
       freezed == episodes
           ? _value.episodes
           : episodes // ignore: cast_nullable_to_non_nullable
-              as episodes.Episodes?,
+              as Episodes?,
       freezed == audiobooks
           ? _value.audiobooks
           : audiobooks // ignore: cast_nullable_to_non_nullable
-              as audiobooks.Audiobooks?,
+              as Audiobooks?,
     ));
   }
 }
@@ -292,19 +292,19 @@ class _$_SearchForItemModel implements _SearchForItemModel {
       _$$_SearchForItemModelFromJson(json);
 
   @override
-  final albums.Albums? albums;
+  final Albums? albums;
   @override
-  final artists.Artists? artists;
+  final Artists? artists;
   @override
-  final tracks.Tracks? tracks;
+  final Tracks? tracks;
   @override
-  final playlists.Playlists? playlists;
+  final Playlists? playlists;
   @override
-  final shows.Shows? shows;
+  final Shows? shows;
   @override
-  final episodes.Episodes? episodes;
+  final Episodes? episodes;
   @override
-  final audiobooks.Audiobooks? audiobooks;
+  final Audiobooks? audiobooks;
 
   @override
   String toString() {
@@ -350,31 +350,31 @@ class _$_SearchForItemModel implements _SearchForItemModel {
 
 abstract class _SearchForItemModel implements SearchForItemModel {
   const factory _SearchForItemModel(
-      final albums.Albums? albums,
-      final artists.Artists? artists,
-      final tracks.Tracks? tracks,
-      final playlists.Playlists? playlists,
-      final shows.Shows? shows,
-      final episodes.Episodes? episodes,
-      final audiobooks.Audiobooks? audiobooks) = _$_SearchForItemModel;
+      final Albums? albums,
+      final Artists? artists,
+      final Tracks? tracks,
+      final Playlists? playlists,
+      final Shows? shows,
+      final Episodes? episodes,
+      final Audiobooks? audiobooks) = _$_SearchForItemModel;
 
   factory _SearchForItemModel.fromJson(Map<String, dynamic> json) =
       _$_SearchForItemModel.fromJson;
 
   @override
-  albums.Albums? get albums;
+  Albums? get albums;
   @override
-  artists.Artists? get artists;
+  Artists? get artists;
   @override
-  tracks.Tracks? get tracks;
+  Tracks? get tracks;
   @override
-  playlists.Playlists? get playlists;
+  Playlists? get playlists;
   @override
-  shows.Shows? get shows;
+  Shows? get shows;
   @override
-  episodes.Episodes? get episodes;
+  Episodes? get episodes;
   @override
-  audiobooks.Audiobooks? get audiobooks;
+  Audiobooks? get audiobooks;
   @override
   @JsonKey(ignore: true)
   _$$_SearchForItemModelCopyWith<_$_SearchForItemModel> get copyWith =>

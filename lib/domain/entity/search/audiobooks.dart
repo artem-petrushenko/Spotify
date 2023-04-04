@@ -9,7 +9,7 @@ class Audiobooks with _$Audiobooks {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Audiobooks(
     String? href,
-    List<Items>? items,
+    List<ItemsAudiobooks>? items,
     int? limit,
     String? next,
     int? offset,
@@ -22,9 +22,9 @@ class Audiobooks with _$Audiobooks {
 }
 
 @freezed
-class Items with _$Items {
+class ItemsAudiobooks with _$ItemsAudiobooks {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Items() = _Items;
+  const factory ItemsAudiobooks() = _ItemsAudiobooks;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ItemsAudiobooks.fromJson(Map<String, dynamic> json) => _$ItemsAudiobooksFromJson(json);
 }
