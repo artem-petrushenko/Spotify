@@ -61,19 +61,47 @@ class LikedMusicPlaylistIsSuccessScreen extends StatelessWidget {
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 ),
-                                Text(
-                                  music[index].artists ?? '',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                Row(
+                                  children: [
+                                    if (model.data.music[index].explicit ==
+                                        true)
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 4.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 2.0),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surfaceVariant,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(2.0),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'EXPLICIT',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium
+                                              ?.copyWith(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onSurfaceVariant),
+                                        ),
+                                      ),
+                                    Text(
+                                      music[index].artists ?? '',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite_rounded),
                         ),
                         IconButton(
                           onPressed: () {},

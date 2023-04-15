@@ -11,12 +11,14 @@ class MusicPlaylistData {
   final String? artists;
   final String? name;
   final String? imageUrl;
+  final bool? explicit;
 
   MusicPlaylistData({
     required this.id,
     required this.artists,
     required this.name,
     required this.imageUrl,
+    required this.explicit,
   });
 
   MusicPlaylistData copyWith({
@@ -24,12 +26,14 @@ class MusicPlaylistData {
     String? artists,
     String? name,
     String? imageUrl,
+    bool? explicit,
   }) {
     return MusicPlaylistData(
       id: id ?? this.id,
       artists: artists ?? this.artists,
       name: name ?? this.name,
       imageUrl: imageUrl ?? this.imageUrl,
+      explicit: explicit ?? this.explicit,
     );
   }
 }
@@ -71,6 +75,7 @@ class LikedMusicPlaylistViewModel extends ChangeNotifier {
               artists: e.track?.artists?.first.name,
               name: e.track?.name,
               imageUrl: e.track?.album?.images?.first.url,
+              explicit: e.track?.explicit,
             ))
         .toList());
   }
