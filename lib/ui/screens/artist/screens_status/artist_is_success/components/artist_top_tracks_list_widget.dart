@@ -6,6 +6,7 @@ import 'package:spotify_client/configuration/constants.dart';
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
+import 'package:spotify_client/ui/widgets/track_modal_bottom_sheet.dart';
 
 class ArtistTopTracksListWidget extends StatelessWidget {
   const ArtistTopTracksListWidget({super.key});
@@ -37,13 +38,17 @@ class ArtistTopTracksListWidget extends StatelessWidget {
 }
 
 class _TrackWidget extends StatelessWidget {
-  const _TrackWidget({required this.track, required this.index});
+  const _TrackWidget({
+    required this.track,
+    required this.index,
+  });
 
   final int index;
   final ArtistsTopTracksData track;
 
   @override
   Widget build(BuildContext context) {
+    final model = context.read<ArtistViewModel>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
@@ -85,7 +90,20 @@ class _TrackWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => showModalBottomSheet<void>(
+              isScrollControlled: true,
+              context: context,
+              builder: (BuildContext context) {
+                return TrackModalBottomSheet(
+                  track: null,
+                  album: 'albumName',
+                  url: 'imageUrl',
+                  isFavorite: false,
+                  addRemoveFavorite: () =>
+                      model.addRemoveFavorite(track.id ?? '', false),
+                );
+              },
+            ),
             icon: const Icon(Icons.more_vert_rounded),
           )
         ],

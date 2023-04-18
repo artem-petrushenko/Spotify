@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
@@ -281,5 +283,9 @@ class ArtistViewModel extends ChangeNotifier {
               type: e.type,
             ))
         .toList();
+  }
+
+  void addRemoveFavorite(String id, bool isFavorite) {
+    log(id);
   }
 }
