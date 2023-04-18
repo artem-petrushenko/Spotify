@@ -98,9 +98,9 @@ class _TrackWidget extends StatelessWidget {
                   track: null,
                   album: 'albumName',
                   url: 'imageUrl',
-                  isFavorite: false,
+                  isFavorite: true,
                   addRemoveFavorite: () =>
-                      model.addRemoveFavorite(track.id ?? '', false),
+                      model.addRemoveFavorite(track.id ?? '', true),
                 );
               },
             ),

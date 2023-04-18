@@ -22,4 +22,48 @@ class TracksService {
     );
     return usersSavedTracks;
   }
+
+  //TODO: NEED TEST. NOT USED
+  Future<List<bool>> checkUsersSavedTracks({
+    required List<String> ids,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final usersSavedTracks = await _tracksApiClient.checkUsersSavedTracks(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'ids': ids,
+      },
+    );
+    return usersSavedTracks;
+  }
+
+  Future<void> saveTracksForCurrentUser({
+    required List<String> ids,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _tracksApiClient.saveTracksForCurrentUser(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'ids': ids.join(','),
+      },
+      body: <String, dynamic>{
+        'ids': ids,
+      },
+    );
+  }
+
+  Future<void> removeUsersSavedTracks({
+    required List<String> ids,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _tracksApiClient.removeUsersSavedTracks(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'ids': ids.join(','),
+      },
+      body: <String, dynamic>{
+        'ids': ids,
+      },
+    );
+  }
 }

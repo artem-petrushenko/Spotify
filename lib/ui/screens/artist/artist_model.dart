@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
@@ -10,6 +8,7 @@ import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
+import 'package:spotify_client/domain/services/tracks_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -191,6 +190,7 @@ class ArtistViewModel extends ChangeNotifier {
   final data = ArtistRenderedData();
   final _artistService = ArtistService();
   final _playerService = PlayerService();
+  final _tracksService = TracksService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
@@ -285,7 +285,14 @@ class ArtistViewModel extends ChangeNotifier {
         .toList();
   }
 
+  Future<bool> checkUsersSavedTracks(String id) async {
+    return await _tracksService
+        .checkUsersSavedTracks(ids: [id]).then((value) => value.first);
+  }
+
   void addRemoveFavorite(String id, bool isFavorite) {
-    log(id);
+    isFavorite
+        ? _tracksService.removeUsersSavedTracks(ids: [id])
+        : _tracksService.saveTracksForCurrentUser(ids: [id]);
   }
 }
