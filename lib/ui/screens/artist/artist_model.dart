@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
-
-import 'package:spotify_client/domain/services/artists_service.dart';
-
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
+
+import 'package:spotify_client/domain/services/artists_service.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/domain/services/tracks_service.dart';
 
@@ -285,14 +285,31 @@ class ArtistViewModel extends ChangeNotifier {
         .toList();
   }
 
-  Future<bool> checkUsersSavedTracks(String id) async {
+  Future<bool> checkUsersSavedTracks({
+    required String id,
+  }) async {
     return await _tracksService
-        .checkUsersSavedTracks(ids: [id]).then((value) => value.first);
+        .checkUsersSavedTracks(ids: [id]).then((value) => value.first as bool);
   }
 
-  void addRemoveFavorite(String id, bool isFavorite) {
+  void addRemoveFavorite({
+    required String id,
+    required bool isFavorite,
+    required BuildContext context,
+  }) {
     isFavorite
-        ? _tracksService.removeUsersSavedTracks(ids: [id])
-        : _tracksService.saveTracksForCurrentUser(ids: [id]);
+        ? _tracksService.removeUsersSavedTracks(
+            ids: [id]).then((value) => Navigator.pop(context))
+        : _tracksService.saveTracksForCurrentUser(
+            ids: [id]).then((value) => Navigator.pop(context));
+  }
+
+  void addItemToPlaybackQueue({
+    required String uri,
+    required BuildContext context,
+  }) async {
+    await _playerService
+        .addItemToPlaybackQueue(uri: uri)
+        .then((value) => Navigator.pop(context));
   }
 }

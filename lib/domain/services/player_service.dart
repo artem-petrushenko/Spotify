@@ -200,4 +200,18 @@ class PlayerService {
       },
     );
   }
+
+  Future<void> addItemToPlaybackQueue({
+    required String uri,
+    String? deviceId,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playerApiClient.addItemToPlaybackQueue(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'uri': uri,
+        'device_id': deviceId,
+      },
+    );
+  }
 }

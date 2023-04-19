@@ -9,6 +9,7 @@ class TrackModalBottomSheet extends StatelessWidget {
   final String? url;
   final Track? track;
   final VoidCallback? addRemoveFavorite;
+  final VoidCallback? addItemToPlaybackQueue;
 
   const TrackModalBottomSheet({
     Key? key,
@@ -17,6 +18,7 @@ class TrackModalBottomSheet extends StatelessWidget {
     required this.url,
     required this.track,
     required this.addRemoveFavorite,
+    required this.addItemToPlaybackQueue,
   }) : super(key: key);
 
   @override
@@ -78,11 +80,11 @@ class TrackModalBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: Icon(
               isFavorite ?? false
-                  ? Icons.favorite_border
-                  : Icons.favorite_rounded,
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border,
             ),
             title: Text(
-              isFavorite ?? false ? 'Add to Favorite' : 'Remove from Favorite',
+              isFavorite ?? false ? 'Remove from Favorite' : 'Add to Favorite',
             ),
             onTap: addRemoveFavorite,
           ),
@@ -98,7 +100,7 @@ class TrackModalBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: const Icon(Icons.multitrack_audio_rounded),
             title: const Text('Add to Queue'),
-            onTap: () {},
+            onTap: addItemToPlaybackQueue,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(

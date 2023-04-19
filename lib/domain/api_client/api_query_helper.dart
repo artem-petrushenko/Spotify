@@ -23,7 +23,7 @@ class ApiQueryHelper {
         },
       );
       _checkStatusCode(response);
-      if (response.statusCode == 200) return responseToMap(response);
+      if (response.statusCode == 200) return jsonDecode(response.body);
       return false;
     } on SocketException {
       throw const ApiClientException(ApiClientExceptionType.network);
@@ -50,7 +50,6 @@ class ApiQueryHelper {
         },
         body: jsonEncode(body),
       );
-      print(response.body);
       _checkStatusCode(response);
       return;
     } on SocketException {

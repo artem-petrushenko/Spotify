@@ -23,15 +23,14 @@ class TracksService {
     return usersSavedTracks;
   }
 
-  //TODO: NEED TEST. NOT USED
-  Future<List<bool>> checkUsersSavedTracks({
+  Future<List<dynamic>> checkUsersSavedTracks({
     required List<String> ids,
   }) async {
     final accessToken = await _sessionDataProvider.getAccessToken();
     final usersSavedTracks = await _tracksApiClient.checkUsersSavedTracks(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
-        'ids': ids,
+        'ids': ids.join(','),
       },
     );
     return usersSavedTracks;

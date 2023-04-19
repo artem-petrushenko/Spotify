@@ -156,4 +156,15 @@ class PlayerApiClient {
       queryParameters: queryParameters,
     );
   }
+
+  Future<void> addItemToPlaybackQueue({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    await _apiQueryHelper.post(
+      endpoint: '/v1/me/player/queue',
+      accessToken: accessToken,
+      queryParameters: queryParameters,
+    );
+  }
 }

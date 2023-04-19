@@ -16,7 +16,7 @@ class TracksApiClient {
     return UsersSavedTracksModel.fromJson(response);
   }
 
-  Future<List<bool>> checkUsersSavedTracks({
+  Future<List<dynamic>> checkUsersSavedTracks({
     required String accessToken,
     required Map<String, dynamic> queryParameters,
   }) async {
@@ -24,7 +24,7 @@ class TracksApiClient {
       endpoint: '/v1/me/tracks/contains',
       queryParameters: queryParameters,
       accessToken: accessToken,
-    ) as List<bool>;
+    ) as List<dynamic>;
     return usersSavedTracks;
   }
 

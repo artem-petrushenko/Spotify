@@ -90,24 +90,36 @@ class _TrackWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => showModalBottomSheet<void>(
-              isScrollControlled: true,
-              context: context,
-              builder: (BuildContext context) {
-                return TrackModalBottomSheet(
-                  track: null,
-                  album: 'albumName',
-                  url: 'imageUrl',
-                  isFavorite: true,
-                  addRemoveFavorite: () =>
-                      model.addRemoveFavorite(track.id ?? '', true),
-                );
-              },
-            ),
+            onPressed: () => model
+                .checkUsersSavedTracks(id: track.id ?? '')
+                .then((value) => _openTrackModalBottomSheet(context, value, model)),
             icon: const Icon(Icons.more_vert_rounded),
           )
         ],
       ),
     );
   }
+
+  void _openTrackModalBottomSheet(BuildContext context, bool isFavorite, ArtistViewModel model) =>
+      showModalBottomSheet<void>(
+        isScrollControlled: true,
+        context: context,
+        builder: (BuildContext context) {
+          return TrackModalBottomSheet(
+            track: null,
+            album: 'albumName',
+            url: 'imageUrl',
+            isFavorite: isFavorite,
+            addRemoveFavorite: () => model.addRemoveFavorite(
+              id: track.id ?? '',
+              isFavorite: isFavorite,
+              context: context,
+            ),
+            addItemToPlaybackQueue: () => model.addItemToPlaybackQueue(
+              uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+              context: context,
+            ),
+          );
+        },
+      );
 }
