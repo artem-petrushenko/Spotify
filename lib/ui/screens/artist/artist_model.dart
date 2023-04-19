@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'package:spotify_client/ui/navigation/main_navigation.dart';
+
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
@@ -310,6 +312,15 @@ class ArtistViewModel extends ChangeNotifier {
   }) async {
     await _playerService
         .addItemToPlaybackQueue(uri: uri)
+        .then((value) => Navigator.pop(context));
+  }
+
+  void openAlbum({
+    required String id,
+    required BuildContext context,
+  }) {
+    Navigator.pushNamed(context, MainNavigationRouteNames.albumScreen,
+            arguments: id)
         .then((value) => Navigator.pop(context));
   }
 }

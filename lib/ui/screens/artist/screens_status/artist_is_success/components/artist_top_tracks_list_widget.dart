@@ -92,7 +92,8 @@ class _TrackWidget extends StatelessWidget {
           IconButton(
             onPressed: () => model
                 .checkUsersSavedTracks(id: track.id ?? '')
-                .then((value) => _openTrackModalBottomSheet(context, value, model)),
+                .then((value) =>
+                    _openTrackModalBottomSheet(context, value, model)),
             icon: const Icon(Icons.more_vert_rounded),
           )
         ],
@@ -100,7 +101,8 @@ class _TrackWidget extends StatelessWidget {
     );
   }
 
-  void _openTrackModalBottomSheet(BuildContext context, bool isFavorite, ArtistViewModel model) =>
+  void _openTrackModalBottomSheet(
+          BuildContext context, bool isFavorite, ArtistViewModel model) =>
       showModalBottomSheet<void>(
         isScrollControlled: true,
         context: context,
@@ -119,6 +121,12 @@ class _TrackWidget extends StatelessWidget {
               uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
               context: context,
             ),
+            addToPlaylist: () {},
+            viewAlbum: () => model.openAlbum(
+              id: '0tGPJ0bkWOUmH7MEOR77qc',
+              context: context,
+            ),
+            copyLink: () {},
           );
         },
       );

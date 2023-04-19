@@ -8,18 +8,24 @@ class TrackModalBottomSheet extends StatelessWidget {
   final String? album;
   final String? url;
   final Track? track;
-  final VoidCallback? addRemoveFavorite;
-  final VoidCallback? addItemToPlaybackQueue;
+  final VoidCallback addRemoveFavorite;
+  final VoidCallback addToPlaylist;
+  final VoidCallback addItemToPlaybackQueue;
+  final VoidCallback viewAlbum;
+  final VoidCallback copyLink;
 
   const TrackModalBottomSheet({
-    Key? key,
+    super.key,
     required this.isFavorite,
     required this.album,
     required this.url,
     required this.track,
     required this.addRemoveFavorite,
+    required this.addToPlaylist,
     required this.addItemToPlaybackQueue,
-  }) : super(key: key);
+    required this.viewAlbum,
+    required this.copyLink,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +99,7 @@ class TrackModalBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: const Icon(Icons.queue_music_rounded),
             title: const Text('Add to Playlist'),
-            onTap: () {},
+            onTap: addToPlaylist,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
@@ -107,14 +113,14 @@ class TrackModalBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: const Icon(Icons.album_rounded),
             title: const Text('View Album'),
-            onTap: () {},
+            onTap: viewAlbum,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: const Icon(Icons.copy_rounded),
             title: const Text('Copy Link'),
-            onTap: () => Navigator.pop(context),
+            onTap: copyLink,
           ),
         ],
       ),
