@@ -156,7 +156,7 @@ class _TrackWidget extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () => _openCreatePlaylistDialog(context),
+                  onPressed: () => _openCreatePlaylistDialog(model, context),
                   icon: const Icon(Icons.add_rounded),
                 ),
               ],
@@ -187,7 +187,8 @@ class _TrackWidget extends StatelessWidget {
         ),
       );
 
-  void _openCreatePlaylistDialog(BuildContext context) => showDialog<void>(
+  void _openCreatePlaylistDialog(ArtistViewModel model, BuildContext context) =>
+      showDialog<void>(
         context: context,
         builder: (BuildContext context) => Dialog(
           child: Padding(
@@ -195,14 +196,30 @@ class _TrackWidget extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
+                const Icon(Icons.add_box_rounded),
+                const Text('1'),
+                const Text('2'),
+                const Divider(),
+                const TextField(),
+                Checkbox(
+                  value: false,
+                  onChanged: (newValue) {},
+                ),
                 const Text('This is a typical dialog.'),
                 const SizedBox(height: 15),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Close'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Close'),
+                    ),
+                    TextButton(
+                        onPressed: () => model.createPlaylist(userId: '31tvzt2s4yfemkkyonfdya75wp6m', context: context),
+                      child: const Text('Add'),
+                    ),
+                  ],
                 ),
               ],
             ),

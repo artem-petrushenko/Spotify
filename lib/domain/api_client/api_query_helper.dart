@@ -103,7 +103,6 @@ class ApiQueryHelper {
         },
         body: jsonEncode(body),
       );
-      print(response.body);
       _checkStatusCode(response);
       if (response.statusCode == 201) return responseToMap(response);
       return;

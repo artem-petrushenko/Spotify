@@ -351,4 +351,15 @@ class ArtistViewModel extends ChangeNotifier {
       uris: [uri],
     ).then((value) => Navigator.pop(context));
   }
+
+  Future<void> createPlaylist({
+    required String userId,
+    required BuildContext context,
+  }) async {
+    await _playlistsService.createPlaylist(
+      userId: userId,
+      name: 'Name',
+      public: false,
+    ).then((value) => Navigator.pop(context));
+  }
 }
