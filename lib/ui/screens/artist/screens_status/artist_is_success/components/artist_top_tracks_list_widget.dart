@@ -126,7 +126,10 @@ class _TrackWidget extends StatelessWidget {
               id: '0tGPJ0bkWOUmH7MEOR77qc',
               context: context,
             ),
-            copyLink: () {},
+            copyLink: () => model.copyLink(
+              url: 'url',
+              context: context,
+            ),
           );
         },
       );

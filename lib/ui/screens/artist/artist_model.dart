@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
@@ -322,5 +323,13 @@ class ArtistViewModel extends ChangeNotifier {
     Navigator.pushNamed(context, MainNavigationRouteNames.albumScreen,
             arguments: id)
         .then((value) => Navigator.pop(context));
+  }
+
+  void copyLink({
+    required String url,
+    required BuildContext context,
+  }) async {
+    await Clipboard.setData(ClipboardData(text: url))
+        .then((_) => Navigator.pop(context));
   }
 }
