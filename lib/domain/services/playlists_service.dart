@@ -23,4 +23,25 @@ class PlaylistsService {
     );
     return currentUsersPlaylists;
   }
+
+  Future<void> addItemsToPlaylist({
+    required String playlistId,
+    int? position,
+    List<String>? uris,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    await _playlistsApiClient.addItemsToPlaylist(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'playlist_id': playlistId,
+        'position': position,
+        'uris': uris?.join(', '),
+      },
+      body: <String, dynamic>{
+        'uris': uris,
+        'position': position,
+      },
+      playlistId: playlistId,
+    );
+  }
 }

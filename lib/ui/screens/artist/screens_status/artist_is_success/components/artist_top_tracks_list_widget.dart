@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:spotify_client/configuration/constants.dart';
 
+import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
@@ -121,7 +123,9 @@ class _TrackWidget extends StatelessWidget {
               uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
               context: context,
             ),
-            addToPlaylist: () {},
+            addToPlaylist: () => model.getCurrentUsersPlaylists().then(
+                  (value) => _openPlaylistsDialog(context, value, model),
+                ),
             viewAlbum: () => model.openAlbum(
               id: '0tGPJ0bkWOUmH7MEOR77qc',
               context: context,
@@ -132,5 +136,77 @@ class _TrackWidget extends StatelessWidget {
             ),
           );
         },
+      );
+
+  void _openPlaylistsDialog(
+          BuildContext context,
+          CurrentUsersPlaylistsModel currentUsersPlaylistsModel,
+          ArtistViewModel model) =>
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) => Dialog.fullscreen(
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Add track to playlists'),
+              centerTitle: true,
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () => _openCreatePlaylistDialog(context),
+                  icon: const Icon(Icons.add_rounded),
+                ),
+              ],
+            ),
+            body: ListView.builder(
+              itemBuilder: (BuildContext context, int index) => ListTile(
+                onTap: () => model.addItemsToPlaylist(
+                  playlistId: currentUsersPlaylistsModel.items[index].id ?? '',
+                  uri: 'spotify:track:6OmhkSOpvYBokMKQxpIGx2',
+                  context: context,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                leading: ImageNetworkWidget(
+                  imageUrl: currentUsersPlaylistsModel
+                          .items[index].images?.first.url ??
+                      '',
+                  radius: 8.0,
+                ),
+                title: Text(currentUsersPlaylistsModel.items[index].name ?? ''),
+                subtitle: Text(
+                    '${currentUsersPlaylistsModel.items[index].tracks?.total.toString()} tracks'),
+              ),
+              itemCount: currentUsersPlaylistsModel.items.length,
+            ),
+          ),
+        ),
+      );
+
+  void _openCreatePlaylistDialog(BuildContext context) => showDialog<void>(
+        context: context,
+        builder: (BuildContext context) => Dialog(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text('This is a typical dialog.'),
+                const SizedBox(height: 15),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
 }

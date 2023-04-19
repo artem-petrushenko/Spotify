@@ -15,4 +15,18 @@ class PlaylistsApiClient {
     ) as Map<String, dynamic>;
     return CurrentUsersPlaylistsModel.fromJson(response);
   }
+
+  Future<void> addItemsToPlaylist({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+    Map<String, dynamic>? body,
+    required String playlistId,
+  }) async {
+    await _apiQueryHelper.post(
+      endpoint: 'v1/playlists/$playlistId/tracks',
+      queryParameters: queryParameters,
+      body: body,
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+  }
 }

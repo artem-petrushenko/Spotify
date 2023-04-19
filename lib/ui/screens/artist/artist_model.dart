@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+import 'package:spotify_client/domain/services/playlists_service.dart';
 
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
@@ -194,6 +196,7 @@ class ArtistViewModel extends ChangeNotifier {
   final _artistService = ArtistService();
   final _playerService = PlayerService();
   final _tracksService = TracksService();
+  final _playlistsService = PlaylistsService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
@@ -331,5 +334,21 @@ class ArtistViewModel extends ChangeNotifier {
   }) async {
     await Clipboard.setData(ClipboardData(text: url))
         .then((_) => Navigator.pop(context));
+  }
+
+  Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists() async {
+    return await _playlistsService.getCurrentUsersPlaylists(
+        offset: 0, limit: 10);
+  }
+
+  Future<void> addItemsToPlaylist({
+    required String playlistId,
+    required String uri,
+    required BuildContext context,
+  }) async {
+    await _playlistsService.addItemsToPlaylist(
+      playlistId: playlistId,
+      uris: [uri],
+    ).then((value) => Navigator.pop(context));
   }
 }
