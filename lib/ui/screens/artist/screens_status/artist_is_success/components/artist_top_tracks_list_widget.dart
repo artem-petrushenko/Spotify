@@ -92,10 +92,20 @@ class _TrackWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => model
-                .checkUsersSavedTracks(id: track.id ?? '')
-                .then((value) =>
-                    _openTrackModalBottomSheet(context, value, model)),
+            onPressed: () =>
+                model.checkUsersSavedTracks(id: track.id ?? '').then(
+                      (value) => _openTrackModalBottomSheet(
+                        context,
+                        value,
+                        model,
+                        TrackModel(
+                          name: track.name,
+                          imageUrl: track.image,
+                          artists: track.artists,
+                          album: track.album,
+                        ),
+                      ),
+                    ),
             icon: const Icon(Icons.more_vert_rounded),
           )
         ],
@@ -103,16 +113,13 @@ class _TrackWidget extends StatelessWidget {
     );
   }
 
-  void _openTrackModalBottomSheet(
-          BuildContext context, bool isFavorite, ArtistViewModel model) =>
+  void _openTrackModalBottomSheet(BuildContext context, bool isFavorite,
+          ArtistViewModel model, TrackModel trackModel) =>
       showModalBottomSheet<void>(
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
           return TrackModalBottomSheet(
-            track: null,
-            album: 'albumName',
-            url: 'imageUrl',
             isFavorite: isFavorite,
             addRemoveFavorite: () => model.addRemoveFavorite(
               id: track.id ?? '',
@@ -134,6 +141,7 @@ class _TrackWidget extends StatelessWidget {
               url: 'url',
               context: context,
             ),
+            trackModel: trackModel,
           );
         },
       );
@@ -192,22 +200,50 @@ class _TrackWidget extends StatelessWidget {
         context: context,
         builder: (BuildContext context) => Dialog(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.add_box_rounded),
-                const Text('1'),
-                const Text('2'),
-                const Divider(),
-                const TextField(),
-                Checkbox(
-                  value: false,
-                  onChanged: (newValue) {},
+                Icon(
+                  Icons.create_rounded,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
-                const Text('This is a typical dialog.'),
-                const SizedBox(height: 15),
+                const SizedBox(height: 16.0),
+                Text(
+                  'Create playlist',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 16.0),
+                Text(
+                    'Create a new playlist to add tracks to it and use it later to listen to your music',
+                    style: Theme.of(context).textTheme.bodyMedium),
+                const SizedBox(height: 16.0),
+                const TextField(
+                  // onChanged: () => ,
+                  decoration: InputDecoration(
+                      hintText: 'Playlist name',
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(16.0)))),
+                ),
+                const SizedBox(height: 16.0),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                  title: const Text(
+                    'Public playlist',
+                  ),
+                  subtitle: const Text(
+                    'If the checkbox is checked, the playlist will be public, if it is not checked, it will be private',
+                  ),
+                  value: model.publicPlaylist,
+                  onChanged: (value) =>
+                      model.onChangePublicPlaylist(value ?? true),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+                const SizedBox(height: 24.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -215,9 +251,9 @@ class _TrackWidget extends StatelessWidget {
                       onPressed: () => Navigator.pop(context),
                       child: const Text('Close'),
                     ),
-                    TextButton(
-                        onPressed: () => model.createPlaylist(userId: '31tvzt2s4yfemkkyonfdya75wp6m', context: context),
-                      child: const Text('Add'),
+                    FilledButton(
+                      onPressed: () => model.createPlaylist(context: context),
+                      child: const Text('Create'),
                     ),
                   ],
                 ),

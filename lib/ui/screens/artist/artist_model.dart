@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
-import 'package:spotify_client/domain/services/playlists_service.dart';
 
 import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
@@ -10,10 +8,13 @@ import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
+import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
 
+import 'package:spotify_client/domain/services/playlists_service.dart';
 import 'package:spotify_client/domain/services/artists_service.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/domain/services/tracks_service.dart';
+import 'package:spotify_client/domain/services/user_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -63,6 +64,7 @@ class ArtistsTopTracksData {
   final String? image;
   final String? artists;
   final String? contextUri;
+  final String? album;
 
   const ArtistsTopTracksData({
     required this.id,
@@ -70,6 +72,7 @@ class ArtistsTopTracksData {
     required this.image,
     required this.artists,
     required this.contextUri,
+    required this.album,
   });
 
   ArtistsTopTracksData copyWith({
@@ -78,6 +81,7 @@ class ArtistsTopTracksData {
     String? image,
     String? artists,
     String? contextUri,
+    String? album,
   }) {
     return ArtistsTopTracksData(
       id: id ?? this.id,
@@ -85,6 +89,7 @@ class ArtistsTopTracksData {
       image: image ?? this.image,
       artists: artists ?? this.artists,
       contextUri: contextUri ?? this.contextUri,
+      album: album ?? this.album,
     );
   }
 }
@@ -191,12 +196,17 @@ class ArtistViewModel extends ChangeNotifier {
     return opacity;
   }
 
+  bool _publicPlaylist = true;
+
+  bool get publicPlaylist => _publicPlaylist;
+
   late ScrollController scrollController;
   final data = ArtistRenderedData();
   final _artistService = ArtistService();
   final _playerService = PlayerService();
   final _tracksService = TracksService();
   final _playlistsService = PlaylistsService();
+  final _userService = UserService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
@@ -263,6 +273,7 @@ class ArtistViewModel extends ChangeNotifier {
               artists:
                   e.album?.artists?.map((e) => e.name).join(', ').toString(),
               contextUri: e.uri,
+      album: e.album?.name,
             ))
         .toList();
   }
@@ -353,13 +364,20 @@ class ArtistViewModel extends ChangeNotifier {
   }
 
   Future<void> createPlaylist({
-    required String userId,
     required BuildContext context,
   }) async {
-    await _playlistsService.createPlaylist(
-      userId: userId,
-      name: 'Name',
-      public: false,
-    ).then((value) => Navigator.pop(context));
+    await _userService
+        .getCurrentUserProfile()
+        .then((value) => _playlistsService.createPlaylist(
+              userId: value.id ?? '',
+              name: 'Name',
+              public: false,
+            ))
+        .then((value) => Navigator.pop(context));
+  }
+
+  void onChangePublicPlaylist(bool value) {
+    _publicPlaylist = !value;
+    notifyListeners();
   }
 }

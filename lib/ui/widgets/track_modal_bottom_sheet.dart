@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 
-import 'package:spotify_client/domain/entity/tracks/users_saved_tracks.dart';
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 
+class TrackModel {
+  String? imageUrl;
+  String? name;
+  String? album;
+  String? artists;
+
+  TrackModel({
+    this.imageUrl,
+    this.name,
+    this.album,
+    this.artists,
+  });
+}
+
 class TrackModalBottomSheet extends StatelessWidget {
-  final bool? isFavorite;
-  final String? album;
-  final String? url;
-  final Track? track;
+  final bool isFavorite;
+
+  final TrackModel? trackModel;
+
   final VoidCallback addRemoveFavorite;
   final VoidCallback addToPlaylist;
   final VoidCallback addItemToPlaybackQueue;
@@ -17,14 +30,11 @@ class TrackModalBottomSheet extends StatelessWidget {
   const TrackModalBottomSheet({
     super.key,
     required this.isFavorite,
-    required this.album,
-    required this.url,
-    required this.track,
     required this.addRemoveFavorite,
     required this.addToPlaylist,
     required this.addItemToPlaybackQueue,
     required this.viewAlbum,
-    required this.copyLink,
+    required this.copyLink, required this.trackModel,
   });
 
   @override
@@ -50,7 +60,7 @@ class TrackModalBottomSheet extends StatelessWidget {
                 child: Row(
                   children: [
                     ImageNetworkWidget(
-                      imageUrl: url ?? '',
+                      imageUrl: trackModel?.imageUrl ?? '',
                       height: 64.0,
                       width: 64.0,
                       radius: 12.0,
@@ -61,16 +71,19 @@ class TrackModalBottomSheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            track?.name ?? '',
+                            trackModel?.name ?? '',
                             style: Theme.of(context).textTheme.labelLarge,
                             maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
                           ),
+                          const SizedBox(height: 4.0),
                           Text(
-                            "${album ?? ''} • ${track?.artists ?? ''}",
+                            <String>["${trackModel?.album}",  "${trackModel?.artists}", "${trackModel?.artists}"].join(' • '),
                             style: Theme.of(context).textTheme.labelMedium,
                             maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
                           ),
                         ],
                       ),
@@ -85,40 +98,53 @@ class TrackModalBottomSheet extends StatelessWidget {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             leading: Icon(
-              isFavorite ?? false
-                  ? Icons.favorite_rounded
-                  : Icons.favorite_border,
+              isFavorite ? Icons.favorite_rounded : Icons.favorite_border,
+              color: isFavorite
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.secondary,
             ),
             title: Text(
-              isFavorite ?? false ? 'Remove from Favorite' : 'Add to Favorite',
+              isFavorite ? 'Liked' : 'Like',
             ),
             onTap: addRemoveFavorite,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
-            leading: const Icon(Icons.queue_music_rounded),
+            leading: Icon(
+              Icons.queue_music_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             title: const Text('Add to Playlist'),
             onTap: addToPlaylist,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
-            leading: const Icon(Icons.multitrack_audio_rounded),
+            leading: Icon(
+              Icons.multitrack_audio_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             title: const Text('Add to Queue'),
             onTap: addItemToPlaybackQueue,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
-            leading: const Icon(Icons.album_rounded),
+            leading: Icon(
+              Icons.album_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             title: const Text('View Album'),
             onTap: viewAlbum,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
-            leading: const Icon(Icons.copy_rounded),
+            leading: Icon(
+              Icons.copy_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             title: const Text('Copy Link'),
             onTap: copyLink,
           ),
