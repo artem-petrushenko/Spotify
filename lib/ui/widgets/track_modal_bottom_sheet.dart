@@ -79,7 +79,7 @@ class TrackModalBottomSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 4.0),
                           Text(
-                            <String>["${trackModel?.album}",  "${trackModel?.artists}", "${trackModel?.artists}"].join(' • '),
+                            <String>["${trackModel?.album}",  "${trackModel?.artists}"].join(' • '),
                             style: Theme.of(context).textTheme.labelMedium,
                             maxLines: 1,
                             overflow: TextOverflow.fade,

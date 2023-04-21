@@ -219,9 +219,9 @@ class _TrackWidget extends StatelessWidget {
                     'Create a new playlist to add tracks to it and use it later to listen to your music',
                     style: Theme.of(context).textTheme.bodyMedium),
                 const SizedBox(height: 16.0),
-                const TextField(
-                  // onChanged: () => ,
-                  decoration: InputDecoration(
+                TextField(
+                  onChanged: (value) => model.onChangeNamePlaylist(value),
+                  decoration: const InputDecoration(
                       hintText: 'Playlist name',
                       border: OutlineInputBorder(
                           borderRadius:

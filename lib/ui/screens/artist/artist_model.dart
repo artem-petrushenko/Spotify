@@ -197,6 +197,7 @@ class ArtistViewModel extends ChangeNotifier {
   }
 
   bool _publicPlaylist = true;
+  late String _namePlaylist;
 
   bool get publicPlaylist => _publicPlaylist;
 
@@ -273,7 +274,7 @@ class ArtistViewModel extends ChangeNotifier {
               artists:
                   e.album?.artists?.map((e) => e.name).join(', ').toString(),
               contextUri: e.uri,
-      album: e.album?.name,
+              album: e.album?.name,
             ))
         .toList();
   }
@@ -370,14 +371,21 @@ class ArtistViewModel extends ChangeNotifier {
         .getCurrentUserProfile()
         .then((value) => _playlistsService.createPlaylist(
               userId: value.id ?? '',
-              name: 'Name',
-              public: false,
+              name: _namePlaylist,
+              public: publicPlaylist,
             ))
         .then((value) => Navigator.pop(context));
+    _namePlaylist = '';
   }
 
+  //TODO: NOT WORKING
   void onChangePublicPlaylist(bool value) {
     _publicPlaylist = !value;
     notifyListeners();
+  }
+
+  //TODO: REFRESH TO SET?
+  void onChangeNamePlaylist(String value) {
+    _namePlaylist = value;
   }
 }

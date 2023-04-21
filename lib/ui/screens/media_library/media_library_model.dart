@@ -151,7 +151,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
               name: e.name,
               uri: e.uri,
               mediaId: e.id,
-              imageUrl: e.images?.first.url,
+              imageUrl: e.images!.isNotEmpty ? e.images?.first.url : null,
             ))
         .toList());
   }
