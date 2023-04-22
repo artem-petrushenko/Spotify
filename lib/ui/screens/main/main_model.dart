@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
-import 'package:spotify_client/domain/factory/screen_factory.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
 
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
+
 import 'package:spotify_client/ui/screens/main/local_entity/mini_player_local_model.dart';
 
 enum Status { loading, active, inactive, error }
@@ -30,16 +31,6 @@ class MainViewModel extends ChangeNotifier {
 
   int selectedIndex = 0;
   final _playerService = PlayerService();
-  final List<Widget> screens = [
-    const Scaffold(
-        body:
-            CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('1'))])),
-    const Scaffold(
-        body:
-            CustomScrollView(slivers: [SliverToBoxAdapter(child: Text('2'))])),
-    ScreenFactory().makeSearch(),
-    ScreenFactory().makeMediaLibrary(),
-  ];
 
   void loadDetails() async {
     await _playerService
@@ -65,13 +56,23 @@ class MainViewModel extends ChangeNotifier {
     );
   }
 
-  void onItemTapped(int index) {
+  void onItemTapped(int index, BuildContext context) {
     if (selectedIndex == index) return;
+    switch (index) {
+      case 0:
+        context.go(GoRoutePath.homeScreen);
+        break;
+      case 1:
+        context.go(GoRoutePath.searchScreen);
+        break;
+      case 2:
+        context.go(GoRoutePath.mediaLibraryScreen);
+        break;
+    }
     selectedIndex = index;
     notifyListeners();
   }
 
-  void openPlayer(BuildContext context) {
-    Navigator.of(context).pushNamed(MainNavigationRouteNames.playerScreen);
-  }
+  void openPlayer(BuildContext context) =>
+      context.push(GoRoutePath.playerScreen);
 }

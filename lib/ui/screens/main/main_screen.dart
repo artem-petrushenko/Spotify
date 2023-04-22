@@ -5,18 +5,17 @@ import 'package:spotify_client/ui/screens/main/main_model.dart';
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
+  const MainScreen(this.child, {Key? key, }) : super(key: key);
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     final selectedIndex =
         context.select((MainViewModel model) => model.selectedIndex);
     final model = context.read<MainViewModel>();
-    final screens = context.select((MainViewModel model) => model.screens);
     return Scaffold(
       body: Stack(
         children: [
-          screens[selectedIndex],
+          child,
           if (model.data.status == Status.active)
             Positioned(
               bottom: 0,
@@ -84,28 +83,23 @@ class MainScreen extends StatelessWidget {
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) =>
-            context.read<MainViewModel>().onItemTapped(index),
+            context.read<MainViewModel>().onItemTapped(index, context),
         selectedIndex: selectedIndex,
         destinations: const [
           NavigationDestination(
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
-            label: '-',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.navigation),
-            icon: Icon(Icons.navigation_outlined),
-            label: '-',
+            label: 'Home',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.favorite),
             icon: Icon(Icons.favorite_border),
-            label: '-',
+            label: 'Search',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.person_2),
             icon: Icon(Icons.person_2_outlined),
-            label: 'User',
+            label: 'Your Library',
           ),
         ],
       ),

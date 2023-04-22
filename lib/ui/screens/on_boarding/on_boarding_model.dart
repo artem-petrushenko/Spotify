@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
 
 class OnBoardingViewModel extends ChangeNotifier {
   final pageController = PageController();
@@ -17,6 +18,5 @@ class OnBoardingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void openSignInScreen(BuildContext context) =>
-      Navigator.pushNamed(context, MainNavigationRouteNames.signInScreen);
+  void openSignInScreen(BuildContext context) => context.push(GoRoutePath.signInScreen);
 }

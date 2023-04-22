@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 
 import 'package:spotify_client/domain/services/user_service.dart';
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+
+import 'package:spotify_client/ui/navigation/router.dart';
 
 enum Status { loading, completed, error }
 
@@ -50,7 +52,7 @@ class UserProfileViewModel extends ChangeNotifier {
   }
 
   void openSettings(BuildContext context) =>
-      Navigator.of(context).pushNamed(MainNavigationRouteNames.settingScreen);
+      context.push(GoRoutePath.settingScreen);
 
   Future<void> _loadDetails() async {
     await _userService

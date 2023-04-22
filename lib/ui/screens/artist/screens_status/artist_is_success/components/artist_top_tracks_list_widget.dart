@@ -134,8 +134,8 @@ class _TrackWidget extends StatelessWidget {
                   (value) => _openPlaylistsDialog(context, value, model),
                 ),
             viewAlbum: () => model.openAlbum(
-              id: '0tGPJ0bkWOUmH7MEOR77qc',
-              context: context,
+              '0tGPJ0bkWOUmH7MEOR77qc',
+              context,
             ),
             copyLink: () => model.copyLink(
               url: 'url',

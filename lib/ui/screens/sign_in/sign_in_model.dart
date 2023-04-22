@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
 
 import 'package:spotify_client/domain/services/auth_service.dart';
 
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
 
 class SignInViewModel extends ChangeNotifier {
   final _authService = AuthService();
@@ -67,7 +68,7 @@ class SignInViewModel extends ChangeNotifier {
     _updateButtonStatus(true);
     errorMessage = await _handleDeeplink(queryParameters);
     if (errorMessage == null) {
-      MainNavigation.resetNavigation(context);
+      context.go(GoRoutePath.loaderScreen);
     }
     _updateButtonStatus(false);
   }

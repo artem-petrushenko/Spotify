@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
 
+import 'package:spotify_client/ui/screens/home/home_screen.dart';
+import 'package:spotify_client/ui/screens/home/home_view_model.dart';
+
 import 'package:spotify_client/ui/screens/language/localization_screen.dart';
 
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
@@ -11,8 +14,13 @@ import 'package:spotify_client/ui/screens/media_library/media_library_screen.dar
 
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
+
 import 'package:spotify_client/ui/screens/player/player_screen.dart';
 import 'package:spotify_client/ui/screens/player/player_view_model.dart';
+
+import 'package:spotify_client/ui/screens/playlist/playlist_screen.dart';
+import 'package:spotify_client/ui/screens/playlist/playlist_view_model.dart';
+
 import 'package:spotify_client/ui/screens/search/search_screen.dart';
 import 'package:spotify_client/ui/screens/search/search_view_model.dart';
 
@@ -33,12 +41,18 @@ import 'package:spotify_client/ui/screens/main/main_screen.dart';
 
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
+
 import 'package:spotify_client/ui/screens/theme/theme_screen.dart';
+
+import 'package:spotify_client/ui/screens/track/track_screen.dart';
+import 'package:spotify_client/ui/screens/track/track_view_model.dart';
+
 import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_screen.dart';
 import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_view_model.dart';
 
 import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
 import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
+
 import 'package:spotify_client/ui/screens/users_queue/users_queue_screen.dart';
 import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dart';
 
@@ -51,17 +65,19 @@ class ScreenFactory {
   }
 
   Widget makeSignIn(Map<String, String>? queryParameters) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProxyProvider(
       create: (context) => SignInViewModel(context, queryParameters),
       lazy: false,
+      update: (BuildContext context, value, SignInViewModel? previous) =>
+          SignInViewModel(context, queryParameters),
       child: const SignInScreen(),
     );
   }
 
-  Widget makeMain() {
+  Widget makeMain(Widget child) {
     return ChangeNotifierProvider(
       create: (context) => MainViewModel(),
-      child: const MainScreen(),
+      child: MainScreen(child),
     );
   }
 
@@ -149,6 +165,27 @@ class ScreenFactory {
       create: (context) => SearchViewModel(),
       lazy: false,
       child: const SearchScreen(),
+    );
+  }
+
+  Widget makeTrack(String trackID) {
+    return ChangeNotifierProvider(
+      create: (context) => TrackViewModel(trackID: trackID),
+      child: const TrackScreen(),
+    );
+  }
+
+  Widget makePlaylist(String playlistID) {
+    return ChangeNotifierProvider(
+      create: (context) => PlaylistViewModel(playlistID: playlistID),
+      child: const PlaylistScreen(),
+    );
+  }
+
+  Widget makeHome() {
+    return ChangeNotifierProvider(
+      create: (context) => HomeViewModel(),
+      child: const HomeScreen(),
     );
   }
 }

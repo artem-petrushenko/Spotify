@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spotify_client/configuration/api_query_constants.dart';
 
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 
 import 'package:spotify_client/domain/services/player_service.dart';
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
 
 import 'package:spotify_client/ui/screens/player/local_entity/player_local_model.dart';
 
@@ -29,8 +32,15 @@ class PlayerViewModel extends ChangeNotifier {
     loadDetails();
   }
 
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   final _playerService = PlayerService();
   final data = PlayerRenderedData();
+  late StreamSubscription<CurrentlyPlayingTrackModel> subscription;
 
   Stream<CurrentlyPlayingTrackModel> _getCurrentlyPlayingTrack() async* {
     while (true) {
@@ -41,7 +51,7 @@ class PlayerViewModel extends ChangeNotifier {
 
   void loadDetails() async {
     final streamData = _getCurrentlyPlayingTrack();
-    final subscription = streamData.listen(
+    subscription = streamData.listen(
       (data) {
         _addPlayerData(data);
         notifyListeners();
@@ -112,11 +122,11 @@ class PlayerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void openUsersQueue(BuildContext context) => Navigator.of(context)
-      .pushNamed(MainNavigationRouteNames.usersQueueScreen);
+  void openUsersQueue(BuildContext context) =>
+      context.push(GoRoutePath.usersQueueScreen);
 
-  void openTransferPlayback(BuildContext context) => Navigator.of(context)
-      .pushNamed(MainNavigationRouteNames.transferPlaybackScreen);
+  void openTransferPlayback(BuildContext context) =>
+      context.push(GoRoutePath.transferPlaybackScreen);
 
-  void closedPlayer(BuildContext context) => Navigator.of(context).pop();
+  void closedPlayer(BuildContext context) => context.pop();
 }

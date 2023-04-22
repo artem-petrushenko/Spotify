@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import 'package:spotify_client/domain/services/albums_service.dart';
-
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
 
 import 'package:spotify_client/domain/entity/albums/album.dart';
 
@@ -169,8 +168,7 @@ class AlbumViewModel extends ChangeNotifier {
   void playTrack(String id) {}
 
   void openArtist(BuildContext context, String artistId) {
-    Navigator.of(context)
-        .pushNamed(MainNavigationRouteNames.artistScreen, arguments: artistId);
+    context.push('/artist/$artistId');
   }
 
   void _addAlbum(AlbumModel album) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
@@ -6,7 +7,7 @@ import 'package:spotify_client/domain/entity/playlists/current_users_playlists.d
 import 'package:spotify_client/domain/services/albums_service.dart';
 import 'package:spotify_client/domain/services/playlists_service.dart';
 
-import 'package:spotify_client/ui/navigation/main_navigation.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
 
 enum Status { loading, completed, error }
 
@@ -71,23 +72,19 @@ class MediaLibraryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void openUserProfile(BuildContext context) => Navigator.of(context)
-      .pushNamed(MainNavigationRouteNames.userProfileScreen);
+  void openUserProfile(BuildContext context) =>
+      context.push(GoRoutePath.userProfileScreen);
 
   void openMediaTypeScreen(BuildContext context, MediaData mediaData) {
     switch (mediaData.mediaType) {
       case MediaType.likedPlaylist:
-        Navigator.of(context)
-            .pushNamed(MainNavigationRouteNames.likedMusicPlaylistScreen);
+        context.push(GoRoutePath.likedMusicPlaylistScreen);
         break;
       case MediaType.playlists:
-        Navigator.of(context).pushNamed(
-            MainNavigationRouteNames.musicPlaylistScreen,
-            arguments: mediaData.mediaId);
+        context.push('/playlist/${mediaData.mediaId}');
         break;
       case MediaType.albums:
-        Navigator.of(context).pushNamed(MainNavigationRouteNames.albumScreen,
-            arguments: mediaData.mediaId);
+        context.push('/album/${mediaData.mediaId}');
         break;
       default:
     }

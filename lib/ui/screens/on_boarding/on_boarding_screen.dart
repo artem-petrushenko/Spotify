@@ -182,7 +182,7 @@ class _Indicator extends StatelessWidget {
       decoration: BoxDecoration(
           color: positionIndex < currentIndex + 1
               ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.outline,
+              : Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(2.0)),
     );
   }
