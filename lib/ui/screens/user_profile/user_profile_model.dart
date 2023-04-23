@@ -52,7 +52,7 @@ class UserProfileViewModel extends ChangeNotifier {
   }
 
   void openSettings(BuildContext context) =>
-      context.push(GoRoutePath.settingScreen);
+      context.push(GoRouterNames.settingScreen);
 
   Future<void> _loadDetails() async {
     await _userService

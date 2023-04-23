@@ -68,7 +68,7 @@ class SignInViewModel extends ChangeNotifier {
     _updateButtonStatus(true);
     errorMessage = await _handleDeeplink(queryParameters);
     if (errorMessage == null) {
-      context.go(GoRoutePath.loaderScreen);
+      context.go(GoRouterNames.loaderScreen);
     }
     _updateButtonStatus(false);
   }

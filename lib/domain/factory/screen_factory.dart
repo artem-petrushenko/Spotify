@@ -110,16 +110,16 @@ class ScreenFactory {
     );
   }
 
-  Widget makeAlbumScreen(String albumId) {
+  Widget makeAlbumScreen(String albumID) {
     return ChangeNotifierProvider(
-      create: (context) => AlbumViewModel(albumId: albumId),
+      create: (context) => AlbumViewModel(albumID: albumID),
       child: const AlbumScreen(),
     );
   }
 
-  Widget makeArtistScreen(String artistId) {
+  Widget makeArtistScreen(String artistID) {
     return ChangeNotifierProvider(
-      create: (context) => ArtistViewModel(artistId: artistId),
+      create: (context) => ArtistViewModel(artistID: artistID),
       child: const ArtistScreen(),
     );
   }

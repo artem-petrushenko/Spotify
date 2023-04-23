@@ -13,93 +13,89 @@ class MainScreen extends StatelessWidget {
         context.select((MainViewModel model) => model.selectedIndex);
     final model = context.read<MainViewModel>();
     return Scaffold(
-      body: Stack(
+      body: child,
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          child,
           if (model.data.status == Status.active)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () => model.openPlayer(context),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                  ),
-                  child: Column(
-                    children: [
-                      const LinearProgressIndicator(),
-                      Row(
-                        children: [
-                          ImageNetworkWidget(
-                            imageUrl: model.data.playerData.image ?? '',
-                            height: 64.0,
-                            width: 64.0,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    model.data.playerData.name ?? '',
-                                    maxLines: 1,
-                                    softWrap: false,
-                                    overflow: TextOverflow.fade,
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                  ),
-                                  Text(
-                                    model.data.playerData.artists ?? '',
-                                    maxLines: 1,
-                                    softWrap: false,
-                                    overflow: TextOverflow.fade,
-                                    style:
-                                        Theme.of(context).textTheme.labelSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              model.data.playerData.isPlaying ?? false
-                                  ? Icons.pause_rounded
-                                  : Icons.play_arrow_rounded,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+          GestureDetector(
+            onTap: () => model.openPlayer(context),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
               ),
-            )
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) =>
-            context.read<MainViewModel>().onItemTapped(index, context),
-        selectedIndex: selectedIndex,
-        destinations: const [
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
+              child: Column(
+                children: [
+                  const LinearProgressIndicator(),
+                  Row(
+                    children: [
+                      ImageNetworkWidget(
+                        imageUrl: model.data.playerData.image ?? '',
+                        height: 64.0,
+                        width: 64.0,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                model.data.playerData.name ?? '',
+                                maxLines: 1,
+                                softWrap: false,
+                                overflow: TextOverflow.fade,
+                                style:
+                                Theme.of(context).textTheme.labelLarge,
+                              ),
+                              Text(
+                                model.data.playerData.artists ?? '',
+                                maxLines: 1,
+                                softWrap: false,
+                                overflow: TextOverflow.fade,
+                                style:
+                                Theme.of(context).textTheme.labelSmall,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          model.data.playerData.isPlaying ?? false
+                              ? Icons.pause_rounded
+                              : Icons.play_arrow_rounded,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.favorite),
-            icon: Icon(Icons.favorite_border),
-            label: 'Search',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person_2),
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Your Library',
+          NavigationBar(
+            onDestinationSelected: (int index) =>
+                context.read<MainViewModel>().onItemTapped(index, context),
+            selectedIndex: selectedIndex,
+            destinations: const [
+              NavigationDestination(
+                selectedIcon: Icon(Icons.home),
+                icon: Icon(Icons.home_outlined),
+                label: 'Home',
+              ),
+              NavigationDestination(
+                selectedIcon: Icon(Icons.favorite),
+                icon: Icon(Icons.favorite_border),
+                label: 'Search',
+              ),
+              NavigationDestination(
+                selectedIcon: Icon(Icons.person_2),
+                icon: Icon(Icons.person_2_outlined),
+                label: 'Your Library',
+              ),
+            ],
           ),
         ],
       ),

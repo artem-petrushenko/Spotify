@@ -40,7 +40,6 @@ class MediaLibraryIsSuccessScreen extends StatelessWidget {
           ],
         ),
         isGridCards ? const GridCardsWidget() : const ListCardWidget(),
-        const SliverToBoxAdapter(child: SizedBox(height: 80.0)),
       ],
     );
   }

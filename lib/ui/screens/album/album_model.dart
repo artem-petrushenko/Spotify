@@ -145,9 +145,9 @@ class AlbumRenderedData {
 }
 
 class AlbumViewModel extends ChangeNotifier {
-  final String albumId;
+  final String albumID;
 
-  AlbumViewModel({required this.albumId}) {
+  AlbumViewModel({required this.albumID}) {
     loadDetails();
   }
 
@@ -156,7 +156,7 @@ class AlbumViewModel extends ChangeNotifier {
 
   Future<void> loadDetails() async {
     await _albumsServices
-        .getAlbum(market: 'ES', id: albumId)
+        .getAlbum(market: 'ES', id: albumID)
         .then((value) => _addAlbum(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {

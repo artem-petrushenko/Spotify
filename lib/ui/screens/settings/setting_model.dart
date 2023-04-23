@@ -10,10 +10,10 @@ class SettingViewModel extends ChangeNotifier {
 
   Future<void> logout(BuildContext context) async {
     _authService.logout();
-    context.go(GoRoutePath.loaderScreen);
+    context.go(GoRouterNames.loaderScreen);
   }
 
-  void openLocalization(BuildContext context) => context.push(GoRoutePath.localizationScreen);
+  void openLocalization(BuildContext context) => context.push(GoRouterNames.localizationScreen);
 
-  void openTheme(BuildContext context) => context.push(GoRoutePath.themeScreen);
+  void openTheme(BuildContext context) => context.push(GoRouterNames.themeScreen);
 }

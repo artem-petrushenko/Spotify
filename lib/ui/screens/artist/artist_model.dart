@@ -167,9 +167,9 @@ class ArtistRenderedData {
 }
 
 class ArtistViewModel extends ChangeNotifier {
-  final String artistId;
+  final String artistID;
 
-  ArtistViewModel({required this.artistId}) {
+  ArtistViewModel({required this.artistID}) {
     loadDetails();
   }
 
@@ -214,20 +214,20 @@ class ArtistViewModel extends ChangeNotifier {
         notifyListeners();
       });
     await _artistService
-        .getArtist(id: artistId)
+        .getArtist(id: artistID)
         .then((value) => _addArtist(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _artistService
-        .getArtistsTopTracks(id: artistId, market: 'ES')
+        .getArtistsTopTracks(id: artistID, market: 'ES')
         .then((value) => _addArtistsTopTracks(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _artistService
-        .getArtistsRelatedArtists(id: artistId)
+        .getArtistsRelatedArtists(id: artistID)
         .then((value) => _addArtistsRelatedArtists(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _artistService
         .getArtistsAlbums(
-            id: artistId,
+            id: artistID,
             market: 'ES',
             limit: 10,
             offset: 0,
@@ -330,7 +330,11 @@ class ArtistViewModel extends ChangeNotifier {
         .then((value) => Navigator.pop(context));
   }
 
-  void openAlbum(String id, BuildContext context) => context.push('/album/$id');
+  void openAlbum(String id, BuildContext context) =>
+      context.push('/album/$id').then((value) => Navigator.pop(context));
+
+  void openTrack(String id, BuildContext context) =>
+      context.push('/track/$id').then((value) => Navigator.pop(context));
 
   void copyLink({
     required String url,

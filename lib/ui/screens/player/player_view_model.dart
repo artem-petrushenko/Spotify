@@ -123,10 +123,10 @@ class PlayerViewModel extends ChangeNotifier {
   }
 
   void openUsersQueue(BuildContext context) =>
-      context.push(GoRoutePath.usersQueueScreen);
+      context.push(GoRouterNames.usersQueueScreen);
 
   void openTransferPlayback(BuildContext context) =>
-      context.push(GoRoutePath.transferPlaybackScreen);
+      context.push(GoRouterNames.transferPlaybackScreen);
 
   void closedPlayer(BuildContext context) => context.pop();
 }

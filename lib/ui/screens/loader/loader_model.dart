@@ -17,8 +17,8 @@ class LoaderViewModel {
     if (isAuth == true) await _authService.requestRefreshedAccessToken();
 
     final nextScreen = isAuth
-        ? GoRoutePath.homeScreen
-        : GoRoutePath.onBoardingScreen;
+        ? GoRouterNames.homeScreen
+        : GoRouterNames.onBoardingScreen;
     context.go(nextScreen);
   }
 }

@@ -10,8 +10,6 @@ import 'package:spotify_client/ui/screens/language/localization_model.dart';
 import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
 
 class MyApp extends StatelessWidget {
-  static final router = MainGoRouter();
-
   const MyApp({super.key});
 
   @override
@@ -39,7 +37,10 @@ class MyApp extends StatelessWidget {
       locale: Locale(localizationUnicode, ''),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: router.router,
+      routerDelegate: MainGoRouter.router.routerDelegate,
+      routeInformationParser: MainGoRouter.router.routeInformationParser,
+      routeInformationProvider: MainGoRouter.router.routeInformationProvider,
+      backButtonDispatcher: MainGoRouter.router.backButtonDispatcher,
     );
   }
 }

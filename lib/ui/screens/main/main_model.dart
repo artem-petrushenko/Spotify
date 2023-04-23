@@ -60,13 +60,13 @@ class MainViewModel extends ChangeNotifier {
     if (selectedIndex == index) return;
     switch (index) {
       case 0:
-        context.go(GoRoutePath.homeScreen);
+        context.go(GoRouterNames.homeScreen);
         break;
       case 1:
-        context.go(GoRoutePath.searchScreen);
+        context.go(GoRouterNames.searchScreen);
         break;
       case 2:
-        context.go(GoRoutePath.mediaLibraryScreen);
+        context.go(GoRouterNames.mediaLibraryScreen);
         break;
     }
     selectedIndex = index;
@@ -74,5 +74,5 @@ class MainViewModel extends ChangeNotifier {
   }
 
   void openPlayer(BuildContext context) =>
-      context.push(GoRoutePath.playerScreen);
+      context.push(GoRouterNames.playerScreen);
 }

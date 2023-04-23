@@ -1,114 +1,186 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/factory/screen_factory.dart';
+import 'package:spotify_client/ui/animations/navigation_animations.dart';
 
-abstract class GoRoutePath {
-  static const loaderScreen = '/';
-  static const onBoardingScreen = '/onBoarding';
-  static const signInScreen = '/auth';
+part 'router_names.dart';
 
-  static const playerScreen = '/player';
-  static const transferPlaybackScreen = '/transferPlayback';
-
-  static const mediaLibraryScreen = '/mediaLibrary';
-  static const homeScreen = '/home';
-  static const likedMusicPlaylistScreen = '/likedMusicPlaylist';
-  static const userProfileScreen = '/userProfile';
-  static const settingScreen = '/settings';
-  static const musicPlaylistScreen = '/musicPlaylist';
-  static const localizationScreen = '/localization';
-  static const themeScreen = '/theme';
-  static const usersQueueScreen = '/usersQueue';
-  static const searchScreen = '/search';
-
-  static const artistScreen = '/artist/:artistId';
-  static const albumScreen = '/album/:albumId';
-  static const playlistScreen = '/playlist/:playlistID';
-  static const trackScreen = '/track/:trackID';
-}
+part 'router_path.dart';
 
 class MainGoRouter {
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
   static final _screenFactory = ScreenFactory();
-  final router = GoRouter(
+  static final router = GoRouter(
+    navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: GoRoutePath.loaderScreen,
+    initialLocation: GoRouterPath.loaderScreen,
     routes: [
       ShellRoute(
-        builder: (context, state, child) => _screenFactory.makeMain(child),
+        navigatorKey: _shellNavigatorKey,
+        pageBuilder: (context, state, child) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeMain(child),
+        ),
         routes: <RouteBase>[
           GoRoute(
-            path: GoRoutePath.homeScreen,
-            builder: (context, state) => _screenFactory.makeHome(),
-          ),
-          GoRoute(
-              path: GoRoutePath.searchScreen,
-              builder: (context, state) => _screenFactory.makeSearch()),
-          GoRoute(
-            path: GoRoutePath.mediaLibraryScreen,
-            builder: (context, state) => _screenFactory.makeMediaLibrary(),
-          ),
-          GoRoute(
-            path: GoRoutePath.albumScreen,
-            builder: (context, state) => _screenFactory.makeAlbumScreen(
-              state.params['albumId'] ?? '',
+            path: GoRouterPath.homeScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeHome(),
             ),
           ),
           GoRoute(
-            path: GoRoutePath.artistScreen,
-            builder: (context, state) => _screenFactory.makeArtistScreen(
-              state.params['artistId'] ?? '',
+            path: GoRouterPath.searchScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeSearch(),
             ),
           ),
           GoRoute(
-            path: GoRoutePath.userProfileScreen,
-            builder: (context, state) => _screenFactory.makeUserProfile(),
-          ),
-          GoRoute(
-            path: GoRoutePath.settingScreen,
-            builder: (context, state) => _screenFactory.makeSettings(),
-          ),
-          GoRoute(
-            path: GoRoutePath.localizationScreen,
-            builder: (context, state) => _screenFactory.makeLocalization(),
-          ),
-          GoRoute(
-            path: GoRoutePath.themeScreen,
-            builder: (context, state) => _screenFactory.makeTheme(),
-          ),
-          GoRoute(
-            path: GoRoutePath.likedMusicPlaylistScreen,
-            builder: (context, state) =>
-                _screenFactory.makeLikedMusicPlaylist(),
-          ),
-          GoRoute(
-            path: GoRoutePath.playlistScreen,
-            builder: (context, state) => _screenFactory.makePlaylist(
-              state.params['playlistID'] ?? '',
+            path: GoRouterPath.mediaLibraryScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeMediaLibrary(),
             ),
           ),
           GoRoute(
-            path: GoRoutePath.trackScreen,
-            builder: (context, state) => _screenFactory.makeTrack(
-              state.params['trackID'] ?? '',
+            path: GoRouterPath.albumScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeAlbumScreen(
+                state.params['albumID'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.artistScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeArtistScreen(
+                state.params['artistID'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.userProfileScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeUserProfile(),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.settingScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeSettings(),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.localizationScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeLocalization(),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.themeScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeTheme(),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.likedMusicPlaylistScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeLikedMusicPlaylist(),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.playlistScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makePlaylist(
+                state.params['playlistID'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: GoRouterPath.trackScreen,
+            pageBuilder: (context, state) =>
+                NavigationAnimations.fadeTransitionAnimation<void>(
+              context: context,
+              state: state,
+              child: _screenFactory.makeTrack(
+                state.params['trackID'] ?? '',
+              ),
             ),
           ),
         ],
       ),
       GoRoute(
-        path: GoRoutePath.loaderScreen,
-        builder: (context, state) => _screenFactory.makeLoader(),
+        path: GoRouterPath.loaderScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeLoader(),
+        ),
       ),
       GoRoute(
-        path: GoRoutePath.onBoardingScreen,
-        builder: (context, state) => _screenFactory.makeOnBoarding(),
+        path: GoRouterPath.onBoardingScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeOnBoarding(),
+        ),
       ),
       GoRoute(
-          path: GoRoutePath.signInScreen,
-          builder: (context, state) =>
-              _screenFactory.makeSignIn(state.queryParams)),
+        path: GoRouterPath.signInScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeSignIn(state.queryParams),
+        ),
+      ),
       GoRoute(
-        path: GoRoutePath.playerScreen,
-        builder: (context, state) => _screenFactory.makePlayer(),
+        parentNavigatorKey: _rootNavigatorKey,
+        path: GoRouterPath.playerScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.popUpSlideTransition<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makePlayer(),
+        ),
       ),
     ],
   );

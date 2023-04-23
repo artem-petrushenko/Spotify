@@ -73,18 +73,18 @@ class MediaLibraryViewModel extends ChangeNotifier {
   }
 
   void openUserProfile(BuildContext context) =>
-      context.push(GoRoutePath.userProfileScreen);
+      context.push(GoRouterNames.userProfileScreen);
 
   void openMediaTypeScreen(BuildContext context, MediaData mediaData) {
     switch (mediaData.mediaType) {
       case MediaType.likedPlaylist:
-        context.push(GoRoutePath.likedMusicPlaylistScreen);
+        context.push(GoRouterNames.likedMusicPlaylistScreen);
         break;
       case MediaType.playlists:
-        context.push('/playlist/${mediaData.mediaId}');
+        context.push('${GoRouterNames.playlistScreen}${mediaData.mediaId}');
         break;
       case MediaType.albums:
-        context.push('/album/${mediaData.mediaId}');
+        context.push('${GoRouterNames.albumScreen}${mediaData.mediaId}');
         break;
       default:
     }

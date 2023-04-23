@@ -116,6 +116,7 @@ class _TrackWidget extends StatelessWidget {
   void _openTrackModalBottomSheet(BuildContext context, bool isFavorite,
           ArtistViewModel model, TrackModel trackModel) =>
       showModalBottomSheet<void>(
+        useRootNavigator: true,
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
@@ -142,6 +143,10 @@ class _TrackWidget extends StatelessWidget {
               context: context,
             ),
             trackModel: trackModel,
+            viewTrack: () => model.openTrack(
+              '11dFghVXANMlKmJXsNCbNl',
+              context,
+            ),
           );
         },
       );

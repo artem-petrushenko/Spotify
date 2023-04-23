@@ -18,5 +18,5 @@ class OnBoardingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void openSignInScreen(BuildContext context) => context.push(GoRoutePath.signInScreen);
+  void openSignInScreen(BuildContext context) => context.push(GoRouterNames.signInScreen);
 }

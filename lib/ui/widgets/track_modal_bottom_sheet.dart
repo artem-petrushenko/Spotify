@@ -25,6 +25,7 @@ class TrackModalBottomSheet extends StatelessWidget {
   final VoidCallback addToPlaylist;
   final VoidCallback addItemToPlaybackQueue;
   final VoidCallback viewAlbum;
+  final VoidCallback viewTrack;
   final VoidCallback copyLink;
 
   const TrackModalBottomSheet({
@@ -34,7 +35,9 @@ class TrackModalBottomSheet extends StatelessWidget {
     required this.addToPlaylist,
     required this.addItemToPlaybackQueue,
     required this.viewAlbum,
-    required this.copyLink, required this.trackModel,
+    required this.viewTrack,
+    required this.copyLink,
+    required this.trackModel,
   });
 
   @override
@@ -79,7 +82,10 @@ class TrackModalBottomSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 4.0),
                           Text(
-                            <String>["${trackModel?.album}",  "${trackModel?.artists}"].join(' • '),
+                            <String>[
+                              "${trackModel?.album}",
+                              "${trackModel?.artists}"
+                            ].join(' • '),
                             style: Theme.of(context).textTheme.labelMedium,
                             maxLines: 1,
                             overflow: TextOverflow.fade,
@@ -127,6 +133,16 @@ class TrackModalBottomSheet extends StatelessWidget {
             ),
             title: const Text('Add to Queue'),
             onTap: addItemToPlaybackQueue,
+          ),
+          ListTile(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16.0))),
+            leading: Icon(
+              Icons.audiotrack_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            title: const Text('View Track'),
+            onTap: viewTrack,
           ),
           ListTile(
             shape: const RoundedRectangleBorder(
