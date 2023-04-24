@@ -20,8 +20,8 @@ abstract class GoRouterPath {
   static const usersQueueScreen = GoRouterNames.usersQueueScreen;
   static const searchScreen = GoRouterNames.searchScreen;
 
-  static const artistScreen = '${GoRouterNames.artistScreen}:artistID';
-  static const albumScreen = '${GoRouterNames.albumScreen}:albumID';
-  static const playlistScreen = '${GoRouterNames.playlistScreen}:playlistID';
-  static const trackScreen = '${GoRouterNames.trackScreen}:trackID';
+  static const artistScreen = '${GoRouterNames.artistScreen}/:artistID';
+  static const albumScreen = '${GoRouterNames.albumScreen}/:albumID';
+  static const playlistScreen = GoRouterNames.playlistScreen;
+  static const trackScreen = GoRouterNames.trackScreen;
 }

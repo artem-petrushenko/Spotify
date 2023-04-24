@@ -81,10 +81,14 @@ class MediaLibraryViewModel extends ChangeNotifier {
         context.push(GoRouterNames.likedMusicPlaylistScreen);
         break;
       case MediaType.playlists:
-        context.push('${GoRouterNames.playlistScreen}${mediaData.mediaId}');
+        context.push(context.namedLocation(GoRouterNames.playlistScreen,
+            queryParams: <String, dynamic>{
+              'playlistID': mediaData.mediaId ?? '',
+              'image': mediaData.imageUrl ?? ''
+            }));
         break;
       case MediaType.albums:
-        context.push('${GoRouterNames.albumScreen}${mediaData.mediaId}');
+        context.push('${GoRouterNames.albumScreen}/${mediaData.mediaId}');
         break;
       default:
     }

@@ -55,50 +55,57 @@ class ListCardWidget extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          return Card(
-            clipBehavior: Clip.hardEdge,
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 64.0,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(12.0),
-                      ),
-                      child: ImageNetworkWidget(
-                        imageUrl: media[index].imageUrl ?? '',
+          return GestureDetector(
+            onTap: () => context
+                .read<MediaLibraryViewModel>()
+                .openMediaTypeScreen(context, media[index]),
+            child: Card(
+              clipBehavior: Clip.hardEdge,
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 64.0,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(12.0),
+                          ),
+                          child: Hero(
+                            tag: 'HERO_${media[index].mediaId}',
+                            child: ImageNetworkWidget(
+                              imageUrl: media[index].imageUrl ?? '',
+                            ),
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            media[index].name ?? '',
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            media[index].type ?? '',
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          media[index].name ?? '',
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          media[index].type ?? '',
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -125,7 +132,6 @@ class GridCardsWidget extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AspectRatio(
@@ -135,8 +141,11 @@ class GridCardsWidget extends StatelessWidget {
                       bottomLeft: Radius.circular(12.0),
                       bottomRight: Radius.circular(12.0),
                     ),
-                    child: ImageNetworkWidget(
-                      imageUrl: media[index].imageUrl ?? '',
+                    child: Hero(
+                      tag: 'HERO_${media[index].mediaId}',
+                      child: ImageNetworkWidget(
+                        imageUrl: media[index].imageUrl ?? '',
+                      ),
                     ),
                   ),
                 ),

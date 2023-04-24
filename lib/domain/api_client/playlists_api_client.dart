@@ -2,6 +2,7 @@ import 'package:spotify_client/domain/api_client/api_query_helper.dart';
 
 import 'package:spotify_client/domain/entity/playlists/create_playlist_model.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+import 'package:spotify_client/domain/entity/playlists/playlist_model.dart';
 
 class PlaylistsApiClient {
   final _apiQueryHelper = ApiQueryHelper();
@@ -45,5 +46,18 @@ class PlaylistsApiClient {
       accessToken: accessToken,
     ) as Map<String, dynamic>;
     return CreatePlaylistModel.fromJson(response);
+  }
+
+  Future<PlaylistModel> getPlaylist({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+    required String playlistID,
+  }) async {
+    final response = await _apiQueryHelper.get(
+      endpoint: 'v1/playlists/$playlistID',
+      queryParameters: queryParameters,
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+    return PlaylistModel.fromJson(response);
   }
 }

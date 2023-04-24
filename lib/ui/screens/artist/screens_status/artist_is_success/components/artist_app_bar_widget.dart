@@ -93,35 +93,41 @@ class _FlexibleSpaceBarWidget extends StatelessWidget {
     final contextUri =
         context.select((ArtistViewModel model) => model.data.artist.contextUri);
     final model = context.watch<ArtistViewModel>();
-    return Opacity(
-      opacity: opacityFlexibleSpace,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: ImageNetworkWidget(
-              imageUrl: image ?? '',
+    return FlexibleSpaceBar(
+      background: Opacity(
+        opacity: opacityFlexibleSpace,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: ImageNetworkWidget(
+                imageUrl: image ?? '',
+              ),
             ),
-          ),
-          Positioned(
-            right: 16.0,
-            bottom: 16.0,
-            child: Row(
-              children: [
-                _CircleButtonWidget(
-                  onPressed: () {},
-                  icon: Icons.shuffle_rounded,
-                ),
-                _CircleButtonWidget(
-                  onPressed: () => model.startResumePlayback(contextUri: contextUri ?? ''),
-                  icon: Icons.play_arrow_rounded,
-                ),
-              ],
+            Positioned(
+              right: 16.0,
+              bottom: 16.0,
+              child: Row(
+                children: [
+                  _CircleButtonWidget(
+                    onPressed: () {},
+                    icon: Icons.shuffle_rounded,
+                  ),
+                  _CircleButtonWidget(
+                    onPressed: () => model.startResumePlayback(contextUri: contextUri ?? ''),
+                    icon: Icons.play_arrow_rounded,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      stretchModes: const [
+        StretchMode.zoomBackground,
+        StretchMode.fadeTitle,
+      ],
     );
   }
 }

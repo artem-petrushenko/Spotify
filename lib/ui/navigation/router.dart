@@ -122,24 +122,28 @@ class MainGoRouter {
             ),
           ),
           GoRoute(
+            name: GoRouterNames.playlistScreen,
             path: GoRouterPath.playlistScreen,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
               child: _screenFactory.makePlaylist(
-                state.params['playlistID'] ?? '',
+                state.queryParams['playlistID'] ?? '',
+                state.queryParams['image']?? ''
               ),
             ),
           ),
           GoRoute(
+            name: GoRouterNames.trackScreen,
             path: GoRouterPath.trackScreen,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
               child: _screenFactory.makeTrack(
-                state.params['trackID'] ?? '',
+                state.queryParams['trackID'] ?? '',
+                state.queryParams['image'] ?? '',
               ),
             ),
           ),

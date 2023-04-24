@@ -168,16 +168,19 @@ class ScreenFactory {
     );
   }
 
-  Widget makeTrack(String trackID) {
+  Widget makeTrack(String trackID, String image) {
     return ChangeNotifierProvider(
-      create: (context) => TrackViewModel(trackID: trackID),
+      create: (context) => TrackViewModel(trackID: trackID, image: image),
       child: const TrackScreen(),
     );
   }
 
-  Widget makePlaylist(String playlistID) {
+  Widget makePlaylist(String playlistID, String image) {
     return ChangeNotifierProvider(
-      create: (context) => PlaylistViewModel(playlistID: playlistID),
+      create: (context) => PlaylistViewModel(
+        playlistID: playlistID,
+        image: image,
+      ),
       child: const PlaylistScreen(),
     );
   }

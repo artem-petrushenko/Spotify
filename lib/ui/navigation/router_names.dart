@@ -19,8 +19,8 @@ abstract class GoRouterNames {
   static const usersQueueScreen = '/usersQueue';
   static const searchScreen = '/search';
 
-  static const artistScreen = '/artist/';
-  static const albumScreen = '/album/';
-  static const playlistScreen = '/playlist/';
-  static const trackScreen = '/track/';
+  static const artistScreen = '/artist';
+  static const albumScreen = '/album';
+  static const playlistScreen = '/playlist';
+  static const trackScreen = '/track';
 }
