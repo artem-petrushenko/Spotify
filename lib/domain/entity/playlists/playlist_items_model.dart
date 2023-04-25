@@ -1,88 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'playlist_model.freezed.dart';
+part 'playlist_items_model.freezed.dart';
 
-part 'playlist_model.g.dart';
-
-@freezed
-class PlaylistModel with _$PlaylistModel {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory PlaylistModel({
-    bool? collaborative,
-    String? description,
-    ExternalUrls? externalUrls,
-    Followers? followers,
-    String? href,
-    String? id,
-    List<Image>? images,
-    String? name,
-    Owner? owner,
-    bool? public,
-    String? snapshotId,
-    Tracks? tracks,
-    String? type,
-    String? uri,
-  }) = _PlaylistModel;
-
-  factory PlaylistModel.fromJson(Map<String, dynamic> json) =>
-      _$PlaylistModelFromJson(json);
-}
+part 'playlist_items_model.g.dart';
 
 @freezed
-class ExternalUrls with _$ExternalUrls {
+class PlaylistItemsModel with _$PlaylistItemsModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory ExternalUrls({
-    String? spotify,
-  }) = _ExternalUrls;
-
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
-      _$ExternalUrlsFromJson(json);
-}
-
-@freezed
-class Followers with _$Followers {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Followers({
-    String? href,
-    int? total,
-  }) = _Followers;
-
-  factory Followers.fromJson(Map<String, dynamic> json) =>
-      _$FollowersFromJson(json);
-}
-
-@freezed
-class Image with _$Image {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Image({
-    String? url,
-    int? height,
-    int? width,
-  }) = _Image;
-
-  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
-}
-
-@freezed
-class Owner with _$Owner {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Owner({
-    ExternalUrls? externalUrls,
-    Followers? followers,
-    String? href,
-    String? id,
-    String? type,
-    String? uri,
-    String? displayName,
-  }) = _Owner;
-
-  factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
-}
-
-@freezed
-class Tracks with _$Tracks {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Tracks({
+  const factory PlaylistItemsModel({
     String? href,
     int? limit,
     String? next,
@@ -90,9 +15,10 @@ class Tracks with _$Tracks {
     String? previous,
     int? total,
     List<Item>? items,
-  }) = _Tracks;
+  }) = _PlaylistItemsModel;
 
-  factory Tracks.fromJson(Map<String, dynamic> json) => _$TracksFromJson(json);
+  factory PlaylistItemsModel.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistItemsModelFromJson(json);
 }
 
 @freezed
@@ -122,6 +48,29 @@ class AddedBy with _$AddedBy {
 
   factory AddedBy.fromJson(Map<String, dynamic> json) =>
       _$AddedByFromJson(json);
+}
+
+@freezed
+class ExternalUrls with _$ExternalUrls {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory ExternalUrls({
+    String? spotify,
+  }) = _ExternalUrls;
+
+  factory ExternalUrls.fromJson(Map<String, dynamic> json) =>
+      _$ExternalUrlsFromJson(json);
+}
+
+@freezed
+class Followers with _$Followers {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory Followers({
+    String? href,
+    int? total,
+  }) = _Followers;
+
+  factory Followers.fromJson(Map<String, dynamic> json) =>
+      _$FollowersFromJson(json);
 }
 
 @freezed
@@ -223,6 +172,18 @@ class ExternalIds with _$ExternalIds {
 }
 
 @freezed
+class Image with _$Image {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory Image({
+    String? url,
+    int? height,
+    int? width,
+  }) = _Image;
+
+  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+}
+
+@freezed
 class Restrictions with _$Restrictions {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Restrictions({
@@ -252,5 +213,3 @@ class TrackArtist with _$TrackArtist {
   factory TrackArtist.fromJson(Map<String, dynamic> json) =>
       _$TrackArtistFromJson(json);
 }
-
-

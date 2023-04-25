@@ -4,6 +4,7 @@ import 'package:spotify_client/domain/data_providers/session_data_provider.dart'
 
 import 'package:spotify_client/domain/entity/playlists/create_playlist_model.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+import 'package:spotify_client/domain/entity/playlists/playlist_items_model.dart';
 import 'package:spotify_client/domain/entity/playlists/playlist_model.dart';
 
 class PlaylistsService {
@@ -89,5 +90,29 @@ class PlaylistsService {
       playlistID: playlistID,
     );
     return playlistModel;
+  }
+
+  Future<PlaylistItemsModel> getPlaylistItems({
+    required String playlistID,
+    String? market,
+    String? fields,
+    int? offset,
+    int? limit,
+    String? additionalTypes,
+  }) async {
+    final accessToken = await _sessionDataProvider.getAccessToken();
+    final playlistItemsModel = await _playlistsApiClient.getPlaylistItems(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'playlist_id': playlistID,
+        'market': market,
+        'fields': fields,
+        'limit':limit,
+        'offset':offset,
+        'additional_types': additionalTypes
+      },
+      playlistID: playlistID,
+    );
+    return playlistItemsModel;
   }
 }

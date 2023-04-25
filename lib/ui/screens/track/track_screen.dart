@@ -22,6 +22,48 @@ class TrackScreen extends StatelessWidget {
                 width: 128.0,
               ),
             ),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16.0),
+                  clipBehavior: Clip.hardEdge,
+                  child: Image.network(
+                    '',
+                    height: 96.0,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    color: Colors.black.withOpacity(0.6),
+                    colorBlendMode: BlendMode.hardLight,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'name',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            'artists ?? ''',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            '03:34',
+                            style: Theme.of(context).textTheme.titleSmall,
+                          )
+                        ],
+                      ),
+                      IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
+                    ],
+                  ),
+                ),
+              ],
+            ),
             Text(model.trackID),
           ],
         ),

@@ -24,11 +24,7 @@ class PlaylistIsSuccessScreen extends StatelessWidget {
         context.select((PlaylistViewModel model) => model.data.media.name);
     final playlistID =
         context.select((PlaylistViewModel model) => model.playlistID);
-    final data = context.select((PlaylistViewModel model) => model.data);
     final image = context.select((PlaylistViewModel model) => model.image);
-    final length = context.select(
-        (PlaylistViewModel model) => model.data.media.tracks?.items?.length);
-    final model = context.read<PlaylistViewModel>();
     return CustomScrollView(
       controller: sliverController,
       slivers: [
@@ -61,7 +57,7 @@ class PlaylistIsSuccessScreen extends StatelessWidget {
             background: Opacity(
               opacity: opacityFlexibleSpace,
               child: Hero(
-                tag: 'HERO_$playlistID',
+                tag: playlistID,
                 child: ImageNetworkWidget(
                   width: double.infinity,
                   height: 350.0,
@@ -75,133 +71,182 @@ class PlaylistIsSuccessScreen extends StatelessWidget {
             ],
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Description: ${data.media.description ?? ''}"),
-                const SizedBox(height: 8.0),
-                Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      width: 32.0,
-                      height: 32.0,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(16.0))),
-                      child: Text(
-                        'B',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                      ),
+        const _PlaylistDataWidget(),
+        const _TracksListWidget(),
+      ],
+    );
+  }
+}
+
+class _TracksListWidget extends StatelessWidget {
+  const _TracksListWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.read<PlaylistViewModel>();
+    final length = context.select((PlaylistViewModel model) =>
+        model.data.playlistItemsModel.items?.length);
+    final data = context.select((PlaylistViewModel model) => model.data);
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          final artists = data.playlistItemsModel.items?[index].track?.artists
+              ?.map((e) => e.name)
+              .toList()
+              .join(', ');
+          final name = data.playlistItemsModel.items?[index].track?.name;
+          final imageUrl = data
+              .playlistItemsModel.items?[index].track?.album?.images?.first.url;
+          final id = data.playlistItemsModel.items?[index].track?.id;
+          return GestureDetector(
+            onTap: () => model.openTrack(id ?? '', context, imageUrl ?? ''),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              child: Row(
+                children: [
+                  Hero(
+                    tag: '$id',
+                    child: ImageNetworkWidget(
+                      imageUrl: imageUrl ?? '',
+                      height: 48.0,
+                      width: 48.0,
+                      radius: 4.0,
                     ),
-                    const SizedBox(width: 8.0),
-                    Text(
-                      "BurgerDonald's",
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8.0),
-                Row(
-                  children: [
-                    Icon(
-                      data.media.public ?? false
-                          ? Icons.lock_open_rounded
-                          : Icons.lock_outline_rounded,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                    const SizedBox(width: 8.0),
-                    Text(
-                        '${data.media.followers?.total.toString() ?? ''} likes'),
-                  ],
-                ),
-                Text(data.media.owner?.displayName ?? ''),
-                Icon(
-                  data.media.collaborative ?? false
-                      ? Icons.add
-                      : Icons.add_box_rounded,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                Text(data.media.type ?? ''),
-              ],
-            ),
-          ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              final artists = data.media.tracks?.items?[index].track?.artists
-                  ?.map((e) => e.name)
-                  .toList()
-                  .join(', ');
-              final name = data.media.tracks?.items?[index].track?.name;
-              final imageUrl = data
-                  .media.tracks?.items?[index].track?.album?.images?.first.url;
-              final id = data.media.tracks?.items?[index].track?.id;
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                child: InkWell(
-                  onTap: () =>
-                      model.openTrack(id ?? '', context, imageUrl ?? ''),
-                  borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                  child: Row(
-                    children: [
-                      Hero(
-                        tag: '$id',
-                        child: ImageNetworkWidget(
-                          imageUrl: imageUrl ?? '',
-                          height: 48.0,
-                          width: 48.0,
-                          radius: 12.0,
+                  ),
+                  const SizedBox(width: 8.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          name ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
-                      ),
+                        Text(
+                          artists ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
                       const SizedBox(width: 8.0),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              name ?? '',
-                              maxLines: 1,
-                              softWrap: false,
-                              overflow: TextOverflow.fade,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Text(
-                              artists ?? '',
-                              maxLines: 1,
-                              softWrap: false,
-                              overflow: TextOverflow.fade,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
+                      Container(
+                        alignment: Alignment.center,
+                        width: 24.0,
+                        height: 24.0,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(16.0))),
+                        child: Text(
+                          'B',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
                         ),
                       ),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.more_vert_rounded),
-                      )
+                      ),
                     ],
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+        childCount: length,
+      ),
+    );
+  }
+}
+
+class _PlaylistDataWidget extends StatelessWidget {
+  const _PlaylistDataWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final description = context
+        .select((PlaylistViewModel model) => model.data.media.description);
+    final displayName = context.select(
+        (PlaylistViewModel model) => model.data.media.owner?.displayName);
+    final followers = context
+        .select((PlaylistViewModel model) => model.data.media.followers?.total);
+    final collaborative = context
+        .select((PlaylistViewModel model) => model.data.media.collaborative);
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              description ??
+                  "This is the description that the user added to the description of this playlist. Maybe it's empty, maybe not. God only knows what's in that user's head",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+            ),
+            const SizedBox(height: 8.0),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: 24.0,
+                  height: 24.0,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(16.0))),
+                  child: Text(
+                    displayName?[0] ?? '',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
                   ),
                 ),
-              );
-            },
-            childCount: length,
-          ),
+                const SizedBox(width: 8.0),
+                Text(
+                  displayName ?? '',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8.0),
+            Row(
+              children: [
+                Icon(
+                  Icons.lock_outline_rounded,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                const SizedBox(width: 8.0),
+                Text('$followers likes'),
+              ],
+            ),
+            Icon(
+              collaborative ?? false ? Icons.add : Icons.add_box_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

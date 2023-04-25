@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:spotify_client/domain/entity/playlists/playlist_items_model.dart';
 import 'package:spotify_client/domain/entity/playlists/playlist_model.dart';
 
 import 'package:spotify_client/domain/services/playlists_service.dart';
 
-import '../../navigation/router.dart';
+import 'package:spotify_client/ui/navigation/router.dart';
 
 enum Status { loading, completed, error }
 
 class MediaLibraryRenderedData {
   Status status = Status.loading;
   PlaylistModel media = const PlaylistModel();
+  PlaylistItemsModel playlistItemsModel = const PlaylistItemsModel();
 }
 
 class PlaylistViewModel extends ChangeNotifier {
@@ -56,9 +58,14 @@ class PlaylistViewModel extends ChangeNotifier {
       ..addListener(() {
         notifyListeners();
       });
+
     await _playlistsService
         .getPlaylist(playlistID: playlistID, market: 'ES')
-        .then((value) => _addData(value))
+        .then((value) => _addPlaylistData(value))
+        .onError((error, stackTrace) => data.status = Status.error);
+    await _playlistsService
+        .getPlaylistItems(playlistID: playlistID, market: 'ES', limit: 20, offset: 0)
+        .then((value) => _addPlaylistItemsData(value))
         .onError((error, stackTrace) => data.status = Status.error);
     if (data.status != Status.error) {
       data.status = Status.completed;
@@ -66,9 +73,13 @@ class PlaylistViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _addData(PlaylistModel value) {
+  void _addPlaylistData(PlaylistModel value) {
     data.media = value;
     image = value.images?.first.url ?? '';
+  }
+
+  void _addPlaylistItemsData(PlaylistItemsModel value) {
+    data.playlistItemsModel = value;
   }
 
   void openTrack(String trackID, BuildContext context, String image) =>

@@ -72,7 +72,7 @@ class ListCardWidget extends StatelessWidget {
                             Radius.circular(12.0),
                           ),
                           child: Hero(
-                            tag: 'HERO_${media[index].mediaId}',
+                            tag: '${media[index].mediaId}',
                             child: ImageNetworkWidget(
                               imageUrl: media[index].imageUrl ?? '',
                             ),
@@ -142,7 +142,7 @@ class GridCardsWidget extends StatelessWidget {
                       bottomRight: Radius.circular(12.0),
                     ),
                     child: Hero(
-                      tag: 'HERO_${media[index].mediaId}',
+                      tag: '${media[index].mediaId}',
                       child: ImageNetworkWidget(
                         imageUrl: media[index].imageUrl ?? '',
                       ),

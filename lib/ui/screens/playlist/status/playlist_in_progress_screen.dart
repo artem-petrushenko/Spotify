@@ -1,55 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:spotify_client/ui/widgets/image_network_widget.dart';
-import 'package:spotify_client/ui/screens/playlist/playlist_view_model.dart';
+import 'package:spotify_client/ui/widgets/loading_container_widget.dart';
 
 class PlaylistInProgressScreen extends StatelessWidget {
   const PlaylistInProgressScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final model = context.watch<PlaylistViewModel>();
     return CustomScrollView(
       physics: const NeverScrollableScrollPhysics(),
       slivers: [
-        SliverAppBar(
-          elevation: 0.0,
-          expandedHeight: 350.0,
-          centerTitle: true,
-          pinned: true,
-          stretch: true,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Hero(
-              tag: 'HERO_${model.playlistID}',
-              child: ImageNetworkWidget(
-                width: double.infinity,
-                height: 350.0,
-                imageUrl: model.image,
-              ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          sliver: SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                LoadingContainerWidget(height: 12.0, width: 96.0),
+                SizedBox(height: 8.0),
+                LoadingContainerWidget(height: 16.0, width: 64.0),
+                SizedBox(height: 8.0),
+                LoadingContainerWidget(height: 12.0, width: 80.0),
+                SizedBox(height: 8.0),
+                LoadingContainerWidget(height: 12.0, width: 48.0),
+              ],
             ),
-            stretchModes: const [
-              StretchMode.zoomBackground,
-              StretchMode.fadeTitle,
-            ],
           ),
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.more_vert_rounded),
-                    )
+                    const LoadingContainerWidget(
+                        height: 48.0, width: 48.0, radius: 12.0),
+                    const SizedBox(width: 8.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        LoadingContainerWidget(height: 12.0, width: 128.0),
+                        SizedBox(height: 8.0),
+                        LoadingContainerWidget(height: 12.0, width: 64.0),
+                      ],
+                    ),
                   ],
                 ),
               );
             },
-            childCount: model.data.media.tracks?.items?.length,
+            childCount: 5,
           ),
         ),
       ],
