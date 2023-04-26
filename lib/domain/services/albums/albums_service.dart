@@ -10,7 +10,7 @@ import 'package:spotify_client/domain/data_providers/session_data_provider.dart'
 
 import 'package:spotify_client/domain/repository/albums/abstract_albums_repository.dart';
 
-class AlbumService implements AbstractAlbumsService {
+class AlbumsService implements AbstractAlbumsService {
   @override
   Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
     String? market,

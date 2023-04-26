@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/playlists/playlist_items_model.dart';
 import 'package:spotify_client/domain/entity/playlists/playlist_model.dart';
 import 'package:spotify_client/domain/entity/tracks/recommendations_model.dart';
 
-import 'package:spotify_client/domain/services/playlists_service.dart';
-import 'package:spotify_client/domain/services/tracks_service.dart';
+import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
+import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
 
@@ -54,8 +55,6 @@ class PlaylistViewModel extends ChangeNotifier {
   }
 
   late ScrollController scrollController;
-  final _playlistsService = PlaylistsService();
-  final _tracksService = TracksService();
 
   Future<void> _loadDetails() async {
     scrollController = ScrollController()
@@ -63,16 +62,16 @@ class PlaylistViewModel extends ChangeNotifier {
         notifyListeners();
       });
 
-    await _playlistsService
+    await GetIt.instance<AbstractPlaylistsService>()
         .getPlaylist(playlistID: playlistID, market: 'ES')
         .then((value) => _addPlaylistData(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    await _playlistsService
+    await GetIt.instance<AbstractPlaylistsService>()
         .getPlaylistItems(
             playlistID: playlistID, market: 'ES', limit: 20, offset: 0)
         .then((value) => _addPlaylistItemsData(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    await _tracksService
+    await GetIt.instance<AbstractTracksService>()
         .getRecommendations(
             seedArtists: '',
             seedGenres: '',

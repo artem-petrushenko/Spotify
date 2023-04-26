@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-import 'package:spotify_client/domain/services/tracks_service.dart';
+import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
 
 import 'package:spotify_client/domain/entity/tracks/users_saved_tracks.dart';
 
@@ -46,7 +47,6 @@ class MusicPlaylistRenderedData {
 class LikedMusicPlaylistViewModel extends ChangeNotifier {
   int offset = 0;
   bool isLoading = false;
-  final _tracksService = TracksService();
   final data = MusicPlaylistRenderedData();
 
   LikedMusicPlaylistViewModel() {
@@ -54,7 +54,7 @@ class LikedMusicPlaylistViewModel extends ChangeNotifier {
   }
 
   void _loadDetails() async {
-    await _tracksService
+    await GetIt.instance<AbstractTracksService>()
         .getUsersSavedTracks(market: 'ES', offset: offset, limit: 20)
         .then((value) => _addTracks(value))
         .onError((error, stackTrace) => data.status = Status.error);

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
 
-import 'package:spotify_client/domain/services/auth_service.dart';
+import 'package:spotify_client/domain/services/auth/abstract_auth_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
 
 class SignInViewModel extends ChangeNotifier {
-  final _authService = AuthService();
-
   String? errorMessage;
   final Map<String, String>? queryParameters;
   final BuildContext context;
@@ -32,14 +31,15 @@ class SignInViewModel extends ChangeNotifier {
   Future<void> authentication(BuildContext context) async {
     _updateButtonStatus(true);
     try {
-      _authService.makeRequestBrowser();
+      GetIt.instance<AbstractAuthService>().makeRequestBrowser();
     } catch (e) {}
     _updateButtonStatus(false);
   }
 
   Future<String?> _handleDeeplink(Map<String, String> queryParameters) async {
     try {
-      await _authService.handleDeeplink(queryParameters);
+      await GetIt.instance<AbstractAuthService>()
+          .handleDeeplink(queryParameters);
     } on ApiAuthException catch (e) {
       _isLoading = false;
       notifyListeners();

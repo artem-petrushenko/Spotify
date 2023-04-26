@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-import 'package:spotify_client/domain/services/theme_service.dart';
+import 'package:spotify_client/domain/services/theme/abstract_theme_service.dart';
 
 class ColorSchemeData {
   final String name;
@@ -30,8 +31,6 @@ class ThemeViewModel with ChangeNotifier {
   late bool isDarkTheme;
 
   late Color colorScheme;
-
-  final _themeService = ThemeService();
 
   ThemeMode get getThemeMode => isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
@@ -68,18 +67,19 @@ class ThemeViewModel with ChangeNotifier {
   }
 
   Future<void> _getThemeData() async {
-    isDarkTheme = await _themeService.getThemeFromProvider();
+    isDarkTheme =
+        await GetIt.instance<AbstractThemeService>().getThemeFromProvider();
     notifyListeners();
   }
 
   void setThemeData(bool value) {
     isDarkTheme = value;
-    _themeService.setThemeToProvider(isDarkTheme);
+    GetIt.instance<AbstractThemeService>().setThemeToProvider(isDarkTheme);
     notifyListeners();
   }
 
   Future<void> _getColorScheme() async {
-    colorScheme = await _themeService
+    colorScheme = await GetIt.instance<AbstractThemeService>()
         .getThemeSchemeFromProvider()
         .then((value) => Color(value));
     notifyListeners();
@@ -87,7 +87,7 @@ class ThemeViewModel with ChangeNotifier {
 
   void setThemeScheme(int value) {
     colorScheme = Color(value);
-    _themeService.setThemeSchemeToProvider(value);
+    GetIt.instance<AbstractThemeService>().setThemeSchemeToProvider(value);
     notifyListeners();
   }
 }

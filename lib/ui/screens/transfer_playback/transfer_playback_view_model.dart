@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
-import 'package:spotify_client/domain/services/player_service.dart';
+
+import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -80,10 +82,8 @@ class TransferPlaybackViewModel extends ChangeNotifier {
     deviceIsNotActives: [],
   );
 
-  final _playerService = PlayerService();
-
   void loadDetails() async {
-    await _playerService
+    await GetIt.instance<AbstractPlayerService>()
         .getAvailableDevices()
         .then((value) => _addAvailableDevicesData(value))
         .onError(
@@ -96,8 +96,8 @@ class TransferPlaybackViewModel extends ChangeNotifier {
   }
 
   void setPlaybackVolume(double volumePercent) async {
-    await _playerService.setPlaybackVolume(
-        volumePercent: volumePercent.toInt());
+    await GetIt.instance<AbstractPlayerService>()
+        .setPlaybackVolume(volumePercent: volumePercent.toInt());
     onChangePosition(volumePercent);
   }
 
@@ -108,7 +108,7 @@ class TransferPlaybackViewModel extends ChangeNotifier {
   }
 
   void transferPlayback(String deviceId, BuildContext context) async {
-    await _playerService.transferPlayback(
+    await GetIt.instance<AbstractPlayerService>().transferPlayback(
         deviceIds: [deviceId]).then((value) => closeTransferPlayback(context));
   }
 

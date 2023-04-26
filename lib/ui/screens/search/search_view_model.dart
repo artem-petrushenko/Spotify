@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/entity/search/tracks.dart';
 
-import 'package:spotify_client/domain/services/search_service.dart';
+import 'package:spotify_client/domain/services/search/abstract_search_service.dart';
 
 class SearchData {
   final String? title;
@@ -31,11 +32,9 @@ class SearchData {
 }
 
 class SearchViewModel extends ChangeNotifier {
-  final _searchService = SearchService();
   Timer? searchDebounce;
   String? _searchQuery;
   List<SearchData>? searchData = [];
-
 
   Future<void> searchItem(String text) async {
     searchDebounce?.cancel();
@@ -44,7 +43,7 @@ class SearchViewModel extends ChangeNotifier {
       if (_searchQuery == searchQuery) return;
       _searchQuery = searchQuery;
       searchData?.clear();
-      await _searchService
+      await GetIt.instance<AbstractSearchService>()
           .searchForItem(
             searchQuery: text,
             type: [
@@ -64,7 +63,6 @@ class SearchViewModel extends ChangeNotifier {
               value.tracks?.items?.map((e) => _addTracks(e)).toList());
       notifyListeners();
     });
-
   }
 
   void _addTracks(ItemsTracks? item) {

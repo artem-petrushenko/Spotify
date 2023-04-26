@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-import 'package:spotify_client/domain/services/localization_service.dart';
+import 'package:spotify_client/domain/services/localization/abstract_localization_service.dart';
 
 enum LocalizationLanguages {
   english,
@@ -103,8 +104,6 @@ class LocalizationViewModel extends ChangeNotifier {
         localizationLanguages: LocalizationLanguages.german),
   ];
 
-  final _localizationService = LocalizationService();
-
   late LocalizationLanguages localization;
 
   String get localizationUnicode =>
@@ -114,14 +113,15 @@ class LocalizationViewModel extends ChangeNotifier {
 
   void setLocalizationData(LocalizationLanguages value) {
     localization = value;
-    _localizationService.setLocalizationToProvider(
+    GetIt.instance<AbstractLocalizationService>().setLocalizationToProvider(
         _localizationLanguagesToString(localization));
     notifyListeners();
   }
 
   Future<void> _getLocalizationData() async {
     localization = _stringToLocalizationLanguages(
-        await _localizationService.getLocalizationFromProvider());
+        await GetIt.instance<AbstractLocalizationService>()
+            .getLocalizationFromProvider());
     notifyListeners();
   }
 

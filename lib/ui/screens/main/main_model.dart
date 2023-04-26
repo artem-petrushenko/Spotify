@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
-import 'package:spotify_client/domain/services/player_service.dart';
+
+import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
 
@@ -30,10 +32,9 @@ class MainViewModel extends ChangeNotifier {
   final data = MainRenderData();
 
   int selectedIndex = 0;
-  final _playerService = PlayerService();
 
   void loadDetails() async {
-    await _playerService
+    await GetIt.instance<AbstractPlayerService>()
         .getPlaybackState()
         .then((value) => value == null
             ? data.status == Status.inactive

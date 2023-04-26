@@ -10,10 +10,10 @@ import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
 
-import 'package:spotify_client/domain/services/playlists_service.dart';
-import 'package:spotify_client/domain/services/artists_service.dart';
-import 'package:spotify_client/domain/services/player_service.dart';
-import 'package:spotify_client/domain/services/tracks_service.dart';
+import 'package:spotify_client/domain/services/artists/abstract_artists_service.dart';
+import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
+import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
+import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
 import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 
 enum Status { loading, completed, error }
@@ -203,29 +203,25 @@ class ArtistViewModel extends ChangeNotifier {
 
   late ScrollController scrollController;
   final data = ArtistRenderedData();
-  final _artistService = ArtistService();
-  final _playerService = PlayerService();
-  final _tracksService = TracksService();
-  final _playlistsService = PlaylistsService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
       ..addListener(() {
         notifyListeners();
       });
-    await _artistService
+    await GetIt.instance<AbstractArtistsService>()
         .getArtist(id: artistID)
         .then((value) => _addArtist(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    await _artistService
+    await GetIt.instance<AbstractArtistsService>()
         .getArtistsTopTracks(id: artistID, market: 'ES')
         .then((value) => _addArtistsTopTracks(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    await _artistService
+    await GetIt.instance<AbstractArtistsService>()
         .getArtistsRelatedArtists(id: artistID)
         .then((value) => _addArtistsRelatedArtists(value))
         .onError((error, stackTrace) => data.status = Status.error);
-    await _artistService
+    await GetIt.instance<AbstractArtistsService>()
         .getArtistsAlbums(
             id: artistID,
             market: 'ES',
@@ -245,7 +241,7 @@ class ArtistViewModel extends ChangeNotifier {
     List<String>? uris,
     Map<String, Map<String, dynamic>>? offset,
   }) async {
-    await _playerService.startResumePlayback(
+    await GetIt.instance<AbstractPlayerService>().startResumePlayback(
       contextUri: contextUri,
       uris: uris,
       offset: offset,
@@ -305,7 +301,7 @@ class ArtistViewModel extends ChangeNotifier {
   Future<bool> checkUsersSavedTracks({
     required String id,
   }) async {
-    return await _tracksService
+    return await GetIt.instance<AbstractTracksService>()
         .checkUsersSavedTracks(ids: [id]).then((value) => value.first as bool);
   }
 
@@ -315,9 +311,9 @@ class ArtistViewModel extends ChangeNotifier {
     required BuildContext context,
   }) {
     isFavorite
-        ? _tracksService.removeUsersSavedTracks(
+        ? GetIt.instance<AbstractTracksService>().removeUsersSavedTracks(
             ids: [id]).then((value) => Navigator.pop(context))
-        : _tracksService.saveTracksForCurrentUser(
+        : GetIt.instance<AbstractTracksService>().saveTracksForCurrentUser(
             ids: [id]).then((value) => Navigator.pop(context));
   }
 
@@ -325,7 +321,7 @@ class ArtistViewModel extends ChangeNotifier {
     required String uri,
     required BuildContext context,
   }) async {
-    await _playerService
+    await GetIt.instance<AbstractPlayerService>()
         .addItemToPlaybackQueue(uri: uri)
         .then((value) => Navigator.pop(context));
   }
@@ -345,8 +341,8 @@ class ArtistViewModel extends ChangeNotifier {
   }
 
   Future<CurrentUsersPlaylistsModel> getCurrentUsersPlaylists() async {
-    return await _playlistsService.getCurrentUsersPlaylists(
-        offset: 0, limit: 10);
+    return await GetIt.instance<AbstractPlaylistsService>()
+        .getCurrentUsersPlaylists(offset: 0, limit: 10);
   }
 
   Future<void> addItemsToPlaylist({
@@ -354,7 +350,7 @@ class ArtistViewModel extends ChangeNotifier {
     required String uri,
     required BuildContext context,
   }) async {
-    await _playlistsService.addItemsToPlaylist(
+    await GetIt.instance<AbstractPlaylistsService>().addItemsToPlaylist(
       playlistId: playlistId,
       uris: [uri],
     ).then((value) => Navigator.pop(context));
@@ -365,7 +361,8 @@ class ArtistViewModel extends ChangeNotifier {
   }) async {
     await GetIt.instance<AbstractUsersService>()
         .getCurrentUserProfile()
-        .then((value) => _playlistsService.createPlaylist(
+        .then((value) =>
+            GetIt.instance<AbstractPlaylistsService>().createPlaylist(
               userId: value.id ?? '',
               name: _namePlaylist,
               public: publicPlaylist,

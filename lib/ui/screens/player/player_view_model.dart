@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:spotify_client/configuration/api_query_constants.dart';
 
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
+import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
-import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/ui/navigation/router.dart';
 
 import 'package:spotify_client/ui/screens/player/local_entity/player_local_model.dart';
@@ -38,14 +40,13 @@ class PlayerViewModel extends ChangeNotifier {
     super.dispose();
   }
 
-  final _playerService = PlayerService();
   final data = PlayerRenderedData();
   late StreamSubscription<CurrentlyPlayingTrackModel> subscription;
 
   Stream<CurrentlyPlayingTrackModel> _getCurrentlyPlayingTrack() async* {
     while (true) {
       const Duration(seconds: 1);
-      yield await _playerService.getCurrentlyPlayingTrack();
+      yield await GetIt.instance<AbstractPlayerService>().getCurrentlyPlayingTrack();
     }
   }
 
@@ -82,23 +83,23 @@ class PlayerViewModel extends ChangeNotifier {
   }
 
   void skipToNext() async {
-    await _playerService.skipToNext();
+    await GetIt.instance<AbstractPlayerService>().skipToNext();
     notifyListeners();
   }
 
   void skipToPrevious() async {
-    await _playerService.skipToPrevious();
+    await GetIt.instance<AbstractPlayerService>().skipToPrevious();
     notifyListeners();
   }
 
   void togglePlaybackShuffle() async {
-    await _playerService.togglePlaybackShuffle(
+    await GetIt.instance<AbstractPlayerService>().togglePlaybackShuffle(
         state: data.playerData.shuffleState ?? true);
     notifyListeners();
   }
 
   void seekToPosition(double position) async {
-    await _playerService.seekToPosition(positionMs: position.toInt());
+    await GetIt.instance<AbstractPlayerService>().seekToPosition(positionMs: position.toInt());
     onChangePosition(position);
   }
 
@@ -109,13 +110,13 @@ class PlayerViewModel extends ChangeNotifier {
 
   void pauseStartResumePlayback() async {
     data.playerData.isPlaying ?? false
-        ? _playerService.pausePlayback()
-        : _playerService.startResumePlayback();
+        ? GetIt.instance<AbstractPlayerService>().pausePlayback()
+        : GetIt.instance<AbstractPlayerService>().startResumePlayback();
     notifyListeners();
   }
 
   void setRepeatMode() async {
-    await _playerService.setRepeatMode(
+    await GetIt.instance<AbstractPlayerService>().setRepeatMode(
       state:
           data.playerData.repeatState ?? ApiQueryConstants.repeatModeStateOff,
     );
