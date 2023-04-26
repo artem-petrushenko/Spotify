@@ -3,8 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/api_client/api_query_helper.dart';
+import 'package:spotify_client/domain/api_client/user_api_client.dart';
 import 'package:spotify_client/domain/services/albums/abstract_albums_service.dart';
 import 'package:spotify_client/domain/services/albums/albums_service.dart';
+import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
+import 'package:spotify_client/domain/services/users/users_service.dart';
 
 import 'package:spotify_client/ui/screens/app/my_app.dart';
 
@@ -21,10 +24,13 @@ void main() {
   void initGetIt() {
     GetIt.instance.registerLazySingleton<AbstractAlbumsRepository>(
         () => AlbumsRepository());
+    GetIt.instance.registerLazySingleton<AbstractUsersService>(
+            () => UsersService());
     GetIt.instance
         .registerLazySingleton<AbstractAlbumsService>(() => AlbumService());
     GetIt.instance.registerLazySingleton(() => SessionDataProvider());
     GetIt.instance.registerLazySingleton(() => ApiQueryHelper());
+    GetIt.instance.registerLazySingleton(() => UserApiClient());
   }
 
   // debugRepaintRainbowEnabled = true;

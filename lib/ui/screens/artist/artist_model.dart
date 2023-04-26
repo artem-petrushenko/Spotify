@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -13,7 +14,7 @@ import 'package:spotify_client/domain/services/playlists_service.dart';
 import 'package:spotify_client/domain/services/artists_service.dart';
 import 'package:spotify_client/domain/services/player_service.dart';
 import 'package:spotify_client/domain/services/tracks_service.dart';
-import 'package:spotify_client/domain/services/user_service.dart';
+import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -206,7 +207,6 @@ class ArtistViewModel extends ChangeNotifier {
   final _playerService = PlayerService();
   final _tracksService = TracksService();
   final _playlistsService = PlaylistsService();
-  final _userService = UserService();
 
   Future<void> loadDetails() async {
     scrollController = ScrollController()
@@ -363,7 +363,7 @@ class ArtistViewModel extends ChangeNotifier {
   Future<void> createPlaylist({
     required BuildContext context,
   }) async {
-    await _userService
+    await GetIt.instance<AbstractUsersService>()
         .getCurrentUserProfile()
         .then((value) => _playlistsService.createPlaylist(
               userId: value.id ?? '',

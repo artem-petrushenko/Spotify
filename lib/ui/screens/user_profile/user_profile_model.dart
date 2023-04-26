@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 
-import 'package:spotify_client/domain/services/user_service.dart';
+import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
+import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
 
@@ -43,8 +44,6 @@ class UserProfileRenderedData {
 }
 
 class UserProfileViewModel extends ChangeNotifier {
-  final _userService = UserService();
-
   final data = UserProfileRenderedData();
 
   UserProfileViewModel() {
@@ -55,7 +54,7 @@ class UserProfileViewModel extends ChangeNotifier {
       context.push(GoRouterNames.settingScreen);
 
   Future<void> _loadDetails() async {
-    await _userService
+    await GetIt.instance<AbstractUsersService>()
         .getCurrentUserProfile()
         .then((value) => _addUserData(value))
         .onError((error, stackTrace) => data.status = Status.error);
