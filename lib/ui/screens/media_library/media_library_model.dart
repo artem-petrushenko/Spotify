@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
+import 'package:spotify_client/domain/services/albums/abstract_albums_service.dart';
 
-import 'package:spotify_client/domain/services/albums_service.dart';
 import 'package:spotify_client/domain/services/playlists_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
@@ -64,7 +65,6 @@ class MediaLibraryViewModel extends ChangeNotifier {
   bool get isGridCards => _isGridCards;
 
   final _playlistsService = PlaylistsService();
-  final _albumsService = AlbumsService();
   final data = MediaLibraryRenderedData();
 
   void setGridCard() {
@@ -96,7 +96,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
 
   void loadDetails() async {
     _addFavoriteAlbum();
-    await _albumsService
+    await GetIt.instance<AbstractAlbumsService>()
         .getUsersSavedAlbums(market: 'ES', offset: 0, limit: 10)
         .then((value) => _addAlbums(value))
         .onError((error, stackTrace) => data.status = Status.error);

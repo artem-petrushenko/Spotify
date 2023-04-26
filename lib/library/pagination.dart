@@ -1,6 +1,6 @@
 import 'package:spotify_client/domain/services/tracks_service.dart';
 
-import 'package:spotify_client/domain/entity/albums/album.dart';
+import 'package:spotify_client/domain/entity/albums/album_model.dart';
 
 class Pagination {
   final _trackService = TracksService();

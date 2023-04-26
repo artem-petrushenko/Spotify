@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:spotify_client/domain/services/albums/abstract_albums_service.dart';
 
-import 'package:spotify_client/domain/services/albums_service.dart';
-
-import 'package:spotify_client/domain/entity/albums/album.dart';
+import 'package:spotify_client/domain/entity/albums/album_model.dart';
 
 enum Status { loading, completed, error }
 
@@ -151,11 +151,10 @@ class AlbumViewModel extends ChangeNotifier {
     loadDetails();
   }
 
-  final _albumsServices = AlbumsService();
   final data = AlbumRenderedData();
 
   Future<void> loadDetails() async {
-    await _albumsServices
+    await GetIt.instance<AbstractAlbumsService>()
         .getAlbum(market: 'ES', id: albumID)
         .then((value) => _addAlbum(value))
         .onError((error, stackTrace) => data.status = Status.error);
@@ -181,8 +180,7 @@ class AlbumViewModel extends ChangeNotifier {
           ?.map((e) =>
               ArtistData(id: e.id, imageUrl: e.images?.last.url, name: e.name))
           .toList(),
-      date: DateFormat("yyyy-MM-dd")
-          .parse(album.releaseDate ?? ''),
+      date: DateFormat("yyyy-MM-dd").parse(album.releaseDate ?? ''),
       tracks: album.tracks?.items
           ?.map((e) => Track(
                 name: e.name,

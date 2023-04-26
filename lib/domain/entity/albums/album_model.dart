@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'album.freezed.dart';
+part 'album_model.freezed.dart';
 
-part 'album.g.dart';
+part 'album_model.g.dart';
 
 @freezed
 class AlbumModel with _$AlbumModel {
