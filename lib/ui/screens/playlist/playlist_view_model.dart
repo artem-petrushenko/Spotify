@@ -3,8 +3,10 @@ import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/entity/playlists/playlist_items_model.dart';
 import 'package:spotify_client/domain/entity/playlists/playlist_model.dart';
+import 'package:spotify_client/domain/entity/tracks/recommendations_model.dart';
 
 import 'package:spotify_client/domain/services/playlists_service.dart';
+import 'package:spotify_client/domain/services/tracks_service.dart';
 
 import 'package:spotify_client/ui/navigation/router.dart';
 
@@ -14,6 +16,7 @@ class MediaLibraryRenderedData {
   Status status = Status.loading;
   PlaylistModel media = const PlaylistModel();
   PlaylistItemsModel playlistItemsModel = const PlaylistItemsModel();
+  RecommendationsModel recommendationsModel = const RecommendationsModel();
 }
 
 class PlaylistViewModel extends ChangeNotifier {
@@ -52,6 +55,7 @@ class PlaylistViewModel extends ChangeNotifier {
 
   late ScrollController scrollController;
   final _playlistsService = PlaylistsService();
+  final _tracksService = TracksService();
 
   Future<void> _loadDetails() async {
     scrollController = ScrollController()
@@ -64,9 +68,23 @@ class PlaylistViewModel extends ChangeNotifier {
         .then((value) => _addPlaylistData(value))
         .onError((error, stackTrace) => data.status = Status.error);
     await _playlistsService
-        .getPlaylistItems(playlistID: playlistID, market: 'ES', limit: 20, offset: 0)
+        .getPlaylistItems(
+            playlistID: playlistID, market: 'ES', limit: 20, offset: 0)
         .then((value) => _addPlaylistItemsData(value))
         .onError((error, stackTrace) => data.status = Status.error);
+    await _tracksService
+        .getRecommendations(
+            seedArtists: '',
+            seedGenres: '',
+            seedTracks: data.playlistItemsModel.items
+                    ?.map((e) => e.track?.id)
+                    .toList()
+                    .reversed
+                    .take(5)
+                    .join(',') ??'')
+        .then((value) => _addRecommendationsModel(value))
+        .onError((error, stackTrace) => data.status = Status.error);
+
     if (data.status != Status.error) {
       data.status = Status.completed;
     }
@@ -80,6 +98,10 @@ class PlaylistViewModel extends ChangeNotifier {
 
   void _addPlaylistItemsData(PlaylistItemsModel value) {
     data.playlistItemsModel = value;
+  }
+
+  void _addRecommendationsModel(RecommendationsModel value) {
+    data.recommendationsModel = value;
   }
 
   void openTrack(String trackID, BuildContext context, String image) =>

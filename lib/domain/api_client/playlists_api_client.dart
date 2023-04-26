@@ -41,7 +41,7 @@ class PlaylistsApiClient {
     required String userId,
   }) async {
     final response = await _apiQueryHelper.post(
-      endpoint: 'v1/users/$userId/playlists',
+      endpoint: '/v1/users/$userId/playlists',
       queryParameters: queryParameters,
       body: body,
       accessToken: accessToken,
@@ -55,7 +55,7 @@ class PlaylistsApiClient {
     required String playlistID,
   }) async {
     final response = await _apiQueryHelper.get(
-      endpoint: 'v1/playlists/$playlistID',
+      endpoint: '/v1/playlists/$playlistID',
       queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;
@@ -68,7 +68,7 @@ class PlaylistsApiClient {
     required String playlistID,
   }) async {
     final response = await _apiQueryHelper.get(
-      endpoint: 'v1/playlists/$playlistID/tracks',
+      endpoint: '/v1/playlists/$playlistID/tracks',
       queryParameters: queryParameters,
       accessToken: accessToken,
     ) as Map<String, dynamic>;

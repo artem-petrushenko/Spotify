@@ -1,4 +1,5 @@
 import 'package:spotify_client/domain/api_client/api_query_helper.dart';
+import 'package:spotify_client/domain/entity/tracks/recommendations_model.dart';
 import 'package:spotify_client/domain/entity/tracks/users_saved_tracks.dart';
 
 class TracksApiClient {
@@ -52,5 +53,17 @@ class TracksApiClient {
       body: body,
       accessToken: accessToken,
     );
+  }
+
+  Future<RecommendationsModel> getRecommendations({
+    required String accessToken,
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    final response = await _apiQueryHelper.get(
+      endpoint: '/v1/recommendations',
+      queryParameters: queryParameters,
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+    return RecommendationsModel.fromJson(response);
   }
 }

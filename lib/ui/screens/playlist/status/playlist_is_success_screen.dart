@@ -73,6 +73,10 @@ class PlaylistIsSuccessScreen extends StatelessWidget {
         ),
         const _PlaylistDataWidget(),
         const _TracksListWidget(),
+        const SliverToBoxAdapter(
+          child: Text('Recommendation'),
+        ),
+        const _RecommendationListWidget()
       ],
     );
   }
@@ -246,6 +250,80 @@ class _PlaylistDataWidget extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RecommendationListWidget extends StatelessWidget {
+  const _RecommendationListWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.read<PlaylistViewModel>();
+    final length = context.select((PlaylistViewModel model) =>
+        model.data.recommendationsModel.tracks?.length);
+    final data = context.select((PlaylistViewModel model) => model.data);
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          final artists = data.recommendationsModel.tracks?[index].artists
+              ?.map((e) => e.name)
+              .toList()
+              .join(', ');
+          final name = data.recommendationsModel.tracks?[index].name;
+          final imageUrl =
+              data.recommendationsModel.tracks?[index].album?.images?.first.url;
+          final id = data.recommendationsModel.tracks?[index].id;
+          return GestureDetector(
+            onTap: () => model.openTrack(id ?? '', context, imageUrl ?? ''),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              child: Row(
+                children: [
+                  Hero(
+                    tag: '$id',
+                    child: ImageNetworkWidget(
+                      imageUrl: imageUrl ?? '',
+                      height: 48.0,
+                      width: 48.0,
+                      radius: 4.0,
+                    ),
+                  ),
+                  const SizedBox(width: 8.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          name ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Text(
+                          artists ?? '',
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.more_vert_rounded),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        childCount: length,
       ),
     );
   }
