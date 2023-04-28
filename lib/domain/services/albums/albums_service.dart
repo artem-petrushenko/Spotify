@@ -3,10 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:spotify_client/domain/entity/albums/album_model.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
 import 'package:spotify_client/domain/services/albums/abstract_albums_service.dart';
-
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
 
 import 'package:spotify_client/domain/repository/albums/abstract_albums_repository.dart';
 
@@ -18,7 +17,7 @@ class AlbumsService implements AbstractAlbumsService {
     int? limit,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final usersSavedAlbums =
         GetIt.instance<AbstractAlbumsRepository>().getUsersSavedAlbums(
       accessToken: accessToken ?? '',
@@ -37,7 +36,7 @@ class AlbumsService implements AbstractAlbumsService {
     String? market,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final severalAlbums =
         await GetIt.instance<AbstractAlbumsRepository>().getSeveralAlbums(
       accessToken: accessToken ?? '',
@@ -55,7 +54,7 @@ class AlbumsService implements AbstractAlbumsService {
     String? market,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final album = await GetIt.instance<AbstractAlbumsRepository>().getAlbum(
       accessToken: accessToken ?? '',
       id: id,

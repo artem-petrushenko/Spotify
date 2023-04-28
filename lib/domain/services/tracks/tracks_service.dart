@@ -1,12 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
 
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
-
 import 'package:spotify_client/domain/entity/tracks/recommendations_model.dart';
 import 'package:spotify_client/domain/entity/tracks/users_saved_tracks.dart';
 
 import 'package:spotify_client/domain/repository/tracks/abstract_tracks_repository.dart';
+
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
 class TracksService implements AbstractTracksService {
   @override
@@ -16,7 +16,7 @@ class TracksService implements AbstractTracksService {
     int? limit,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final usersSavedTracks =
         await GetIt.instance<AbstractTracksRepository>().getUsersSavedTracks(
       accessToken: accessToken ?? '',
@@ -34,7 +34,7 @@ class TracksService implements AbstractTracksService {
     required List<String> ids,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final usersSavedTracks =
         await GetIt.instance<AbstractTracksRepository>().checkUsersSavedTracks(
       accessToken: accessToken ?? '',
@@ -50,7 +50,7 @@ class TracksService implements AbstractTracksService {
     required List<String> ids,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractTracksRepository>().saveTracksForCurrentUser(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -67,7 +67,7 @@ class TracksService implements AbstractTracksService {
     required List<String> ids,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractTracksRepository>().removeUsersSavedTracks(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -130,7 +130,7 @@ class TracksService implements AbstractTracksService {
     double? targetValence,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final recommendations =
         await GetIt.instance<AbstractTracksRepository>().getRecommendations(
       accessToken: accessToken ?? '',

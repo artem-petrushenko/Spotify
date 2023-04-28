@@ -2,8 +2,6 @@ import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/services/artists/abstract_artists_service.dart';
 
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
-
 import 'package:spotify_client/domain/entity/artists/artist.dart';
 import 'package:spotify_client/domain/entity/artists/artists_albums.dart';
 import 'package:spotify_client/domain/entity/artists/artists_related_artists.dart';
@@ -11,13 +9,15 @@ import 'package:spotify_client/domain/entity/artists/artists_top_tracks.dart';
 
 import 'package:spotify_client/domain/repository/artists/abstract_artists_repository.dart';
 
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
+
 class ArtistsService implements AbstractArtistsService {
   @override
   Future<ArtistModel> getArtist({
     required String id,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final artist = await GetIt.instance<AbstractArtistsRepository>().getArtist(
       accessToken: accessToken ?? '',
       id: id,
@@ -31,7 +31,7 @@ class ArtistsService implements AbstractArtistsService {
     String? market,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final artistsTopTracks =
         await GetIt.instance<AbstractArtistsRepository>().getArtistsTopTracks(
       accessToken: accessToken ?? '',
@@ -48,7 +48,7 @@ class ArtistsService implements AbstractArtistsService {
     required String id,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final artistsRelatedArtists =
         await GetIt.instance<AbstractArtistsRepository>()
             .getArtistsRelatedArtists(
@@ -67,7 +67,7 @@ class ArtistsService implements AbstractArtistsService {
     List<String>? includeGroups,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final artistsAlbum =
         await GetIt.instance<AbstractArtistsRepository>().getArtistsAlbums(
       accessToken: accessToken ?? '',

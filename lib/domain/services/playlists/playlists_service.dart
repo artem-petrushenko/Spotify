@@ -1,10 +1,9 @@
 import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/repository/playlists/abstract_playlists_repository.dart';
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
 import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
-
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
 
 import 'package:spotify_client/domain/entity/playlists/create_playlist_model.dart';
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
@@ -18,7 +17,7 @@ class PlaylistsService implements AbstractPlaylistsService {
     int? limit,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final currentUsersPlaylists =
         await GetIt.instance<AbstractPlaylistsRepository>()
             .getCurrentUsersPlaylists(
@@ -38,7 +37,7 @@ class PlaylistsService implements AbstractPlaylistsService {
     List<String>? uris,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlaylistsRepository>().addItemsToPlaylist(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -63,7 +62,7 @@ class PlaylistsService implements AbstractPlaylistsService {
     String? description,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final createPlaylistModel =
         await GetIt.instance<AbstractPlaylistsRepository>().createPlaylist(
       accessToken: accessToken ?? '',
@@ -89,7 +88,7 @@ class PlaylistsService implements AbstractPlaylistsService {
     String? additionalTypes,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final playlistModel =
         await GetIt.instance<AbstractPlaylistsRepository>().getPlaylist(
       accessToken: accessToken ?? '',
@@ -114,7 +113,7 @@ class PlaylistsService implements AbstractPlaylistsService {
     String? additionalTypes,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final playlistItemsModel =
         await GetIt.instance<AbstractPlaylistsRepository>().getPlaylistItems(
       accessToken: accessToken ?? '',

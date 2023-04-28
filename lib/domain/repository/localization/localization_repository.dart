@@ -7,9 +7,12 @@ abstract class _Keys {
 }
 
 class LocalizationRepository implements AbstractLocalizationRepository {
+  final SharedPreferences sharedPreferences;
+
+  const LocalizationRepository({required this.sharedPreferences});
+
   @override
   Future<String> getLocalization() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString(_Keys.localization) ?? 'en';
   }
 

@@ -4,9 +4,9 @@ import 'package:spotify_client/domain/repository/search/abstract_search_reposito
 
 import 'package:spotify_client/domain/services/search/abstract_search_service.dart';
 
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
-
 import 'package:spotify_client/domain/entity/search/search_for_item.dart';
+
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
 class SearchService implements AbstractSearchService {
   @override
@@ -19,7 +19,7 @@ class SearchService implements AbstractSearchService {
     String? includeExternal,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final searchForItem =
         await GetIt.instance<AbstractSearchRepository>().searchForItem(
       accessToken: accessToken ?? '',

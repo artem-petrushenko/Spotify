@@ -8,29 +8,27 @@ abstract class _Keys {
 }
 
 class ThemeRepository implements AbstractThemeRepository {
-  final sharedPreferences = SharedPreferences.getInstance();
+  final SharedPreferences sharedPreferences;
+
+  const ThemeRepository({required this.sharedPreferences});
 
   @override
   Future<bool> getIsDarkTheme() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getBool(_Keys.isDarkTheme) ?? false;
   }
 
   @override
   Future<void> setIsDarkTheme(bool value) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool(_Keys.isDarkTheme, value);
   }
 
   @override
   Future<int> getThemeScheme() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getInt(_Keys.colorScheme) ?? 0xFF673AB7;
   }
 
   @override
   Future<void> setThemeScheme(int value) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setInt(_Keys.colorScheme, value);
   }
 }

@@ -6,12 +6,13 @@ import 'package:spotify_client/domain/services/player/abstract_player_service.da
 
 import 'package:spotify_client/configuration/api_query_constants.dart';
 
-import 'package:spotify_client/domain/data_providers/session_data_provider.dart';
 
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/entity/player/users_queue.dart';
+
+import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
 class PlayerService implements AbstractPlayerService {
   @override
@@ -20,7 +21,7 @@ class PlayerService implements AbstractPlayerService {
     String? market,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final currentlyPlayingTrack =
         await GetIt.instance<AbstractPlayerRepository>()
             .getCurrentlyPlayingTrack(
@@ -36,7 +37,7 @@ class PlayerService implements AbstractPlayerService {
   @override
   Future<UsersQueueModel> getTheUsersQueue() async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final usersQueue =
         await GetIt.instance<AbstractPlayerRepository>().getTheUsersQueue(
       accessToken: accessToken ?? '',
@@ -47,7 +48,7 @@ class PlayerService implements AbstractPlayerService {
   @override
   Future<AvailableDevicesModel> getAvailableDevices() async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final availableDevices =
         await GetIt.instance<AbstractPlayerRepository>().getAvailableDevices(
       accessToken: accessToken ?? '',
@@ -61,7 +62,7 @@ class PlayerService implements AbstractPlayerService {
     bool? play,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().transferPlayback(
       accessToken: accessToken ?? '',
       body: <String, dynamic>{
@@ -77,7 +78,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final nextState = _getNextRepeatModeState(state);
     await GetIt.instance<AbstractPlayerRepository>().setRepeatMode(
       accessToken: accessToken ?? '',
@@ -106,7 +107,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().pausePlayback(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -124,7 +125,7 @@ class PlayerService implements AbstractPlayerService {
     int? positionMs,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().startResumePlayback(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -144,7 +145,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().skipToNext(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -158,7 +159,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().skipToPrevious(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -173,7 +174,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().seekToPosition(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -189,7 +190,7 @@ class PlayerService implements AbstractPlayerService {
     String? market,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     final playbackState =
         await GetIt.instance<AbstractPlayerRepository>().getPlaybackState(
       accessToken: accessToken ?? '',
@@ -207,7 +208,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().togglePlaybackShuffle(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -223,7 +224,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().setPlaybackVolume(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
@@ -239,7 +240,7 @@ class PlayerService implements AbstractPlayerService {
     String? deviceId,
   }) async {
     final accessToken =
-        await GetIt.instance<SessionDataProvider>().getAccessToken();
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
     await GetIt.instance<AbstractPlayerRepository>().addItemToPlaybackQueue(
       accessToken: accessToken ?? '',
       queryParameters: <String, dynamic>{
