@@ -1,4 +1,5 @@
 import 'package:spotify_client/domain/entity/albums/album_model.dart';
+import 'package:spotify_client/domain/entity/albums/new_releases_model.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 
@@ -27,5 +28,9 @@ abstract class AbstractAlbumsService {
 
   Future<void> getAlbumTracks();
 
-  Future<void> getNewReleases();
+  Future<NewReleasesModel> getNewReleases({
+    String? country,
+    int? limit,
+    int? offset,
+  });
 }

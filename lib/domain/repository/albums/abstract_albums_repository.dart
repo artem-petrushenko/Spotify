@@ -1,6 +1,7 @@
 import 'package:spotify_client/domain/entity/albums/album_model.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
+import 'package:spotify_client/domain/entity/albums/new_releases_model.dart';
 
 abstract class AbstractAlbumsRepository {
   Future<UsersSavedAlbumsModel> getUsersSavedAlbums({
@@ -24,6 +25,10 @@ abstract class AbstractAlbumsRepository {
   Future<void> removeUsersSavedAlbums();
 
   Future<List<bool>> checkUsersSavedAlbums();
+
 // Future<AlbumTracksModel> getAlbumTracks();
-// Future<NewReleasesModel>getNewReleases();
+  Future<NewReleasesModel> getNewReleases({
+    required String accessToken,
+    Map<String, dynamic>? queryParameters,
+  });
 }

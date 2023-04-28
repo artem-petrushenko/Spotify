@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/entity/albums/album_model.dart';
+import 'package:spotify_client/domain/entity/albums/new_releases_model.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
@@ -90,8 +91,22 @@ class AlbumsService implements AbstractAlbumsService {
   }
 
   @override
-  Future<void> getNewReleases() {
-    // TODO: implement getNewReleases
-    throw UnimplementedError();
+  Future<NewReleasesModel> getNewReleases({
+    String? country,
+    int? limit,
+    int? offset,
+  }) async {
+    final accessToken =
+        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
+    final newReleases =
+        await GetIt.instance<AbstractAlbumsRepository>().getNewReleases(
+      accessToken: accessToken ?? '',
+      queryParameters: <String, dynamic>{
+        'country': country,
+        'limit': limit,
+        'offset': offset,
+      },
+    );
+    return newReleases;
   }
 }

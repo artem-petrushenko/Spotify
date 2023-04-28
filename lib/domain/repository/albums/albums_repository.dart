@@ -2,14 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:spotify_client/domain/api_client/api_query_helper.dart';
 
 import 'package:spotify_client/domain/entity/albums/album_model.dart';
+import 'package:spotify_client/domain/entity/albums/new_releases_model.dart';
 import 'package:spotify_client/domain/entity/albums/several_albums.dart';
 import 'package:spotify_client/domain/entity/albums/users_saved_album.dart';
 
 import 'package:spotify_client/domain/repository/albums/abstract_albums_repository.dart';
 
 class AlbumsRepository implements AbstractAlbumsRepository {
-  final _apiQueryHelper = ApiQueryHelper();
-
   @override
   Future<AlbumModel> getAlbum({
     required String accessToken,
@@ -35,7 +34,7 @@ class AlbumsRepository implements AbstractAlbumsRepository {
     required String accessToken,
     required Map<String, dynamic> queryParameters,
   }) async {
-    final response = await _apiQueryHelper.get(
+    final response = await GetIt.instance<ApiQueryHelper>().get(
       endpoint: '/v1/albums',
       queryParameters: queryParameters,
       accessToken: accessToken,
@@ -48,7 +47,7 @@ class AlbumsRepository implements AbstractAlbumsRepository {
     required String accessToken,
     Map<String, dynamic>? queryParameters,
   }) async {
-    final response = await _apiQueryHelper.get(
+    final response = await GetIt.instance<ApiQueryHelper>().get(
       endpoint: '/v1/me/albums',
       queryParameters: queryParameters,
       accessToken: accessToken,
@@ -66,5 +65,18 @@ class AlbumsRepository implements AbstractAlbumsRepository {
   Future<void> saveAlbumsForCurrentUser() {
     // TODO: implement saveAlbumsForCurrentUser
     throw UnimplementedError();
+  }
+
+  @override
+  Future<NewReleasesModel> getNewReleases({
+    required String accessToken,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    final response = await GetIt.instance<ApiQueryHelper>().get(
+      endpoint: '/v1/browse/new-releases',
+      queryParameters: queryParameters,
+      accessToken: accessToken,
+    ) as Map<String, dynamic>;
+    return NewReleasesModel.fromJson(response);
   }
 }
