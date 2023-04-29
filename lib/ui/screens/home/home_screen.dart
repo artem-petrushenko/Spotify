@@ -19,19 +19,39 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              SliverAppBar(
+              const SliverAppBar(
                 title: Text('Home'),
                 centerTitle: true,
               ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => ImageNetworkWidget(
-                      imageUrl: newReleasesModel
-                              .albums?.items?[index].images?.first.url ??
-                          ''),
-                  childCount: newReleasesModel.albums?.items?.length,
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  child: PageView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AspectRatio(
+                              aspectRatio: 1,
+                              child: ImageNetworkWidget(
+                                imageUrl: newReleasesModel.albums?.items?[index]
+                                        .images?.first.url ??
+                                    '',
+
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: newReleasesModel.albums?.items?.length,
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         );

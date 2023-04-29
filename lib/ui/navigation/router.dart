@@ -129,9 +129,8 @@ class MainGoRouter {
               context: context,
               state: state,
               child: _screenFactory.makePlaylist(
-                state.queryParams['playlistID'] ?? '',
-                state.queryParams['image']?? ''
-              ),
+                  state.queryParams['playlistID'] ?? '',
+                  state.queryParams['image'] ?? ''),
             ),
           ),
           GoRoute(
@@ -184,6 +183,16 @@ class MainGoRouter {
           context: context,
           state: state,
           child: _screenFactory.makePlayer(),
+        ),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: GoRouterPath.transferPlaybackScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeTransferPlayback(),
         ),
       ),
     ],

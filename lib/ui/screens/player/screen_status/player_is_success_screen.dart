@@ -19,7 +19,7 @@ class PlayerIsSuccessScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => model.openTransferPlayback(context),
             icon: const Icon(Icons.more_vert_outlined),
           )
         ],
