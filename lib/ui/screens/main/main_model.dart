@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +20,7 @@ class MainRenderData {
     name: '',
     artists: '',
     image: '',
-    progressMs: 10,
-    durationMs: 100,
+    progressPercent: 0,
     isPlaying: false,
   );
 }
@@ -29,21 +30,32 @@ class MainViewModel extends ChangeNotifier {
     loadDetails();
   }
 
-  final data = MainRenderData();
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
 
+  late final StreamSubscription<PlaybackStateModel?> subscription;
+  final data = MainRenderData();
   int selectedIndex = 0;
 
   void loadDetails() async {
-    await GetIt.instance<AbstractPlayerService>()
-        .getPlaybackState()
-        .then((value) => value == null
-            ? data.status == Status.inactive
-            : _addPlayerData(value))
-        .onError((error, stackTrace) => data.status = Status.error);
-    if (data.status != Status.error || data.status != Status.inactive) {
+    subscription = _getPlaybackState().listen((value) {
+      value == null ? data.status == Status.inactive : _addPlayerData(value);
+      notifyListeners();
+    });
+
+    if (data.status != Status.error && data.status != Status.inactive) {
       data.status = Status.active;
     }
-    notifyListeners();
+  }
+
+  Stream<PlaybackStateModel?> _getPlaybackState() async* {
+    while (true) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      yield await GetIt.instance<AbstractPlayerService>().getPlaybackState();
+    }
   }
 
   void _addPlayerData(PlaybackStateModel model) {
@@ -51,8 +63,7 @@ class MainViewModel extends ChangeNotifier {
       name: model.item?.name,
       artists: model.item?.artists?.map((e) => e.name).toList().join(', '),
       image: model.item?.album?.images?.first.url,
-      progressMs: model.item?.trackNumber?.toDouble(),
-      durationMs: model.item?.durationMs?.toDouble(),
+      progressPercent: (model.progressMs ?? 0) / (model.item?.durationMs ?? 1),
       isPlaying: model.isPlaying,
     );
   }
@@ -76,4 +87,14 @@ class MainViewModel extends ChangeNotifier {
 
   void openPlayer(BuildContext context) =>
       context.push(GoRouterNames.playerScreen);
+
+  void openTransferPlayback(BuildContext context) =>
+      context.push(GoRouterNames.transferPlaybackScreen);
+
+  void pauseStartResumePlayback() async {
+    data.playerData.isPlaying ?? false
+        ? GetIt.instance<AbstractPlayerService>().pausePlayback()
+        : GetIt.instance<AbstractPlayerService>().startResumePlayback();
+    notifyListeners();
+  }
 }

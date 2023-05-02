@@ -12,8 +12,7 @@ _$_MiniPlayerLocalModel _$$_MiniPlayerLocalModelFromJson(
       name: json['name'] as String?,
       artists: json['artists'] as String?,
       image: json['image'] as String?,
-      progressMs: (json['progress_ms'] as num?)?.toDouble(),
-      durationMs: (json['duration_ms'] as num?)?.toDouble(),
+      progressPercent: (json['progress_percent'] as num?)?.toDouble(),
       isPlaying: json['is_playing'] as bool?,
     );
 
@@ -23,7 +22,6 @@ Map<String, dynamic> _$$_MiniPlayerLocalModelToJson(
       'name': instance.name,
       'artists': instance.artists,
       'image': instance.image,
-      'progress_ms': instance.progressMs,
-      'duration_ms': instance.durationMs,
+      'progress_percent': instance.progressPercent,
       'is_playing': instance.isPlaying,
     };

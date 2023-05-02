@@ -11,8 +11,7 @@ class MiniPlayerLocalModel with _$MiniPlayerLocalModel {
     final String? name,
     final String? artists,
     final String? image,
-    final double? progressMs,
-    final double? durationMs,
+    final double? progressPercent,
     final bool? isPlaying,
   }) = _MiniPlayerLocalModel;
 

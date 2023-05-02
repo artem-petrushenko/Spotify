@@ -23,8 +23,7 @@ mixin _$MiniPlayerLocalModel {
   String? get name => throw _privateConstructorUsedError;
   String? get artists => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  double? get progressMs => throw _privateConstructorUsedError;
-  double? get durationMs => throw _privateConstructorUsedError;
+  double? get progressPercent => throw _privateConstructorUsedError;
   bool? get isPlaying => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,8 +42,7 @@ abstract class $MiniPlayerLocalModelCopyWith<$Res> {
       {String? name,
       String? artists,
       String? image,
-      double? progressMs,
-      double? durationMs,
+      double? progressPercent,
       bool? isPlaying});
 }
 
@@ -65,8 +63,7 @@ class _$MiniPlayerLocalModelCopyWithImpl<$Res,
     Object? name = freezed,
     Object? artists = freezed,
     Object? image = freezed,
-    Object? progressMs = freezed,
-    Object? durationMs = freezed,
+    Object? progressPercent = freezed,
     Object? isPlaying = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,13 +79,9 @@ class _$MiniPlayerLocalModelCopyWithImpl<$Res,
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      progressMs: freezed == progressMs
-          ? _value.progressMs
-          : progressMs // ignore: cast_nullable_to_non_nullable
-              as double?,
-      durationMs: freezed == durationMs
-          ? _value.durationMs
-          : durationMs // ignore: cast_nullable_to_non_nullable
+      progressPercent: freezed == progressPercent
+          ? _value.progressPercent
+          : progressPercent // ignore: cast_nullable_to_non_nullable
               as double?,
       isPlaying: freezed == isPlaying
           ? _value.isPlaying
@@ -110,8 +103,7 @@ abstract class _$$_MiniPlayerLocalModelCopyWith<$Res>
       {String? name,
       String? artists,
       String? image,
-      double? progressMs,
-      double? durationMs,
+      double? progressPercent,
       bool? isPlaying});
 }
 
@@ -129,8 +121,7 @@ class __$$_MiniPlayerLocalModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? artists = freezed,
     Object? image = freezed,
-    Object? progressMs = freezed,
-    Object? durationMs = freezed,
+    Object? progressPercent = freezed,
     Object? isPlaying = freezed,
   }) {
     return _then(_$_MiniPlayerLocalModel(
@@ -146,13 +137,9 @@ class __$$_MiniPlayerLocalModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      progressMs: freezed == progressMs
-          ? _value.progressMs
-          : progressMs // ignore: cast_nullable_to_non_nullable
-              as double?,
-      durationMs: freezed == durationMs
-          ? _value.durationMs
-          : durationMs // ignore: cast_nullable_to_non_nullable
+      progressPercent: freezed == progressPercent
+          ? _value.progressPercent
+          : progressPercent // ignore: cast_nullable_to_non_nullable
               as double?,
       isPlaying: freezed == isPlaying
           ? _value.isPlaying
@@ -170,8 +157,7 @@ class _$_MiniPlayerLocalModel implements _MiniPlayerLocalModel {
       {this.name,
       this.artists,
       this.image,
-      this.progressMs,
-      this.durationMs,
+      this.progressPercent,
       this.isPlaying});
 
   factory _$_MiniPlayerLocalModel.fromJson(Map<String, dynamic> json) =>
@@ -184,15 +170,13 @@ class _$_MiniPlayerLocalModel implements _MiniPlayerLocalModel {
   @override
   final String? image;
   @override
-  final double? progressMs;
-  @override
-  final double? durationMs;
+  final double? progressPercent;
   @override
   final bool? isPlaying;
 
   @override
   String toString() {
-    return 'MiniPlayerLocalModel(name: $name, artists: $artists, image: $image, progressMs: $progressMs, durationMs: $durationMs, isPlaying: $isPlaying)';
+    return 'MiniPlayerLocalModel(name: $name, artists: $artists, image: $image, progressPercent: $progressPercent, isPlaying: $isPlaying)';
   }
 
   @override
@@ -203,10 +187,8 @@ class _$_MiniPlayerLocalModel implements _MiniPlayerLocalModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.artists, artists) || other.artists == artists) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.progressMs, progressMs) ||
-                other.progressMs == progressMs) &&
-            (identical(other.durationMs, durationMs) ||
-                other.durationMs == durationMs) &&
+            (identical(other.progressPercent, progressPercent) ||
+                other.progressPercent == progressPercent) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying));
   }
@@ -214,7 +196,7 @@ class _$_MiniPlayerLocalModel implements _MiniPlayerLocalModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, artists, image, progressMs, durationMs, isPlaying);
+      runtimeType, name, artists, image, progressPercent, isPlaying);
 
   @JsonKey(ignore: true)
   @override
@@ -236,8 +218,7 @@ abstract class _MiniPlayerLocalModel implements MiniPlayerLocalModel {
       {final String? name,
       final String? artists,
       final String? image,
-      final double? progressMs,
-      final double? durationMs,
+      final double? progressPercent,
       final bool? isPlaying}) = _$_MiniPlayerLocalModel;
 
   factory _MiniPlayerLocalModel.fromJson(Map<String, dynamic> json) =
@@ -250,9 +231,7 @@ abstract class _MiniPlayerLocalModel implements MiniPlayerLocalModel {
   @override
   String? get image;
   @override
-  double? get progressMs;
-  @override
-  double? get durationMs;
+  double? get progressPercent;
   @override
   bool? get isPlaying;
   @override
