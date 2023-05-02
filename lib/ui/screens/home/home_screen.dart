@@ -25,11 +25,14 @@ class HomeScreen extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: SizedBox(
+                  height: 100,
+                  width: 100,
                   child: PageView.builder(
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-
+                        width: 100,
+                        height: 100,
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(),
                         child: Row(
