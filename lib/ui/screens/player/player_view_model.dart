@@ -9,7 +9,7 @@ import 'package:spotify_client/configuration/api_query_constants.dart';
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
-import 'package:spotify_client/ui/navigation/router.dart';
+import 'package:spotify_client/configuration/router/router.dart';
 
 import 'package:spotify_client/ui/screens/player/local_entity/player_local_model.dart';
 
@@ -61,7 +61,6 @@ class PlayerViewModel extends ChangeNotifier {
       onError: (dynamic error) {
         data.status == Status.error;
       },
-      cancelOnError: true,
     );
     if (data.status != Status.error) {
       data.status = Status.completed;

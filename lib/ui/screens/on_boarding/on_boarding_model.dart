@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:spotify_client/ui/navigation/router.dart';
+import 'package:spotify_client/configuration/router/router.dart';
 
 class OnBoardingViewModel extends ChangeNotifier {
   final pageController = PageController();

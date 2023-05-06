@@ -9,7 +9,7 @@ import 'package:spotify_client/domain/entity/tracks/recommendations_model.dart';
 import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
 import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
 
-import 'package:spotify_client/ui/navigation/router.dart';
+import 'package:spotify_client/configuration/router/router.dart';
 
 enum Status { loading, completed, error }
 

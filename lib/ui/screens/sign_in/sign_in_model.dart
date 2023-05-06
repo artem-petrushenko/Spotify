@@ -6,7 +6,7 @@ import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
 
 import 'package:spotify_client/domain/services/auth/abstract_auth_service.dart';
 
-import 'package:spotify_client/ui/navigation/router.dart';
+import 'package:spotify_client/configuration/router/router.dart';
 
 class SignInViewModel extends ChangeNotifier {
   String? errorMessage;

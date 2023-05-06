@@ -9,17 +9,25 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<SearchViewModel>();
-    final searchData = context.select((SearchViewModel model) => model.searchData);
+    final searchData =
+        context.select((SearchViewModel model) => model.searchData);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            elevation: 4,
-            flexibleSpace: Padding(
+            elevation: 0  ,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onSecondary,
+                borderRadius: const BorderRadius.all(Radius.circular(100))
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
               padding: const EdgeInsets.all(20),
               child: TextField(
                 onChanged: model.searchItem,
                 decoration: const InputDecoration(
+                  icon: Icon(Icons.place),
+                  enabledBorder: InputBorder.none,
                   hintText: 'Search',
                 ),
               ),
@@ -55,11 +63,14 @@ class SearchScreen extends StatelessWidget {
               childCount: searchData?.length,
             ),
           ),
-          const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()),),
           const SliverToBoxAdapter(
-              child: SizedBox(
-            height: 100,
-          ))
+            child: Center(child: CircularProgressIndicator()),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 100,
+            ),
+          ),
         ],
       ),
     );

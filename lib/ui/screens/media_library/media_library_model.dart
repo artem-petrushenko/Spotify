@@ -8,7 +8,7 @@ import 'package:spotify_client/domain/entity/playlists/current_users_playlists.d
 import 'package:spotify_client/domain/services/albums/abstract_albums_service.dart';
 import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
 
-import 'package:spotify_client/ui/navigation/router.dart';
+import 'package:spotify_client/configuration/router/router.dart';
 
 enum Status { loading, completed, error }
 
