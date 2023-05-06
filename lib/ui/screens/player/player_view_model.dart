@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:spotify_client/configuration/api_query_constants.dart';
-
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
-import 'package:spotify_client/configuration/router/router.dart';
+import 'package:spotify_client/config/router/router.dart';
 
 import 'package:spotify_client/ui/screens/player/local_entity/player_local_model.dart';
+
+import 'package:spotify_client/utils/constants/strings.dart';
 
 enum Status { loading, completed, error }
 
@@ -117,7 +117,7 @@ class PlayerViewModel extends ChangeNotifier {
   void setRepeatMode() async {
     await GetIt.instance<AbstractPlayerService>().setRepeatMode(
       state:
-          data.playerData.repeatState ?? ApiQueryConstants.repeatModeStateOff,
+          data.playerData.repeatState ?? repeatModeStateOff,
     );
     notifyListeners();
   }

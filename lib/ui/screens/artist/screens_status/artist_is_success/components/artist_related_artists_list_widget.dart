@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistRelatedArtistsListWidget extends StatelessWidget {
   const ArtistRelatedArtistsListWidget({super.key});
@@ -22,8 +22,8 @@ class ArtistRelatedArtistsListWidget extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding,
-                    vertical: Constants.verticalPadding,
+                    horizontal: horizontalPadding,
+                    vertical: verticalPadding,
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -38,7 +38,7 @@ class ArtistRelatedArtistsListWidget extends StatelessWidget {
                   height: 200.0,
                   child: GridView.builder(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: Constants.horizontalPadding),
+                        horizontal: horizontalPadding),
                     itemCount: artistsRelatedArtists.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) =>
@@ -81,7 +81,7 @@ class _RelatedArtistWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: 8.0, vertical: Constants.verticalPadding),
+              horizontal: 8.0, vertical: verticalPadding),
           child: Text(
             artistsData.name ?? '',
             textAlign: TextAlign.center,

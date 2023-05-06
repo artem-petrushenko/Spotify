@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:spotify_client/ui/widgets/loading_container_widget.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistInProgressScreen extends StatelessWidget {
   const ArtistInProgressScreen({Key? key}) : super(key: key);
@@ -37,8 +37,8 @@ class ArtistInProgressScreen extends StatelessWidget {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Constants.horizontalPadding,
-              vertical: Constants.verticalPadding,
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
             ),
             sliver: SliverToBoxAdapter(
               child: Column(
@@ -72,7 +72,7 @@ class ArtistInProgressScreen extends StatelessWidget {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Constants.horizontalPadding,
+              horizontal: horizontalPadding,
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(

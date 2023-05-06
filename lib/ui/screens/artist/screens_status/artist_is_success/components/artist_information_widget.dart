@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistInformationWidget extends StatelessWidget {
   const ArtistInformationWidget({super.key});
@@ -18,8 +18,8 @@ class ArtistInformationWidget extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artist.popularity);
     return SliverPadding(
       padding: const EdgeInsets.symmetric(
-        vertical: Constants.verticalPadding,
-        horizontal: Constants.horizontalPadding,
+        vertical: verticalPadding,
+        horizontal: horizontalPadding,
       ),
       sliver: SliverToBoxAdapter(
         child: Row(
@@ -59,13 +59,13 @@ class _InformationWidget extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: Constants.horizontalPadding,
-          vertical: Constants.verticalPadding,
+          horizontal: horizontalPadding,
+          vertical: verticalPadding,
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondaryContainer,
           borderRadius: const BorderRadius.all(
-            Radius.circular(Constants.cardBorderRadius),
+            Radius.circular(cardBorderRadius),
           ),
         ),
         child: Column(

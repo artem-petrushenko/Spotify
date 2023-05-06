@@ -5,7 +5,8 @@ import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
+import 'package:spotify_client/utils/constants/numbers.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   visualDensity: VisualDensity.comfortable,
                   contentPadding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding,
+                    horizontal: horizontalPadding,
                   ),
                   iconColor: Theme.of(context).colorScheme.secondary,
                   leading: const Icon(Icons.color_lens_rounded),
@@ -46,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   visualDensity: VisualDensity.comfortable,
                   contentPadding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding,
+                    horizontal: horizontalPadding,
                   ),
                   iconColor: Theme.of(context).colorScheme.secondary,
                   leading: const Icon(Icons.text_format_rounded),

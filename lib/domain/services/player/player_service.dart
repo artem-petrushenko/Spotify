@@ -4,15 +4,14 @@ import 'package:spotify_client/domain/repository/player/abstract_player_reposito
 
 import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
-import 'package:spotify_client/configuration/api_query_constants.dart';
-
-
 import 'package:spotify_client/domain/entity/player/available_devices.dart';
 import 'package:spotify_client/domain/entity/player/currently_playing_track.dart';
 import 'package:spotify_client/domain/entity/player/playback_state.dart';
 import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
+
+import '../../../utils/constants/strings.dart';
 
 class PlayerService implements AbstractPlayerService {
   @override
@@ -91,14 +90,14 @@ class PlayerService implements AbstractPlayerService {
 
   String _getNextRepeatModeState(String currentState) {
     switch (currentState) {
-      case ApiQueryConstants.repeatModeStateContext:
-        return ApiQueryConstants.repeatModeStateTrack;
-      case ApiQueryConstants.repeatModeStateTrack:
-        return ApiQueryConstants.repeatModeStateOff;
-      case ApiQueryConstants.repeatModeStateOff:
-        return ApiQueryConstants.repeatModeStateContext;
+      case repeatModeStateContext:
+        return repeatModeStateTrack;
+      case repeatModeStateTrack:
+        return repeatModeStateOff;
+      case repeatModeStateOff:
+        return repeatModeStateContext;
       default:
-        return ApiQueryConstants.repeatModeStateOff;
+        return repeatModeStateOff;
     }
   }
 

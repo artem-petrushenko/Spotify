@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_view_model.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class TransferPlaybackIsSuccessScreen extends StatelessWidget {
   const TransferPlaybackIsSuccessScreen({Key? key}) : super(key: key);
@@ -22,8 +22,8 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
         height: 64.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: Constants.horizontalPadding,
-            vertical: Constants.verticalPadding,
+            horizontal: horizontalPadding,
+            vertical: verticalPadding,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -69,8 +69,8 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
               preferredSize: const Size.fromHeight(72.0),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.horizontalPadding,
-                  vertical: Constants.verticalPadding,
+                  horizontal: horizontalPadding,
+                  vertical: verticalPadding,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +142,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                         ),
                         visualDensity: VisualDensity.comfortable,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding,
+                          horizontal: horizontalPadding,
                         ),
                         iconColor: Theme.of(context).colorScheme.secondary,
                         leading: Icon(deviceIsNotActives?[index].iconData),
@@ -162,7 +162,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                         dense: true,
                         visualDensity: VisualDensity.comfortable,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding,
+                          horizontal: horizontalPadding,
                         ),
                         iconColor: Theme.of(context).colorScheme.secondary,
                         leading: const Icon(Icons.wifi_rounded),
@@ -174,7 +174,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                         dense: true,
                         visualDensity: VisualDensity.comfortable,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding,
+                          horizontal: horizontalPadding,
                         ),
                         iconColor: Theme.of(context).colorScheme.secondary,
                         leading: const Icon(Icons.devices_rounded),
@@ -185,7 +185,7 @@ class TransferPlaybackIsSuccessScreen extends StatelessWidget {
                         dense: true,
                         visualDensity: VisualDensity.comfortable,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: Constants.horizontalPadding,
+                          horizontal: horizontalPadding,
                         ),
                         iconColor: Theme.of(context).colorScheme.secondary,
                         leading: const Icon(Icons.power_settings_new_rounded),

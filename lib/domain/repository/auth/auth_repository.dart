@@ -6,8 +6,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:spotify_client/domain/repository/auth/abstract_auth_repository.dart';
 
-import 'package:spotify_client/configuration/configuration.dart';
 import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
+
+import 'package:spotify_client/utils/constants/strings.dart';
 
 class AuthRepository implements AbstractAuthRepository {
   @override
@@ -17,7 +18,7 @@ class AuthRepository implements AbstractAuthRepository {
   }) async {
     try {
       final response = await http.post(
-        Uri.https(Configuration.accountHost, '/api/token', queryParameters),
+        Uri.https(accountHost, '/api/token', queryParameters),
         headers: {
           HttpHeaders.authorizationHeader: "Basic $base64codec",
           HttpHeaders.contentTypeHeader: "application/x-www-form-urlencoded",
@@ -37,7 +38,7 @@ class AuthRepository implements AbstractAuthRepository {
   }) async {
     try {
       await launchUrl(
-        Uri.https(Configuration.accountHost, '/authorize',
+        Uri.https(accountHost, '/authorize',
             _mapDynamicToString(queryParameters)),
         mode: LaunchMode.externalApplication,
       );
@@ -53,7 +54,7 @@ class AuthRepository implements AbstractAuthRepository {
   }) async {
     try {
       final response = await http.post(
-        Uri.https(Configuration.accountHost, '/api/token', queryParameters),
+        Uri.https(accountHost, '/api/token', queryParameters),
         headers: {
           HttpHeaders.authorizationHeader: "Basic $base64codec",
           HttpHeaders.contentTypeHeader: "application/x-www-form-urlencoded",

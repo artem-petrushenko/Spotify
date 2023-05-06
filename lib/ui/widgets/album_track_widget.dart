@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_client/configuration/constants.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class AlbumTrackWidget extends StatelessWidget {
   final String? name;
@@ -27,7 +28,7 @@ class AlbumTrackWidget extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.horizontalPadding, vertical: 8.0),
+                  horizontal: horizontalPadding, vertical: 8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -6,13 +6,13 @@ import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/services/auth/abstract_auth_service.dart';
 
-import 'package:spotify_client/configuration/configuration.dart';
-
 import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
 
 import 'package:spotify_client/domain/repository/auth/abstract_auth_repository.dart';
 
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
+
+import '../../../utils/constants/strings.dart';
 
 class AuthService implements AbstractAuthService {
   @override
@@ -37,9 +37,9 @@ class AuthService implements AbstractAuthService {
     final String state = await _generateState();
     GetIt.instance<AbstractAuthRepository>().requestUserAuthorization(
       queryParameters: <String, dynamic>{
-        'client_id': Configuration.clientID,
+        'client_id': clientID,
         'response_type': 'code',
-        'redirect_uri': Configuration.redirectUri,
+        'redirect_uri': redirectUri,
         'state': state,
         'scope':
             'ugc-image-upload user-read-playback-state app-remote-control user-modify-playback-state playlist-read-private user-follow-modify playlist-read-collaborative user-follow-read user-read-currently-playing user-read-playback-position user-library-modify playlist-modify-private playlist-modify-public user-read-email user-top-read user-read-recently-played streaming user-read-private user-library-read',
@@ -62,9 +62,9 @@ class AuthService implements AbstractAuthService {
       queryParameters: <String, dynamic>{
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': Configuration.redirectUri,
+        'redirect_uri': redirectUri,
         'code_verifier': codeVerifier,
-        'client_id': Configuration.clientID,
+        'client_id': clientID,
       },
     );
     await GetIt.instance<AbstractSessionDataRepository>()
@@ -95,7 +95,7 @@ class AuthService implements AbstractAuthService {
       queryParameters: <String, dynamic>{
         'grant_type': 'refresh_token',
         'refresh_token': refreshToken,
-        'client_id': Configuration.clientID
+        'client_id': clientID
       },
     );
 
@@ -107,7 +107,7 @@ class AuthService implements AbstractAuthService {
 
   String _generateBase64Codec() {
     return base64.encode(
-        utf8.encode('${Configuration.clientID}:${Configuration.clientSecret}'));
+        utf8.encode('$clientID:$clientSecret'));
   }
 
   Future<String> _generateCodeVerifier() async {

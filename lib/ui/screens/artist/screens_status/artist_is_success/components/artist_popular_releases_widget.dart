@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistPopularReleasesWidget extends StatelessWidget {
   const ArtistPopularReleasesWidget({super.key});
@@ -12,9 +12,9 @@ class ArtistPopularReleasesWidget extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.only(
-          left: Constants.horizontalPadding,
-          right: Constants.horizontalPadding,
-          top: Constants.verticalPadding,
+          left: horizontalPadding,
+          right: horizontalPadding,
+          top: verticalPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

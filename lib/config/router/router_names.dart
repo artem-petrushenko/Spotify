@@ -1,4 +1,4 @@
-part of '../../configuration/router/router.dart';
+part of 'router.dart';
 
 abstract class GoRouterNames {
   static const loaderScreen = '/';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ListTileWidget extends StatelessWidget {
   final String title;
@@ -23,7 +23,7 @@ class ListTileWidget extends StatelessWidget {
       ),
       visualDensity: VisualDensity.comfortable,
       contentPadding: const EdgeInsets.symmetric(
-        horizontal: Constants.horizontalPadding,
+        horizontal: horizontalPadding,
       ),
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle ?? '') : null,

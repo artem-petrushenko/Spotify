@@ -13,7 +13,7 @@ analyzer:
 linter:
   rules:
     - avoid_print: true # Запрет принтов
-    - always_use_package_imports: true # Полное название импорта
+    - always_use_package_imports # Полное название импорта
     - prefer_const_constructors: true
     - prefer_const_declarations: true
     - avoid_redundant_argument_values: true # Не передавать параметры, которые указанны по умолчанию

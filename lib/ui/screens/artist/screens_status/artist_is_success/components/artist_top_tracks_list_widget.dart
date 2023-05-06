@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:spotify_client/domain/entity/playlists/current_users_playlists.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 import 'package:spotify_client/ui/widgets/track_modal_bottom_sheet.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistTopTracksListWidget extends StatelessWidget {
   const ArtistTopTracksListWidget({super.key});
@@ -20,7 +20,7 @@ class ArtistTopTracksListWidget extends StatelessWidget {
     return artistsTopTracks.isNotEmpty
         ? SliverPadding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Constants.horizontalPadding,
+              horizontal: horizontalPadding,
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(

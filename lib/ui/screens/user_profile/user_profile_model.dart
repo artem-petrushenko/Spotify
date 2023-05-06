@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:spotify_client/domain/entity/users/current_user_profile.dart';
 import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 
-import 'package:spotify_client/configuration/router/router.dart';
+import 'package:spotify_client/config/router/router.dart';
 
 enum Status { loading, completed, error }
 

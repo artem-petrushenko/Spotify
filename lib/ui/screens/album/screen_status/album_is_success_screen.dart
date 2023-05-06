@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
-
 import 'package:spotify_client/ui/screens/album/album_model.dart';
 
 import 'package:spotify_client/ui/widgets/album_track_widget.dart';
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
+
+import '../../../../utils/constants/numbers.dart';
 
 class AlbumIsSuccessScreen extends StatelessWidget {
   const AlbumIsSuccessScreen({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class AlbumIsSuccessScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.horizontalPadding, vertical: 8.0),
+                  horizontal: horizontalPadding, vertical: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -101,7 +101,7 @@ class AlbumIsSuccessScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.horizontalPadding, vertical: 4.0),
+                  horizontal: horizontalPadding, vertical: 4.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -119,7 +119,7 @@ class AlbumIsSuccessScreen extends StatelessWidget {
               (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: Constants.horizontalPadding, vertical: 4.0),
+                      horizontal: horizontalPadding, vertical: 4.0),
                   child: GestureDetector(
                     onTap: () =>
                         model.openArtist(context, authors?[index].id ?? ''),
@@ -155,7 +155,7 @@ class AlbumIsSuccessScreen extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: Constants.horizontalPadding, vertical: 8.0),
+                    horizontal: horizontalPadding, vertical: 8.0),
                 child: Text(
                   "${copyright?[index].text}",
                   style: Theme.of(context).textTheme.labelSmall,

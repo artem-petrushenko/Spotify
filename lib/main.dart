@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_client/app_di.dart';
+import 'package:spotify_client/locator.dart';
 
 import 'package:spotify_client/ui/screens/app/my_app.dart';
 
@@ -8,7 +8,7 @@ import 'package:spotify_client/ui/screens/language/localization_model.dart';
 
 import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
 
-void main() async {
+Future<void> main() async {
   // debugRepaintRainbowEnabled = true;
   WidgetsFlutterBinding.ensureInitialized();
   await AppDI.initGetIt();

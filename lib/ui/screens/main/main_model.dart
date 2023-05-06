@@ -8,7 +8,7 @@ import 'package:spotify_client/domain/entity/player/playback_state.dart';
 
 import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 
-import 'package:spotify_client/configuration/router/router.dart';
+import 'package:spotify_client/config/router/router.dart';
 
 import 'package:spotify_client/ui/screens/main/local_entity/mini_player_local_model.dart';
 

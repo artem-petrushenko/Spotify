@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/configuration/constants.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class ArtistGenresListWidget extends StatelessWidget {
   const ArtistGenresListWidget({super.key});
@@ -15,8 +16,8 @@ class ArtistGenresListWidget extends StatelessWidget {
         context.select((ArtistViewModel model) => model.data.artist.genres);
     return SliverPadding(
       padding: const EdgeInsets.symmetric(
-        horizontal: Constants.horizontalPadding,
-        vertical: Constants.verticalPadding,
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
       ),
       sliver: SliverToBoxAdapter(
         child: Column(

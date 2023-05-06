@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
-import 'package:spotify_client/configuration/configuration.dart';
-
 import 'package:spotify_client/domain/api_client/api_client_exception.dart';
+
+import 'package:spotify_client/utils/constants/strings.dart';
 
 class ApiQueryHelper {
   Future<dynamic> get({
@@ -16,7 +16,7 @@ class ApiQueryHelper {
     try {
       final response = await http.get(
         Uri.https(
-            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
+            queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -43,7 +43,7 @@ class ApiQueryHelper {
     try {
       final response = await http.delete(
         Uri.https(
-            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
+            queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -70,7 +70,7 @@ class ApiQueryHelper {
     try {
       final response = await http.put(
         Uri.https(
-            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
+            queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
@@ -96,7 +96,7 @@ class ApiQueryHelper {
     try {
       final response = await http.post(
         Uri.https(
-            Configuration.queryHost, endpoint, _mapConversion(queryParameters)),
+            queryHost, endpoint, _mapConversion(queryParameters)),
         headers: {
           HttpHeaders.authorizationHeader: "Bearer $accessToken",
           HttpHeaders.contentTypeHeader: "application/json",
