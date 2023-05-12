@@ -32,9 +32,24 @@ class SearchData {
 }
 
 class SearchViewModel extends ChangeNotifier {
+  SearchViewModel() {
+    initState();
+  }
+
   Timer? searchDebounce;
   String? _searchQuery;
   List<SearchData>? searchData = [];
+  late SearchController searchController = SearchController();
+
+  void initState() {
+    searchController.addListener(() => searchItem(searchController.text));
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   Future<void> searchItem(String text) async {
     searchDebounce?.cancel();
@@ -43,26 +58,32 @@ class SearchViewModel extends ChangeNotifier {
       if (_searchQuery == searchQuery) return;
       _searchQuery = searchQuery;
       searchData?.clear();
-      await GetIt.instance<AbstractSearchService>()
-          .searchForItem(
-            searchQuery: text,
-            type: [
-              "album",
-              "artist",
-              "playlist",
-              "track",
-              "show",
-              "episode",
-              "audiobook",
-            ],
-            market: 'ES',
-            limit: 20,
-            offset: 0,
-          )
-          .then((value) =>
-              value.tracks?.items?.map((e) => _addTracks(e)).toList());
-      notifyListeners();
+      await _loadNewItems();
     });
+  }
+
+  Future<void> _loadNewItems() async {
+    await GetIt.instance<AbstractSearchService>()
+        .searchForItem(
+          searchQuery: _searchQuery ?? '',
+          type: [
+            "album",
+            "artist",
+            "playlist",
+            "track",
+            "show",
+            "episode",
+            "audiobook",
+          ],
+          market: 'ES',
+          limit: 20,
+          offset: 0,
+        )
+        .then(
+            (value) => value.tracks?.items?.map((e) => _addTracks(e)).toList())
+        .then((value) => notifyListeners());
+    print(searchData?.map((e) => e.title).toList().join(', '));
+    notifyListeners();
   }
 
   void _addTracks(ItemsTracks? item) {
