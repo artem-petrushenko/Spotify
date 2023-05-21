@@ -11,7 +11,7 @@ import 'package:spotify_client/domain/entity/player/users_queue.dart';
 
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
-import '../../../utils/constants/strings.dart';
+import 'package:spotify_client/utils/constants/strings.dart';
 
 class PlayerService implements AbstractPlayerService {
   @override

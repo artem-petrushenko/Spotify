@@ -1,34 +1,26 @@
 part of 'home_cubit.dart';
 
-abstract class HomeState extends Equatable {
+@immutable
+sealed class HomeState {
   const HomeState();
 }
 
-class HomeLoading extends HomeState {
-  const HomeLoading();
-
-  @override
-  List<Object?> get props => [];
+class HomeLoadingState implements HomeState {
+  const HomeLoadingState();
 }
 
-class HomeSuccess extends HomeState {
+class HomeSuccessState implements HomeState {
   final NewReleasesModel newReleasesModel;
 
-  const HomeSuccess({
+  const HomeSuccessState({
     required this.newReleasesModel,
   });
-
-  @override
-  List<Object?> get props => [newReleasesModel];
 }
 
-class HomeError extends HomeState {
+class HomeFailureState implements HomeState {
   final Object? error;
 
-  const HomeError({
+  const HomeFailureState({
     required this.error,
   });
-
-  @override
-  List<Object?> get props => [error];
 }

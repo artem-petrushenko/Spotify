@@ -49,7 +49,7 @@ class TrackScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(
-                            'artists ?? ''',
+                            'artists ?? ' '',
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
@@ -58,7 +58,8 @@ class TrackScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.more_horiz))
                     ],
                   ),
                 ),

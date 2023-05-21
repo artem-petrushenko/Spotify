@@ -8,7 +8,7 @@ import 'package:spotify_client/ui/screens/album/album_model.dart';
 import 'package:spotify_client/ui/widgets/album_track_widget.dart';
 import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 
-import '../../../../utils/constants/numbers.dart';
+import 'package:spotify_client/utils/constants/numbers.dart';
 
 class AlbumIsSuccessScreen extends StatelessWidget {
   const AlbumIsSuccessScreen({Key? key}) : super(key: key);

@@ -12,7 +12,7 @@ import 'package:spotify_client/domain/repository/auth/abstract_auth_repository.d
 
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 
-import '../../../utils/constants/strings.dart';
+import 'package:spotify_client/utils/constants/strings.dart';
 
 class AuthService implements AbstractAuthService {
   @override
@@ -53,8 +53,9 @@ class AuthService implements AbstractAuthService {
   @override
   Future<void> handleDeeplink(Map<String, String> queryParameters) async {
     final code = await _getAuthCode(queryParameters);
-    final codeVerifier =
-        await GetIt.instance<AbstractSessionDataRepository>().getCodeVerifier() ?? '';
+    final codeVerifier = await GetIt.instance<AbstractSessionDataRepository>()
+            .getCodeVerifier() ??
+        '';
     final base64codec = _generateBase64Codec();
     final jsonResponse =
         await GetIt.instance<AbstractAuthRepository>().requestAccessToken(
@@ -74,7 +75,8 @@ class AuthService implements AbstractAuthService {
   }
 
   Future<String> _getAuthCode(Map<String, String> queryParameters) async {
-    final state = await GetIt.instance<AbstractSessionDataRepository>().getState();
+    final state =
+        await GetIt.instance<AbstractSessionDataRepository>().getState();
     if (queryParameters.containsKey('error')) {
       throw const ApiAuthException(ApiAuthExceptionType.accessDenied);
     }
@@ -106,8 +108,7 @@ class AuthService implements AbstractAuthService {
   }
 
   String _generateBase64Codec() {
-    return base64.encode(
-        utf8.encode('$clientID:$clientSecret'));
+    return base64.encode(utf8.encode('$clientID:$clientSecret'));
   }
 
   Future<String> _generateCodeVerifier() async {
@@ -117,7 +118,8 @@ class AuthService implements AbstractAuthService {
     final codeVerifier = String.fromCharCodes(Iterable.generate(
         random.nextInt(85) + 43,
         (_) => characters.codeUnitAt(random.nextInt(characters.length))));
-    GetIt.instance<AbstractSessionDataRepository>().setCodeVerifier(codeVerifier);
+    GetIt.instance<AbstractSessionDataRepository>()
+        .setCodeVerifier(codeVerifier);
     return codeVerifier;
   }
 

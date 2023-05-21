@@ -28,24 +28,24 @@ class SearchScreen extends StatelessWidget {
         suggestionsBuilder:
             (BuildContext context, SearchController controller) {
           return List<ListTile>.generate(
-            searchData?.length ?? 0,
+            searchData.length,
             (int index) {
               return ListTile(
                 leading: AspectRatio(
                   aspectRatio: 1,
                   child: ImageNetworkWidget(
-                    imageUrl: searchData?[index].image ?? '',
+                    imageUrl: searchData[index].image ?? '',
                     radius: 4.0,
                   ),
                 ),
                 title: Text(
-                  searchData?[index].title ?? '',
+                  searchData[index].title ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                   softWrap: false,
                 ),
                 subtitle: Text(
-                  searchData?[index].subtitle ?? '',
+                  searchData[index].subtitle ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                   softWrap: false,

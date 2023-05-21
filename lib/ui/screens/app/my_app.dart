@@ -25,11 +25,17 @@ class MyApp extends StatelessWidget {
       title: 'Spotify',
       themeMode: themeMode,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+        ),
         useMaterial3: true,
         colorSchemeSeed: colorScheme,
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+        ),
         useMaterial3: true,
         colorSchemeSeed: colorScheme,
         brightness: Brightness.dark,

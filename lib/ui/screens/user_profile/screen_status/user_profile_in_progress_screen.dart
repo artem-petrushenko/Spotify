@@ -23,27 +23,27 @@ class UserProfileInProgressScreen extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       LoadingContainerWidget(width: 128.0, height: 24.0)
                     ],
                   ),
-                  const SizedBox(height: 8.0),
+                  SizedBox(height: 8.0),
                   Row(
-                    children: const [
+                    children: [
                       LoadingContainerWidget(width: 80.0, height: 16.0),
                       SizedBox(width: 8.0),
                       LoadingContainerWidget(width: 80.0, height: 16.0),
                     ],
                   ),
-                  const SizedBox(height: 8.0),
-                  const LoadingContainerWidget(width: 128.0, height: 24.0),
+                  SizedBox(height: 8.0),
+                  LoadingContainerWidget(width: 128.0, height: 24.0),
                 ],
               ),
             ),
@@ -51,22 +51,21 @@ class UserProfileInProgressScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 4.0),
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                   child: SizedBox(
                     height: 48.0,
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const LoadingContainerWidget(width: 48.0, height: 48.0),
+                        LoadingContainerWidget(width: 48.0, height: 48.0),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               LoadingContainerWidget(
                                   width: 128.0, height: 16.0),
                               SizedBox(height: 8.0),
@@ -82,12 +81,12 @@ class UserProfileInProgressScreen extends StatelessWidget {
               childCount: 3,
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   LoadingContainerWidget(width: 80.0, height: 16.0),
                   SizedBox(height: 8.0),
                   LoadingContainerWidget(width: 128.0, height: 24.0),
@@ -98,22 +97,21 @@ class UserProfileInProgressScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 4.0),
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                   child: SizedBox(
                     height: 48.0,
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const LoadingContainerWidget(width: 48.0, height: 48.0),
+                        LoadingContainerWidget(width: 48.0, height: 48.0),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               LoadingContainerWidget(
                                   width: 128.0, height: 16.0),
                               SizedBox(height: 8.0),
@@ -129,12 +127,12 @@ class UserProfileInProgressScreen extends StatelessWidget {
               childCount: 3,
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   LoadingContainerWidget(width: 80.0, height: 16.0),
                 ],
               ),

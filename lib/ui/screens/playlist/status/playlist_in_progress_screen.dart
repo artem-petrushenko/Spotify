@@ -10,12 +10,12 @@ class PlaylistInProgressScreen extends StatelessWidget {
     return CustomScrollView(
       physics: const NeverScrollableScrollPhysics(),
       slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        const SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           sliver: SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 LoadingContainerWidget(height: 12.0, width: 96.0),
                 SizedBox(height: 8.0),
                 LoadingContainerWidget(height: 16.0, width: 64.0),
@@ -30,18 +30,17 @@ class PlaylistInProgressScreen extends StatelessWidget {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
                 child: Row(
                   children: [
-                    const LoadingContainerWidget(
+                    LoadingContainerWidget(
                         height: 48.0, width: 48.0, radius: 12.0),
-                    const SizedBox(width: 8.0),
+                    SizedBox(width: 8.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         LoadingContainerWidget(height: 12.0, width: 128.0),
                         SizedBox(height: 8.0),
                         LoadingContainerWidget(height: 12.0, width: 64.0),

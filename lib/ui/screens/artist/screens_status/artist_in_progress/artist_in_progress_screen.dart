@@ -35,8 +35,8 @@ class ArtistInProgressScreen extends StatelessWidget {
               radius: 0.0,
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(
               horizontal: horizontalPadding,
               vertical: verticalPadding,
             ),
@@ -45,7 +45,7 @@ class ArtistInProgressScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Expanded(
                         child: LoadingContainerWidget(
                           height: 64.0,
@@ -61,8 +61,8 @@ class ArtistInProgressScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(height: 32.0),
-                  const LoadingContainerWidget(
+                  SizedBox(height: 32.0),
+                  LoadingContainerWidget(
                     height: 16.0,
                     width: 128.0,
                   ),

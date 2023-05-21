@@ -9,35 +9,39 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<HomeCubit, HomeState>(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
-          if (state is HomeSuccess) {
+          if (state is HomeFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Success'),
+              SnackBar(
+                content: Text(state.error.toString()),
               ),
             );
           }
         },
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            switch (state.runtimeType) {
-              case HomeLoading:
-                return const Center(child: CircularProgressIndicator());
-              case HomeSuccess:
-                return const Center(child: Text('Success'));
-              case HomeError:
-                return const Center(child: Text('Error'));
-              default:
-                return const SizedBox();
-            }
-          },
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.play_arrow),
-        onPressed: () {
-          BlocProvider.of<HomeCubit>(context).helloWorld();
+        builder: (context, state) {
+          return switch (state) {
+            HomeLoadingState() => const Align(
+                alignment: Alignment.topCenter,
+                child: LinearProgressIndicator()),
+            HomeSuccessState() => ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  final item = state.newReleasesModel.albums?.items?[index];
+                  return Image.network(
+                    item?.images?.first.url ?? '',
+                    width: double.infinity,
+                    height: 128.0,
+                    fit: BoxFit.cover,
+                  );
+                },
+                itemCount: state.newReleasesModel.albums?.items?.length ?? 0,
+              ),
+            HomeFailureState() =>
+              const Align(alignment: Alignment.center, child: Text('Error')),
+          };
         },
       ),
     );

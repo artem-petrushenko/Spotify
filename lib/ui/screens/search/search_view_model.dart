@@ -38,7 +38,11 @@ class SearchViewModel extends ChangeNotifier {
 
   Timer? searchDebounce;
   String? _searchQuery;
-  List<SearchData>? searchData = [];
+
+  final _searchData = <SearchData>[];
+
+  List<SearchData> get searchData => _searchData;
+
   late SearchController searchController = SearchController();
 
   void initState() {
@@ -57,8 +61,8 @@ class SearchViewModel extends ChangeNotifier {
       final searchQuery = text.isNotEmpty ? text : null;
       if (_searchQuery == searchQuery) return;
       _searchQuery = searchQuery;
-      searchData?.clear();
-      await _loadNewItems();
+      _searchData.clear();
+      await _loadNewItems().then((value) => notifyListeners());
     });
   }
 
@@ -80,14 +84,11 @@ class SearchViewModel extends ChangeNotifier {
           offset: 0,
         )
         .then(
-            (value) => value.tracks?.items?.map((e) => _addTracks(e)).toList())
-        .then((value) => notifyListeners());
-    print(searchData?.map((e) => e.title).toList().join(', '));
-    notifyListeners();
+            (value) => value.tracks?.items?.map((e) => _addTracks(e)).toList());
   }
 
   void _addTracks(ItemsTracks? item) {
-    searchData?.add(
+    _searchData.add(
       SearchData(
         title: item?.name,
         subtitle: item?.artists?.map((e) => e.name).toList().join(', '),
