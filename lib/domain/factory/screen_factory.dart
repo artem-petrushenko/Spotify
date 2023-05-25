@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_client/presentation/bloc/home_cubit/home_cubit.dart';
+import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
+import 'package:spotify_client/presentation/views/main/main_view.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
@@ -36,9 +37,6 @@ import 'package:spotify_client/ui/screens/album/album_model.dart';
 import 'package:spotify_client/ui/screens/loader/loader_model.dart';
 import 'package:spotify_client/ui/screens/loader/loader_screen.dart';
 
-import 'package:spotify_client/ui/screens/main/main_model.dart';
-import 'package:spotify_client/ui/screens/main/main_screen.dart';
-
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
 
@@ -55,6 +53,8 @@ import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart'
 
 import 'package:spotify_client/ui/screens/users_queue/users_queue_screen.dart';
 import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dart';
+
+import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.dart';
 
 class ScreenFactory {
   Widget makeOnBoarding() {
@@ -75,9 +75,13 @@ class ScreenFactory {
   }
 
   Widget makeMain(Widget child) {
-    return ChangeNotifierProvider(
-      create: (context) => MainViewModel(),
-      child: MainScreen(child),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+                MiniPlayerBloc()..add(GetPlaybackStateEvent())),
+      ],
+      child: MainView(child),
     );
   }
 
