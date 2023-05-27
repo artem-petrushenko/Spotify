@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:spotify_client/ui/screens/language/localization_model.dart';
+import 'package:spotify_client/presentation/bloc/cubits/localization/localization_cubit.dart';
 
 import 'package:spotify_client/ui/widgets/list_tile_widget.dart';
 
-class LocalizationScreen extends StatelessWidget {
-  const LocalizationScreen({Key? key}) : super(key: key);
-
+class LocalizationView extends StatelessWidget {
   static const localizationList = <LocalizationModel>[
     LocalizationModel(
         englishName: 'English',
@@ -65,6 +62,8 @@ class LocalizationScreen extends StatelessWidget {
         localizationLanguages: LocalizationLanguages.german),
   ];
 
+  const LocalizationView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +73,7 @@ class LocalizationScreen extends StatelessWidget {
             elevation: 0,
             pinned: true,
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.arrow_back_rounded),
             ),
             title: Text(AppLocalizations.of(context)!.language),
@@ -107,12 +106,12 @@ class _LocalizationRadioWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.watch<LocalizationViewModel>();
+    final cubit = context.watch<LocalizationCubit>();
     return Radio<LocalizationLanguages>(
       value: localizationLanguage,
-      groupValue: model.localization,
+      groupValue: cubit.state.localization,
       onChanged: (LocalizationLanguages? value) =>
-          model.setLocalizationData(value ?? localizationLanguage),
+          cubit.setLocalizationData(value ?? localizationLanguage),
     );
   }
 }

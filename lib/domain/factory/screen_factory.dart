@@ -4,13 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
+import 'package:spotify_client/presentation/views/localization/localization_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
-
-import 'package:spotify_client/ui/screens/language/localization_screen.dart';
 
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
@@ -55,7 +54,7 @@ import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dar
 
 import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.dart';
 
-import '../../presentation/bloc/bloc/network/network_bloc.dart';
+import 'package:spotify_client/presentation/bloc/bloc/network/network_bloc.dart';
 
 class ScreenFactory {
   Widget makeOnBoarding() {
@@ -138,7 +137,7 @@ class ScreenFactory {
   }
 
   Widget makeLocalization() {
-    return const LocalizationScreen();
+    return const LocalizationView();
   }
 
   Widget makePlayer() {

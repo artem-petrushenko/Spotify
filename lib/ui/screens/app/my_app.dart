@@ -5,31 +5,31 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:spotify_client/config/router/router.dart';
 
-import 'package:spotify_client/ui/screens/language/localization_model.dart';
-
-import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
+import 'package:spotify_client/presentation/bloc/cubits/localization/localization_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme =
-        context.select((ThemeViewModel model) => model.colorScheme);
-    final themeMode =
-        context.select((ThemeViewModel model) => model.getThemeMode);
-    final localizationUnicode = context
-        .select((LocalizationViewModel model) => model.localizationUnicode);
+    // final colorScheme =
+    //     context.select((ThemeViewModel model) => model.colorScheme);
+    // final themeMode =
+    //     context.select((ThemeViewModel model) => model.getThemeMode);
+    // final localizationUnicode = context
+    //     .select((LocalizationViewModel model) => model.localizationUnicode);
+    final localizationUnicode =
+        context.select((LocalizationCubit cubit) => cubit.localizationUnicode);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Spotify',
-      themeMode: themeMode,
+      // themeMode: themeMode,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: true,
         ),
         useMaterial3: true,
-        colorSchemeSeed: colorScheme,
+        // colorSchemeSeed: colorScheme,
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         useMaterial3: true,
-        colorSchemeSeed: colorScheme,
+        // colorSchemeSeed: colorScheme,
         brightness: Brightness.dark,
       ),
       locale: Locale(localizationUnicode, ''),
