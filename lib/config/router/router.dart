@@ -195,6 +195,16 @@ class MainGoRouter {
           child: _screenFactory.makeTransferPlayback(),
         ),
       ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: GoRouterPath.usersQueueScreen,
+        pageBuilder: (context, state) =>
+            NavigationAnimations.fadeTransitionAnimation<void>(
+          context: context,
+          state: state,
+          child: _screenFactory.makeUsersQueue(),
+        ),
+      ),
     ],
   );
 }

@@ -8,6 +8,8 @@ import 'package:spotify_client/ui/widgets/image_network_widget.dart';
 
 import 'package:spotify_client/config/router/router.dart';
 
+import 'package:spotify_client/presentation/bloc/bloc/network/network_bloc.dart';
+
 class MainView extends StatelessWidget {
   const MainView(
     this.child, {
@@ -23,6 +25,26 @@ class MainView extends StatelessWidget {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          BlocBuilder<NetworkBloc, NetworkState>(
+            builder: (context, state) {
+              return switch (state) {
+                NetworkLoading() => const SizedBox.shrink(),
+                NetworkSuccess() => const SizedBox.shrink(),
+                NetworkFailure() => Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.error),
+                    child: Text(
+                      'No Internet Connection Available',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onError),
+                    ),
+                  ),
+              };
+            },
+          ),
           BlocListener<MiniPlayerBloc, MiniPlayerState>(
             listener: (context, state) {
               if (state is MiniPlayerFailureState) {
@@ -123,7 +145,16 @@ class MainView extends StatelessWidget {
             ),
           ),
           NavigationBar(
-            onDestinationSelected: (int index) {},
+            onDestinationSelected: (int index) {
+              switch (index) {
+                case 0:
+                  context.go(GoRouterPath.homeScreen);
+                case 1:
+                  context.go(GoRouterPath.searchScreen);
+                case 2:
+                  context.go(GoRouterPath.mediaLibraryScreen);
+              }
+            },
             selectedIndex: 0,
             destinations: const [
               NavigationDestination(

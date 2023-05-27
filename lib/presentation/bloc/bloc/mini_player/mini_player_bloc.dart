@@ -18,9 +18,11 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
   MiniPlayerBloc() : super(MiniPlayerLoadingState()) {
     on<GetPlaybackStateEvent>(
       _onGetPlaybackStateEvent,
-      transformer: restartable(),
     );
-    on<MiniPlayerEvent>(_onMiniPlayerEvent);
+    on<MiniPlayerEvent>(
+      _onMiniPlayerEvent,
+      transformer: sequential(),
+    );
   }
 
   void _onGetPlaybackStateEvent(

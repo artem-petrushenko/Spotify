@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class NavigationAnimations {
-  static CustomTransitionPage fadeTransitionAnimation<T>({
+  static CustomTransitionPage<void> fadeTransitionAnimation<T>({
     required BuildContext context,
     required GoRouterState state,
     required Widget child,
@@ -15,7 +15,7 @@ class NavigationAnimations {
     );
   }
 
-  static CustomTransitionPage popUpSlideTransition<T>({
+  static CustomTransitionPage<void> popUpSlideTransition<T>({
     required BuildContext context,
     required GoRouterState state,
     required Widget child,

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
+import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
+import 'package:spotify_client/presentation/views/player/player_view.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
@@ -15,9 +17,6 @@ import 'package:spotify_client/ui/screens/media_library/media_library_screen.dar
 
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
-
-import 'package:spotify_client/ui/screens/player/player_screen.dart';
-import 'package:spotify_client/ui/screens/player/player_view_model.dart';
 
 import 'package:spotify_client/ui/screens/playlist/playlist_screen.dart';
 import 'package:spotify_client/ui/screens/playlist/playlist_view_model.dart';
@@ -56,6 +55,8 @@ import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dar
 
 import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.dart';
 
+import '../../presentation/bloc/bloc/network/network_bloc.dart';
+
 class ScreenFactory {
   Widget makeOnBoarding() {
     return ChangeNotifierProvider(
@@ -77,6 +78,7 @@ class ScreenFactory {
   Widget makeMain(Widget child) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => NetworkBloc()..add(NetworkObserve())),
         BlocProvider(
             create: (context) =>
                 MiniPlayerBloc()..add(GetPlaybackStateEvent())),
@@ -140,9 +142,9 @@ class ScreenFactory {
   }
 
   Widget makePlayer() {
-    return ChangeNotifierProvider(
-      create: (context) => PlayerViewModel(),
-      child: const PlayerScreen(),
+    return BlocProvider(
+      create: (context) => PlayerBloc()..add(GetCurrentPlayTrackEvent()),
+      child: const PlayerView(),
     );
   }
 
