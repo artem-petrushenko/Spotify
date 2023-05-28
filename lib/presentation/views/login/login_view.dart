@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:spotify_client/presentation/bloc/bloc/auth/auth_bloc.dart';
+import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({Key? key}) : super(key: key);
+class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 32.0, right: 32.0, bottom: 24.0),
-        child: BlocBuilder<AuthBloc, AuthState>(
+        child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             return switch (state) {
-              AuthComplete() => ElevatedButton(
+              LoginComplete() => ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -23,7 +23,7 @@ class AuthView extends StatelessWidget {
                     ),
                   ),
                   onPressed: () =>
-                      context.read<AuthBloc>().add(StartAuthEvent()),
+                      context.read<LoginBloc>().add(StartLoginEvent()),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
@@ -36,7 +36,7 @@ class AuthView extends StatelessWidget {
                     ),
                   ),
                 ),
-              AuthInProgress() => ElevatedButton(
+              LoginInProgress() => ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -54,32 +54,41 @@ class AuthView extends StatelessWidget {
           },
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Text(
-                'Welcome',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 36.0,
-                  fontWeight: FontWeight.w700,
+      body: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is LoginComplete && state.error != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error.toString())),
+            );
+          }
+        },
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Text(
+                  'Welcome',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 36.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              Text(
-                'Log In into Spotify to Continue',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey.shade700,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.w500,
+                Text(
+                  'Log In into Spotify to Continue',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

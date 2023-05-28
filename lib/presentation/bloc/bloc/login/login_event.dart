@@ -1,19 +1,19 @@
-part of 'auth_bloc.dart';
+part of 'login_bloc.dart';
 
 @immutable
-sealed class AuthEvent extends Equatable {
-  const AuthEvent();
+sealed class LoginEvent extends Equatable {
+  const LoginEvent();
 }
 
-class StartAuthEvent extends AuthEvent {
+class StartLoginEvent extends LoginEvent {
   @override
   List<Object?> get props => [];
 }
 
-class HandlingAuthEvent extends AuthEvent {
+class HandlingLoginEvent extends LoginEvent {
   final Map<String, String> queryParameters;
 
-  const HandlingAuthEvent({
+  const HandlingLoginEvent({
     required this.queryParameters,
   });
 

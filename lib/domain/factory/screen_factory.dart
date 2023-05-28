@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_client/presentation/bloc/bloc/auth/auth_bloc.dart';
+
+import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
+import 'package:spotify_client/presentation/views/login/login_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
 import 'package:spotify_client/presentation/views/theme/theme_view.dart';
-import 'package:spotify_client/presentation/views/view/auth_view.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
@@ -62,14 +63,14 @@ class ScreenFactory {
     );
   }
 
-  Widget makeAuth(Map<String, String>? queryParameters) {
+  Widget makeLogin(Map<String, String>? queryParameters) {
     if (queryParameters != null) {
-      AuthBloc().add(HandlingAuthEvent(queryParameters: queryParameters));
+      LoginBloc().add(HandlingLoginEvent(queryParameters: queryParameters));
     }
     return BlocProvider(
-      create: (context) => AuthBloc(),
+      create: (context) => LoginBloc(),
       lazy: false,
-      child: const AuthView(),
+      child: const LoginView(),
     );
   }
 
