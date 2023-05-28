@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-abstract class AppTheme {
-  static ThemeData get light {
-    return ThemeData(
-      useMaterial3: true,
-      colorSchemeSeed: Colors.red,
-      brightness: Brightness.light,
-    );
-  }
+class AppTheme {
+  final Color colorScheme;
 
-  static ThemeData get dark {
-    return ThemeData(
-      useMaterial3: true,
-      colorSchemeSeed: Colors.red,
-      brightness: Brightness.dark,
-    );
-  }
+  const AppTheme({
+    required this.colorScheme,
+  });
+
+  ThemeData get light => ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: colorScheme,
+        brightness: Brightness.light,
+      );
+
+  ThemeData get dark => ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: colorScheme,
+        brightness: Brightness.dark,
+      );
 }

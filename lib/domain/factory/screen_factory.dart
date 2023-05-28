@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/presentation/bloc/bloc/auth/auth_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
+import 'package:spotify_client/presentation/views/theme/theme_view.dart';
+import 'package:spotify_client/presentation/views/view/auth_view.dart';
 
 import 'package:spotify_client/ui/screens/artist/artist_model.dart';
 import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
@@ -26,9 +29,6 @@ import 'package:spotify_client/ui/screens/search/search_view_model.dart';
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 import 'package:spotify_client/ui/screens/settings/settings_screen.dart';
 
-import 'package:spotify_client/ui/screens/sign_in/sign_in_model.dart';
-import 'package:spotify_client/ui/screens/sign_in/sign_in_screen.dart';
-
 import 'package:spotify_client/ui/screens/album/album_screen.dart';
 import 'package:spotify_client/ui/screens/album/album_model.dart';
 
@@ -37,8 +37,6 @@ import 'package:spotify_client/ui/screens/loader/loader_screen.dart';
 
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
 import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
-
-import 'package:spotify_client/ui/screens/theme/theme_screen.dart';
 
 import 'package:spotify_client/ui/screens/track/track_screen.dart';
 import 'package:spotify_client/ui/screens/track/track_view_model.dart';
@@ -64,13 +62,14 @@ class ScreenFactory {
     );
   }
 
-  Widget makeSignIn(Map<String, String>? queryParameters) {
-    return ChangeNotifierProxyProvider(
-      create: (context) => SignInViewModel(context, queryParameters),
+  Widget makeAuth(Map<String, String>? queryParameters) {
+    if (queryParameters != null) {
+      AuthBloc().add(HandlingAuthEvent(queryParameters: queryParameters));
+    }
+    return BlocProvider(
+      create: (context) => AuthBloc(),
       lazy: false,
-      update: (BuildContext context, value, SignInViewModel? previous) =>
-          SignInViewModel(context, queryParameters),
-      child: const SignInScreen(),
+      child: const AuthView(),
     );
   }
 
@@ -155,7 +154,7 @@ class ScreenFactory {
   }
 
   Widget makeTheme() {
-    return const ThemeScreen();
+    return const ThemeView();
   }
 
   Widget makeUsersQueue() {

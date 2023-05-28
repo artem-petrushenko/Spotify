@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
+import 'package:spotify_client/presentation/bloc/cubits/theme/theme_cubit.dart';
 
-import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
+import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final themeModel = context.watch<ThemeViewModel>();
+    final theme = context.watch<ThemeCubit>();
     final model = context.watch<OnBoardingViewModel>();
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => themeModel.setThemeData(!themeModel.isDarkTheme),
+            onPressed: () => theme.setThemeData(!theme.state.isDarkTheme),
             icon: Icon(
-              themeModel.isDarkTheme
+              theme.state.isDarkTheme
                   ? Icons.dark_mode_rounded
                   : Icons.light_mode_rounded,
             ),

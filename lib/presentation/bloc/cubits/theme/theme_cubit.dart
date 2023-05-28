@@ -1,8 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/services/theme/abstract_theme_service.dart';
+
+part 'theme_state.dart';
 
 class ColorSchemeData {
   final String name;
@@ -12,25 +15,15 @@ class ColorSchemeData {
     required this.name,
     required this.colorScheme,
   });
-
-  ColorSchemeData copyWith({
-    String? name,
-    int? colorScheme,
-  }) {
-    return ColorSchemeData(
-      name: name ?? this.name,
-      colorScheme: colorScheme ?? this.colorScheme,
-    );
-  }
 }
 
-class ThemeViewModel with ChangeNotifier {
-  late int indexCheck;
-  late bool isDarkTheme;
-
-  late Color colorScheme;
-
-  ThemeMode get getThemeMode => isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+class ThemeCubit extends Cubit<ThemeState> {
+  ThemeCubit()
+      : super(const ThemeState(
+            indexCheck: 0, isDarkTheme: true, colorScheme: Colors.green)) {
+    _getThemeData();
+    _getColorScheme();
+  }
 
   static const colorSchemes = <ColorSchemeData>[
     ColorSchemeData(name: 'Red', colorScheme: 0xFFF44336),
@@ -54,50 +47,52 @@ class ThemeViewModel with ChangeNotifier {
     ColorSchemeData(name: 'Blue Grey', colorScheme: 0xFF607D8B),
   ];
 
-  ThemeViewModel({required this.isDarkTheme, required this.colorScheme}) {
-    _getThemeData();
-    _getColorScheme();
-  }
+  ThemeMode get getThemeMode =>
+      state.isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
   Future<void> _getThemeData() async {
-    isDarkTheme =
+    final isDarkTheme =
         await GetIt.instance<AbstractThemeService>().getThemeFromProvider();
-    notifyListeners();
+    final newState = state.copyWith(isDarkTheme: isDarkTheme);
+    emit(newState);
   }
 
   void setThemeData(bool value) {
-    isDarkTheme = value;
+    final isDarkTheme = value;
     GetIt.instance<AbstractThemeService>().setThemeToProvider(isDarkTheme);
-    notifyListeners();
+    final newState = state.copyWith(isDarkTheme: isDarkTheme);
+    emit(newState);
   }
 
   Future<void> _getColorScheme() async {
-    colorScheme = await GetIt.instance<AbstractThemeService>()
+    final colorScheme = await GetIt.instance<AbstractThemeService>()
         .getThemeSchemeFromProvider()
         .then((value) => _setIndexColor(value))
         .then((value) => Color(value));
-    notifyListeners();
+    final newState = state.copyWith(colorScheme: colorScheme);
+    emit(newState);
   }
 
   int _setIndexColor(int value) {
-    indexCheck =
+    final indexCheck =
         colorSchemes.indexWhere((element) => element.colorScheme == value);
+    final newState = state.copyWith(indexCheck: indexCheck);
+    emit(newState);
     return value;
   }
 
   void setThemeScheme(int value) {
     _setColorScheme(value);
-    indexCheck = value;
-    notifyListeners();
+    final indexCheck = value;
+    final newState = state.copyWith(indexCheck: indexCheck);
+    emit(newState);
   }
 
   void _setColorScheme(int value) {
-    colorScheme = Color(colorSchemes[value].colorScheme);
+    final colorScheme = Color(colorSchemes[value].colorScheme);
     GetIt.instance<AbstractThemeService>()
         .setThemeSchemeToProvider(colorSchemes[value].colorScheme);
-  }
-
-  void closeScreen(BuildContext context) {
-    context.pop();
+    final newState = state.copyWith(colorScheme: colorScheme);
+    emit(newState);
   }
 }

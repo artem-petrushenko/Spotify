@@ -3,7 +3,7 @@ part of 'router.dart';
 abstract class GoRouterNames {
   static const loaderScreen = '/';
   static const onBoardingScreen = '/onBoarding';
-  static const signInScreen = '/auth';
+  static const authScreen = '/auth';
 
   static const playerScreen = '/player';
   static const transferPlaybackScreen = '/transferPlayback';

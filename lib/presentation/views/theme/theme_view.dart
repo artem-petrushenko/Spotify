@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'package:spotify_client/ui/screens/theme/theme_view_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify_client/presentation/bloc/cubits/theme/theme_cubit.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ThemeScreen extends StatelessWidget {
-  const ThemeScreen({Key? key}) : super(key: key);
+class ThemeView extends StatelessWidget {
+  const ThemeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final model = context.watch<ThemeViewModel>();
+    final cubit = context.watch<ThemeCubit>();
     final colorSchemes =
-        context.select((ThemeViewModel model) => ThemeViewModel.colorSchemes);
-    final indexCheck = model.indexCheck;
+        context.select((ThemeCubit cubit) => ThemeCubit.colorSchemes);
+    final indexCheck = cubit.state.indexCheck;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -23,7 +22,7 @@ class ThemeScreen extends StatelessWidget {
             centerTitle: true,
             title: const Text('Theme'),
             leading: IconButton(
-              onPressed: () => model.closeScreen(context),
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_rounded,
               ),
@@ -109,7 +108,7 @@ class ThemeScreen extends StatelessWidget {
                 itemCount: colorSchemes.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () => model.setThemeScheme(index),
+                    onTap: () => cubit.setThemeScheme(index),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -204,8 +203,8 @@ class ThemeScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   trailing: Switch(
-                    value: model.isDarkTheme,
-                    onChanged: (value) => model.setThemeData(value),
+                    value: cubit.state.isDarkTheme,
+                    onChanged: (value) => cubit.setThemeData(value),
                   ),
                 ),
               ],

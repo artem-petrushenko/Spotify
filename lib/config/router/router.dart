@@ -167,12 +167,12 @@ class MainGoRouter {
         ),
       ),
       GoRoute(
-        path: GoRouterPath.signInScreen,
+        path: GoRouterPath.authScreen,
         pageBuilder: (context, state) =>
             NavigationAnimations.fadeTransitionAnimation<void>(
           context: context,
           state: state,
-          child: _screenFactory.makeSignIn(state.queryParams),
+          child: _screenFactory.makeAuth(state.queryParams),
         ),
       ),
       GoRoute(
