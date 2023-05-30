@@ -13,7 +13,6 @@ import 'package:spotify_client/my_bloc_observer.dart';
 Future<void> main() async {
   // debugRepaintRainbowEnabled = true;
   Bloc.observer = MyBlocObserver();
-  // Use cubits...
   WidgetsFlutterBinding.ensureInitialized();
   await AppDI.initGetIt();
   runApp(

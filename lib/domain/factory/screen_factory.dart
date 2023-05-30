@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/presentation/bloc/bloc/liked_songs/liked_songs_bloc.dart';
 
 import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
+import 'package:spotify_client/presentation/views/liked_songs/liked_songs_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
 import 'package:spotify_client/presentation/views/login/login_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
@@ -35,9 +37,6 @@ import 'package:spotify_client/ui/screens/album/album_model.dart';
 
 import 'package:spotify_client/ui/screens/loader/loader_model.dart';
 import 'package:spotify_client/ui/screens/loader/loader_screen.dart';
-
-import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_model.dart';
-import 'package:spotify_client/ui/screens/liked_music_playlist/liked_music_playlist_screen.dart';
 
 import 'package:spotify_client/ui/screens/track/track_screen.dart';
 import 'package:spotify_client/ui/screens/track/track_view_model.dart';
@@ -109,9 +108,9 @@ class ScreenFactory {
   }
 
   Widget makeLikedMusicPlaylist() {
-    return ChangeNotifierProvider(
-      create: (context) => LikedMusicPlaylistViewModel(),
-      child: const LikedMusicPlaylistScreen(),
+    return BlocProvider(
+      create: (context) => LikedSongsBloc()..add(LoadLikedSongsEvent()),
+      child: const LikedSongsView(),
     );
   }
 
