@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_client/presentation/bloc/bloc/artist/artist_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/liked_songs/liked_songs_bloc.dart';
 
 import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
+import 'package:spotify_client/presentation/views/artist/artist_view.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/liked_songs/liked_songs_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
@@ -13,9 +15,6 @@ import 'package:spotify_client/presentation/views/login/login_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
 import 'package:spotify_client/presentation/views/theme/theme_view.dart';
-
-import 'package:spotify_client/ui/screens/artist/artist_model.dart';
-import 'package:spotify_client/ui/screens/artist/artist_screen.dart';
 
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
@@ -122,9 +121,10 @@ class ScreenFactory {
   }
 
   Widget makeArtistScreen(String artistID) {
-    return ChangeNotifierProvider(
-      create: (context) => ArtistViewModel(artistID: artistID),
-      child: const ArtistScreen(),
+    return BlocProvider(
+      create: (context) =>
+          ArtistBloc()..add(LoadingArtistEvent(artistID: artistID)),
+      child: const ArtistView(),
     );
   }
 

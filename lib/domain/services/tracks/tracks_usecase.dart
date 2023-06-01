@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 import 'package:spotify_client/domain/repository/tracks/abstract_tracks_repository.dart';
-import 'package:spotify_client/domain/services/users_saved_tracks_item_entity.dart';
+import 'package:spotify_client/domain/entities/tracks/users_saved_tracks_item_entity.dart';
 
 class TrackUseCase {
   Future<List<UsersSavedTracksItemEntity>> getLikedTracks({

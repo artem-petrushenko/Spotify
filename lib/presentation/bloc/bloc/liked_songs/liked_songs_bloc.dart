@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_client/domain/services/tracks/tracks_usecase.dart';
 
-import 'package:spotify_client/domain/services/users_saved_tracks_item_entity.dart';
+import 'package:spotify_client/domain/entities/tracks/users_saved_tracks_item_entity.dart';
 
 part 'liked_songs_event.dart';
 
