@@ -12,7 +12,8 @@ abstract class GoRouterPath {
   static const homeScreen = GoRouterNames.homeScreen;
   static const likedMusicPlaylistScreen =
       GoRouterNames.likedMusicPlaylistScreen;
-  static const userProfileScreen = GoRouterNames.userProfileScreen;
+  static const currentUserProfileScreen =
+      GoRouterNames.currentUsersProfileScreen;
   static const settingScreen = GoRouterNames.settingScreen;
   static const musicPlaylistScreen = GoRouterNames.playlistScreen;
   static const localizationScreen = GoRouterNames.localizationScreen;

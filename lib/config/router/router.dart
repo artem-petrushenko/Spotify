@@ -77,12 +77,12 @@ class MainGoRouter {
             ),
           ),
           GoRoute(
-            path: GoRouterPath.userProfileScreen,
+            path: GoRouterPath.currentUserProfileScreen,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
-              child: _screenFactory.makeUserProfile(),
+              child: _screenFactory.makeCurrentUserProfile(),
             ),
           ),
           GoRoute(

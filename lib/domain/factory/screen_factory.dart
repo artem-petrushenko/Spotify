@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/artist/artist_bloc.dart';
+import 'package:spotify_client/presentation/bloc/bloc/current_users_profile/current_users_profile_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/liked_songs/liked_songs_bloc.dart';
 
 import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/artist/artist_view.dart';
+import 'package:spotify_client/presentation/views/current_users_profile/current_users_profile_view.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/liked_songs/liked_songs_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
@@ -42,9 +44,6 @@ import 'package:spotify_client/ui/screens/track/track_view_model.dart';
 
 import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_screen.dart';
 import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_view_model.dart';
-
-import 'package:spotify_client/ui/screens/user_profile/user_profile_model.dart';
-import 'package:spotify_client/ui/screens/user_profile/user_profile_screen.dart';
 
 import 'package:spotify_client/ui/screens/users_queue/users_queue_screen.dart';
 import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dart';
@@ -99,10 +98,10 @@ class ScreenFactory {
     );
   }
 
-  Widget makeUserProfile() {
-    return ChangeNotifierProvider(
-      create: (context) => UserProfileViewModel(),
-      child: const UserProfileScreen(),
+  Widget makeCurrentUserProfile() {
+    return BlocProvider(
+      create: (context) => CurrentUsersProfileBloc()..add(FetchCurrentUsersProfile()),
+      child: const CurrentUsersProfileView(),
     );
   }
 

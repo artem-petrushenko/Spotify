@@ -11,7 +11,7 @@ abstract class GoRouterNames {
   static const mediaLibraryScreen = '/mediaLibrary';
   static const homeScreen = '/home';
   static const likedMusicPlaylistScreen = '/likedMusicPlaylist';
-  static const userProfileScreen = '/userProfile';
+  static const currentUsersProfileScreen = '/currentUserProfile';
   static const settingScreen = '/settings';
   static const musicPlaylistScreen = '/musicPlaylist';
   static const localizationScreen = '/localization';

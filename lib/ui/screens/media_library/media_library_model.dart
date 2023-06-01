@@ -72,7 +72,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
   }
 
   void openUserProfile(BuildContext context) =>
-      context.push(GoRouterNames.userProfileScreen);
+      context.push(GoRouterNames.currentUsersProfileScreen);
 
   void openMediaTypeScreen(BuildContext context, MediaData mediaData) {
     switch (mediaData.mediaType) {
