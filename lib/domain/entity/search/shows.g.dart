@@ -6,7 +6,7 @@ part of 'shows.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Shows _$$_ShowsFromJson(Map<String, dynamic> json) => _$_Shows(
+_$ShowsImpl _$$ShowsImplFromJson(Map<String, dynamic> json) => _$ShowsImpl(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
           ?.map((e) => ItemsShows.fromJson(e as Map<String, dynamic>))
@@ -18,7 +18,8 @@ _$_Shows _$$_ShowsFromJson(Map<String, dynamic> json) => _$_Shows(
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_ShowsToJson(_$_Shows instance) => <String, dynamic>{
+Map<String, dynamic> _$$ShowsImplToJson(_$ShowsImpl instance) =>
+    <String, dynamic>{
       'href': instance.href,
       'items': instance.items?.map((e) => e.toJson()).toList(),
       'limit': instance.limit,
@@ -28,8 +29,8 @@ Map<String, dynamic> _$$_ShowsToJson(_$_Shows instance) => <String, dynamic>{
       'total': instance.total,
     };
 
-_$_ItemsShows _$$_ItemsShowsFromJson(Map<String, dynamic> json) =>
-    _$_ItemsShows(
+_$ItemsShowsImpl _$$ItemsShowsImplFromJson(Map<String, dynamic> json) =>
+    _$ItemsShowsImpl(
       (json['available_markets'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -58,7 +59,7 @@ _$_ItemsShows _$$_ItemsShowsFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsShowsToJson(_$_ItemsShows instance) =>
+Map<String, dynamic> _$$ItemsShowsImplToJson(_$ItemsShowsImpl instance) =>
     <String, dynamic>{
       'available_markets': instance.availableMarkets,
       'copyrights': instance.copyrights?.map((e) => e.toJson()).toList(),
@@ -79,37 +80,39 @@ Map<String, dynamic> _$$_ItemsShowsToJson(_$_ItemsShows instance) =>
       'uri': instance.uri,
     };
 
-_$_CopyrightShows _$$_CopyrightShowsFromJson(Map<String, dynamic> json) =>
-    _$_CopyrightShows(
+_$CopyrightShowsImpl _$$CopyrightShowsImplFromJson(Map<String, dynamic> json) =>
+    _$CopyrightShowsImpl(
       json['text'] as String?,
       json['type'] as String?,
     );
 
-Map<String, dynamic> _$$_CopyrightShowsToJson(_$_CopyrightShows instance) =>
+Map<String, dynamic> _$$CopyrightShowsImplToJson(
+        _$CopyrightShowsImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'type': instance.type,
     };
 
-_$_ExternalUrlsShows _$$_ExternalUrlsShowsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrlsShows(
+_$ExternalUrlsShowsImpl _$$ExternalUrlsShowsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ExternalUrlsShowsImpl(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsShowsToJson(
-        _$_ExternalUrlsShows instance) =>
+Map<String, dynamic> _$$ExternalUrlsShowsImplToJson(
+        _$ExternalUrlsShowsImpl instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_ImagesShows _$$_ImagesShowsFromJson(Map<String, dynamic> json) =>
-    _$_ImagesShows(
+_$ImagesShowsImpl _$$ImagesShowsImplFromJson(Map<String, dynamic> json) =>
+    _$ImagesShowsImpl(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesShowsToJson(_$_ImagesShows instance) =>
+Map<String, dynamic> _$$ImagesShowsImplToJson(_$ImagesShowsImpl instance) =>
     <String, dynamic>{
       'height': instance.height,
       'url': instance.url,

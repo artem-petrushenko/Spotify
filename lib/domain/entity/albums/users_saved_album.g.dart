@@ -6,9 +6,9 @@ part of 'users_saved_album.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UsersSavedAlbumsModel _$$_UsersSavedAlbumsModelFromJson(
+_$UsersSavedAlbumsModelImpl _$$UsersSavedAlbumsModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_UsersSavedAlbumsModel(
+    _$UsersSavedAlbumsModelImpl(
       json['href'] as String?,
       json['limit'] as int?,
       json['next'] as String?,
@@ -20,8 +20,8 @@ _$_UsersSavedAlbumsModel _$$_UsersSavedAlbumsModelFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_UsersSavedAlbumsModelToJson(
-        _$_UsersSavedAlbumsModel instance) =>
+Map<String, dynamic> _$$UsersSavedAlbumsModelImplToJson(
+        _$UsersSavedAlbumsModelImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'limit': instance.limit,
@@ -32,19 +32,20 @@ Map<String, dynamic> _$$_UsersSavedAlbumsModelToJson(
       'items': instance.items.map((e) => e.toJson()).toList(),
     };
 
-_$_Items _$$_ItemsFromJson(Map<String, dynamic> json) => _$_Items(
+_$ItemsImpl _$$ItemsImplFromJson(Map<String, dynamic> json) => _$ItemsImpl(
       json['added_at'] as String?,
       json['album'] == null
           ? null
           : Album.fromJson(json['album'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ItemsToJson(_$_Items instance) => <String, dynamic>{
+Map<String, dynamic> _$$ItemsImplToJson(_$ItemsImpl instance) =>
+    <String, dynamic>{
       'added_at': instance.addedAt,
       'album': instance.album?.toJson(),
     };
 
-_$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
+_$AlbumImpl _$$AlbumImplFromJson(Map<String, dynamic> json) => _$AlbumImpl(
       json['album_type'] as String?,
       json['total_tracks'] as int?,
       (json['available_markets'] as List<dynamic>?)
@@ -84,71 +85,7 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
           : Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
-      'album_type': instance.albumType,
-      'total_tracks': instance.totalTracks,
-      'available_markets': instance.availableMarkets,
-      'external_urls': instance.externalUrls?.toJson(),
-      'href': instance.href,
-      'id': instance.id,
-      'images': instance.images?.map((e) => e.toJson()).toList(),
-      'name': instance.name,
-      'release_date': instance.releaseDate,
-      'release_date_precision': instance.releaseDatePrecision,
-      'restrictions': instance.restrictions?.toJson(),
-      'type': instance.type,
-      'uri': instance.uri,
-      'copyrights': instance.copyrights?.map((e) => e.toJson()).toList(),
-      'external_ids': instance.externalIds?.toJson(),
-      'genres': instance.genres,
-      'label': instance.label,
-      'popularity': instance.popularity,
-      'artists': instance.artists?.map((e) => e.toJson()).toList(),
-      'tracks': instance.tracks?.toJson(),
-    };
-
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
-      json['album_type'] as String?,
-      json['total_tracks'] as int?,
-      (json['available_markets'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      json['external_urls'] == null
-          ? null
-          : ExternalUrls.fromJson(
-              json['external_urls'] as Map<String, dynamic>),
-      json['href'] as String?,
-      json['id'] as String?,
-      (json['images'] as List<dynamic>?)
-          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      json['name'] as String?,
-      json['release_date'] as String?,
-      json['release_date_precision'] as String?,
-      json['restrictions'] == null
-          ? null
-          : Restrictions.fromJson(json['restrictions'] as Map<String, dynamic>),
-      json['type'] as String?,
-      json['uri'] as String?,
-      (json['copyrights'] as List<dynamic>?)
-          ?.map((e) => Copyrights.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      json['external_ids'] == null
-          ? null
-          : ExternalIds.fromJson(json['external_ids'] as Map<String, dynamic>),
-      (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      json['label'] as String?,
-      json['popularity'] as int?,
-      (json['artists'] as List<dynamic>?)
-          ?.map((e) => Artists.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      json['tracks'] == null
-          ? null
-          : Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$AlbumImplToJson(_$AlbumImpl instance) =>
     <String, dynamic>{
       'album_type': instance.albumType,
       'total_tracks': instance.totalTracks,
@@ -172,55 +109,122 @@ Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
       'tracks': instance.tracks?.toJson(),
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$ExternalUrlsImpl _$$ExternalUrlsImplFromJson(Map<String, dynamic> json) =>
+    _$ExternalUrlsImpl(
+      json['album_type'] as String?,
+      json['total_tracks'] as int?,
+      (json['available_markets'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      json['external_urls'] == null
+          ? null
+          : ExternalUrls.fromJson(
+              json['external_urls'] as Map<String, dynamic>),
+      json['href'] as String?,
+      json['id'] as String?,
+      (json['images'] as List<dynamic>?)
+          ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      json['name'] as String?,
+      json['release_date'] as String?,
+      json['release_date_precision'] as String?,
+      json['restrictions'] == null
+          ? null
+          : Restrictions.fromJson(json['restrictions'] as Map<String, dynamic>),
+      json['type'] as String?,
+      json['uri'] as String?,
+      (json['copyrights'] as List<dynamic>?)
+          ?.map((e) => Copyrights.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      json['external_ids'] == null
+          ? null
+          : ExternalIds.fromJson(json['external_ids'] as Map<String, dynamic>),
+      (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['label'] as String?,
+      json['popularity'] as int?,
+      (json['artists'] as List<dynamic>?)
+          ?.map((e) => Artists.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      json['tracks'] == null
+          ? null
+          : Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ExternalUrlsImplToJson(_$ExternalUrlsImpl instance) =>
+    <String, dynamic>{
+      'album_type': instance.albumType,
+      'total_tracks': instance.totalTracks,
+      'available_markets': instance.availableMarkets,
+      'external_urls': instance.externalUrls?.toJson(),
+      'href': instance.href,
+      'id': instance.id,
+      'images': instance.images?.map((e) => e.toJson()).toList(),
+      'name': instance.name,
+      'release_date': instance.releaseDate,
+      'release_date_precision': instance.releaseDatePrecision,
+      'restrictions': instance.restrictions?.toJson(),
+      'type': instance.type,
+      'uri': instance.uri,
+      'copyrights': instance.copyrights?.map((e) => e.toJson()).toList(),
+      'external_ids': instance.externalIds?.toJson(),
+      'genres': instance.genres,
+      'label': instance.label,
+      'popularity': instance.popularity,
+      'artists': instance.artists?.map((e) => e.toJson()).toList(),
+      'tracks': instance.tracks?.toJson(),
+    };
+
+_$ImagesImpl _$$ImagesImplFromJson(Map<String, dynamic> json) => _$ImagesImpl(
       json['url'] as String?,
       json['height'] as int?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$ImagesImplToJson(_$ImagesImpl instance) =>
+    <String, dynamic>{
       'url': instance.url,
       'height': instance.height,
       'width': instance.width,
     };
 
-_$_Restrictions _$$_RestrictionsFromJson(Map<String, dynamic> json) =>
-    _$_Restrictions(
+_$RestrictionsImpl _$$RestrictionsImplFromJson(Map<String, dynamic> json) =>
+    _$RestrictionsImpl(
       json['reason'] as String?,
     );
 
-Map<String, dynamic> _$$_RestrictionsToJson(_$_Restrictions instance) =>
+Map<String, dynamic> _$$RestrictionsImplToJson(_$RestrictionsImpl instance) =>
     <String, dynamic>{
       'reason': instance.reason,
     };
 
-_$_Copyrights _$$_CopyrightsFromJson(Map<String, dynamic> json) =>
-    _$_Copyrights(
+_$CopyrightsImpl _$$CopyrightsImplFromJson(Map<String, dynamic> json) =>
+    _$CopyrightsImpl(
       json['text'] as String?,
       json['type'] as String?,
     );
 
-Map<String, dynamic> _$$_CopyrightsToJson(_$_Copyrights instance) =>
+Map<String, dynamic> _$$CopyrightsImplToJson(_$CopyrightsImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'type': instance.type,
     };
 
-_$_ExternalIds _$$_ExternalIdsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalIds(
+_$ExternalIdsImpl _$$ExternalIdsImplFromJson(Map<String, dynamic> json) =>
+    _$ExternalIdsImpl(
       json['isrc'] as String?,
       json['ean'] as String?,
       json['upc'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalIdsToJson(_$_ExternalIds instance) =>
+Map<String, dynamic> _$$ExternalIdsImplToJson(_$ExternalIdsImpl instance) =>
     <String, dynamic>{
       'isrc': instance.isrc,
       'ean': instance.ean,
       'upc': instance.upc,
     };
 
-_$_Artists _$$_ArtistsFromJson(Map<String, dynamic> json) => _$_Artists(
+_$ArtistsImpl _$$ArtistsImplFromJson(Map<String, dynamic> json) =>
+    _$ArtistsImpl(
       json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
@@ -240,7 +244,7 @@ _$_Artists _$$_ArtistsFromJson(Map<String, dynamic> json) => _$_Artists(
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ArtistsToJson(_$_Artists instance) =>
+Map<String, dynamic> _$$ArtistsImplToJson(_$ArtistsImpl instance) =>
     <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'followers': instance.followers?.toJson(),
@@ -254,18 +258,19 @@ Map<String, dynamic> _$$_ArtistsToJson(_$_Artists instance) =>
       'uri': instance.uri,
     };
 
-_$_Followers _$$_FollowersFromJson(Map<String, dynamic> json) => _$_Followers(
+_$FollowersImpl _$$FollowersImplFromJson(Map<String, dynamic> json) =>
+    _$FollowersImpl(
       json['href'] as String?,
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_FollowersToJson(_$_Followers instance) =>
+Map<String, dynamic> _$$FollowersImplToJson(_$FollowersImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'total': instance.total,
     };
 
-_$_Tracks _$$_TracksFromJson(Map<String, dynamic> json) => _$_Tracks(
+_$TracksImpl _$$TracksImplFromJson(Map<String, dynamic> json) => _$TracksImpl(
       json['href'] as String?,
       json['limit'] as int?,
       json['next'] as String?,
@@ -277,7 +282,8 @@ _$_Tracks _$$_TracksFromJson(Map<String, dynamic> json) => _$_Tracks(
           .toList(),
     );
 
-Map<String, dynamic> _$$_TracksToJson(_$_Tracks instance) => <String, dynamic>{
+Map<String, dynamic> _$$TracksImplToJson(_$TracksImpl instance) =>
+    <String, dynamic>{
       'href': instance.href,
       'limit': instance.limit,
       'next': instance.next,

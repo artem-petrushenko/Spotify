@@ -46,12 +46,20 @@ import 'package:spotify_client/domain/services/tracks/tracks_service.dart';
 import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 import 'package:spotify_client/domain/services/users/users_service.dart';
 import 'package:spotify_client/domain/services/localization/localization_service.dart';
+import 'package:spotify_client/src/common/data/client/shared_preferences_dao.dart';
+import 'package:spotify_client/src/common/data/provider/session/local/session_storage.dart';
+import 'package:spotify_client/src/common/data/provider/session/local/session_storage_impl.dart';
 
 class AppDI {
   static Future<void> _registerRepositories() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     GetIt.instance.registerLazySingleton<AbstractSessionDataRepository>(() =>
         const SessionDataRepository(secureStorage: FlutterSecureStorage()));
+
+    GetIt.instance.registerLazySingleton<SessionStorage>(() =>
+        SessionStorageImpl(
+            preferences:
+                SharedPreferencesDao(sharedPreferences: sharedPreferences)));
 
     GetIt.instance.registerLazySingleton<AbstractUsersRepository>(
         () => UsersRepository());
@@ -73,7 +81,7 @@ class AppDI {
     GetIt.instance.registerLazySingleton<AbstractPlaylistsRepository>(
         () => PlaylistsRepository());
     GetIt.instance.registerLazySingleton<AbstractSearchRepository>(
-            () => SearchRepository());
+        () => SearchRepository());
   }
 
   static void _registerServices() {

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/artist/artist_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/current_users_profile/current_users_profile_bloc.dart';
-import 'package:spotify_client/presentation/bloc/bloc/liked_songs/liked_songs_bloc.dart';
 
 import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/artist/artist_view.dart';
 import 'package:spotify_client/presentation/views/current_users_profile/current_users_profile_view.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
-import 'package:spotify_client/presentation/views/liked_songs/liked_songs_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
 import 'package:spotify_client/presentation/views/login/login_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
@@ -102,13 +100,6 @@ class ScreenFactory {
     return BlocProvider(
       create: (context) => CurrentUsersProfileBloc()..add(FetchCurrentUsersProfile()),
       child: const CurrentUsersProfileView(),
-    );
-  }
-
-  Widget makeLikedMusicPlaylist() {
-    return BlocProvider(
-      create: (context) => LikedSongsBloc()..add(LoadLikedSongsEvent()),
-      child: const LikedSongsView(),
     );
   }
 

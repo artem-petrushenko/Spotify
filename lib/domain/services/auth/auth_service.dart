@@ -14,6 +14,8 @@ import 'package:spotify_client/domain/repository/session_data/abstract_session_d
 
 import 'package:spotify_client/utils/constants/strings.dart';
 
+import '../../../src/common/data/provider/session/local/session_storage.dart';
+
 class AuthService implements AbstractAuthService {
   @override
   Future<void> logout() async {
@@ -100,7 +102,8 @@ class AuthService implements AbstractAuthService {
         'client_id': clientID
       },
     );
-
+    await GetIt.instance<SessionStorage>()
+        .setAccessToken(jsonResponse['access_token'] as String);
     await GetIt.instance<AbstractSessionDataRepository>()
         .setRefreshToken(jsonResponse['refresh_token'] as String);
     await GetIt.instance<AbstractSessionDataRepository>()

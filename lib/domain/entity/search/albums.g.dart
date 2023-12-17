@@ -6,7 +6,7 @@ part of 'albums.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Albums _$$_AlbumsFromJson(Map<String, dynamic> json) => _$_Albums(
+_$AlbumsImpl _$$AlbumsImplFromJson(Map<String, dynamic> json) => _$AlbumsImpl(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
           ?.map((e) => ItemsAlbum.fromJson(e as Map<String, dynamic>))
@@ -18,7 +18,8 @@ _$_Albums _$$_AlbumsFromJson(Map<String, dynamic> json) => _$_Albums(
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_AlbumsToJson(_$_Albums instance) => <String, dynamic>{
+Map<String, dynamic> _$$AlbumsImplToJson(_$AlbumsImpl instance) =>
+    <String, dynamic>{
       'href': instance.href,
       'items': instance.items?.map((e) => e.toJson()).toList(),
       'limit': instance.limit,
@@ -28,8 +29,9 @@ Map<String, dynamic> _$$_AlbumsToJson(_$_Albums instance) => <String, dynamic>{
       'total': instance.total,
     };
 
-_$_ItemsAlbumAlbums _$$_ItemsAlbumAlbumsFromJson(Map<String, dynamic> json) =>
-    _$_ItemsAlbumAlbums(
+_$ItemsAlbumAlbumsImpl _$$ItemsAlbumAlbumsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ItemsAlbumAlbumsImpl(
       json['album_group'] as String?,
       json['album_type'] as String?,
       (json['artists'] as List<dynamic>?)
@@ -56,7 +58,8 @@ _$_ItemsAlbumAlbums _$$_ItemsAlbumAlbumsFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsAlbumAlbumsToJson(_$_ItemsAlbumAlbums instance) =>
+Map<String, dynamic> _$$ItemsAlbumAlbumsImplToJson(
+        _$ItemsAlbumAlbumsImpl instance) =>
     <String, dynamic>{
       'album_group': instance.albumGroup,
       'album_type': instance.albumType,
@@ -75,8 +78,8 @@ Map<String, dynamic> _$$_ItemsAlbumAlbumsToJson(_$_ItemsAlbumAlbums instance) =>
       'uri': instance.uri,
     };
 
-_$_ArtistsAlbums _$$_ArtistsAlbumsFromJson(Map<String, dynamic> json) =>
-    _$_ArtistsAlbums(
+_$ArtistsAlbumsImpl _$$ArtistsAlbumsImplFromJson(Map<String, dynamic> json) =>
+    _$ArtistsAlbumsImpl(
       json['external_urls'] == null
           ? null
           : ExternalUrlsAlbums.fromJson(
@@ -88,7 +91,7 @@ _$_ArtistsAlbums _$$_ArtistsAlbumsFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ArtistsAlbumsToJson(_$_ArtistsAlbums instance) =>
+Map<String, dynamic> _$$ArtistsAlbumsImplToJson(_$ArtistsAlbumsImpl instance) =>
     <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'href': instance.href,
@@ -98,26 +101,26 @@ Map<String, dynamic> _$$_ArtistsAlbumsToJson(_$_ArtistsAlbums instance) =>
       'uri': instance.uri,
     };
 
-_$_ExternalUrlsAlbums _$$_ExternalUrlsAlbumsFromJson(
+_$ExternalUrlsAlbumsImpl _$$ExternalUrlsAlbumsImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ExternalUrlsAlbums(
+    _$ExternalUrlsAlbumsImpl(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsAlbumsToJson(
-        _$_ExternalUrlsAlbums instance) =>
+Map<String, dynamic> _$$ExternalUrlsAlbumsImplToJson(
+        _$ExternalUrlsAlbumsImpl instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_ImagesAlbums _$$_ImagesAlbumsFromJson(Map<String, dynamic> json) =>
-    _$_ImagesAlbums(
+_$ImagesAlbumsImpl _$$ImagesAlbumsImplFromJson(Map<String, dynamic> json) =>
+    _$ImagesAlbumsImpl(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesAlbumsToJson(_$_ImagesAlbums instance) =>
+Map<String, dynamic> _$$ImagesAlbumsImplToJson(_$ImagesAlbumsImpl instance) =>
     <String, dynamic>{
       'height': instance.height,
       'url': instance.url,

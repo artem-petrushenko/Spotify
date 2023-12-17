@@ -6,8 +6,8 @@ part of 'artist.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ArtistModel _$$_ArtistModelFromJson(Map<String, dynamic> json) =>
-    _$_ArtistModel(
+_$ArtistModelImpl _$$ArtistModelImplFromJson(Map<String, dynamic> json) =>
+    _$ArtistModelImpl(
       (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       json['external_urls'] == null
           ? null
@@ -27,7 +27,7 @@ _$_ArtistModel _$$_ArtistModelFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ArtistModelToJson(_$_ArtistModel instance) =>
+Map<String, dynamic> _$$ArtistModelImplToJson(_$ArtistModelImpl instance) =>
     <String, dynamic>{
       'genres': instance.genres,
       'external_urls': instance.externalUrls?.toJson(),
@@ -41,34 +41,36 @@ Map<String, dynamic> _$$_ArtistModelToJson(_$_ArtistModel instance) =>
       'uri': instance.uri,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$ExternalUrlsImpl _$$ExternalUrlsImplFromJson(Map<String, dynamic> json) =>
+    _$ExternalUrlsImpl(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$ExternalUrlsImplToJson(_$ExternalUrlsImpl instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Followers _$$_FollowersFromJson(Map<String, dynamic> json) => _$_Followers(
+_$FollowersImpl _$$FollowersImplFromJson(Map<String, dynamic> json) =>
+    _$FollowersImpl(
       json['href'] as String?,
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_FollowersToJson(_$_Followers instance) =>
+Map<String, dynamic> _$$FollowersImplToJson(_$FollowersImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'total': instance.total,
     };
 
-_$_Images _$$_ImagesFromJson(Map<String, dynamic> json) => _$_Images(
+_$ImagesImpl _$$ImagesImplFromJson(Map<String, dynamic> json) => _$ImagesImpl(
       json['url'] as String?,
       json['height'] as int?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesToJson(_$_Images instance) => <String, dynamic>{
+Map<String, dynamic> _$$ImagesImplToJson(_$ImagesImpl instance) =>
+    <String, dynamic>{
       'url': instance.url,
       'height': instance.height,
       'width': instance.width,

@@ -6,9 +6,9 @@ part of 'search_for_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SearchForItemModel _$$_SearchForItemModelFromJson(
+_$SearchForItemModelImpl _$$SearchForItemModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SearchForItemModel(
+    _$SearchForItemModelImpl(
       json['albums'] == null
           ? null
           : Albums.fromJson(json['albums'] as Map<String, dynamic>),
@@ -32,8 +32,8 @@ _$_SearchForItemModel _$$_SearchForItemModelFromJson(
           : Audiobooks.fromJson(json['audiobooks'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_SearchForItemModelToJson(
-        _$_SearchForItemModel instance) =>
+Map<String, dynamic> _$$SearchForItemModelImplToJson(
+        _$SearchForItemModelImpl instance) =>
     <String, dynamic>{
       'albums': instance.albums?.toJson(),
       'artists': instance.artists?.toJson(),

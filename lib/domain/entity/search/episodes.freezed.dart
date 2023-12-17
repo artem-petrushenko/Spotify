@@ -104,10 +104,11 @@ class _$EpisodesCopyWithImpl<$Res, $Val extends Episodes>
 }
 
 /// @nodoc
-abstract class _$$_EpisodesCopyWith<$Res> implements $EpisodesCopyWith<$Res> {
-  factory _$$_EpisodesCopyWith(
-          _$_Episodes value, $Res Function(_$_Episodes) then) =
-      __$$_EpisodesCopyWithImpl<$Res>;
+abstract class _$$EpisodesImplCopyWith<$Res>
+    implements $EpisodesCopyWith<$Res> {
+  factory _$$EpisodesImplCopyWith(
+          _$EpisodesImpl value, $Res Function(_$EpisodesImpl) then) =
+      __$$EpisodesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -121,11 +122,11 @@ abstract class _$$_EpisodesCopyWith<$Res> implements $EpisodesCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EpisodesCopyWithImpl<$Res>
-    extends _$EpisodesCopyWithImpl<$Res, _$_Episodes>
-    implements _$$_EpisodesCopyWith<$Res> {
-  __$$_EpisodesCopyWithImpl(
-      _$_Episodes _value, $Res Function(_$_Episodes) _then)
+class __$$EpisodesImplCopyWithImpl<$Res>
+    extends _$EpisodesCopyWithImpl<$Res, _$EpisodesImpl>
+    implements _$$EpisodesImplCopyWith<$Res> {
+  __$$EpisodesImplCopyWithImpl(
+      _$EpisodesImpl _value, $Res Function(_$EpisodesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,7 +140,7 @@ class __$$_EpisodesCopyWithImpl<$Res>
     Object? previous = freezed,
     Object? total = freezed,
   }) {
-    return _then(_$_Episodes(
+    return _then(_$EpisodesImpl(
       freezed == href
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -175,13 +176,13 @@ class __$$_EpisodesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Episodes implements _Episodes {
-  const _$_Episodes(this.href, final List<ItemsEpisodes>? items, this.limit,
+class _$EpisodesImpl implements _Episodes {
+  const _$EpisodesImpl(this.href, final List<ItemsEpisodes>? items, this.limit,
       this.next, this.offset, this.previous, this.total)
       : _items = items;
 
-  factory _$_Episodes.fromJson(Map<String, dynamic> json) =>
-      _$$_EpisodesFromJson(json);
+  factory _$EpisodesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EpisodesImplFromJson(json);
 
   @override
   final String? href;
@@ -212,10 +213,10 @@ class _$_Episodes implements _Episodes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Episodes &&
+            other is _$EpisodesImpl &&
             (identical(other.href, href) || other.href == href) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.limit, limit) || other.limit == limit) &&
@@ -241,12 +242,12 @@ class _$_Episodes implements _Episodes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EpisodesCopyWith<_$_Episodes> get copyWith =>
-      __$$_EpisodesCopyWithImpl<_$_Episodes>(this, _$identity);
+  _$$EpisodesImplCopyWith<_$EpisodesImpl> get copyWith =>
+      __$$EpisodesImplCopyWithImpl<_$EpisodesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EpisodesToJson(
+    return _$$EpisodesImplToJson(
       this,
     );
   }
@@ -260,9 +261,10 @@ abstract class _Episodes implements Episodes {
       final String? next,
       final int? offset,
       final String? previous,
-      final int? total) = _$_Episodes;
+      final int? total) = _$EpisodesImpl;
 
-  factory _Episodes.fromJson(Map<String, dynamic> json) = _$_Episodes.fromJson;
+  factory _Episodes.fromJson(Map<String, dynamic> json) =
+      _$EpisodesImpl.fromJson;
 
   @override
   String? get href;
@@ -280,7 +282,7 @@ abstract class _Episodes implements Episodes {
   int? get total;
   @override
   @JsonKey(ignore: true)
-  _$$_EpisodesCopyWith<_$_Episodes> get copyWith =>
+  _$$EpisodesImplCopyWith<_$EpisodesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -486,11 +488,11 @@ class _$ItemsEpisodesCopyWithImpl<$Res, $Val extends ItemsEpisodes>
 }
 
 /// @nodoc
-abstract class _$$_ItemsEpisodesCopyWith<$Res>
+abstract class _$$ItemsEpisodesImplCopyWith<$Res>
     implements $ItemsEpisodesCopyWith<$Res> {
-  factory _$$_ItemsEpisodesCopyWith(
-          _$_ItemsEpisodes value, $Res Function(_$_ItemsEpisodes) then) =
-      __$$_ItemsEpisodesCopyWithImpl<$Res>;
+  factory _$$ItemsEpisodesImplCopyWith(
+          _$ItemsEpisodesImpl value, $Res Function(_$ItemsEpisodesImpl) then) =
+      __$$ItemsEpisodesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -521,11 +523,11 @@ abstract class _$$_ItemsEpisodesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ItemsEpisodesCopyWithImpl<$Res>
-    extends _$ItemsEpisodesCopyWithImpl<$Res, _$_ItemsEpisodes>
-    implements _$$_ItemsEpisodesCopyWith<$Res> {
-  __$$_ItemsEpisodesCopyWithImpl(
-      _$_ItemsEpisodes _value, $Res Function(_$_ItemsEpisodes) _then)
+class __$$ItemsEpisodesImplCopyWithImpl<$Res>
+    extends _$ItemsEpisodesCopyWithImpl<$Res, _$ItemsEpisodesImpl>
+    implements _$$ItemsEpisodesImplCopyWith<$Res> {
+  __$$ItemsEpisodesImplCopyWithImpl(
+      _$ItemsEpisodesImpl _value, $Res Function(_$ItemsEpisodesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -551,7 +553,7 @@ class __$$_ItemsEpisodesCopyWithImpl<$Res>
     Object? type = freezed,
     Object? uri = freezed,
   }) {
-    return _then(_$_ItemsEpisodes(
+    return _then(_$ItemsEpisodesImpl(
       freezed == audioPreviewUrl
           ? _value.audioPreviewUrl
           : audioPreviewUrl // ignore: cast_nullable_to_non_nullable
@@ -635,8 +637,8 @@ class __$$_ItemsEpisodesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ItemsEpisodes implements _ItemsEpisodes {
-  const _$_ItemsEpisodes(
+class _$ItemsEpisodesImpl implements _ItemsEpisodes {
+  const _$ItemsEpisodesImpl(
       this.audioPreviewUrl,
       this.description,
       this.durationMs,
@@ -659,8 +661,8 @@ class _$_ItemsEpisodes implements _ItemsEpisodes {
       : _images = images,
         _languages = languages;
 
-  factory _$_ItemsEpisodes.fromJson(Map<String, dynamic> json) =>
-      _$$_ItemsEpisodesFromJson(json);
+  factory _$ItemsEpisodesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ItemsEpisodesImplFromJson(json);
 
   @override
   final String? audioPreviewUrl;
@@ -723,10 +725,10 @@ class _$_ItemsEpisodes implements _ItemsEpisodes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ItemsEpisodes &&
+            other is _$ItemsEpisodesImpl &&
             (identical(other.audioPreviewUrl, audioPreviewUrl) ||
                 other.audioPreviewUrl == audioPreviewUrl) &&
             (identical(other.description, description) ||
@@ -789,12 +791,12 @@ class _$_ItemsEpisodes implements _ItemsEpisodes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemsEpisodesCopyWith<_$_ItemsEpisodes> get copyWith =>
-      __$$_ItemsEpisodesCopyWithImpl<_$_ItemsEpisodes>(this, _$identity);
+  _$$ItemsEpisodesImplCopyWith<_$ItemsEpisodesImpl> get copyWith =>
+      __$$ItemsEpisodesImplCopyWithImpl<_$ItemsEpisodesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ItemsEpisodesToJson(
+    return _$$ItemsEpisodesImplToJson(
       this,
     );
   }
@@ -820,10 +822,10 @@ abstract class _ItemsEpisodes implements ItemsEpisodes {
       final String? releaseDatePrecision,
       final ResumePointEpisodes? resumePoint,
       final String? type,
-      final String? uri) = _$_ItemsEpisodes;
+      final String? uri) = _$ItemsEpisodesImpl;
 
   factory _ItemsEpisodes.fromJson(Map<String, dynamic> json) =
-      _$_ItemsEpisodes.fromJson;
+      _$ItemsEpisodesImpl.fromJson;
 
   @override
   String? get audioPreviewUrl;
@@ -865,7 +867,7 @@ abstract class _ItemsEpisodes implements ItemsEpisodes {
   String? get uri;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemsEpisodesCopyWith<_$_ItemsEpisodes> get copyWith =>
+  _$$ItemsEpisodesImplCopyWith<_$ItemsEpisodesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -918,22 +920,22 @@ class _$ExternalUrlsEpisodesCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ExternalUrlsEpisodesCopyWith<$Res>
+abstract class _$$ExternalUrlsEpisodesImplCopyWith<$Res>
     implements $ExternalUrlsEpisodesCopyWith<$Res> {
-  factory _$$_ExternalUrlsEpisodesCopyWith(_$_ExternalUrlsEpisodes value,
-          $Res Function(_$_ExternalUrlsEpisodes) then) =
-      __$$_ExternalUrlsEpisodesCopyWithImpl<$Res>;
+  factory _$$ExternalUrlsEpisodesImplCopyWith(_$ExternalUrlsEpisodesImpl value,
+          $Res Function(_$ExternalUrlsEpisodesImpl) then) =
+      __$$ExternalUrlsEpisodesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? spotify});
 }
 
 /// @nodoc
-class __$$_ExternalUrlsEpisodesCopyWithImpl<$Res>
-    extends _$ExternalUrlsEpisodesCopyWithImpl<$Res, _$_ExternalUrlsEpisodes>
-    implements _$$_ExternalUrlsEpisodesCopyWith<$Res> {
-  __$$_ExternalUrlsEpisodesCopyWithImpl(_$_ExternalUrlsEpisodes _value,
-      $Res Function(_$_ExternalUrlsEpisodes) _then)
+class __$$ExternalUrlsEpisodesImplCopyWithImpl<$Res>
+    extends _$ExternalUrlsEpisodesCopyWithImpl<$Res, _$ExternalUrlsEpisodesImpl>
+    implements _$$ExternalUrlsEpisodesImplCopyWith<$Res> {
+  __$$ExternalUrlsEpisodesImplCopyWithImpl(_$ExternalUrlsEpisodesImpl _value,
+      $Res Function(_$ExternalUrlsEpisodesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -941,7 +943,7 @@ class __$$_ExternalUrlsEpisodesCopyWithImpl<$Res>
   $Res call({
     Object? spotify = freezed,
   }) {
-    return _then(_$_ExternalUrlsEpisodes(
+    return _then(_$ExternalUrlsEpisodesImpl(
       freezed == spotify
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
@@ -953,11 +955,11 @@ class __$$_ExternalUrlsEpisodesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ExternalUrlsEpisodes implements _ExternalUrlsEpisodes {
-  const _$_ExternalUrlsEpisodes(this.spotify);
+class _$ExternalUrlsEpisodesImpl implements _ExternalUrlsEpisodes {
+  const _$ExternalUrlsEpisodesImpl(this.spotify);
 
-  factory _$_ExternalUrlsEpisodes.fromJson(Map<String, dynamic> json) =>
-      _$$_ExternalUrlsEpisodesFromJson(json);
+  factory _$ExternalUrlsEpisodesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExternalUrlsEpisodesImplFromJson(json);
 
   @override
   final String? spotify;
@@ -968,10 +970,10 @@ class _$_ExternalUrlsEpisodes implements _ExternalUrlsEpisodes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExternalUrlsEpisodes &&
+            other is _$ExternalUrlsEpisodesImpl &&
             (identical(other.spotify, spotify) || other.spotify == spotify));
   }
 
@@ -982,13 +984,14 @@ class _$_ExternalUrlsEpisodes implements _ExternalUrlsEpisodes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExternalUrlsEpisodesCopyWith<_$_ExternalUrlsEpisodes> get copyWith =>
-      __$$_ExternalUrlsEpisodesCopyWithImpl<_$_ExternalUrlsEpisodes>(
-          this, _$identity);
+  _$$ExternalUrlsEpisodesImplCopyWith<_$ExternalUrlsEpisodesImpl>
+      get copyWith =>
+          __$$ExternalUrlsEpisodesImplCopyWithImpl<_$ExternalUrlsEpisodesImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExternalUrlsEpisodesToJson(
+    return _$$ExternalUrlsEpisodesImplToJson(
       this,
     );
   }
@@ -996,17 +999,17 @@ class _$_ExternalUrlsEpisodes implements _ExternalUrlsEpisodes {
 
 abstract class _ExternalUrlsEpisodes implements ExternalUrlsEpisodes {
   const factory _ExternalUrlsEpisodes(final String? spotify) =
-      _$_ExternalUrlsEpisodes;
+      _$ExternalUrlsEpisodesImpl;
 
   factory _ExternalUrlsEpisodes.fromJson(Map<String, dynamic> json) =
-      _$_ExternalUrlsEpisodes.fromJson;
+      _$ExternalUrlsEpisodesImpl.fromJson;
 
   @override
   String? get spotify;
   @override
   @JsonKey(ignore: true)
-  _$$_ExternalUrlsEpisodesCopyWith<_$_ExternalUrlsEpisodes> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ExternalUrlsEpisodesImplCopyWith<_$ExternalUrlsEpisodesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ImagesEpisodes _$ImagesEpisodesFromJson(Map<String, dynamic> json) {
@@ -1069,22 +1072,22 @@ class _$ImagesEpisodesCopyWithImpl<$Res, $Val extends ImagesEpisodes>
 }
 
 /// @nodoc
-abstract class _$$_ImagesEpisodesCopyWith<$Res>
+abstract class _$$ImagesEpisodesImplCopyWith<$Res>
     implements $ImagesEpisodesCopyWith<$Res> {
-  factory _$$_ImagesEpisodesCopyWith(
-          _$_ImagesEpisodes value, $Res Function(_$_ImagesEpisodes) then) =
-      __$$_ImagesEpisodesCopyWithImpl<$Res>;
+  factory _$$ImagesEpisodesImplCopyWith(_$ImagesEpisodesImpl value,
+          $Res Function(_$ImagesEpisodesImpl) then) =
+      __$$ImagesEpisodesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? height, String? url, int? width});
 }
 
 /// @nodoc
-class __$$_ImagesEpisodesCopyWithImpl<$Res>
-    extends _$ImagesEpisodesCopyWithImpl<$Res, _$_ImagesEpisodes>
-    implements _$$_ImagesEpisodesCopyWith<$Res> {
-  __$$_ImagesEpisodesCopyWithImpl(
-      _$_ImagesEpisodes _value, $Res Function(_$_ImagesEpisodes) _then)
+class __$$ImagesEpisodesImplCopyWithImpl<$Res>
+    extends _$ImagesEpisodesCopyWithImpl<$Res, _$ImagesEpisodesImpl>
+    implements _$$ImagesEpisodesImplCopyWith<$Res> {
+  __$$ImagesEpisodesImplCopyWithImpl(
+      _$ImagesEpisodesImpl _value, $Res Function(_$ImagesEpisodesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1094,7 +1097,7 @@ class __$$_ImagesEpisodesCopyWithImpl<$Res>
     Object? url = freezed,
     Object? width = freezed,
   }) {
-    return _then(_$_ImagesEpisodes(
+    return _then(_$ImagesEpisodesImpl(
       freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -1114,11 +1117,11 @@ class __$$_ImagesEpisodesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ImagesEpisodes implements _ImagesEpisodes {
-  const _$_ImagesEpisodes(this.height, this.url, this.width);
+class _$ImagesEpisodesImpl implements _ImagesEpisodes {
+  const _$ImagesEpisodesImpl(this.height, this.url, this.width);
 
-  factory _$_ImagesEpisodes.fromJson(Map<String, dynamic> json) =>
-      _$$_ImagesEpisodesFromJson(json);
+  factory _$ImagesEpisodesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImagesEpisodesImplFromJson(json);
 
   @override
   final int? height;
@@ -1133,10 +1136,10 @@ class _$_ImagesEpisodes implements _ImagesEpisodes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImagesEpisodes &&
+            other is _$ImagesEpisodesImpl &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.width, width) || other.width == width));
@@ -1149,12 +1152,13 @@ class _$_ImagesEpisodes implements _ImagesEpisodes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImagesEpisodesCopyWith<_$_ImagesEpisodes> get copyWith =>
-      __$$_ImagesEpisodesCopyWithImpl<_$_ImagesEpisodes>(this, _$identity);
+  _$$ImagesEpisodesImplCopyWith<_$ImagesEpisodesImpl> get copyWith =>
+      __$$ImagesEpisodesImplCopyWithImpl<_$ImagesEpisodesImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImagesEpisodesToJson(
+    return _$$ImagesEpisodesImplToJson(
       this,
     );
   }
@@ -1163,10 +1167,10 @@ class _$_ImagesEpisodes implements _ImagesEpisodes {
 abstract class _ImagesEpisodes implements ImagesEpisodes {
   const factory _ImagesEpisodes(
           final int? height, final String? url, final int? width) =
-      _$_ImagesEpisodes;
+      _$ImagesEpisodesImpl;
 
   factory _ImagesEpisodes.fromJson(Map<String, dynamic> json) =
-      _$_ImagesEpisodes.fromJson;
+      _$ImagesEpisodesImpl.fromJson;
 
   @override
   int? get height;
@@ -1176,7 +1180,7 @@ abstract class _ImagesEpisodes implements ImagesEpisodes {
   int? get width;
   @override
   @JsonKey(ignore: true)
-  _$$_ImagesEpisodesCopyWith<_$_ImagesEpisodes> get copyWith =>
+  _$$ImagesEpisodesImplCopyWith<_$ImagesEpisodesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1234,22 +1238,22 @@ class _$ResumePointEpisodesCopyWithImpl<$Res, $Val extends ResumePointEpisodes>
 }
 
 /// @nodoc
-abstract class _$$_ResumePointEpisodesCopyWith<$Res>
+abstract class _$$ResumePointEpisodesImplCopyWith<$Res>
     implements $ResumePointEpisodesCopyWith<$Res> {
-  factory _$$_ResumePointEpisodesCopyWith(_$_ResumePointEpisodes value,
-          $Res Function(_$_ResumePointEpisodes) then) =
-      __$$_ResumePointEpisodesCopyWithImpl<$Res>;
+  factory _$$ResumePointEpisodesImplCopyWith(_$ResumePointEpisodesImpl value,
+          $Res Function(_$ResumePointEpisodesImpl) then) =
+      __$$ResumePointEpisodesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool? fullyPlayed, int? resumePositionMs});
 }
 
 /// @nodoc
-class __$$_ResumePointEpisodesCopyWithImpl<$Res>
-    extends _$ResumePointEpisodesCopyWithImpl<$Res, _$_ResumePointEpisodes>
-    implements _$$_ResumePointEpisodesCopyWith<$Res> {
-  __$$_ResumePointEpisodesCopyWithImpl(_$_ResumePointEpisodes _value,
-      $Res Function(_$_ResumePointEpisodes) _then)
+class __$$ResumePointEpisodesImplCopyWithImpl<$Res>
+    extends _$ResumePointEpisodesCopyWithImpl<$Res, _$ResumePointEpisodesImpl>
+    implements _$$ResumePointEpisodesImplCopyWith<$Res> {
+  __$$ResumePointEpisodesImplCopyWithImpl(_$ResumePointEpisodesImpl _value,
+      $Res Function(_$ResumePointEpisodesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1258,7 +1262,7 @@ class __$$_ResumePointEpisodesCopyWithImpl<$Res>
     Object? fullyPlayed = freezed,
     Object? resumePositionMs = freezed,
   }) {
-    return _then(_$_ResumePointEpisodes(
+    return _then(_$ResumePointEpisodesImpl(
       freezed == fullyPlayed
           ? _value.fullyPlayed
           : fullyPlayed // ignore: cast_nullable_to_non_nullable
@@ -1274,11 +1278,11 @@ class __$$_ResumePointEpisodesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ResumePointEpisodes implements _ResumePointEpisodes {
-  const _$_ResumePointEpisodes(this.fullyPlayed, this.resumePositionMs);
+class _$ResumePointEpisodesImpl implements _ResumePointEpisodes {
+  const _$ResumePointEpisodesImpl(this.fullyPlayed, this.resumePositionMs);
 
-  factory _$_ResumePointEpisodes.fromJson(Map<String, dynamic> json) =>
-      _$$_ResumePointEpisodesFromJson(json);
+  factory _$ResumePointEpisodesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResumePointEpisodesImplFromJson(json);
 
   @override
   final bool? fullyPlayed;
@@ -1291,10 +1295,10 @@ class _$_ResumePointEpisodes implements _ResumePointEpisodes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ResumePointEpisodes &&
+            other is _$ResumePointEpisodesImpl &&
             (identical(other.fullyPlayed, fullyPlayed) ||
                 other.fullyPlayed == fullyPlayed) &&
             (identical(other.resumePositionMs, resumePositionMs) ||
@@ -1308,13 +1312,13 @@ class _$_ResumePointEpisodes implements _ResumePointEpisodes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ResumePointEpisodesCopyWith<_$_ResumePointEpisodes> get copyWith =>
-      __$$_ResumePointEpisodesCopyWithImpl<_$_ResumePointEpisodes>(
+  _$$ResumePointEpisodesImplCopyWith<_$ResumePointEpisodesImpl> get copyWith =>
+      __$$ResumePointEpisodesImplCopyWithImpl<_$ResumePointEpisodesImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ResumePointEpisodesToJson(
+    return _$$ResumePointEpisodesImplToJson(
       this,
     );
   }
@@ -1323,10 +1327,10 @@ class _$_ResumePointEpisodes implements _ResumePointEpisodes {
 abstract class _ResumePointEpisodes implements ResumePointEpisodes {
   const factory _ResumePointEpisodes(
           final bool? fullyPlayed, final int? resumePositionMs) =
-      _$_ResumePointEpisodes;
+      _$ResumePointEpisodesImpl;
 
   factory _ResumePointEpisodes.fromJson(Map<String, dynamic> json) =
-      _$_ResumePointEpisodes.fromJson;
+      _$ResumePointEpisodesImpl.fromJson;
 
   @override
   bool? get fullyPlayed;
@@ -1334,6 +1338,6 @@ abstract class _ResumePointEpisodes implements ResumePointEpisodes {
   int? get resumePositionMs;
   @override
   @JsonKey(ignore: true)
-  _$$_ResumePointEpisodesCopyWith<_$_ResumePointEpisodes> get copyWith =>
+  _$$ResumePointEpisodesImplCopyWith<_$ResumePointEpisodesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

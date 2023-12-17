@@ -197,11 +197,11 @@ class _$SearchForItemModelCopyWithImpl<$Res, $Val extends SearchForItemModel>
 }
 
 /// @nodoc
-abstract class _$$_SearchForItemModelCopyWith<$Res>
+abstract class _$$SearchForItemModelImplCopyWith<$Res>
     implements $SearchForItemModelCopyWith<$Res> {
-  factory _$$_SearchForItemModelCopyWith(_$_SearchForItemModel value,
-          $Res Function(_$_SearchForItemModel) then) =
-      __$$_SearchForItemModelCopyWithImpl<$Res>;
+  factory _$$SearchForItemModelImplCopyWith(_$SearchForItemModelImpl value,
+          $Res Function(_$SearchForItemModelImpl) then) =
+      __$$SearchForItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -230,11 +230,11 @@ abstract class _$$_SearchForItemModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SearchForItemModelCopyWithImpl<$Res>
-    extends _$SearchForItemModelCopyWithImpl<$Res, _$_SearchForItemModel>
-    implements _$$_SearchForItemModelCopyWith<$Res> {
-  __$$_SearchForItemModelCopyWithImpl(
-      _$_SearchForItemModel _value, $Res Function(_$_SearchForItemModel) _then)
+class __$$SearchForItemModelImplCopyWithImpl<$Res>
+    extends _$SearchForItemModelCopyWithImpl<$Res, _$SearchForItemModelImpl>
+    implements _$$SearchForItemModelImplCopyWith<$Res> {
+  __$$SearchForItemModelImplCopyWithImpl(_$SearchForItemModelImpl _value,
+      $Res Function(_$SearchForItemModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -248,7 +248,7 @@ class __$$_SearchForItemModelCopyWithImpl<$Res>
     Object? episodes = freezed,
     Object? audiobooks = freezed,
   }) {
-    return _then(_$_SearchForItemModel(
+    return _then(_$SearchForItemModelImpl(
       freezed == albums
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
@@ -284,12 +284,12 @@ class __$$_SearchForItemModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_SearchForItemModel implements _SearchForItemModel {
-  const _$_SearchForItemModel(this.albums, this.artists, this.tracks,
+class _$SearchForItemModelImpl implements _SearchForItemModel {
+  const _$SearchForItemModelImpl(this.albums, this.artists, this.tracks,
       this.playlists, this.shows, this.episodes, this.audiobooks);
 
-  factory _$_SearchForItemModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchForItemModelFromJson(json);
+  factory _$SearchForItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchForItemModelImplFromJson(json);
 
   @override
   final Albums? albums;
@@ -312,10 +312,10 @@ class _$_SearchForItemModel implements _SearchForItemModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchForItemModel &&
+            other is _$SearchForItemModelImpl &&
             (identical(other.albums, albums) || other.albums == albums) &&
             (identical(other.artists, artists) || other.artists == artists) &&
             (identical(other.tracks, tracks) || other.tracks == tracks) &&
@@ -336,13 +336,13 @@ class _$_SearchForItemModel implements _SearchForItemModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchForItemModelCopyWith<_$_SearchForItemModel> get copyWith =>
-      __$$_SearchForItemModelCopyWithImpl<_$_SearchForItemModel>(
+  _$$SearchForItemModelImplCopyWith<_$SearchForItemModelImpl> get copyWith =>
+      __$$SearchForItemModelImplCopyWithImpl<_$SearchForItemModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchForItemModelToJson(
+    return _$$SearchForItemModelImplToJson(
       this,
     );
   }
@@ -356,10 +356,10 @@ abstract class _SearchForItemModel implements SearchForItemModel {
       final Playlists? playlists,
       final Shows? shows,
       final Episodes? episodes,
-      final Audiobooks? audiobooks) = _$_SearchForItemModel;
+      final Audiobooks? audiobooks) = _$SearchForItemModelImpl;
 
   factory _SearchForItemModel.fromJson(Map<String, dynamic> json) =
-      _$_SearchForItemModel.fromJson;
+      _$SearchForItemModelImpl.fromJson;
 
   @override
   Albums? get albums;
@@ -377,6 +377,6 @@ abstract class _SearchForItemModel implements SearchForItemModel {
   Audiobooks? get audiobooks;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchForItemModelCopyWith<_$_SearchForItemModel> get copyWith =>
+  _$$SearchForItemModelImplCopyWith<_$SearchForItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

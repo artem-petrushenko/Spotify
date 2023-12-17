@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/factory/screen_factory.dart';
+import 'package:spotify_client/src/feature/initialization/widget/dependency_scope.dart';
+import 'package:spotify_client/src/feature/liked_songs/bloc/liked_songs_bloc.dart';
+import 'package:spotify_client/src/feature/liked_songs/widget/liked_songs_view.dart';
 import 'package:spotify_client/ui/animations/navigation_animations.dart';
 
 part 'router_names.dart';
@@ -118,7 +122,14 @@ class MainGoRouter {
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
-              child: _screenFactory.makeLikedMusicPlaylist(),
+              child: BlocProvider(
+                create: (BuildContext _) => LikedSongsBloc(
+                  likedSongsRepository:
+                      DependenciesScope.of(context).likedSongsRepository,
+                  authRepository: DependenciesScope.of(context).authRepository,
+                )..add(const LikedSongsEvent.fetchLikedSongs()),
+                child: const LikedSongsView(),
+              ),
             ),
           ),
           GoRoute(

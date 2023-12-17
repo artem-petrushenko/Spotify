@@ -12,7 +12,6 @@
     "genres": "Genres",
     "subscribers": "Subscribers",
     "openDiscography": "Open Discography",
-    "album": "Album",
     "single": "Single",
     "compilation": "Compilation",
     "releaseDate": "{releaseDate}",

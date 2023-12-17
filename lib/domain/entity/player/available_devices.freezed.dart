@@ -64,22 +64,24 @@ class _$AvailableDevicesModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AvailableDevicesModelCopyWith<$Res>
+abstract class _$$AvailableDevicesModelImplCopyWith<$Res>
     implements $AvailableDevicesModelCopyWith<$Res> {
-  factory _$$_AvailableDevicesModelCopyWith(_$_AvailableDevicesModel value,
-          $Res Function(_$_AvailableDevicesModel) then) =
-      __$$_AvailableDevicesModelCopyWithImpl<$Res>;
+  factory _$$AvailableDevicesModelImplCopyWith(
+          _$AvailableDevicesModelImpl value,
+          $Res Function(_$AvailableDevicesModelImpl) then) =
+      __$$AvailableDevicesModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Devices>? devices});
 }
 
 /// @nodoc
-class __$$_AvailableDevicesModelCopyWithImpl<$Res>
-    extends _$AvailableDevicesModelCopyWithImpl<$Res, _$_AvailableDevicesModel>
-    implements _$$_AvailableDevicesModelCopyWith<$Res> {
-  __$$_AvailableDevicesModelCopyWithImpl(_$_AvailableDevicesModel _value,
-      $Res Function(_$_AvailableDevicesModel) _then)
+class __$$AvailableDevicesModelImplCopyWithImpl<$Res>
+    extends _$AvailableDevicesModelCopyWithImpl<$Res,
+        _$AvailableDevicesModelImpl>
+    implements _$$AvailableDevicesModelImplCopyWith<$Res> {
+  __$$AvailableDevicesModelImplCopyWithImpl(_$AvailableDevicesModelImpl _value,
+      $Res Function(_$AvailableDevicesModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +89,7 @@ class __$$_AvailableDevicesModelCopyWithImpl<$Res>
   $Res call({
     Object? devices = freezed,
   }) {
-    return _then(_$_AvailableDevicesModel(
+    return _then(_$AvailableDevicesModelImpl(
       freezed == devices
           ? _value._devices
           : devices // ignore: cast_nullable_to_non_nullable
@@ -99,12 +101,12 @@ class __$$_AvailableDevicesModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_AvailableDevicesModel implements _AvailableDevicesModel {
-  const _$_AvailableDevicesModel(final List<Devices>? devices)
+class _$AvailableDevicesModelImpl implements _AvailableDevicesModel {
+  const _$AvailableDevicesModelImpl(final List<Devices>? devices)
       : _devices = devices;
 
-  factory _$_AvailableDevicesModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AvailableDevicesModelFromJson(json);
+  factory _$AvailableDevicesModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AvailableDevicesModelImplFromJson(json);
 
   final List<Devices>? _devices;
   @override
@@ -122,10 +124,10 @@ class _$_AvailableDevicesModel implements _AvailableDevicesModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AvailableDevicesModel &&
+            other is _$AvailableDevicesModelImpl &&
             const DeepCollectionEquality().equals(other._devices, _devices));
   }
 
@@ -137,13 +139,13 @@ class _$_AvailableDevicesModel implements _AvailableDevicesModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AvailableDevicesModelCopyWith<_$_AvailableDevicesModel> get copyWith =>
-      __$$_AvailableDevicesModelCopyWithImpl<_$_AvailableDevicesModel>(
-          this, _$identity);
+  _$$AvailableDevicesModelImplCopyWith<_$AvailableDevicesModelImpl>
+      get copyWith => __$$AvailableDevicesModelImplCopyWithImpl<
+          _$AvailableDevicesModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AvailableDevicesModelToJson(
+    return _$$AvailableDevicesModelImplToJson(
       this,
     );
   }
@@ -151,17 +153,17 @@ class _$_AvailableDevicesModel implements _AvailableDevicesModel {
 
 abstract class _AvailableDevicesModel implements AvailableDevicesModel {
   const factory _AvailableDevicesModel(final List<Devices>? devices) =
-      _$_AvailableDevicesModel;
+      _$AvailableDevicesModelImpl;
 
   factory _AvailableDevicesModel.fromJson(Map<String, dynamic> json) =
-      _$_AvailableDevicesModel.fromJson;
+      _$AvailableDevicesModelImpl.fromJson;
 
   @override
   List<Devices>? get devices;
   @override
   @JsonKey(ignore: true)
-  _$$_AvailableDevicesModelCopyWith<_$_AvailableDevicesModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AvailableDevicesModelImplCopyWith<_$AvailableDevicesModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Devices _$DevicesFromJson(Map<String, dynamic> json) {
@@ -253,10 +255,10 @@ class _$DevicesCopyWithImpl<$Res, $Val extends Devices>
 }
 
 /// @nodoc
-abstract class _$$_DevicesCopyWith<$Res> implements $DevicesCopyWith<$Res> {
-  factory _$$_DevicesCopyWith(
-          _$_Devices value, $Res Function(_$_Devices) then) =
-      __$$_DevicesCopyWithImpl<$Res>;
+abstract class _$$DevicesImplCopyWith<$Res> implements $DevicesCopyWith<$Res> {
+  factory _$$DevicesImplCopyWith(
+          _$DevicesImpl value, $Res Function(_$DevicesImpl) then) =
+      __$$DevicesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -270,10 +272,11 @@ abstract class _$$_DevicesCopyWith<$Res> implements $DevicesCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DevicesCopyWithImpl<$Res>
-    extends _$DevicesCopyWithImpl<$Res, _$_Devices>
-    implements _$$_DevicesCopyWith<$Res> {
-  __$$_DevicesCopyWithImpl(_$_Devices _value, $Res Function(_$_Devices) _then)
+class __$$DevicesImplCopyWithImpl<$Res>
+    extends _$DevicesCopyWithImpl<$Res, _$DevicesImpl>
+    implements _$$DevicesImplCopyWith<$Res> {
+  __$$DevicesImplCopyWithImpl(
+      _$DevicesImpl _value, $Res Function(_$DevicesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -287,7 +290,7 @@ class __$$_DevicesCopyWithImpl<$Res>
     Object? type = freezed,
     Object? volumePercent = freezed,
   }) {
-    return _then(_$_Devices(
+    return _then(_$DevicesImpl(
       freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -323,12 +326,12 @@ class __$$_DevicesCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_Devices implements _Devices {
-  const _$_Devices(this.id, this.isActive, this.isPrivateSession,
+class _$DevicesImpl implements _Devices {
+  const _$DevicesImpl(this.id, this.isActive, this.isPrivateSession,
       this.isRestricted, this.name, this.type, this.volumePercent);
 
-  factory _$_Devices.fromJson(Map<String, dynamic> json) =>
-      _$$_DevicesFromJson(json);
+  factory _$DevicesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DevicesImplFromJson(json);
 
   @override
   final String? id;
@@ -351,10 +354,10 @@ class _$_Devices implements _Devices {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Devices &&
+            other is _$DevicesImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
@@ -376,12 +379,12 @@ class _$_Devices implements _Devices {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DevicesCopyWith<_$_Devices> get copyWith =>
-      __$$_DevicesCopyWithImpl<_$_Devices>(this, _$identity);
+  _$$DevicesImplCopyWith<_$DevicesImpl> get copyWith =>
+      __$$DevicesImplCopyWithImpl<_$DevicesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DevicesToJson(
+    return _$$DevicesImplToJson(
       this,
     );
   }
@@ -395,9 +398,9 @@ abstract class _Devices implements Devices {
       final bool? isRestricted,
       final String? name,
       final String? type,
-      final int? volumePercent) = _$_Devices;
+      final int? volumePercent) = _$DevicesImpl;
 
-  factory _Devices.fromJson(Map<String, dynamic> json) = _$_Devices.fromJson;
+  factory _Devices.fromJson(Map<String, dynamic> json) = _$DevicesImpl.fromJson;
 
   @override
   String? get id;
@@ -415,6 +418,6 @@ abstract class _Devices implements Devices {
   int? get volumePercent;
   @override
   @JsonKey(ignore: true)
-  _$$_DevicesCopyWith<_$_Devices> get copyWith =>
+  _$$DevicesImplCopyWith<_$DevicesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

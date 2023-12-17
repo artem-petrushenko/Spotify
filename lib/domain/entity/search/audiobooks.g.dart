@@ -6,8 +6,8 @@ part of 'audiobooks.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Audiobooks _$$_AudiobooksFromJson(Map<String, dynamic> json) =>
-    _$_Audiobooks(
+_$AudiobooksImpl _$$AudiobooksImplFromJson(Map<String, dynamic> json) =>
+    _$AudiobooksImpl(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
           ?.map((e) => ItemsAudiobooks.fromJson(e as Map<String, dynamic>))
@@ -19,7 +19,7 @@ _$_Audiobooks _$$_AudiobooksFromJson(Map<String, dynamic> json) =>
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_AudiobooksToJson(_$_Audiobooks instance) =>
+Map<String, dynamic> _$$AudiobooksImplToJson(_$AudiobooksImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'items': instance.items?.map((e) => e.toJson()).toList(),
@@ -30,8 +30,10 @@ Map<String, dynamic> _$$_AudiobooksToJson(_$_Audiobooks instance) =>
       'total': instance.total,
     };
 
-_$_ItemsAudiobooks _$$_ItemsAudiobooksFromJson(Map<String, dynamic> json) =>
-    _$_ItemsAudiobooks();
+_$ItemsAudiobooksImpl _$$ItemsAudiobooksImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ItemsAudiobooksImpl();
 
-Map<String, dynamic> _$$_ItemsAudiobooksToJson(_$_ItemsAudiobooks instance) =>
+Map<String, dynamic> _$$ItemsAudiobooksImplToJson(
+        _$ItemsAudiobooksImpl instance) =>
     <String, dynamic>{};

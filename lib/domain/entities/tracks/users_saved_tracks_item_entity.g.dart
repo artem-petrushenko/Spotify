@@ -6,23 +6,23 @@ part of 'users_saved_tracks_item_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UsersSavedTracksItemEntity _$$_UsersSavedTracksItemEntityFromJson(
+_$UsersSavedTracksItemEntityImpl _$$UsersSavedTracksItemEntityImplFromJson(
         Map<String, dynamic> json) =>
-    _$_UsersSavedTracksItemEntity(
+    _$UsersSavedTracksItemEntityImpl(
       addedAt: json['added_at'] as String?,
       track: json['track'] == null
           ? null
           : Track.fromJson(json['track'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_UsersSavedTracksItemEntityToJson(
-        _$_UsersSavedTracksItemEntity instance) =>
+Map<String, dynamic> _$$UsersSavedTracksItemEntityImplToJson(
+        _$UsersSavedTracksItemEntityImpl instance) =>
     <String, dynamic>{
       'added_at': instance.addedAt,
       'track': instance.track?.toJson(),
     };
 
-_$_Track _$$_TrackFromJson(Map<String, dynamic> json) => _$_Track(
+_$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
       album: json['album'] == null
           ? null
           : Album.fromJson(json['album'] as Map<String, dynamic>),
@@ -60,7 +60,8 @@ _$_Track _$$_TrackFromJson(Map<String, dynamic> json) => _$_Track(
       isLocal: json['is_local'] as bool?,
     );
 
-Map<String, dynamic> _$$_TrackToJson(_$_Track instance) => <String, dynamic>{
+Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
+    <String, dynamic>{
       'album': instance.album?.toJson(),
       'artists': instance.artists?.map((e) => e.toJson()).toList(),
       'available_markets': instance.availableMarkets,
@@ -83,7 +84,7 @@ Map<String, dynamic> _$$_TrackToJson(_$_Track instance) => <String, dynamic>{
       'is_local': instance.isLocal,
     };
 
-_$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
+_$AlbumImpl _$$AlbumImplFromJson(Map<String, dynamic> json) => _$AlbumImpl(
       albumType: json['album_type'] as String?,
       totalTracks: json['total_tracks'] as int?,
       availableMarkets: (json['available_markets'] as List<dynamic>?)
@@ -122,7 +123,8 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
           .toList(),
     );
 
-Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
+Map<String, dynamic> _$$AlbumImplToJson(_$AlbumImpl instance) =>
+    <String, dynamic>{
       'album_type': instance.albumType,
       'total_tracks': instance.totalTracks,
       'available_markets': instance.availableMarkets,
@@ -145,8 +147,8 @@ Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
       'artists': instance.artists?.map((e) => e.toJson()).toList(),
     };
 
-_$_AlbumArtist _$$_AlbumArtistFromJson(Map<String, dynamic> json) =>
-    _$_AlbumArtist(
+_$AlbumArtistImpl _$$AlbumArtistImplFromJson(Map<String, dynamic> json) =>
+    _$AlbumArtistImpl(
       externalUrls: json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
@@ -158,7 +160,7 @@ _$_AlbumArtist _$$_AlbumArtistFromJson(Map<String, dynamic> json) =>
       uri: json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_AlbumArtistToJson(_$_AlbumArtist instance) =>
+Map<String, dynamic> _$$AlbumArtistImplToJson(_$AlbumArtistImpl instance) =>
     <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'href': instance.href,
@@ -168,65 +170,67 @@ Map<String, dynamic> _$$_AlbumArtistToJson(_$_AlbumArtist instance) =>
       'uri': instance.uri,
     };
 
-_$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalUrls(
+_$ExternalUrlsImpl _$$ExternalUrlsImplFromJson(Map<String, dynamic> json) =>
+    _$ExternalUrlsImpl(
       spotify: json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>
+Map<String, dynamic> _$$ExternalUrlsImplToJson(_$ExternalUrlsImpl instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_Copyright _$$_CopyrightFromJson(Map<String, dynamic> json) => _$_Copyright(
+_$CopyrightImpl _$$CopyrightImplFromJson(Map<String, dynamic> json) =>
+    _$CopyrightImpl(
       text: json['text'] as String?,
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$_CopyrightToJson(_$_Copyright instance) =>
+Map<String, dynamic> _$$CopyrightImplToJson(_$CopyrightImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'type': instance.type,
     };
 
-_$_ExternalIds _$$_ExternalIdsFromJson(Map<String, dynamic> json) =>
-    _$_ExternalIds(
+_$ExternalIdsImpl _$$ExternalIdsImplFromJson(Map<String, dynamic> json) =>
+    _$ExternalIdsImpl(
       isrc: json['isrc'] as String?,
       ean: json['ean'] as String?,
       upc: json['upc'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalIdsToJson(_$_ExternalIds instance) =>
+Map<String, dynamic> _$$ExternalIdsImplToJson(_$ExternalIdsImpl instance) =>
     <String, dynamic>{
       'isrc': instance.isrc,
       'ean': instance.ean,
       'upc': instance.upc,
     };
 
-_$_Image _$$_ImageFromJson(Map<String, dynamic> json) => _$_Image(
+_$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(
       url: json['url'] as String?,
       height: json['height'] as int?,
       width: json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImageToJson(_$_Image instance) => <String, dynamic>{
+Map<String, dynamic> _$$ImageImplToJson(_$ImageImpl instance) =>
+    <String, dynamic>{
       'url': instance.url,
       'height': instance.height,
       'width': instance.width,
     };
 
-_$_Restrictions _$$_RestrictionsFromJson(Map<String, dynamic> json) =>
-    _$_Restrictions(
+_$RestrictionsImpl _$$RestrictionsImplFromJson(Map<String, dynamic> json) =>
+    _$RestrictionsImpl(
       reason: json['reason'] as String?,
     );
 
-Map<String, dynamic> _$$_RestrictionsToJson(_$_Restrictions instance) =>
+Map<String, dynamic> _$$RestrictionsImplToJson(_$RestrictionsImpl instance) =>
     <String, dynamic>{
       'reason': instance.reason,
     };
 
-_$_TrackArtist _$$_TrackArtistFromJson(Map<String, dynamic> json) =>
-    _$_TrackArtist(
+_$TrackArtistImpl _$$TrackArtistImplFromJson(Map<String, dynamic> json) =>
+    _$TrackArtistImpl(
       externalUrls: json['external_urls'] == null
           ? null
           : ExternalUrls.fromJson(
@@ -247,7 +251,7 @@ _$_TrackArtist _$$_TrackArtistFromJson(Map<String, dynamic> json) =>
       uri: json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_TrackArtistToJson(_$_TrackArtist instance) =>
+Map<String, dynamic> _$$TrackArtistImplToJson(_$TrackArtistImpl instance) =>
     <String, dynamic>{
       'external_urls': instance.externalUrls?.toJson(),
       'followers': instance.followers?.toJson(),
@@ -261,19 +265,20 @@ Map<String, dynamic> _$$_TrackArtistToJson(_$_TrackArtist instance) =>
       'uri': instance.uri,
     };
 
-_$_Followers _$$_FollowersFromJson(Map<String, dynamic> json) => _$_Followers(
+_$FollowersImpl _$$FollowersImplFromJson(Map<String, dynamic> json) =>
+    _$FollowersImpl(
       href: json['href'] as String?,
       total: json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_FollowersToJson(_$_Followers instance) =>
+Map<String, dynamic> _$$FollowersImplToJson(_$FollowersImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'total': instance.total,
     };
 
-_$_LinkedFrom _$$_LinkedFromFromJson(Map<String, dynamic> json) =>
-    _$_LinkedFrom();
+_$LinkedFromImpl _$$LinkedFromImplFromJson(Map<String, dynamic> json) =>
+    _$LinkedFromImpl();
 
-Map<String, dynamic> _$$_LinkedFromToJson(_$_LinkedFrom instance) =>
+Map<String, dynamic> _$$LinkedFromImplToJson(_$LinkedFromImpl instance) =>
     <String, dynamic>{};

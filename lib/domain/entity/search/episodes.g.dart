@@ -6,7 +6,8 @@ part of 'episodes.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Episodes _$$_EpisodesFromJson(Map<String, dynamic> json) => _$_Episodes(
+_$EpisodesImpl _$$EpisodesImplFromJson(Map<String, dynamic> json) =>
+    _$EpisodesImpl(
       json['href'] as String?,
       (json['items'] as List<dynamic>?)
           ?.map((e) => ItemsEpisodes.fromJson(e as Map<String, dynamic>))
@@ -18,7 +19,7 @@ _$_Episodes _$$_EpisodesFromJson(Map<String, dynamic> json) => _$_Episodes(
       json['total'] as int?,
     );
 
-Map<String, dynamic> _$$_EpisodesToJson(_$_Episodes instance) =>
+Map<String, dynamic> _$$EpisodesImplToJson(_$EpisodesImpl instance) =>
     <String, dynamic>{
       'href': instance.href,
       'items': instance.items?.map((e) => e.toJson()).toList(),
@@ -29,8 +30,8 @@ Map<String, dynamic> _$$_EpisodesToJson(_$_Episodes instance) =>
       'total': instance.total,
     };
 
-_$_ItemsEpisodes _$$_ItemsEpisodesFromJson(Map<String, dynamic> json) =>
-    _$_ItemsEpisodes(
+_$ItemsEpisodesImpl _$$ItemsEpisodesImplFromJson(Map<String, dynamic> json) =>
+    _$ItemsEpisodesImpl(
       json['audio_preview_url'] as String?,
       json['description'] as String?,
       json['duration_ms'] as int?,
@@ -60,7 +61,7 @@ _$_ItemsEpisodes _$$_ItemsEpisodesFromJson(Map<String, dynamic> json) =>
       json['uri'] as String?,
     );
 
-Map<String, dynamic> _$$_ItemsEpisodesToJson(_$_ItemsEpisodes instance) =>
+Map<String, dynamic> _$$ItemsEpisodesImplToJson(_$ItemsEpisodesImpl instance) =>
     <String, dynamic>{
       'audio_preview_url': instance.audioPreviewUrl,
       'description': instance.description,
@@ -83,41 +84,42 @@ Map<String, dynamic> _$$_ItemsEpisodesToJson(_$_ItemsEpisodes instance) =>
       'uri': instance.uri,
     };
 
-_$_ExternalUrlsEpisodes _$$_ExternalUrlsEpisodesFromJson(
+_$ExternalUrlsEpisodesImpl _$$ExternalUrlsEpisodesImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ExternalUrlsEpisodes(
+    _$ExternalUrlsEpisodesImpl(
       json['spotify'] as String?,
     );
 
-Map<String, dynamic> _$$_ExternalUrlsEpisodesToJson(
-        _$_ExternalUrlsEpisodes instance) =>
+Map<String, dynamic> _$$ExternalUrlsEpisodesImplToJson(
+        _$ExternalUrlsEpisodesImpl instance) =>
     <String, dynamic>{
       'spotify': instance.spotify,
     };
 
-_$_ImagesEpisodes _$$_ImagesEpisodesFromJson(Map<String, dynamic> json) =>
-    _$_ImagesEpisodes(
+_$ImagesEpisodesImpl _$$ImagesEpisodesImplFromJson(Map<String, dynamic> json) =>
+    _$ImagesEpisodesImpl(
       json['height'] as int?,
       json['url'] as String?,
       json['width'] as int?,
     );
 
-Map<String, dynamic> _$$_ImagesEpisodesToJson(_$_ImagesEpisodes instance) =>
+Map<String, dynamic> _$$ImagesEpisodesImplToJson(
+        _$ImagesEpisodesImpl instance) =>
     <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'width': instance.width,
     };
 
-_$_ResumePointEpisodes _$$_ResumePointEpisodesFromJson(
+_$ResumePointEpisodesImpl _$$ResumePointEpisodesImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ResumePointEpisodes(
+    _$ResumePointEpisodesImpl(
       json['fully_played'] as bool?,
       json['resume_position_ms'] as int?,
     );
 
-Map<String, dynamic> _$$_ResumePointEpisodesToJson(
-        _$_ResumePointEpisodes instance) =>
+Map<String, dynamic> _$$ResumePointEpisodesImplToJson(
+        _$ResumePointEpisodesImpl instance) =>
     <String, dynamic>{
       'fully_played': instance.fullyPlayed,
       'resume_position_ms': instance.resumePositionMs,
