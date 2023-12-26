@@ -20,7 +20,7 @@ class LoaderViewModel {
     }
 
     final nextScreen =
-        isAuth ? GoRouterNames.homeScreen : GoRouterNames.onBoardingScreen;
+        isAuth ? GoRouterNames.homeScreen : GoRouterNames.loginScreen;
     context.go(nextScreen);
   }
 }

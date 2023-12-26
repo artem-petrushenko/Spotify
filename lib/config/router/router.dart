@@ -169,15 +169,6 @@ class MainGoRouter {
         ),
       ),
       GoRoute(
-        path: GoRouterPath.onBoardingScreen,
-        pageBuilder: (context, state) =>
-            NavigationAnimations.fadeTransitionAnimation<void>(
-          context: context,
-          state: state,
-          child: _screenFactory.makeOnBoarding(),
-        ),
-      ),
-      GoRoute(
         path: GoRouterPath.loginScreen,
         pageBuilder: (context, state) =>
             NavigationAnimations.fadeTransitionAnimation<void>(

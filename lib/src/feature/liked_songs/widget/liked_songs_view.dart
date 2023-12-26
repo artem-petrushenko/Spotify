@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify_client/src/common/widget/state/empty_state.dart';
+import 'package:spotify_client/src/common/widget/state/failure_state.dart';
 import 'package:spotify_client/src/feature/liked_songs/bloc/liked_songs_bloc.dart';
 
 class LikedSongsView extends StatelessWidget {
@@ -83,10 +85,10 @@ class LikedSongsView extends StatelessWidget {
                 ),
               ),
             ),
-            empty: (_) => const Center(child: Text('Empty')),
+            empty: (_) => const EmptyState(),
             success: (state) => CustomScrollView(
               slivers: [
-                SliverList.separated(
+                SliverList.builder(
                   itemBuilder: (BuildContext context, int index) {
                     if (index >= state.tracks.length - 1) {
                       context
@@ -105,11 +107,12 @@ class LikedSongsView extends StatelessWidget {
                             AspectRatio(
                               aspectRatio: 1,
                               child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(12.0)),
-                                  child: Image.network(state.tracks[index].track
-                                          ?.album?.images?.first.url ??
-                                      '')),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(12.0)),
+                                child: Image.network(state.tracks[index].track
+                                        ?.album?.images?.first.url ??
+                                    ''),
+                              ),
                             ),
                             Expanded(
                               child: Padding(
@@ -188,9 +191,6 @@ class LikedSongsView extends StatelessWidget {
                       ),
                     );
                   },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox.shrink();
-                  },
                   itemCount: state.tracks.length,
                 ),
                 if (!state.hasReachedMax)
@@ -204,9 +204,7 @@ class LikedSongsView extends StatelessWidget {
                   ),
               ],
             ),
-            failure: (state) => const Center(
-              child: Text('ERROR'),
-            ),
+            failure: (_) => const FailureState(),
           ),
         ),
       ),

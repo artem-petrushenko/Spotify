@@ -19,9 +19,6 @@ import 'package:spotify_client/presentation/views/theme/theme_view.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
 
-import 'package:spotify_client/ui/screens/on_boarding/on_boarding_model.dart';
-import 'package:spotify_client/ui/screens/on_boarding/on_boarding_screen.dart';
-
 import 'package:spotify_client/ui/screens/playlist/playlist_screen.dart';
 import 'package:spotify_client/ui/screens/playlist/playlist_view_model.dart';
 
@@ -51,13 +48,6 @@ import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.da
 import 'package:spotify_client/presentation/bloc/bloc/network/network_bloc.dart';
 
 class ScreenFactory {
-  Widget makeOnBoarding() {
-    return ChangeNotifierProvider(
-      create: (context) => OnBoardingViewModel(),
-      child: const OnBoardingScreen(),
-    );
-  }
-
   Widget makeLogin(Map<String, String>? queryParameters) {
     if (queryParameters != null) {
       LoginBloc().add(HandlingLoginEvent(queryParameters: queryParameters));
@@ -98,7 +88,8 @@ class ScreenFactory {
 
   Widget makeCurrentUserProfile() {
     return BlocProvider(
-      create: (context) => CurrentUsersProfileBloc()..add(FetchCurrentUsersProfile()),
+      create: (context) =>
+          CurrentUsersProfileBloc()..add(FetchCurrentUsersProfile()),
       child: const CurrentUsersProfileView(),
     );
   }

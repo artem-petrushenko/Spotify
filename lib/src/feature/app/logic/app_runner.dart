@@ -23,9 +23,9 @@ final class AppRunner
         InitializationFactoryImpl {
   /// Start the initialization and in case of success run application
   Future<void> initializeAndRun(InitializationHook hook) async {
-
     final bindings = WidgetsFlutterBinding.ensureInitialized()
       ..deferFirstFrame();
+    //TODO: Remove This
     await AppDI.initGetIt();
     // Preserve splash screen
     FlutterNativeSplash.preserve(widgetsBinding: bindings);

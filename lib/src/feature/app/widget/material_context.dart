@@ -9,7 +9,6 @@ import 'package:spotify_client/config/themes/app_theme.dart';
 import 'package:spotify_client/presentation/bloc/cubits/localization/localization_cubit.dart';
 import 'package:spotify_client/presentation/bloc/cubits/theme/theme_cubit.dart';
 
-
 /// {@template material_context}
 /// [MaterialContext] is an entry point to the material context.
 ///
@@ -25,10 +24,10 @@ class MaterialContext extends StatelessWidget {
     // final locale = SettingsScope.localeOf(context).locale;
 
     final colorScheme =
-    context.select((ThemeCubit cubit) => cubit.state.colorScheme);
+        context.select((ThemeCubit cubit) => cubit.state.colorScheme);
     final themeMode = context.select((ThemeCubit cubit) => cubit.getThemeMode);
     final localizationUnicode =
-    context.select((LocalizationCubit cubit) => cubit.localizationUnicode);
+        context.select((LocalizationCubit cubit) => cubit.localizationUnicode);
     final theme = AppTheme(colorScheme: colorScheme);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
