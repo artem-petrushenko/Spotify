@@ -2,36 +2,33 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
-import 'package:get_it/get_it.dart';
-
-import 'package:spotify_client/domain/services/auth/abstract_auth_service.dart';
-
-import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
-
-import 'package:spotify_client/domain/repository/auth/abstract_auth_repository.dart';
-
-import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
-
-import 'package:spotify_client/utils/constants/strings.dart';
 
 import 'package:spotify_client/src/feature/auth/data/provider/local/session_storage.dart';
+import 'package:spotify_client/src/feature/auth/data/provider/remove/auth_network_data_provider.dart';
 
+import 'package:spotify_client/src/feature/auth/data/repository/auth_repository.dart';
 
-class AuthService implements AbstractAuthService {
+import 'package:spotify_client/domain/api_client/api_auth_exception.dart';
+import 'package:spotify_client/utils/constants/strings.dart';
+
+class AuthRepositoryImpl implements AuthRepository {
+  const AuthRepositoryImpl({
+    required final SessionStorage sessionStorage,
+    required final AuthNetworkDataProvider authNetworkDataProvider,
+  })  : _sessionStorage = sessionStorage,
+        _authNetworkDataProvider = authNetworkDataProvider;
+
+  final SessionStorage _sessionStorage;
+  final AuthNetworkDataProvider _authNetworkDataProvider;
+
+  @override
+  String? fetchAccessToken() => _sessionStorage.getAccessToken();
 
   @override
   Future<void> logout() async {
-    await GetIt.instance<AbstractSessionDataRepository>().deleteAccessToken();
-    await GetIt.instance<AbstractSessionDataRepository>().deleteCodeVerifier();
-    await GetIt.instance<AbstractSessionDataRepository>().deleteRefreshToken();
-  }
-
-  @override
-  Future<bool> isAuth() async {
-    final accessToken =
-        await GetIt.instance<AbstractSessionDataRepository>().getAccessToken();
-    final isAuth = accessToken != null;
-    return isAuth;
+    await _sessionStorage.deleteAccessToken();
+    await _sessionStorage.deleteCodeVerifier();
+    await _sessionStorage.deleteRefreshToken();
   }
 
   @override
@@ -39,7 +36,7 @@ class AuthService implements AbstractAuthService {
     final String codeVerifier = await _generateCodeVerifier();
     final String codeChallenge = _generateCodeChallenge(codeVerifier);
     final String state = await _generateState();
-    GetIt.instance<AbstractAuthRepository>().requestUserAuthorization(
+    _authNetworkDataProvider.requestUserAuthorization(
       queryParameters: <String, dynamic>{
         'client_id': clientID,
         'response_type': 'code',
@@ -57,12 +54,9 @@ class AuthService implements AbstractAuthService {
   @override
   Future<void> handleDeeplink(Map<String, String> queryParameters) async {
     final code = await _getAuthCode(queryParameters);
-    final codeVerifier = await GetIt.instance<AbstractSessionDataRepository>()
-            .getCodeVerifier() ??
-        '';
+    final codeVerifier = _sessionStorage.getCodeVerifier() ?? '';
     final base64codec = _generateBase64Codec();
-    final jsonResponse =
-        await GetIt.instance<AbstractAuthRepository>().requestAccessToken(
+    final jsonResponse = await _authNetworkDataProvider.requestAccessToken(
       base64codec: base64codec,
       queryParameters: <String, dynamic>{
         'grant_type': 'authorization_code',
@@ -72,15 +66,14 @@ class AuthService implements AbstractAuthService {
         'client_id': clientID,
       },
     );
-    await GetIt.instance<AbstractSessionDataRepository>()
+    await _sessionStorage
         .setAccessToken(jsonResponse['access_token'] as String);
-    await GetIt.instance<AbstractSessionDataRepository>()
+    await _sessionStorage
         .setRefreshToken(jsonResponse['refresh_token'] as String);
   }
 
   Future<String> _getAuthCode(Map<String, String> queryParameters) async {
-    final state =
-        await GetIt.instance<AbstractSessionDataRepository>().getState();
+    final state = _sessionStorage.getState();
     if (queryParameters.containsKey('error')) {
       throw const ApiAuthException(ApiAuthExceptionType.accessDenied);
     }
@@ -92,11 +85,10 @@ class AuthService implements AbstractAuthService {
 
   @override
   Future<void> requestRefreshedAccessToken() async {
-    final refreshToken =
-        await GetIt.instance<AbstractSessionDataRepository>().getRefreshToken();
+    final refreshToken = _sessionStorage.getRefreshToken();
     final base64codec = _generateBase64Codec();
-    final jsonResponse = await GetIt.instance<AbstractAuthRepository>()
-        .requestRefreshedAccessToken(
+    final jsonResponse =
+        await _authNetworkDataProvider.requestRefreshedAccessToken(
       base64codec: base64codec,
       queryParameters: <String, dynamic>{
         'grant_type': 'refresh_token',
@@ -104,12 +96,9 @@ class AuthService implements AbstractAuthService {
         'client_id': clientID
       },
     );
-    await GetIt.instance<SessionStorage>()
-        .setAccessToken(jsonResponse['access_token'] as String);
-    await GetIt.instance<AbstractSessionDataRepository>()
-        .setRefreshToken(jsonResponse['refresh_token'] as String);
-    await GetIt.instance<AbstractSessionDataRepository>()
-        .setAccessToken(jsonResponse['access_token'] as String);
+    _sessionStorage.setAccessToken(jsonResponse['access_token'] as String);
+    _sessionStorage.setRefreshToken(jsonResponse['refresh_token'] as String);
+    _sessionStorage.setAccessToken(jsonResponse['access_token'] as String);
   }
 
   String _generateBase64Codec() {
@@ -123,8 +112,7 @@ class AuthService implements AbstractAuthService {
     final codeVerifier = String.fromCharCodes(Iterable.generate(
         random.nextInt(85) + 43,
         (_) => characters.codeUnitAt(random.nextInt(characters.length))));
-    GetIt.instance<AbstractSessionDataRepository>()
-        .setCodeVerifier(codeVerifier);
+    _sessionStorage.setCodeVerifier(codeVerifier);
     return codeVerifier;
   }
 
@@ -135,7 +123,7 @@ class AuthService implements AbstractAuthService {
     final state = String.fromCharCodes(Iterable.generate(
         random.nextInt(85) + 43,
         (_) => characters.codeUnitAt(random.nextInt(characters.length))));
-    GetIt.instance<AbstractSessionDataRepository>().setState(state);
+    _sessionStorage.setState(state);
     return state;
   }
 

@@ -18,7 +18,6 @@ abstract class GoRouterPath {
   static const localizationScreen = GoRouterNames.localizationScreen;
   static const themeScreen = GoRouterNames.themeScreen;
   static const usersQueueScreen = GoRouterNames.usersQueueScreen;
-  static const searchScreen = GoRouterNames.searchScreen;
 
   static const artistScreen = '${GoRouterNames.artistScreen}/:artistID';
   static const albumScreen = '${GoRouterNames.albumScreen}/:albumID';

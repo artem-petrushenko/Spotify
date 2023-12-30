@@ -41,13 +41,13 @@ class MainGoRouter {
             ),
           ),
           GoRoute(
-            path: GoRouterPath.searchScreen,
+            path: GoRouterPath.homeScreen,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
-              context: context,
-              state: state,
-              child: _screenFactory.makeSearch(),
-            ),
+                  context: context,
+                  state: state,
+                  child: _screenFactory.makeHome(),
+                ),
           ),
           GoRoute(
             path: GoRouterPath.mediaLibraryScreen,

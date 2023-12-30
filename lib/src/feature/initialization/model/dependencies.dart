@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify_client/src/common/data/repository/auth/auth_repository.dart';
+import 'package:spotify_client/src/common/data/client/rest_client.dart';
+
+import 'package:spotify_client/src/feature/auth/data/repository/auth_repository.dart';
 import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_songs_repository.dart';
 
 /// {@template dependencies}
@@ -8,6 +10,9 @@ import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_son
 base class Dependencies {
   /// {@macro dependencies}
   Dependencies();
+
+  /// Rest Client
+  late final RestClient restClient;
 
   /// Shared preferences
   late final SharedPreferences sharedPreferences;

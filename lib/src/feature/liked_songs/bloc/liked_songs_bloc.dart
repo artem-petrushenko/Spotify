@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:spotify_client/src/common/data/repository/auth/auth_repository.dart';
+
+import 'package:spotify_client/src/feature/auth/data/repository/auth_repository.dart';
 
 import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_songs_repository.dart';
 

@@ -22,9 +22,6 @@ import 'package:spotify_client/ui/screens/media_library/media_library_screen.dar
 import 'package:spotify_client/ui/screens/playlist/playlist_screen.dart';
 import 'package:spotify_client/ui/screens/playlist/playlist_view_model.dart';
 
-import 'package:spotify_client/ui/screens/search/search_screen.dart';
-import 'package:spotify_client/ui/screens/search/search_view_model.dart';
-
 import 'package:spotify_client/ui/screens/settings/setting_model.dart';
 import 'package:spotify_client/ui/screens/settings/settings_screen.dart';
 
@@ -142,14 +139,6 @@ class ScreenFactory {
     return ChangeNotifierProvider(
       create: (context) => UsersQueueViewModel(),
       child: const UsersQueueScreen(),
-    );
-  }
-
-  Widget makeSearch() {
-    return ChangeNotifierProvider(
-      create: (context) => SearchViewModel(),
-      lazy: false,
-      child: const SearchScreen(),
     );
   }
 

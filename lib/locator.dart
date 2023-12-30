@@ -13,8 +13,7 @@ import 'package:spotify_client/domain/repository/player/abstract_player_reposito
 import 'package:spotify_client/domain/repository/player/player_repository.dart';
 import 'package:spotify_client/domain/repository/playlists/abstract_playlists_repository.dart';
 import 'package:spotify_client/domain/repository/playlists/playlists_repository.dart';
-import 'package:spotify_client/domain/repository/search/abstract_search_repository.dart';
-import 'package:spotify_client/domain/repository/search/search_repository.dart';
+
 import 'package:spotify_client/domain/repository/session_data/abstract_session_data_repository.dart';
 import 'package:spotify_client/domain/repository/session_data/session_data_repository.dart';
 import 'package:spotify_client/domain/repository/theme/abstract_theme_repository.dart';
@@ -37,8 +36,7 @@ import 'package:spotify_client/domain/services/player/abstract_player_service.da
 import 'package:spotify_client/domain/services/player/player_service.dart';
 import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
 import 'package:spotify_client/domain/services/playlists/playlists_service.dart';
-import 'package:spotify_client/domain/services/search/abstract_search_service.dart';
-import 'package:spotify_client/domain/services/search/search_service.dart';
+
 import 'package:spotify_client/domain/services/theme/abstract_theme_service.dart';
 import 'package:spotify_client/domain/services/theme/theme_service.dart';
 import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
@@ -47,8 +45,8 @@ import 'package:spotify_client/domain/services/users/abstract_users_service.dart
 import 'package:spotify_client/domain/services/users/users_service.dart';
 import 'package:spotify_client/domain/services/localization/localization_service.dart';
 import 'package:spotify_client/src/common/data/client/shared_preferences_dao.dart';
-import 'package:spotify_client/src/common/data/provider/session/local/session_storage.dart';
-import 'package:spotify_client/src/common/data/provider/session/local/session_storage_impl.dart';
+import 'package:spotify_client/src/feature/auth/data/provider/local/session_storage.dart';
+import 'package:spotify_client/src/feature/auth/data/provider/local/session_storage_impl.dart';
 
 class AppDI {
   static Future<void> _registerRepositories() async {
@@ -80,15 +78,11 @@ class AppDI {
         () => ThemeRepository(sharedPreferences: sharedPreferences));
     GetIt.instance.registerLazySingleton<AbstractPlaylistsRepository>(
         () => PlaylistsRepository());
-    GetIt.instance.registerLazySingleton<AbstractSearchRepository>(
-        () => SearchRepository());
   }
 
   static void _registerServices() {
     GetIt.instance.registerLazySingleton<AbstractLocalizationService>(
         () => LocalizationService());
-    GetIt.instance
-        .registerLazySingleton<AbstractSearchService>(() => SearchService());
     GetIt.instance
         .registerLazySingleton<AbstractUsersService>(() => UsersService());
     GetIt.instance

@@ -150,7 +150,7 @@ class MainView extends StatelessWidget {
                 case 0:
                   context.go(GoRouterPath.homeScreen);
                 case 1:
-                  context.go(GoRouterPath.searchScreen);
+                  context.go(GoRouterPath.homeScreen);
                 case 2:
                   context.go(GoRouterPath.mediaLibraryScreen);
               }
