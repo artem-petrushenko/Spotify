@@ -1,4 +1,4 @@
-abstract class AbstractAuthRepository {
+abstract interface class AuthenticationNetworkDataProvider {
   Future<Map<String, dynamic>> requestAccessToken({
     required String base64codec,
     required Map<String, dynamic> queryParameters,

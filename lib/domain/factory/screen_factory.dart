@@ -4,17 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/artist/artist_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/current_users_profile/current_users_profile_bloc.dart';
 
-import 'package:spotify_client/presentation/bloc/bloc/login/login_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/artist/artist_view.dart';
 import 'package:spotify_client/presentation/views/current_users_profile/current_users_profile_view.dart';
 import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
-import 'package:spotify_client/presentation/views/login/login_view.dart';
 import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
 import 'package:spotify_client/presentation/views/theme/theme_view.dart';
+import 'package:spotify_client/src/feature/authentication/bloc/login/authentication_bloc.dart';
 
 import 'package:spotify_client/ui/screens/media_library/media_library_model.dart';
 import 'package:spotify_client/ui/screens/media_library/media_library_screen.dart';
@@ -27,9 +26,6 @@ import 'package:spotify_client/ui/screens/settings/settings_screen.dart';
 
 import 'package:spotify_client/ui/screens/album/album_screen.dart';
 import 'package:spotify_client/ui/screens/album/album_model.dart';
-
-import 'package:spotify_client/ui/screens/loader/loader_model.dart';
-import 'package:spotify_client/ui/screens/loader/loader_screen.dart';
 
 import 'package:spotify_client/ui/screens/track/track_screen.dart';
 import 'package:spotify_client/ui/screens/track/track_view_model.dart';
@@ -44,16 +40,18 @@ import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.da
 
 import 'package:spotify_client/presentation/bloc/bloc/network/network_bloc.dart';
 
+import 'package:spotify_client/src/feature/authentication/widget/login_view.dart';
+
 class ScreenFactory {
-  Widget makeLogin(Map<String, String>? queryParameters) {
-    if (queryParameters != null) {
-      LoginBloc().add(HandlingLoginEvent(queryParameters: queryParameters));
+  Widget makeLogin(
+    Map<String, String>? queryParameters,
+    BuildContext context,
+  ) {
+    if (queryParameters != null && queryParameters.isNotEmpty) {
+      context.read<AuthenticationBloc>().add(
+          AuthenticationEvent.handleDeeplink(queryParameters: queryParameters));
     }
-    return BlocProvider(
-      create: (context) => LoginBloc(),
-      lazy: false,
-      child: const LoginView(),
-    );
+    return const LoginView();
   }
 
   Widget makeMain(Widget child) {
@@ -72,14 +70,6 @@ class ScreenFactory {
     return ChangeNotifierProvider(
       create: (context) => MediaLibraryViewModel(),
       child: const MediaLibraryScreen(),
-    );
-  }
-
-  Widget makeLoader() {
-    return Provider(
-      create: (context) => LoaderViewModel(context),
-      lazy: false,
-      child: const LoaderScreen(),
     );
   }
 

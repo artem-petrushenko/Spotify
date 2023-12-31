@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_client/src/feature/app/widget/material_context.dart';
 
-import 'package:spotify_client/presentation/bloc/cubits/localization/localization_cubit.dart';
-import 'package:spotify_client/presentation/bloc/cubits/theme/theme_cubit.dart';
+import 'package:spotify_client/src/feature/authentication/bloc/login/authentication_bloc.dart';
 import 'package:spotify_client/src/feature/initialization/model/dependencies.dart';
 import 'package:spotify_client/src/feature/initialization/widget/dependency_scope.dart';
 
@@ -31,8 +30,14 @@ class App extends StatelessWidget {
         dependencies: result.dependencies,
         child: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (BuildContext context) => LocalizationCubit()),
-            BlocProvider(create: (BuildContext context) => ThemeCubit()),
+            // BlocProvider(create: (BuildContext context) => LocalizationCubit()),
+            // BlocProvider(create: (BuildContext context) => ThemeCubit()),
+            BlocProvider(
+              create: (BuildContext context) => AuthenticationBloc(
+                authenticationRepository:
+                    result.dependencies.authenticationRepository,
+              )..add(const AuthenticationEvent.fetchAuthStatus()),
+            )
           ],
           child: DependenciesScope(
             dependencies: result.dependencies,

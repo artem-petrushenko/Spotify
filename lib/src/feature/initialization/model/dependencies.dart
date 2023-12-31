@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify_client/src/common/data/client/rest_client.dart';
 
-import 'package:spotify_client/src/feature/auth/data/repository/auth_repository.dart';
+import 'package:spotify_client/src/feature/authentication/data/repository/authentication_repository.dart';
 import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_songs_repository.dart';
 
 /// {@template dependencies}
@@ -19,7 +19,7 @@ base class Dependencies {
 
   /// Theme repository
   late final LikedSongsRepository likedSongsRepository;
-  late final AuthRepository authRepository;
+  late final AuthenticationRepository authenticationRepository;
 }
 
 /// {@template initialization_result}

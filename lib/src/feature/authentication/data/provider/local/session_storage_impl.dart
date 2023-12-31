@@ -1,5 +1,6 @@
 import 'package:spotify_client/src/common/data/client/shared_preferences_dao.dart';
-import 'package:spotify_client/src/feature/auth/data/provider/local/session_storage.dart';
+
+import 'package:spotify_client/src/feature/authentication/data/provider/local/session_storage.dart';
 
 abstract class _Keys {
   static const accessToken = 'accessToken';

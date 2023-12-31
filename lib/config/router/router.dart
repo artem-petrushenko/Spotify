@@ -16,11 +16,24 @@ class MainGoRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
+  // TODO: Rewrite Navigation Logic for Check Auth State
   static final _screenFactory = ScreenFactory();
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
-    initialLocation: GoRouterPath.loaderScreen,
+    // redirect: (context, state) {
+    //   final isAuth = context.read<AuthenticationBloc>().state.maybeMap(
+    //         authenticated: (_) => true,
+    //         orElse: () => false,
+    //       );
+    //   if (isAuth == false) {
+    //
+    //     return GoRouterPath.loginScreen;
+    //   }
+    //   return GoRouterPath.likedMusicPlaylistScreen;
+    // },
+    // refreshListenable: router.read<AuthenticationBloc>(),
+    initialLocation: GoRouterPath.likedMusicPlaylistScreen,
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -44,10 +57,10 @@ class MainGoRouter {
             path: GoRouterPath.homeScreen,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
-                  context: context,
-                  state: state,
-                  child: _screenFactory.makeHome(),
-                ),
+              context: context,
+              state: state,
+              child: _screenFactory.makeHome(),
+            ),
           ),
           GoRoute(
             path: GoRouterPath.mediaLibraryScreen,
@@ -123,10 +136,11 @@ class MainGoRouter {
               context: context,
               state: state,
               child: BlocProvider(
-                create: (BuildContext _) => LikedSongsBloc(
+                create: (_) => LikedSongsBloc(
                   likedSongsRepository:
                       DependenciesScope.of(context).likedSongsRepository,
-                  authRepository: DependenciesScope.of(context).authRepository,
+                  authenticationRepository:
+                      DependenciesScope.of(context).authenticationRepository,
                 )..add(const LikedSongsEvent.fetchLikedSongs()),
                 child: const LikedSongsView(),
               ),
@@ -160,22 +174,14 @@ class MainGoRouter {
         ],
       ),
       GoRoute(
-        path: GoRouterPath.loaderScreen,
-        pageBuilder: (context, state) =>
-            NavigationAnimations.fadeTransitionAnimation<void>(
-          context: context,
-          state: state,
-          child: _screenFactory.makeLoader(),
-        ),
-      ),
-      GoRoute(
         path: GoRouterPath.loginScreen,
-        pageBuilder: (context, state) =>
-            NavigationAnimations.fadeTransitionAnimation<void>(
-          context: context,
-          state: state,
-          child: _screenFactory.makeLogin(state.queryParams),
-        ),
+        pageBuilder: (context, state) {
+          return NavigationAnimations.fadeTransitionAnimation<void>(
+            context: context,
+            state: state,
+            child: _screenFactory.makeLogin(state.queryParams, context),
+          );
+        },
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,

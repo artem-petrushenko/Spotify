@@ -1,4 +1,4 @@
-abstract interface class AuthRepository {
+abstract interface class AuthenticationRepository {
   String? fetchAccessToken();
 
   Future<void> logout();

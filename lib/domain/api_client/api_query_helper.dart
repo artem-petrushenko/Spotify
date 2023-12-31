@@ -25,12 +25,12 @@ class ApiQueryHelper {
       _checkStatusCode(response);
       if (response.statusCode == 200) return jsonDecode(response.body);
       return false;
-    } on SocketException {
-      throw const ApiClientException(ApiClientExceptionType.network);
-    } on ApiClientException {
-      rethrow;
-    } catch (_) {
-      throw const ApiClientException(ApiClientExceptionType.other);
+    // } on SocketException {
+    //   throw const ApiClientException(ApiClientExceptionType.network);
+    // } on ApiClientException {
+    //   rethrow;
+    } on Object catch (error, stackTrace) {
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
@@ -52,12 +52,8 @@ class ApiQueryHelper {
       );
       _checkStatusCode(response);
       return;
-    } on SocketException {
-      throw const ApiClientException(ApiClientExceptionType.network);
-    } on ApiClientException {
-      rethrow;
-    } catch (_) {
-      throw const ApiClientException(ApiClientExceptionType.other);
+    } on Object catch (error, stackTrace) {
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
@@ -78,12 +74,8 @@ class ApiQueryHelper {
         body: jsonEncode(_mapConversion(body)),
       );
       _checkStatusCode(response);
-    } on SocketException {
-      throw const ApiClientException(ApiClientExceptionType.network);
-    } on ApiClientException {
-      rethrow;
-    } catch (_) {
-      throw const ApiClientException(ApiClientExceptionType.other);
+    } on Object catch (error, stackTrace) {
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 
@@ -106,12 +98,8 @@ class ApiQueryHelper {
       _checkStatusCode(response);
       if (response.statusCode == 201) return responseToMap(response);
       return;
-    } on SocketException {
-      throw const ApiClientException(ApiClientExceptionType.network);
-    } on ApiClientException {
-      rethrow;
-    } catch (_) {
-      throw const ApiClientException(ApiClientExceptionType.other);
+    } on Object catch (error, stackTrace) {
+      Error.throwWithStackTrace(error, stackTrace);
     }
   }
 

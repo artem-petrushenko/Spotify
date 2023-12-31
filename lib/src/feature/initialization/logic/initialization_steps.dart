@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify_client/src/common/data/client/rest_client.dart';
 import 'package:spotify_client/src/common/data/client/shared_preferences_dao.dart';
-import 'package:spotify_client/src/feature/auth/data/provider/remove/auth_network_data_provider_impl.dart';
+import 'package:spotify_client/src/feature/authentication/data/provider/remove/authentication_network_data_provider_impl.dart';
+import 'package:spotify_client/src/feature/authentication/data/repository/authentication_repository_impl.dart';
 import 'package:spotify_client/src/feature/initialization/model/initialization_proccess.dart';
 import 'package:spotify_client/src/feature/liked_songs/data/provider/remote/liked_songs_network_data_provider_impl.dart';
 import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_songs_repository_impl.dart';
 
-import 'package:spotify_client/src/feature/auth/data/provider/local/session_storage_impl.dart';
-import 'package:spotify_client/src/feature/auth/data/repository/auth_repository_impl.dart';
+import 'package:spotify_client/src/feature/authentication/data/provider/local/session_storage_impl.dart';
+
 
 /// A function which represents a single initialization step.
 typedef StepAction = FutureOr<void>? Function(InitializationProgress progress);
@@ -38,9 +39,9 @@ mixin InitializationSteps {
           SessionStorageImpl(preferences: sharedPreferencesDao);
       final authNetworkDataProvider =
           AuthNetworkDataProviderImpl(client: progress.dependencies.restClient);
-      progress.dependencies.authRepository = AuthRepositoryImpl(
+      progress.dependencies.authenticationRepository = AuthenticationRepositoryImpl(
         sessionStorage: sessionStorage,
-        authNetworkDataProvider: authNetworkDataProvider,
+        authenticationNetworkDataProvider: authNetworkDataProvider,
       );
     },
     'Liked Songs Repository': (progress) {

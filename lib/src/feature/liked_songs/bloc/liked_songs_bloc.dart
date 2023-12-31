@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:spotify_client/src/feature/auth/data/repository/auth_repository.dart';
+import 'package:spotify_client/src/feature/authentication/data/repository/authentication_repository.dart';
 
 import 'package:spotify_client/src/feature/liked_songs/data/repository/liked_songs_repository.dart';
 
@@ -16,9 +16,9 @@ part 'liked_songs_bloc.freezed.dart';
 class LikedSongsBloc extends Bloc<LikedSongsEvent, LikedSongsState> {
   LikedSongsBloc({
     required final LikedSongsRepository likedSongsRepository,
-    required final AuthRepository authRepository,
+    required final AuthenticationRepository authenticationRepository,
   })  : _likedSongsRepository = likedSongsRepository,
-        _authRepository = authRepository,
+        _authenticationRepository = authenticationRepository,
         super(const LikedSongsState.loading()) {
     on<LikedSongsEvent>(
       (event, emit) => event.map<Future<void>>(
@@ -28,14 +28,14 @@ class LikedSongsBloc extends Bloc<LikedSongsEvent, LikedSongsState> {
   }
 
   final LikedSongsRepository _likedSongsRepository;
-  final AuthRepository _authRepository;
+  final AuthenticationRepository _authenticationRepository;
 
   Future<void> _onFetchLikedSongs(
     _FetchLikedSogns event,
     Emitter<LikedSongsState> emit,
   ) async {
     try {
-      final accessToken = _authRepository.fetchAccessToken() ?? '';
+      final accessToken = _authenticationRepository.fetchAccessToken() ?? '';
       if (state is _Loading) {
         final result = await _likedSongsRepository.getUsersSavedTracks(
           market: "ES",
