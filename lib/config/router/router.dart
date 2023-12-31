@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:spotify_client/domain/factory/screen_factory.dart';
+import 'package:spotify_client/src/feature/home/widget/home_view.dart';
 import 'package:spotify_client/src/feature/initialization/widget/dependency_scope.dart';
 import 'package:spotify_client/src/feature/liked_songs/bloc/liked_songs_bloc.dart';
 import 'package:spotify_client/src/feature/liked_songs/widget/liked_songs_view.dart';
+import 'package:spotify_client/src/feature/main/widget/main_view.dart';
+import 'package:spotify_client/src/feature/profile/widget/profile_view.dart';
 import 'package:spotify_client/ui/animations/navigation_animations.dart';
 
 part 'router_names.dart';
@@ -33,7 +36,7 @@ class MainGoRouter {
     //   return GoRouterPath.likedMusicPlaylistScreen;
     // },
     // refreshListenable: router.read<AuthenticationBloc>(),
-    initialLocation: GoRouterPath.likedMusicPlaylistScreen,
+    initialLocation: GoRouterPath.homeView,
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -41,25 +44,16 @@ class MainGoRouter {
             NavigationAnimations.fadeTransitionAnimation<void>(
           context: context,
           state: state,
-          child: _screenFactory.makeMain(child),
+          child: MainView(child),
         ),
         routes: <RouteBase>[
           GoRoute(
-            path: GoRouterPath.homeScreen,
+            path: GoRouterPath.homeView,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
-              child: _screenFactory.makeHome(),
-            ),
-          ),
-          GoRoute(
-            path: GoRouterPath.homeScreen,
-            pageBuilder: (context, state) =>
-                NavigationAnimations.fadeTransitionAnimation<void>(
-              context: context,
-              state: state,
-              child: _screenFactory.makeHome(),
+              child: const HomeView(),
             ),
           ),
           GoRoute(
@@ -94,12 +88,12 @@ class MainGoRouter {
             ),
           ),
           GoRoute(
-            path: GoRouterPath.currentUserProfileScreen,
+            path: GoRouterPath.profileView,
             pageBuilder: (context, state) =>
                 NavigationAnimations.fadeTransitionAnimation<void>(
               context: context,
               state: state,
-              child: _screenFactory.makeCurrentUserProfile(),
+              child: const ProfileView(),
             ),
           ),
           GoRoute(
@@ -174,7 +168,7 @@ class MainGoRouter {
         ],
       ),
       GoRoute(
-        path: GoRouterPath.loginScreen,
+        path: GoRouterPath.loginView,
         pageBuilder: (context, state) {
           return NavigationAnimations.fadeTransitionAnimation<void>(
             context: context,

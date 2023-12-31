@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_client/presentation/bloc/bloc/artist/artist_bloc.dart';
-import 'package:spotify_client/presentation/bloc/bloc/current_users_profile/current_users_profile_bloc.dart';
 
-import 'package:spotify_client/presentation/bloc/bloc/mini_player/mini_player_bloc.dart';
 import 'package:spotify_client/presentation/bloc/bloc/player/player_bloc.dart';
 import 'package:spotify_client/presentation/views/artist/artist_view.dart';
-import 'package:spotify_client/presentation/views/current_users_profile/current_users_profile_view.dart';
-import 'package:spotify_client/presentation/views/home/home_view.dart';
 import 'package:spotify_client/presentation/views/localization/localization_view.dart';
-import 'package:spotify_client/presentation/views/main/main_view.dart';
 import 'package:spotify_client/presentation/views/player/player_view.dart';
 import 'package:spotify_client/presentation/views/theme/theme_view.dart';
 import 'package:spotify_client/src/feature/authentication/bloc/login/authentication_bloc.dart';
@@ -36,9 +31,6 @@ import 'package:spotify_client/ui/screens/transfer_playback/transfer_playback_vi
 import 'package:spotify_client/ui/screens/users_queue/users_queue_screen.dart';
 import 'package:spotify_client/ui/screens/users_queue/users_queue_view_model.dart';
 
-import 'package:spotify_client/presentation/bloc/cubits/home_cubit/home_cubit.dart';
-
-import 'package:spotify_client/presentation/bloc/bloc/network/network_bloc.dart';
 
 import 'package:spotify_client/src/feature/authentication/widget/login_view.dart';
 
@@ -54,30 +46,11 @@ class ScreenFactory {
     return const LoginView();
   }
 
-  Widget makeMain(Widget child) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => NetworkBloc()..add(NetworkObserve())),
-        BlocProvider(
-            create: (context) =>
-                MiniPlayerBloc()..add(GetPlaybackStateEvent())),
-      ],
-      child: MainView(child),
-    );
-  }
 
   Widget makeMediaLibrary() {
     return ChangeNotifierProvider(
       create: (context) => MediaLibraryViewModel(),
       child: const MediaLibraryScreen(),
-    );
-  }
-
-  Widget makeCurrentUserProfile() {
-    return BlocProvider(
-      create: (context) =>
-          CurrentUsersProfileBloc()..add(FetchCurrentUsersProfile()),
-      child: const CurrentUsersProfileView(),
     );
   }
 
@@ -149,10 +122,5 @@ class ScreenFactory {
     );
   }
 
-  Widget makeHome() {
-    return BlocProvider(
-      create: (context) => HomeCubit(),
-      child: const HomeView(),
-    );
-  }
+
 }

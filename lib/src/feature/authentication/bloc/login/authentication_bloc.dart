@@ -67,7 +67,17 @@ class AuthenticationBloc
   Future<void> _onSignOut(
     _SignOut event,
     Emitter<AuthenticationState> emit,
-  ) async {}
+  ) async {
+    try {
+      emit(const _Loading());
+      await _authenticationRepository.logout();
+      emit(const _Success());
+      emit(const _NotAuthenticated());
+    } on Object catch (error) {
+      emit(_Failure(error: error));
+      emit(const _NotAuthenticated());
+    }
+  }
 
   Future<void> _onHandleDeeplink(
     _HandleDeeplink event,

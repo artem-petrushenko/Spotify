@@ -2,13 +2,12 @@ part of 'router.dart';
 
 abstract class GoRouterPath {
   static const loaderScreen = GoRouterNames.loaderScreen;
-  static const loginScreen = GoRouterNames.loginScreen;
 
   static const playerScreen = GoRouterNames.playerScreen;
   static const transferPlaybackScreen = GoRouterNames.transferPlaybackScreen;
 
   static const mediaLibraryScreen = GoRouterNames.mediaLibraryScreen;
-  static const homeScreen = GoRouterNames.homeScreen;
+
   static const likedMusicPlaylistScreen =
       GoRouterNames.likedMusicPlaylistScreen;
   static const currentUserProfileScreen =
@@ -23,4 +22,9 @@ abstract class GoRouterPath {
   static const albumScreen = '${GoRouterNames.albumScreen}/:albumID';
   static const playlistScreen = GoRouterNames.playlistScreen;
   static const trackScreen = GoRouterNames.trackScreen;
+
+  // New Navigation
+  static const loginView = GoRouterNames.loginView;
+  static const profileView = GoRouterNames.profileView;
+  static const homeView = GoRouterNames.homeView;
 }

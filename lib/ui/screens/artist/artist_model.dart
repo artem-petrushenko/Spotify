@@ -14,7 +14,6 @@ import 'package:spotify_client/domain/services/artists/abstract_artists_service.
 import 'package:spotify_client/domain/services/player/abstract_player_service.dart';
 import 'package:spotify_client/domain/services/playlists/abstract_playlists_service.dart';
 import 'package:spotify_client/domain/services/tracks/abstract_tracks_service.dart';
-import 'package:spotify_client/domain/services/users/abstract_users_service.dart';
 
 enum Status { loading, completed, error }
 
@@ -359,16 +358,16 @@ class ArtistViewModel extends ChangeNotifier {
   Future<void> createPlaylist({
     required BuildContext context,
   }) async {
-    await GetIt.instance<AbstractUsersService>()
-        .getCurrentUserProfile()
-        .then((value) =>
-            GetIt.instance<AbstractPlaylistsService>().createPlaylist(
-              userId: value.id ?? '',
-              name: _namePlaylist,
-              public: publicPlaylist,
-            ))
-        .then((value) => Navigator.pop(context));
-    _namePlaylist = '';
+    // await GetIt.instance<AbstractUsersService>()
+    //     .getCurrentUserProfile()
+    //     .then((value) =>
+    //         GetIt.instance<AbstractPlaylistsService>().createPlaylist(
+    //           userId: value.id ?? '',
+    //           name: _namePlaylist,
+    //           public: publicPlaylist,
+    //         ))
+    //     .then((value) => Navigator.pop(context));
+    // _namePlaylist = '';
   }
 
   //TODO: NOT WORKING
