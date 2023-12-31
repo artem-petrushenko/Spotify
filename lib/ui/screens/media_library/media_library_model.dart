@@ -81,7 +81,7 @@ class MediaLibraryViewModel extends ChangeNotifier {
         break;
       case MediaType.playlists:
         context.push(context.namedLocation(GoRouterNames.playlistScreen,
-            queryParams: <String, dynamic>{
+            queryParameters: <String, dynamic>{
               'playlistID': mediaData.mediaId ?? '',
               'image': mediaData.imageUrl ?? ''
             }));

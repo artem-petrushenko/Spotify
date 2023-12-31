@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:spotify_client/domain/factory/screen_factory.dart';
 import 'package:spotify_client/src/feature/home/widget/home_view.dart';
@@ -23,19 +24,18 @@ class MainGoRouter {
   static final _screenFactory = ScreenFactory();
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    debugLogDiagnostics: true,
-    // redirect: (context, state) {
-    //   final isAuth = context.read<AuthenticationBloc>().state.maybeMap(
-    //         authenticated: (_) => true,
-    //         orElse: () => false,
-    //       );
-    //   if (isAuth == false) {
-    //
-    //     return GoRouterPath.loginScreen;
-    //   }
-    //   return GoRouterPath.likedMusicPlaylistScreen;
-    // },
-    // refreshListenable: router.read<AuthenticationBloc>(),
+    redirect: (context, state) {
+      final isAuth = DependenciesScope.of(context)
+          .authenticationRepository
+          .fetchAccessToken();
+      if (isAuth == null) {
+        if (state.uri.queryParameters.isNotEmpty) {
+          return state.uri.toString();
+        }
+        return GoRouterPath.loginView;
+      }
+      return null;
+    },
     initialLocation: GoRouterPath.homeView,
     routes: [
       ShellRoute(
@@ -72,7 +72,7 @@ class MainGoRouter {
               context: context,
               state: state,
               child: _screenFactory.makeAlbumScreen(
-                state.params['albumID'] ?? '',
+                state.uri.queryParameters['albumID'] ?? '',
               ),
             ),
           ),
@@ -83,7 +83,7 @@ class MainGoRouter {
               context: context,
               state: state,
               child: _screenFactory.makeArtistScreen(
-                state.params['artistID'] ?? '',
+                state.uri.queryParameters['artistID'] ?? '',
               ),
             ),
           ),
@@ -148,8 +148,8 @@ class MainGoRouter {
               context: context,
               state: state,
               child: _screenFactory.makePlaylist(
-                  state.queryParams['playlistID'] ?? '',
-                  state.queryParams['image'] ?? ''),
+                  state.uri.queryParameters['playlistID'] ?? '',
+                  state.uri.queryParameters['image'] ?? ''),
             ),
           ),
           GoRoute(
@@ -160,8 +160,8 @@ class MainGoRouter {
               context: context,
               state: state,
               child: _screenFactory.makeTrack(
-                state.queryParams['trackID'] ?? '',
-                state.queryParams['image'] ?? '',
+                state.uri.queryParameters['trackID'] ?? '',
+                state.uri.queryParameters['image'] ?? '',
               ),
             ),
           ),
@@ -173,7 +173,7 @@ class MainGoRouter {
           return NavigationAnimations.fadeTransitionAnimation<void>(
             context: context,
             state: state,
-            child: _screenFactory.makeLogin(state.queryParams, context),
+            child: _screenFactory.makeLogin(state.uri.queryParameters, context),
           );
         },
       ),

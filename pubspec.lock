@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: bloc_concurrency
-      sha256: "44535c9f429cd7e91d548cf89fde1c23a8b4b3637decdb1865bb583091a00d4e"
+      sha256: d945b33641a3c3f12fa12a1437e77f784444dd9a3a66a3a4f5aaa6e049154d36
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -165,10 +165,10 @@ packages:
     dependency: transitive
     description:
       name: code_builder
-      sha256: b2151ce26a06171005b379ecff6e08d34c470180ffe16b8e14b6d52be292b55f
+      sha256: feee43a5c05e7b3199bb375a86430b8ada1b04104f2923d0e03cc01ca87b6d84
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.0"
+    version: "4.9.0"
   collection:
     dependency: transitive
     description:
@@ -409,10 +409,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: bd7e671d26fd39c78cba82070fa34ef1f830b0e7ed1aeebccabc6561302a7ee5
+      sha256: ca7e4a2249f96773152f1853fa25933ac752495cdd7fdf5dafb9691bd05830fd
       url: "https://pub.dev"
     source: hosted
-    version: "6.5.9"
+    version: "13.0.0"
   graphs:
     dependency: transitive
     description:

@@ -80,7 +80,8 @@ class PlaylistViewModel extends ChangeNotifier {
                     .toList()
                     .reversed
                     .take(5)
-                    .join(',') ??'')
+                    .join(',') ??
+                '')
         .then((value) => _addRecommendationsModel(value))
         .onError((error, stackTrace) => data.status = Status.error);
 
@@ -104,6 +105,13 @@ class PlaylistViewModel extends ChangeNotifier {
   }
 
   void openTrack(String trackID, BuildContext context, String image) =>
-      context.push(context.namedLocation(GoRouterNames.trackScreen,
-          queryParams: <String, dynamic>{'trackID': trackID, 'image': image}));
+      context.push(
+        context.namedLocation(
+          GoRouterNames.trackScreen,
+          queryParameters: <String, dynamic>{
+            'trackID': trackID,
+            'image': image,
+          },
+        ),
+      );
 }
